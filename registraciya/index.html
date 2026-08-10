@@ -308,6 +308,7 @@
   .cal .ysteps.on{display:block;animation:pop .3s ease}
   .cal .ysteps ol{margin-left:20px}
   .cal .ysteps li{padding:5px 0;font-size:15.5px;color:#eddce6}
+  .cal .ynote{margin-top:10px;font-size:13.5px;color:#a1919c}
   .cal .ysteps .lnk{margin-top:12px;background:rgba(0,0,0,.28);border-radius:12px;padding:10px 12px;font-size:13px;color:#ffb3da;word-break:break-all}
 
   .note{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
@@ -423,13 +424,13 @@
     </div>
     <div class="ysteps" id="ysteps">
       <ol>
-        <li>Открой <a href="https://calendar.yandex.ru" target="_blank" rel="noopener">calendar.yandex.ru</a></li>
         <li>В левой панели нажми <b>«Новая подписка»</b></li>
-        <li>Вставь скопированный адрес и сохрани</li>
+        <li>Вставь адрес и сохрани</li>
       </ol>
+      <p class="ynote">Если время практикума изменится – у тебя обновится само. С обычным импортом так не работает.</p>
       <div class="lnk">https://fitstars-school.github.io/praktikum-ii/registraciya/praktikum-19-avgusta.ics</div>
     </div>
-    <p class="small" id="calhint">Apple, Outlook и почти все календари понимают скачанный файл – просто открой его после загрузки.</p>
+    <p class="small" id="calhint">Apple, Outlook и почти все календари понимают скачанный файл – просто открой его после загрузки. С телефона это самый быстрый путь: скачал, открыл, готово.</p>
   </div>
 
   <div class="note">
@@ -866,15 +867,19 @@ const ICS_URL = 'https://fitstars-school.github.io/praktikum-ii/registraciya/pra
 document.getElementById('ycal').onclick = (e)=>{
   e.preventDefault();
   const box = document.getElementById('ysteps');
-  box.classList.add('on');
   const hint = document.getElementById('calhint');
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(ICS_URL).then(()=>{
-      hint.textContent = 'Ссылка скопирована – осталось вставить её в Яндекс Календаре.';
-      hint.classList.add('hi');
-    }).catch(()=>{});
-  }
-  box.scrollIntoView({block:'nearest', behavior:'smooth'});
+  // копируем адрес и тут же открываем календарь – вставить останется одним движением
+  const copy = (navigator.clipboard && navigator.clipboard.writeText)
+    ? navigator.clipboard.writeText(ICS_URL).then(()=>true).catch(()=>false)
+    : Promise.resolve(false);
+  window.open('https://calendar.yandex.ru/', '_blank', 'noopener');
+  box.classList.add('on');
+  copy.then(ok=>{
+    hint.textContent = ok
+      ? 'Календарь открылся в новой вкладке, ссылка уже в буфере – осталось вставить.'
+      : 'Календарь открылся в новой вкладке. Скопируй адрес ниже и вставь его.';
+    hint.classList.add('hi');
+  });
 };
 
 function render(){ if(renderFork()){ renderChips(); renderPanel(); } reveal(); }
