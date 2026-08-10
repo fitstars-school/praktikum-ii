@@ -303,13 +303,6 @@
   .cal .btn.ghost:hover{color:#fff;border-color:#ff7ac2;background:rgba(255,255,255,.06)}
   .cal .small{color:#a1919c;margin-top:16px;transition:.2s}
   .cal .small.hi{color:#ffd6ec}
-  .cal .ysteps{margin-top:16px;text-align:left;max-width:520px;margin-left:auto;margin-right:auto;
-    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:16px 18px;display:none}
-  .cal .ysteps.on{display:block;animation:pop .3s ease}
-  .cal .ysteps ol{margin-left:20px}
-  .cal .ysteps li{padding:5px 0;font-size:15.5px;color:#eddce6}
-  .cal .ynote{margin-top:10px;font-size:13.5px;color:#a1919c}
-  .cal .ysteps .lnk{margin-top:12px;background:rgba(0,0,0,.28);border-radius:12px;padding:10px 12px;font-size:13px;color:#ffb3da;word-break:break-all}
 
   .note{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
   .foot{text-align:center;color:var(--faint);font-size:13px;margin-top:28px;line-height:1.7}
@@ -420,17 +413,9 @@
     <div class="btns">
       <a class="btn" id="gcal" href="#" target="_blank" rel="noopener">📅 Google</a>
       <a class="btn ghost" id="ical" href="#" role="button">🍎 Apple и другие</a>
-      <a class="btn ghost" id="ycal" href="#" role="button">🟡 Яндекс</a>
+      <a class="btn ghost" id="ycal" href="https://calendar.yandex.ru/event/313432727439706?applyToFuture=0&amp;event_date=2026-08-19T15%3A00%3A00&amp;layerId=7203103&amp;show_date=2026-08-19" target="_blank" rel="noopener">🟡 Яндекс</a>
     </div>
-    <div class="ysteps" id="ysteps">
-      <ol>
-        <li>В левой панели нажми <b>«Новая подписка»</b></li>
-        <li>Вставь адрес и сохрани</li>
-      </ol>
-      <p class="ynote">Если время практикума изменится – у тебя обновится само. С обычным импортом так не работает.</p>
-      <div class="lnk">https://fitstars-school.github.io/praktikum-ii/registraciya/praktikum-19-avgusta.ics</div>
-    </div>
-    <p class="small" id="calhint">Apple, Outlook и почти все календари понимают скачанный файл – просто открой его после загрузки. С телефона это самый быстрый путь: скачал, открыл, готово.</p>
+    <p class="small" id="calhint">Google и Яндекс открывают событие сразу – останется нажать «Добавить в свой календарь». Для Apple, Outlook и остальных скачивается файл: открой его после загрузки, с телефона это самый быстрый путь.</p>
   </div>
 
   <div class="note">
@@ -861,26 +846,6 @@ function focusStep(apply){
     window.scrollTo({ top: window.scrollY + top - TOP_GAP, behavior: reduce ? 'auto' : 'smooth' });
   });
 }
-
-/* У Яндекса нет ссылки «создать событие», зато есть подписка на календарь по адресу .ics */
-const ICS_URL = 'https://fitstars-school.github.io/praktikum-ii/registraciya/praktikum-19-avgusta.ics';
-document.getElementById('ycal').onclick = (e)=>{
-  e.preventDefault();
-  const box = document.getElementById('ysteps');
-  const hint = document.getElementById('calhint');
-  // копируем адрес и тут же открываем календарь – вставить останется одним движением
-  const copy = (navigator.clipboard && navigator.clipboard.writeText)
-    ? navigator.clipboard.writeText(ICS_URL).then(()=>true).catch(()=>false)
-    : Promise.resolve(false);
-  window.open('https://calendar.yandex.ru/', '_blank', 'noopener');
-  box.classList.add('on');
-  copy.then(ok=>{
-    hint.textContent = ok
-      ? 'Календарь открылся в новой вкладке, ссылка уже в буфере – осталось вставить.'
-      : 'Календарь открылся в новой вкладке. Скопируй адрес ниже и вставь его.';
-    hint.classList.add('hi');
-  });
-};
 
 function render(){ if(renderFork()){ renderChips(); renderPanel(); } reveal(); }
 document.getElementById('reset').onclick=()=>{ st={steps:{}}; save(); render(); };
