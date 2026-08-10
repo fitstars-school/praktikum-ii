@@ -96,6 +96,10 @@
   .step .st{font-weight:700;font-size:17px}
   .step .body{padding:0 16px 16px 55px;color:#4a3d48;font-size:16px;display:none}
   .step .body p+p{margin-top:8px}
+  .shot{margin-top:12px}
+  .shot img{display:block;width:100%;border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 34px -24px rgba(120,20,90,.5)}
+  .shot figcaption{font-size:13.5px;color:#9a8d98;margin-top:7px}
+  .shot+.shot{margin-top:14px}
   .step .body .tip{margin-top:10px;background:var(--wash);border-radius:14px;padding:11px 13px;font-size:15.5px;color:#6a5d68}
   .step.now{border-color:var(--magenta);box-shadow:0 16px 38px -26px rgba(230,25,140,.7)}
   .step.now .num{color:var(--magenta)}
@@ -455,6 +459,13 @@ function stepsFor(d){
   return (d.foreign && st.country==='ru') ? [["Включи доступ к сервису", VPN_BODY], ...d.steps] : d.steps;
 }
 const doneFor = d => stepsFor(d).filter((_,i)=>st.steps[d.id+"-"+i]).length;
+/* скриншоты шага: ["файл.png","подпись"] или массив таких пар */
+function shots(list){
+  if(!list) return '';
+  const arr = Array.isArray(list[0]) ? list : [list];
+  return arr.map(x=>'<figure class="shot"><img src="img/'+x[0]+'" alt="'+(x[1]||'')+'" loading="lazy">'+
+    (x[1]?'<figcaption>'+x[1]+'</figcaption>':'')+'</figure>').join('');
+}
 const plural = n => n===1?'шаг':(n<5?'шага':'шагов');
 
 function renderFork(){
@@ -484,9 +495,11 @@ function renderChips(){
     return '<div class="chip g-'+d.group+(d.our?' star':'')+(d.id===active?' on':'')+'" data-id="'+d.id+'"><span>'+d.em+'</span>'+d.name+our+mark+'</div>';
   };
   const grp = (g,label,note) =>
-    '<div class="grp"><div class="grplbl">'+label+' <span>'+note+'</span></div><div class="grprow">'+
+    '<div class="grp"><div class="grplbl">'+label+(note?' <span>'+note+'</span>':'')+'</div><div class="grprow">'+
     DATA.filter(d=>d.group===g).map(one).join('')+'</div></div>';
-  chipsEl.innerHTML = grp('foreign','Зарубежные','нужен доступ') + grp('ru','Российские','открываются напрямую');
+  const ru = st.country==='ru';
+  chipsEl.innerHTML = grp('foreign','Зарубежные', ru?'нужен доступ':'работают напрямую')
+                    + grp('ru','Российские', ru?'открываются напрямую':'тоже доступны');
   chipsEl.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ active=c.dataset.id; save(); render(); });
 }
 
@@ -513,7 +526,7 @@ function renderPanel(){
     return '<li class="step '+cls+'" data-k="'+k+'">'+
       '<div class="row" data-toggle="'+k+'"><span class="box">✓</span><span>'+
       '<span class="num">Шаг '+(i+1)+' из '+all+'</span><br><span class="st">'+s[0]+'</span></span></div>'+
-      '<div class="body">'+s[1]+(st.steps[k]?'':'<button class="btn" data-do="'+k+'">Готово, дальше →</button>')+'</div></li>';
+      '<div class="body">'+s[1]+shots(s[2])+(st.steps[k]?'':'<button class="btn" data-do="'+k+'">Готово, дальше →</button>')+'</div></li>';
   }).join('');
 
   const allDone = dn===all
