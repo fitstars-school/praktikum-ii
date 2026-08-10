@@ -304,7 +304,16 @@
   .cal .small{color:#a1919c;margin-top:16px;transition:.2s}
   .cal .small.hi{color:#ffd6ec}
 
-  .note{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+  .fn{display:inline-block;font-size:.72em;font-weight:800;color:var(--magenta);vertical-align:super;
+    line-height:1;margin-left:2px;border-bottom:0;text-decoration:none}
+  .fn:hover{color:var(--magenta-d)}
+  .step.now .fn,.step .fn{color:var(--magenta)}
+  .grplbl .fn{color:var(--magenta)}
+
+  .note{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;
+    scroll-margin-top:90px;transition:box-shadow .4s,border-color .4s}
+  .note:target,.note.flash{border-color:var(--magenta);box-shadow:0 0 0 4px rgba(230,25,140,.12)}
+  .note .fnmark{font-weight:800;color:var(--magenta);margin-right:6px}
   .foot{text-align:center;color:var(--faint);font-size:13px;margin-top:28px;line-height:1.7}
   .reset{border-color:var(--line);background:#fff;padding:8px 16px;font-size:13px;font-weight:700;color:var(--faint);cursor:pointer;margin-top:14px;transition:.15s}
   .reset:hover{border-color:var(--magenta);color:var(--magenta)}
@@ -418,8 +427,8 @@
     <p class="small" id="calhint">Google и Яндекс открывают событие сразу – останется нажать «Добавить в свой календарь». Для Apple, Outlook и остальных скачивается файл: открой его после загрузки, с телефона это самый быстрый путь.</p>
   </div>
 
-  <div class="note">
-    <p class="small">Рекомендация приведена исключительно в целях обеспечения технической доступности веб-интерфейса и корректной маршрутизации сетевых пакетов. Напоминаем о необходимости соблюдения действующего законодательства и внутренних правил информационной безопасности вашей организации при настройке сетевых соединений.</p>
+  <div class="note" id="sn" tabindex="-1">
+    <p class="small"><span class="fnmark">*</span>Рекомендация приведена исключительно в целях обеспечения технической доступности веб-интерфейса и корректной маршрутизации сетевых пакетов. Напоминаем о необходимости соблюдения действующего законодательства и внутренних правил информационной безопасности вашей организации при настройке сетевых соединений.</p>
   </div>
 
   <div class="foot">
@@ -440,7 +449,7 @@ const EV = {
 
 /* ============ общие блоки ============ */
 const VPN_BODY = `
-  <p>Сервис из России напрямую не открывается, поэтому доступ включаем <b>до</b> того, как заходить на сайт. Настраивается один раз – дальше можно забыть.</p>
+  <p>Сервис из России напрямую не открывается, поэтому доступ<a class="fn" href="#sn" title="К сноске">*</a> включаем <b>до</b> того, как заходить на сайт. Настраивается один раз – дальше можно забыть.</p>
   <h3>Вариант 1 – приложение на компьютер или телефон</h3>
   <div class="bots">
     <a class="bot" href="https://amnezia.org" target="_blank" rel="noopener">🛡️ Amnezia VPN</a>
@@ -657,7 +666,7 @@ const chipsEl = document.getElementById('chips');
 const panelEl = document.getElementById('panel');
 
 function stepsFor(d){
-  return (d.foreign && st.country==='ru') ? [["Включи доступ к сервису", VPN_BODY], ...d.steps] : d.steps;
+  return (d.foreign && st.country==='ru') ? [["Включи доступ к сервису<a class=\"fn\" href=\"#sn\" title=\"К сноске\">*</a>", VPN_BODY], ...d.steps] : d.steps;
 }
 const doneFor = d => stepsFor(d).filter((_,i)=>st.steps[d.id+"-"+i]).length;
 /* скриншоты шага: ["файл.png","подпись"] или массив таких пар */
@@ -675,7 +684,7 @@ function renderFork(){
       '<div class="fork"><div class="kick">Шаг 1</div><h2 class="secthead">Где ты сейчас?</h2>'+
       '<p class="muted">От этого зависит весь маршрут. Дальше покажем только то, что нужно именно тебе – без лишнего.</p>'+
       '<div class="forkcards">'+
-        '<div class="fc" data-c="ru"><div class="fe">🇷🇺</div><div class="fn">Я в России</div><div class="fd">Понадобится один дополнительный шаг</div></div>'+
+        '<div class="fc" data-c="ru"><div class="fe">🇷🇺</div><div class="fn">Я в России</div><div class="fd">Понадобится один дополнительный шаг<a class="fn" href="#sn" title="К сноске">*</a></div></div>'+
         '<div class="fc" data-c="other"><div class="fe">🌍</div><div class="fn">Я в другой стране</div><div class="fd">Регистрируешься сразу</div></div>'+
       '</div></div>';
     forkEl.querySelectorAll('.fc').forEach(c=>c.onclick=()=>{ st.country=c.dataset.c; save(); render(); });
@@ -701,7 +710,7 @@ function renderChips(){
     '<div class="grp"><div class="grplbl">'+label+(note?' <span>'+note+'</span>':'')+'</div><div class="grprow">'+
     DATA.filter(d=>d.group===g).map(one).join('')+'</div></div>';
   const ru = st.country==='ru';
-  chipsEl.innerHTML = grp('foreign','Зарубежные', ru?'нужен доступ':'работают напрямую')
+  chipsEl.innerHTML = grp('foreign','Зарубежные', ru?('нужен доступ'+'<a class="fn" href="#sn" title="К сноске">*</a>'):'работают напрямую')
                     + grp('ru','Российские', ru?'открываются напрямую':'тоже доступны');
   chipsEl.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ active=c.dataset.id; save(); render(); });
 }
@@ -846,6 +855,21 @@ function focusStep(apply){
     window.scrollTo({ top: window.scrollY + top - TOP_GAP, behavior: reduce ? 'auto' : 'smooth' });
   });
 }
+
+/* клик по звёздочке – мягко подводим к сноске и подсвечиваем её */
+document.addEventListener('click', (e)=>{
+  const a = e.target.closest('a.fn');
+  if(!a) return;
+  e.preventDefault();
+  const note = document.getElementById('sn');
+  if(!note) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  note.scrollIntoView({block:'center', behavior: reduce ? 'auto' : 'smooth'});
+  note.classList.remove('flash');
+  void note.offsetWidth;
+  note.classList.add('flash');
+  setTimeout(()=>note.classList.remove('flash'), 2200);
+});
 
 function render(){ if(renderFork()){ renderChips(); renderPanel(); } reveal(); }
 document.getElementById('reset').onclick=()=>{ st={steps:{}}; save(); render(); };
