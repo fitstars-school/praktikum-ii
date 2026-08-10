@@ -109,6 +109,10 @@
   .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none;font-weight:700}
   .btn.ghost:hover{color:var(--magenta);border-color:var(--magenta)}
 
+  .desk{margin-top:14px;background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:18px 20px}
+  .desk .dt{font-weight:700;font-size:17px;margin-bottom:6px}
+  .desk p{font-size:16px;color:#4a3d48}
+  .desk .btn{margin-top:14px}
   .alldone{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:18px 20px;margin-top:4px}
 
   .fold{border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-top:12px;overflow:hidden}
@@ -323,20 +327,20 @@ const CAPS = [
   {k:"chat",  t:"Диалог в чате",                       d:"Задаёшь вопрос – получаешь ответ"},
   {k:"files", t:"Читает твои файлы",                   d:"Загружаешь документ или таблицу прямо в чат"},
   {k:"bots",  t:"Свои ИИ-помощники",                   d:"Собираешь помощника под свою задачу – это второй модуль курса"},
-  {k:"agent", t:"Работа с файлами на компьютере",      d:"Не копипаст из чата, а работа прямо в твоих папках – четвёртый модуль"},
+  {k:"agent", t:"Работа с файлами на компьютере",      d:"Программа, установленная на компьютер, работает прямо в твоих папках – четвёртый модуль курса"},
   {k:"img",   t:"Картинки прямо в чате",               d:"Без отдельного сервиса"}
 ];
 
 /* ============ нейросети ============ */
 const DATA = [
   {
-    id:"gpt", group:"foreign", em:"🟢", name:"ChatGPT", tagline:"Основной инструмент практикума и курса", our:true,
-    badges:[["pink","Работаем на нём"],["green","Регистрация бесплатная"],["violet","Codex в подписке"]],
-    caps:{chat:["yes"],files:["yes"],bots:["yes"],agent:["yes","через Codex, входит в подписку"],img:["yes"]},
+    id:"gpt", download:"https://chatgpt.com/ru-RU/download/", group:"foreign", em:"🟢", name:"ChatGPT", tagline:"Основной инструмент практикума и курса", our:true,
+    badges:[["pink","Работаем на нём"],["green","Регистрация бесплатная"],["violet","Есть программа для компьютера"]],
+    caps:{chat:["yes"],files:["yes"],bots:["yes"],agent:["yes","через программу ChatGPT, установленную на компьютере"],img:["yes"]},
     why:["Самый понятный вход для новичка – всё на виду",
       "Единственный закрывает всё, что понадобится за четыре недели курса",
       "Голосовой ввод – можно не печатать, а наговаривать",
-      "В подписку входит Codex – работа с файлами прямо на компьютере"],
+      "Установленный на компьютер, работает с твоими файлами напрямую – а не только выдаёт текст для копипаста"],
     lim:"", foreign:true,
     steps:[
       ["Войди через аккаунт Google",
@@ -365,9 +369,9 @@ const DATA = [
       ["Стоит ли брать вместо ChatGPT","Если вся твоя работа живёт в Google-документах – попробуй. В остальном на курсе удобнее с ChatGPT."]]
   },
   {
-    id:"claude", group:"foreign", em:"🟠", name:"Claude", tagline:"Хорош в текстах, но капризный",
+    id:"claude", download:"https://claude.com/download", group:"foreign", em:"🟠", name:"Claude", tagline:"Хорош в текстах, но капризный",
     badges:[["pink","Не основной для курса"],["grey","Капризный по доступу"]],
-    caps:{chat:["yes"],files:["yes","силён на длинных документах"],bots:["yes"],agent:["yes","через Claude Code"],img:["no","напрямую не рисует, только через подключаемые инструменты"]},
+    caps:{chat:["yes"],files:["yes","силён на длинных документах"],bots:["yes"],agent:["yes","через программу на компьютере"],img:["no","напрямую не рисует, только через подключаемые инструменты"]},
     why:["Очень хорош в длинных текстах и документах",
       "Аккуратный, живой стиль письма – меньше «пластика»",
       "Свои проекты и постоянные настройки"],
@@ -515,6 +519,11 @@ function renderPanel(){
   const allDone = dn===all
     ? '<div class="alldone"><p><b>Готово.</b> Ты зарегистрирован – этого уже хватает, чтобы прийти на практикум 19 августа и начать курс. Подписка понадобится позже и только если упрёшься в лимиты.</p></div>' : '';
 
+  const deskHtml = d.download ? '<div class="desk"><div class="dt">⬇️ Лучше поставить приложение на компьютер</div>'+
+    '<p>Мобильное приложение и сайт с телефона сделаны для быстрого доступа – спросить что-то на ходу. Полный набор возможностей всегда на компьютере: работа с файлами, свои помощники, настройки под себя.</p>'+
+    '<p style="margin-top:8px">Веб-версия на компьютере тоже работает. Но приложение удобнее: открывается быстрее и не теряется среди вкладок.</p>'+
+    '<a class="btn" href="'+d.download+'" target="_blank" rel="noopener">Скачать '+d.name+' для компьютера →</a></div>' : '';
+
   const payIn = d.foreign
     ? (st.country==='ru' ? PAY_FOREIGN + (d.payExtra||'')
        : '<p>Ты не в России – оплата проходит обычной местной картой. Настройки аккаунта → тарифы → минимальный платный.</p><p class="muted" style="margin-top:8px">Подписка нужна не сразу: бесплатного хватает, чтобы попробовать.</p>')
@@ -528,7 +537,7 @@ function renderPanel(){
       '<div class="why"><ul>'+d.why.map(w=>'<li>'+w+'</li>').join('')+'</ul>'+(d.lim?'<div class="lim">'+d.lim+'</div>':'')+'</div>'+
       '<div class="kick" style="margin-top:22px">Что умеет</div>'+ renderCaps(d) +
       '<div class="pathhead"><div class="kick">Путь – '+all+' '+plural(all)+'</div><div class="small">'+dn+' из '+all+' пройдено</div></div>'+
-      '<ul class="path">'+stepsHtml+'</ul>'+ allDone +
+      '<ul class="path">'+stepsHtml+'</ul>'+ allDone + deskHtml +
       '<details class="fold"><summary><span class="ic">💳</span>Когда решишь оформить подписку<span class="arr">▾</span></summary><div class="in">'+payIn+'</div></details>'+
       '<div style="margin-top:24px"><div class="kick" style="margin-bottom:4px">Частые вопросы</div>'+
         d.faq.map(q=>'<details class="qa"><summary>'+q[0]+'</summary><div class="ans">'+q[1]+'</div></details>').join('')+'</div>'+
