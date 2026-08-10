@@ -39,6 +39,17 @@
   a code{border-bottom:0}
 
   /* ——— шапка ——— */
+  .ticket{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:18px;display:flex;align-items:stretch;box-shadow:var(--shadow);position:relative}
+  .ticket .main{flex:1;padding:20px 24px;display:flex;align-items:center}
+  .ticket .tname{font-weight:700;font-size:19px;line-height:1.35;text-wrap:balance}
+  .ticket .stub{flex:0 0 auto;padding:20px 26px;display:flex;flex-direction:column;justify-content:center;text-align:center;position:relative}
+  .ticket .stub::before{content:"";position:absolute;left:0;top:14px;bottom:14px;border-left:2px dashed #E2DCE6}
+  .ticket .notch{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--page);border:1px solid var(--line);left:-9px}
+  .ticket .notch.up{top:-9px;border-bottom-color:transparent;border-left-color:transparent}
+  .ticket .notch.dn{bottom:-9px;border-top-color:transparent;border-right-color:transparent}
+  .ticket .tday{font-family:'Unbounded',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.01em;white-space:nowrap}
+  .ticket .ttime{font-size:14px;color:var(--muted);margin-top:4px;white-space:nowrap}
+
   .lede{margin-top:2px}
   .lede .name{font-weight:700;font-size:19px;line-height:1.35;text-wrap:balance}
   .lede .when{color:var(--muted);font-size:17px;margin-top:2px}
@@ -46,7 +57,6 @@
 
   .banner{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);
     padding:26px 28px;margin:30px 0 0;display:flex;gap:18px;align-items:flex-start;position:relative;overflow:hidden}
-  .banner::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad)}
   .banner .ico{flex:0 0 auto;width:46px;height:46px;border-radius:14px;background:#FDF3F8;display:grid;place-items:center;font-size:22px;border:1px solid #F6DCEB}
   .banner b{color:var(--magenta-d)}
   .banner p+p{margin-top:9px}
@@ -173,6 +183,13 @@
   .btn.ghost:hover{color:var(--magenta);border-color:var(--magenta)}
   .step .btn{margin-top:16px}
 
+  .desk{margin-top:16px;background:#FAF9FB;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+  .desk .dt{font-weight:700;font-size:17px;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  .desk .dt .di{flex:0 0 32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:15px}
+  .desk p{font-size:16px;color:#4a3d48}
+  .desk p+p{margin-top:9px}
+  .desk .btn{margin-top:16px}
+
   .alldone{background:#F7FCF9;border:1px solid #CFE9D9;border-radius:var(--radius);padding:20px 22px;margin-top:6px}
   .alldone b{color:#178143}
 
@@ -278,6 +295,14 @@
     .wrap{padding:32px 16px 48px}
     .panel,.fork,.cmpwrap{padding:20px 17px}
     .cal{padding:28px 18px}
+    .ticket{flex-direction:column}
+    .ticket .main{padding:18px 20px 14px}
+    .ticket .stub{padding:14px 20px 18px;text-align:left;flex-direction:row;align-items:baseline;gap:10px}
+    .ticket .stub::before{left:20px;right:20px;top:0;bottom:auto;border-left:0;border-top:2px dashed #E2DCE6}
+    .ticket .notch{left:auto;top:-9px;bottom:auto}
+    .ticket .notch.up{left:-9px}
+    .ticket .notch.dn{right:-9px;top:-9px;bottom:auto;border-top-color:transparent;border-right-color:transparent}
+    .ticket .ttime{margin-top:0}
     .banner{flex-direction:column;gap:14px;padding:20px 18px}
     .vs{grid-template-columns:1fr;gap:10px}
     .banner .ico{width:44px;height:44px}
@@ -294,9 +319,13 @@
 
   <div class="kick">Гайд для участников практикума</div>
   <h1>Регистрация в нейросетях: <span class="g">спокойно, по шагам</span></h1>
-  <div class="lede">
-    <div class="name">Практикум по ИИ: как делать своё дело легко и в удовольствие</div>
-    <div class="when">19 августа, 18:00–20:00 по Москве</div>
+  <div class="ticket">
+    <div class="main"><div class="tname">Практикум по ИИ: как делать своё дело легко и в удовольствие</div></div>
+    <div class="stub">
+      <span class="notch up"></span><span class="notch dn"></span>
+      <div class="tday">19 августа</div>
+      <div class="ttime">18:00–20:00 МСК</div>
+    </div>
   </div>
 
   <div class="banner rv">
@@ -671,7 +700,7 @@ function renderPanel(){
   const allDone = dn===all
     ? '<div class="alldone"><p><b>Готово.</b> Ты зарегистрирован – этого уже хватает, чтобы прийти на практикум 19 августа и начать курс. Подписка понадобится позже и только если упрёшься в лимиты.</p></div>' : '';
 
-  const deskHtml = d.download ? '<div class="desk"><div class="dt">⬇️ Лучше поставить приложение на компьютер</div>'+
+  const deskHtml = d.download ? '<div class="desk"><div class="dt"><span class="di">⬇️</span>Лучше поставить приложение на компьютер</div>'+
     '<p>Мобильное приложение и сайт с телефона сделаны для быстрого доступа – спросить что-то на ходу. Полный набор возможностей всегда на компьютере: работа с файлами, свои помощники, настройки под себя.</p>'+
     '<p style="margin-top:8px">Веб-версия на компьютере тоже работает. Но приложение удобнее: открывается быстрее и не теряется среди вкладок.</p>'+
     '<a class="btn" href="'+d.download+'" target="_blank" rel="noopener">Скачать '+d.name+' для компьютера →</a></div>' : '';
@@ -697,11 +726,14 @@ function renderPanel(){
         d.faq.map(q=>'<details class="qa"><summary>'+q[0]+'</summary><div class="ans">'+q[1]+'</div></details>').join('')+'</div>'+
     '</div>';
 
-  panelEl.querySelectorAll('[data-do]').forEach(b=>b.onclick=e=>{ e.stopPropagation(); st.steps[b.dataset.do]=true; save(); render(); });
+  panelEl.querySelectorAll('[data-do]').forEach(b=>b.onclick=e=>{
+    e.stopPropagation();
+    focusStep(()=>{ st.steps[b.dataset.do]=true; save(); render(); });
+  });
   panelEl.querySelectorAll('[data-toggle]').forEach(r=>r.onclick=e=>{
     if(e.target.closest('a')) return;
     const k=r.dataset.toggle;
-    if(st.steps[k]){ st.steps[k]=false; save(); render(); }
+    if(st.steps[k]){ focusStep(()=>{ st.steps[k]=false; save(); render(); }); }
     else{
       const li=r.closest('.step');
       if(li.classList.contains('next')){
@@ -762,6 +794,22 @@ const io_ = ('IntersectionObserver' in window)
 function reveal(){
   if(!io_){ document.querySelectorAll('.rv').forEach(el=>el.classList.add('in')); return; }
   document.querySelectorAll('.rv:not(.in)').forEach(el=>io_.observe(el));
+}
+
+/* Шаг схлопывается, следующий раскрывается – высота карточки меняется сильно.
+   Не пытаемся удержать пиксель в пикселе (у верха страницы это невозможно),
+   а спокойно подводим взгляд к новому активному шагу. */
+const TOP_GAP = 84;
+function focusStep(apply){
+  apply();
+  const el = panelEl.querySelector('.step.now') || panelEl.querySelector('.alldone');
+  if(!el) return;
+  requestAnimationFrame(()=>{
+    const top = el.getBoundingClientRect().top;
+    if(Math.abs(top - TOP_GAP) < 40) return;           // и так на месте – не дёргаем
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: window.scrollY + top - TOP_GAP, behavior: reduce ? 'auto' : 'smooth' });
+  });
 }
 
 function render(){ if(renderFork()){ renderChips(); renderPanel(); } reveal(); }
