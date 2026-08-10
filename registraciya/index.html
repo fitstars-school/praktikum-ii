@@ -12,14 +12,15 @@
     --radius:20px;--radius-lg:26px;--shadow:0 18px 44px -26px rgba(120,20,90,.24);}
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:900px;margin:0 auto;padding:44px 22px 60px}
+  .wrap{max-width:920px;margin:0 auto;padding:44px 22px 60px}
+  a{color:var(--magenta-d);text-decoration:none;border-bottom:1px solid #F0C9E0}
+  a:hover{color:var(--magenta)}
 
   .kick{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
   h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.4vw,50px);line-height:1.06;margin:10px 0 14px;text-wrap:balance}
   h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(21px,2.8vw,26px);text-wrap:balance}
-  .sub{font-weight:700;font-size:20px}
-  p,li,td{font-size:17px;text-wrap:pretty}
+  p,li{font-size:17px;text-wrap:pretty}
   .muted{color:#6a5d68}
   .small{font-size:13px;color:#9a8d98}
   code{background:#F5EDF3;border-radius:6px;padding:1px 7px;font-family:Manrope,sans-serif;font-weight:700;color:var(--magenta-d)}
@@ -29,11 +30,25 @@
   .banner b{color:var(--magenta-d)}
   .pill{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-weight:700;font-size:13.5px;color:var(--magenta)}
 
-  .chips{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 18px}
+  .fork{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;margin-top:26px;box-shadow:var(--shadow)}
+  .forkcards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  .fc{border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;text-align:center;cursor:pointer;transition:.18s;background:#fff}
+  .fc:hover{border-color:var(--magenta);transform:translateY(-3px);box-shadow:0 18px 40px -26px rgba(230,25,140,.6)}
+  .fc .fe{font-size:34px}
+  .fc .fn{font-weight:800;font-size:19px;margin:8px 0 4px}
+  .fc .fd{font-size:15px;color:#6a5d68}
+  .chosen{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 10px 9px 18px;margin-top:26px;font-weight:700;font-size:15px}
+  .chosen button{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:700 13px Manrope,sans-serif;color:#6a5d68;cursor:pointer}
+  .chosen button:hover{border-color:var(--magenta);color:var(--magenta)}
+
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 18px}
   .chip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 17px;cursor:pointer;font-weight:700;font-size:14.5px;color:var(--ink);transition:.18s}
   .chip:hover{border-color:var(--magenta);transform:translateY(-2px)}
+  .chip.star{background:#FCE6F1;border-color:#F3B6D8;color:var(--magenta-d)}
   .chip.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 12px 30px -14px rgba(230,25,140,.6)}
   .chip .done{font-size:12px;opacity:.8}
+  .chip .ourmark{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#fff;color:var(--magenta);border-radius:999px;padding:2px 8px}
+  .chip.on .ourmark{background:rgba(255,255,255,.24);color:#fff}
 
   .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);animation:pop .3s ease}
   @keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -52,7 +67,18 @@
   .why li::before{content:"✓";position:absolute;left:0;color:var(--magenta);font-weight:700}
   .why .lim{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:#6a5d68;font-size:15.5px}
 
-  /* — путь — */
+  /* — что умеет: строки-возможности — */
+  .caps{margin-top:16px}
+  .cap{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px dashed var(--line)}
+  .cap:first-child{border-top:0}
+  .cap .m{flex:0 0 26px;height:26px;border-radius:9px;display:grid;place-items:center;font-size:14px;font-weight:800;margin-top:1px}
+  .cap .m.yes{background:#EAF7EE;color:#1FA24E}
+  .cap .m.no{background:#F2EDF1;color:#a4959f}
+  .cap .m.part{background:#FFF6E6;color:#C58A11}
+  .cap .ct{font-weight:700;font-size:16.5px}
+  .cap .cd{font-size:15px;color:#6a5d68}
+  .cap.off .ct{color:#a4959f}
+
   .pathhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:26px 0 12px}
   .path{list-style:none}
   .step{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:#fff;transition:.2s;overflow:hidden}
@@ -70,23 +96,23 @@
   .step.done .box{background:var(--magenta);border-color:var(--magenta);color:#fff}
   .step.done .st{color:#8d7f8b;text-decoration:line-through;text-decoration-color:#dcc9d8}
   .step.next .st{color:#a4959f}
-  .btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--grad);color:#fff;font:800 15px Manrope,sans-serif;padding:11px 22px;cursor:pointer;margin-top:14px;box-shadow:0 14px 32px -18px rgba(230,25,140,.8)}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--grad);color:#fff;font:800 15px Manrope,sans-serif;padding:11px 22px;cursor:pointer;margin-top:14px;box-shadow:0 14px 32px -18px rgba(230,25,140,.8);text-decoration:none;border-bottom:0}
+  .btn:hover{color:#fff}
   .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none;font-weight:700}
+  .btn.ghost:hover{color:var(--magenta);border-color:var(--magenta)}
 
   .alldone{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:18px 20px;margin-top:4px}
 
-  /* — раскрывающиеся блоки — */
   .fold{border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-top:12px;overflow:hidden}
   .fold>summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;gap:13px;align-items:center;font-weight:700;font-size:17px}
   .fold>summary::-webkit-details-marker{display:none}
   .fold>summary .ic{flex:0 0 34px;height:34px;border-radius:11px;background:var(--wash);display:grid;place-items:center;font-size:17px;border:1px solid var(--line)}
   .fold>summary .arr{margin-left:auto;color:#b8a8b6;font-size:14px}
   .fold[open]>summary{border-bottom:1px solid var(--line)}
-  .fold[open]>summary .arr{transform:rotate(180deg)}
   .fold .in{padding:18px}
   .fold .in ol{margin-left:19px}
   .fold .in ol li{padding:5px 0}
-  .fold .in h3{font-weight:700;font-size:17px;margin:16px 0 6px}
+  .fold .in h3{font-weight:700;font-size:17px;margin:18px 0 8px}
   .fold .in h3:first-child{margin-top:0}
 
   .way{border:1px solid var(--line);border-radius:16px;padding:14px 15px;margin-bottom:10px;background:#fff}
@@ -95,8 +121,14 @@
   .way.best{border-color:#F0C9E0;background:#FFFAFD}
   .way .mark{font-size:11.5px;font-weight:700;color:var(--magenta);background:#FCE6F1;border-radius:999px;padding:3px 10px;margin-left:8px;white-space:nowrap}
 
+  .bots{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .bot{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-weight:700;font-size:14px;color:var(--ink)}
+  .bot:hover{border-color:var(--magenta);color:var(--magenta)}
+
   .warn{background:#FFF6F4;border:1px solid #FADFD8;border-radius:16px;padding:14px 15px;margin-top:12px;font-size:15.5px;color:#7a4a3f}
   .warn b{color:#c2452a}
+  .gold{background:#FFFBEF;border:1px solid #F3E4BE;border-radius:16px;padding:14px 15px;margin-top:12px;font-size:15.5px;color:#6b5726}
+  .gold b{color:#996f14}
 
   .qa{border-top:1px dashed var(--line);padding:13px 0}
   .qa summary{cursor:pointer;font-weight:700;font-size:16.5px;list-style:none;display:flex;gap:11px;align-items:flex-start}
@@ -105,7 +137,25 @@
   .qa[open] summary::before{content:"✓";background:#FCE6F1;color:var(--magenta)}
   .qa .ans{padding:9px 0 2px 33px;color:#4a3d48;font-size:16px}
 
-  .dark{margin-top:34px;background:var(--dark);color:#f3e6ee;border-radius:var(--radius-lg);padding:30px 28px;position:relative;overflow:hidden}
+  /* — сравнение — */
+  .cmpwrap{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);overflow-x:auto}
+  table{border-collapse:collapse;min-width:640px;width:100%;margin-top:16px}
+  th,td{text-align:center;padding:11px 8px;border-top:1px solid var(--line);font-size:15px}
+  th:first-child,td:first-child{text-align:left;font-weight:700;min-width:210px}
+  thead th{border-top:0;font-size:14px;font-weight:800;padding-bottom:14px}
+  thead th .e{display:block;font-size:20px;margin-bottom:2px}
+  td .y{color:#1FA24E;font-weight:800;font-size:17px}
+  td .n{color:#c8bcc6;font-weight:800;font-size:17px}
+  td .p{color:#C58A11;font-weight:800;font-size:17px}
+  td small{display:block;font-size:12px;color:#9a8d98;line-height:1.35;margin-top:2px}
+  .cmpwrap .our{background:#FFFAFD}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:#6a5d68}
+
+  /* — календарь — */
+  .cal{margin-top:30px;background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius-lg);padding:28px 26px;text-align:center}
+  .cal .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+
+  .dark{margin-top:30px;background:var(--dark);color:#f3e6ee;border-radius:var(--radius-lg);padding:30px 28px;position:relative;overflow:hidden}
   .dark::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;background:radial-gradient(circle,rgba(230,25,140,.28),transparent 70%)}
   .dark .tag{color:#ff7ac2;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
   .dark h2{color:#fff;margin:9px 0 12px}
@@ -120,9 +170,10 @@
   .reset:hover{border-color:var(--magenta);color:var(--magenta)}
 
   @media(max-width:560px){
-    .panel{padding:20px 17px}
+    .panel,.fork,.cmpwrap,.cal{padding:20px 17px}
     .banner{flex-direction:column;gap:12px}
     .step .body{padding-left:16px}
+    .forkcards{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -138,13 +189,32 @@
     <div>
       <div class="pill">● 19 августа</div>
       <p style="margin-top:10px"><b>Зачем этот гайд.</b> На практикуме мы работаем в ChatGPT – показываем всё на нём. Если к 19 августа у тебя уже есть аккаунт, хотя бы бесплатный, ты сможешь повторять вместе с нами, а не смотреть со стороны.</p>
-      <p class="muted" style="margin-top:8px">Регистрация занимает несколько минут и ничего не стоит. Ниже – три шага, спокойно и по порядку.</p>
       <p class="muted" style="margin-top:8px">Остальные нейросети собраны здесь же. Принципы одинаковые везде – меняются кнопки, а не метод. Вернёшься, когда понадобится.</p>
     </div>
   </div>
 
-  <div class="chips" id="chips"></div>
+  <div id="fork"></div>
+  <div id="chips" class="chips" style="display:none"></div>
   <div id="panel"></div>
+
+  <div class="cmpwrap">
+    <div class="kick">Что умеет каждая</div>
+    <h2 style="margin-top:8px">Сравнение в одной таблице</h2>
+    <p class="muted" style="margin-top:6px">Здесь видно, почему на курсе мы берём ChatGPT: он единственный закрывает всё, что нам понадобится за четыре недели.</p>
+    <div id="cmp"></div>
+    <div class="legend"><span><b style="color:#1FA24E">✓</b> есть</span><span><b style="color:#C58A11">~</b> есть, но с оговоркой</span><span><b style="color:#c8bcc6">—</b> нет</span></div>
+  </div>
+
+  <div class="cal">
+    <div class="kick">Чтобы не забыть</div>
+    <h2 style="margin-top:8px">Поставь напоминание о практикуме</h2>
+    <p class="muted" style="margin-top:8px">19 августа. Нажми – и он встанет в твой календарь вместе с напоминанием за день и за час.</p>
+    <div class="btns">
+      <a class="btn" id="gcal" href="#" target="_blank" rel="noopener">📅 В Google Календарь</a>
+      <button class="btn ghost" id="ical">🍎 В Apple Календарь</button>
+    </div>
+    <p class="small" style="margin-top:14px">Apple, Outlook и почти все остальные календари понимают скачанный файл – просто открой его после загрузки.</p>
+  </div>
 
   <div class="dark">
     <div class="tag">Почему начинаем именно с этих</div>
@@ -153,7 +223,7 @@
     <ul>
       <li>Сценарий к видео пишет текстовая модель. Промпт к картинке – тоже текст.</li>
       <li>С их помощью можно научиться чему угодно – это не «ещё один инструмент», а способ учиться.</li>
-      <li>Навык переносится. Освоите одну – легко перейдёте в любую другую.</li>
+      <li>Навык переносится. Освоил одну – легко перейдёшь в любую другую.</li>
     </ul>
   </div>
 
@@ -163,239 +233,355 @@
 
   <div class="foot">
     Гайд обновляется – условия сервисов меняются. Проверяй актуальность на дату регистрации.<br><br>
-    <button class="reset" id="reset">Сбросить весь прогресс</button>
+    <button class="reset" id="reset">Сбросить прогресс</button>
   </div>
 </div>
 
 <script>
-/* ——— блоки, общие для зарубежных сервисов ——— */
-const ACCESS = `
-  <p>Если страница не открывается или пишет, что сервис недоступен в твоём регионе – значит нужен доступ. Это делается один раз, дальше про него можно забыть.</p>
-  <h3>Что важно при выборе</h3>
-  <div class="way best"><div class="wt">Платный, а не бесплатный<span class="mark">главное</span></div><div class="wd">Бесплатные живут за счёт твоих данных и отваливаются в самый неподходящий момент. Стоит это как чашка кофе в месяц.</div></div>
-  <div class="way"><div class="wt">Стабильный, а не самый быстрый</div><div class="wd">Тут не видео смотреть. Важно, чтобы соединение не рвалось посреди работы.</div></div>
-  <div class="way"><div class="wt">Одна и та же страна</div><div class="wd">Выбрал страну подключения – держись её. Если сегодня ты «из Германии», а завтра «из Японии», сервис насторожится и попросит подтверждений.</div></div>
-  <h3>Порядок действий</h3>
-  <ol>
-    <li>Сначала включаешь доступ.</li>
-    <li>Только потом открываешь сайт и регистрируешься.</li>
-    <li>Дальше держишь включённым, когда работаешь.</li>
-  </ol>
+/* ============ ПРАКТИКУМ: дата и время ============
+   ⬜ СВЕТА: подтверди время. Сейчас стоит 19 августа 2026, 19:00–20:40 МСК. */
+const EV = {
+  title: "Практикум по ИИ · FitStars",
+  desc:  "Практикум «Как делать своё дело легко и в удовольствие». Работаем в ChatGPT – если ещё не зарегистрирован, гайд здесь: https://fitstars-school.github.io/praktikum-ii/registraciya/",
+  startUTC: "20260819T160000Z",
+  endUTC:   "20260819T174000Z"
+};
+
+/* ============ общие блоки ============ */
+const VPN_BODY = `
+  <p>Сервис из России напрямую не открывается, поэтому доступ включаем <b>до</b> того, как заходить на сайт. Настраивается один раз – дальше можно забыть.</p>
+  <h3 style="margin-top:14px">Вариант 1 – приложение на компьютер или телефон</h3>
+  <div class="bots">
+    <a class="bot" href="https://amnezia.org" target="_blank" rel="noopener">🛡️ Amnezia VPN</a>
+    <a class="bot" href="https://getoutline.org" target="_blank" rel="noopener">🔵 Outline VPN</a>
+    <a class="bot" href="https://psiphon.ca" target="_blank" rel="noopener">🔒 Psiphon</a>
+  </div>
+  <h3>Вариант 2 – бот в Telegram</h3>
+  <p class="muted" style="font-size:15.5px">Проще, если не хочется ничего устанавливать. Открой любой, дальше по подсказкам бота.</p>
+  <div class="bots">
+    <a class="bot" href="https://t.me/vpn_noproblem_bot" target="_blank" rel="noopener">@vpn_noproblem_bot</a>
+    <a class="bot" href="https://t.me/VpnDucksBot" target="_blank" rel="noopener">@VpnDucksBot</a>
+    <a class="bot" href="https://t.me/VANYAVPNBOT" target="_blank" rel="noopener">@VANYAVPNBOT</a>
+    <a class="bot" href="https://t.me/threadshopbot" target="_blank" rel="noopener">@threadshopbot</a>
+    <a class="bot" href="https://t.me/folkvpn_bot" target="_blank" rel="noopener">@folkvpn_bot</a>
+    <a class="bot" href="https://t.me/official_vpnbot" target="_blank" rel="noopener">@official_vpnbot</a>
+    <a class="bot" href="https://t.me/vpncozybot" target="_blank" rel="noopener">@vpncozybot</a>
+  </div>
+  <div class="gold"><b>Золотое правило – одна страна.</b> Выбрал страну подключения – держись её и больше не меняй. Если позже будешь оформлять подписку, страна карты должна быть той же. Чем меньше расхождений, тем стабильнее работает аккаунт.</div>
   <div class="warn"><b>Не надо:</b> ставить незнакомые расширения для браузера по совету из комментариев и вводить куда-либо пароль от своей почты. Доступ и аккаунт – разные вещи, доступ пароля не требует.</div>
-  <p class="small" style="margin-top:12px">⬜ СЛОТ ДЛЯ СВЕТЫ: сюда – конкретный сервис, который ты проверила сама, и скрин настройки. Я намеренно ничего не рекламирую.</p>
+  <div class="tip">Уже есть свой – используй его. Главное: одна страна и включён до захода на сайт.</div>
 `;
 
 const PAY_FOREIGN = `
-  <p><b>Сначала главное: подписка нужна не сразу.</b> Бесплатного тарифа хватает, чтобы попробовать и понять, твоё ли это. Платить – когда упрёшься в лимиты и увидишь, что окупается. Не наоборот.</p>
-  <h3>Российская карта напрямую не пройдёт</h3>
-  <p class="muted">Это не твоя ошибка и не сломанный сайт – так устроено у сервиса. Поэтому есть три обходных пути.</p>
-  <h3>Три пути – выбери один</h3>
-  <div class="way best"><div class="wt">1. Сервис-посредник<span class="mark">чаще всего выбирают</span></div><div class="wd">Платишь рублями, они оплачивают подписку за тебя. Ничего открывать и заводить не нужно. Комиссию узнавай до оплаты, а не после.</div></div>
-  <div class="way"><div class="wt">2. Своя зарубежная карта</div><div class="wd">Если она есть – самый простой путь: вводишь её прямо в настройках сервиса, как в любом интернет-магазине.</div></div>
-  <div class="way"><div class="wt">3. Через приложение на телефоне</div><div class="wd">Если есть зарубежный аккаунт в магазине приложений с пополненным балансом – можно оплатить прямо из приложения.</div></div>
-  <h3>Как оплатить, когда способ выбран</h3>
-  <ol>
-    <li>Зайди в настройки аккаунта, найди раздел с тарифами.</li>
-    <li>Выбери минимальный платный тариф. Дороже для начала не нужно.</li>
-    <li>Оплати выбранным способом.</li>
-    <li>Вернись в чат и проверь, что тариф сменился. Обычно это видно сразу возле имени.</li>
-  </ol>
-  <div class="warn"><b>Правила безопасности, три штуки:</b><br>
+  <p><b>Сначала главное: подписка нужна не сразу.</b> На практикуме и в первые недели курса бесплатного тарифа хватает. Платить – когда упрёшься в лимиты и увидишь, что окупается.</p>
+  <div class="gold"><b>Два правила, из-за которых обычно всё слетает:</b><br>
+  · Страна карты – та же, что и страна подключения.<br>
+  · Карта должна поддерживать <b>повторные списания</b>. Если нет – подписка отвалится через месяц. Когда сервис спросит тип карты, бери <b>виртуальную</b>, а не предоплаченную.</div>
+
+  <h3>Путь 1. Своя зарубежная карта</h3>
+  <div class="way best"><div class="wt">Самый простой<span class="mark">если есть</span></div><div class="wd">Настройки аккаунта → тарифы → минимальный платный → вводишь карту. Может попросить подтверждение по СМС – держи телефон рядом.</div></div>
+
+  <h3>Путь 2. Знакомый с зарубежной картой</h3>
+  <div class="way"><div class="wt">Он оплачивает – ты пользуешься</div><div class="wd">Просишь знакомого оплатить подписку на твоём аккаунте. Минус: карта привязывается, и если он её сменит или заблокирует – подписка слетит.</div></div>
+
+  <h3>Путь 3. Через Telegram-бот</h3>
+  <p class="muted" style="font-size:15.5px">Платишь рублями, они оформляют подписку. Ничего открывать и заводить не нужно.</p>
+  <div class="bots">
+    <a class="bot" href="https://t.me/paymentserv_bot" target="_blank" rel="noopener">✈️ @paymentserv_bot · Foreign Pay</a>
+    <a class="bot" href="https://t.me/Help_with_subscribes_bot" target="_blank" rel="noopener">🤝 @Help_with_subscribes_bot · через оператора</a>
+  </div>
+  <p class="muted" style="font-size:15.5px;margin-top:10px">Foreign Pay работает автоматически: в меню выбираешь «Зарубежные сервисы → Нейросети», дальше нужный сервис. Во втором с тобой общается живой оператор и подбирает способ.</p>
+
+  <h3>Путь 4. Оформить себе виртуальную карту</h3>
+  <p class="muted" style="font-size:15.5px">Если планируешь платить регулярно и не хочешь ни от кого зависеть.</p>
+  <div class="bots">
+    <a class="bot" href="https://t.me/WantToPayBot" target="_blank" rel="noopener">💳 @WantToPayBot</a>
+    <a class="bot" href="https://t.me/Pyyplbot" target="_blank" rel="noopener">💳 @Pyyplbot</a>
+    <a class="bot" href="https://rewarble.com" target="_blank" rel="noopener">💳 Rewarble</a>
+  </div>
+
+  <div class="warn"><b>Три правила безопасности:</b><br>
   · Никогда не отдавай посреднику пароль от своего аккаунта. Нормальному сервису он не нужен.<br>
   · Спрашивай полную сумму с комиссией <b>до</b> оплаты.<br>
   · Бери один месяц, а не год. Понравится – продлишь.</div>
-  <p class="small" style="margin-top:12px">⬜ СЛОТ ДЛЯ СВЕТЫ: проверенный посредник и актуальная цена на дату запуска. Специально не называю сервисы, которые не проверяла.</p>
 `;
 
-/* ——— данные ——— */
+const PAY_RU = `
+  <p><b>Здесь всё просто.</b> Оплата обычной российской картой, как в любом магазине.</p>
+  <ol><li>Зайди в раздел с тарифами.</li><li>Выбери минимальный платный.</li><li>Оплати картой.</li></ol>
+  <p class="muted" style="margin-top:10px">Для начала подписка не нужна – бесплатного хватает, чтобы попробовать.</p>
+`;
+
+const SMS_TIP = `<div class="tip">Если вдруг попросит номер телефона: российский он не примет. Временный зарубежный номер покупается на <a href="https://smsfast.io" target="_blank" rel="noopener">smsfast.io</a> прямо в момент регистрации – заранее покупать не надо. Страну номера бери ту же, что и страну подключения.</div>`;
+
+/* ============ возможности ============ */
+const CAPS = [
+  {k:"chat",  t:"Диалог в чате",                       d:"Задаёшь вопрос – получаешь ответ"},
+  {k:"files", t:"Читает твои файлы",                   d:"Загружаешь документ или таблицу прямо в чат"},
+  {k:"bots",  t:"Свои ИИ-помощники",                   d:"Собираешь помощника под свою задачу – это второй модуль курса"},
+  {k:"agent", t:"Работа с файлами на компьютере",      d:"Не копипаст из чата, а работа прямо в твоих папках – четвёртый модуль"},
+  {k:"img",   t:"Картинки прямо в чате",               d:"Без отдельного сервиса"}
+];
+
+/* ============ нейросети ============ */
 const DATA = [
   {
-    id:"gpt", em:"🟢", name:"ChatGPT", tagline:"Основной инструмент практикума и курса",
+    id:"gpt", em:"🟢", name:"ChatGPT", tagline:"Основной инструмент практикума и курса", our:true,
     badges:[["pink","Работаем на нём"],["green","Регистрация бесплатная"],["violet","Codex в подписке"]],
-    why:[
-      "Самый понятный вход для новичка – всё на виду",
-      "Свои помощники, проекты и постоянные настройки – это весь второй модуль курса",
-      "Читает твои файлы: документы, таблицы, картинки",
+    caps:{chat:["yes"],files:["yes"],bots:["yes"],agent:["yes","через Codex, входит в подписку"],img:["yes"]},
+    why:["Самый понятный вход для новичка – всё на виду",
+      "Единственный закрывает всё, что понадобится за четыре недели курса",
       "Голосовой ввод – можно не печатать, а наговаривать",
-      "В подписку входит Codex – работа с файлами прямо на компьютере, это четвёртый модуль"
-    ],
-    lim:"",
-    access:true, pay:"foreign",
+      "В подписку входит Codex – работа с файлами прямо на компьютере"],
+    lim:"", foreign:true,
     steps:[
-      ["Проверь, открывается ли сайт",
-       "<p>Просто открой <code>chatgpt.com</code>. Страница загрузилась – отлично, иди дальше, больше ничего не нужно.</p><p>Пишет, что сервис недоступен – раскрой блок «Если сайт не открывается» под шагами. Это решается один раз.</p>"],
       ["Войди через аккаунт Google",
-       "<p>На странице входа нажми кнопку с Google и выбери свою почту. Всё – ты внутри.</p><div class=\"tip\">Номер телефона не нужен. Отдельный пароль придумывать тоже не нужно – вход идёт через твой Google.</div>"],
+       "<p>Открой <code>chatgpt.com</code>, на странице входа нажми кнопку с Google и выбери свою почту. Всё – ты внутри.</p><div class=\"tip\">Номер телефона не нужен. И отдельный пароль придумывать не нужно – вход идёт через твой Google.</div>"+SMS_TIP],
       ["Напиши первый запрос",
        "<p>Не «расскажи анекдот», а что-нибудь из своей настоящей работы. Так сразу видно, полезно тебе это или нет.</p><div class=\"tip\">Например: «Я работаю бухгалтером. Задай мне 5 вопросов, чтобы понять, чем ты можешь мне помочь».</div>"]
     ],
-    faq:[
-      ["Всё-таки просит номер телефона","Такое бывает не у всех и не всегда. Попробуй войти именно через Google, а не через почту с паролем – чаще всего этого достаточно."],
-      ["Не могу вспомнить, есть ли у меня Google-аккаунт","Если есть почта, которая заканчивается на gmail.com – аккаунт есть, это он и есть."],
-      ["Можно ли пользоваться бесплатно","Да. На практикуме и первые недели курса бесплатного тарифа хватает. Платить – когда упрёшься в лимиты."]
-    ]
+    faq:[["Не могу вспомнить, есть ли у меня Google-аккаунт","Если есть почта, которая заканчивается на gmail.com – аккаунт есть, это он и есть."],
+      ["Регистрироваться с телефона или с компьютера","Надёжнее с компьютера. С телефона тоже работает, но если что-то пойдёт не так – проще разобраться на большом экране."],
+      ["Можно ли пользоваться бесплатно","Да. На практикуме и первые недели курса бесплатного тарифа хватает."]]
   },
   {
     id:"giga", em:"🟩", name:"GigaChat", tagline:"Российский, открывается напрямую",
     badges:[["green","Без доп. настроек"],["green","Российская карта"],["violet","Бесплатный старт"]],
-    why:[
-      "Открывается из России напрямую – ничего настраивать не нужно",
+    caps:{chat:["yes"],files:["yes","в том числе сканы"],bots:["no","только через программирование"],agent:["no"],img:["yes","через Kandinsky"]},
+    why:["Открывается из России напрямую – ничего настраивать не нужно",
       "Оплата обычной российской картой",
       "Лучше понимает российские реалии – законы, документы, города",
-      "Разбирает загруженные документы, в том числе сканы",
-      "Картинки через Kandinsky – прямо внутри"
-    ],
-    lim:"Своего помощника с инструкцией здесь собрать нельзя – это чат плюс работа с файлами. Второй модуль курса на нём получится наполовину, и мы это обойдём: соберём помощника как текст, который ты вставляешь в начало чата.",
-    access:false, pay:"ru",
+      "Разбирает загруженные документы, в том числе сканы"],
+    lim:"Своего помощника с инструкцией здесь собрать нельзя. Второй модуль курса на нём получится наполовину – и мы это обойдём: соберём помощника как текст, который ты вставляешь в начало чата.",
+    foreign:false,
     steps:[
-      ["Открой сайт GigaChat",
-       "<p>Открывается напрямую, ничего дополнительно включать не нужно.</p><p class=\"small\">⬜ СЛОТ: подтвердить актуальный адрес перед публикацией.</p>"],
-      ["Войди по номеру телефона или через Сбер ID",
-       "<p>Отдельный пароль придумывать не нужно. Придёт код в СМС – введи его.</p>"],
-      ["Напиши первый запрос",
-       "<p>Сразу бери задачу из своей работы, а не пробный вопрос.</p>"],
-      ["Загрузи свой документ",
-       "<p>Это его сильная сторона – посмотри, как он разбирает твой файл.</p>"]
+      ["Открой сайт GigaChat","<p>Открывается напрямую, ничего дополнительно включать не нужно.</p>"],
+      ["Войди по номеру телефона или через Сбер ID","<p>Отдельный пароль придумывать не нужно. Придёт код в СМС – введи его.</p>"],
+      ["Напиши первый запрос","<p>Сразу бери задачу из своей работы, а не пробный вопрос.</p>"],
+      ["Загрузи свой документ","<p>Это его сильная сторона – посмотри, как он разбирает твой файл.</p>"]
     ],
-    faq:[
-      ["Нужна ли карта","Нет. Для старта не нужна вообще."],
-      ["Можно ли собрать помощника","В обычной версии – нет, только через программирование. На курсе мы это обойдём: помощник будет жить как текст, который ты вставляешь в начало чата. Работает везде."]
-    ]
+    faq:[["Нужна ли карта","Нет. Для старта не нужна вообще."],
+      ["Можно ли собрать помощника","В обычной версии – нет. На курсе обойдём: помощник будет жить как текст, который ты вставляешь в начало чата. Работает везде."]]
   },
   {
-    id:"gem", em:"🔷", name:"Gemini", tagline:"Если вы живёте в документах Google",
+    id:"gem", em:"🔷", name:"Gemini", tagline:"Если ты живёшь в документах Google",
     badges:[["violet","Только аккаунт Google"],["green","Есть бесплатный тариф"]],
-    why:[
-      "Отдельная регистрация не нужна – хватает аккаунта Google",
+    caps:{chat:["yes"],files:["yes","хорош с длинными документами"],bots:["yes"],agent:["part","отдельные инструменты есть, но не для новичка"],img:["yes"]},
+    why:["Отдельная регистрация не нужна – хватает аккаунта Google",
       "Хорошо работает с длинными документами",
       "Живёт рядом с твоими Google-документами и почтой",
-      "Своя расшифровка голоса внутри – удобно наговаривать"
-    ],
-    lim:"",
-    access:true, pay:"foreign",
+      "Своя расшифровка голоса внутри – удобно наговаривать"],
+    lim:"", foreign:true,
     steps:[
-      ["Проверь, открывается ли сайт",
-       "<p>Открой <code>gemini.google.com</code>. Загрузилось – иди дальше.</p><p>Не открылось – смотри блок «Если сайт не открывается» под шагами.</p>"],
-      ["Войди своим аккаунтом Google",
-       "<p>Отдельной регистрации нет. Тот же аккаунт, что и у почты.</p><div class=\"tip\">Нет аккаунта? Заведи почту gmail – это и будет твой аккаунт, займёт пару минут.</div>"],
-      ["Напиши первый запрос",
-       "<p>Попробуй сразу дать ему большой документ – это его сильная сторона.</p>"]
+      ["Войди своим аккаунтом Google","<p>Открой <code>gemini.google.com</code>. Отдельной регистрации нет – тот же аккаунт, что и у почты.</p><div class=\"tip\">Нет аккаунта? Заведи почту gmail – это и будет твой аккаунт, займёт пару минут.</div>"],
+      ["Напиши первый запрос","<p>Попробуй сразу дать ему большой документ – это его сильная сторона.</p>"]
     ],
-    faq:[
-      ["Чем отличается от ChatGPT","Принцип тот же. Отличия в мелочах интерфейса и в том, что Gemini стоит рядом с документами Google."],
-      ["Стоит ли брать вместо ChatGPT","Если вся твоя работа живёт в Google-документах – попробуй. В остальном на курсе удобнее с ChatGPT."]
-    ]
+    faq:[["Чем отличается от ChatGPT","Принцип тот же. Отличия в мелочах интерфейса и в том, что Gemini стоит рядом с документами Google."],
+      ["Стоит ли брать вместо ChatGPT","Если вся твоя работа живёт в Google-документах – попробуй. В остальном на курсе удобнее с ChatGPT."]]
+  },
+  {
+    id:"perp", em:"🔎", name:"Perplexity", tagline:"Не собеседник, а поисковик со ссылками",
+    badges:[["violet","Про поиск и проверку"],["green","Есть бесплатный тариф"]],
+    caps:{chat:["yes"],files:["yes"],bots:["part","есть пространства под тему, но это не полноценный помощник"],agent:["no"],img:["part","есть, но это не его сила"]},
+    why:["Отвечает со ссылками на источники – видно, откуда взята каждая мысль",
+      "Хорош, когда нужно быстро разобраться в незнакомой теме",
+      "Удобен для проверки фактов – а это отдельный урок курса",
+      "Не заменяет основную нейросеть, а дополняет её"],
+    lim:"Это инструмент под задачу «найти и проверить», а не рабочее место. Помощника и работу с файлами на компьютере тут не построишь.",
+    foreign:true,
+    steps:[
+      ["Заведи аккаунт","<p>Открой <code>perplexity.ai</code> и войди – проще всего через аккаунт Google.</p>"],
+      ["Задай вопрос и посмотри на ссылки","<p>Главное отличие – под ответом список источников. Открой пару и проверь, правда ли там написано то, что он говорит.</p><div class=\"tip\">Это ровно тот навык, который мы разбираем на курсе в уроке про фактчекинг.</div>"]
+    ],
+    faq:[["Чем отличается от обычного чата","Обычный чат отвечает по памяти и может выдумать. Perplexity ищет прямо сейчас и показывает, откуда взял."],
+      ["Заменит ли он ChatGPT","Нет. Это разные задачи: один – рабочее место, второй – способ быстро найти и проверить."]]
+  },
+  {
+    id:"deep", em:"🐋", name:"DeepSeek", tagline:"Бесплатный, работает напрямую",
+    badges:[["green","Без доп. настроек"],["green","Бесплатный"]],
+    caps:{chat:["yes"],files:["yes"],bots:["no"],agent:["no"],img:["no"]},
+    why:["Открывается из России напрямую",
+      "Бесплатный – хороший вариант просто попробовать и не бояться",
+      "Неплохо рассуждает и разбирает сложные задачи"],
+    lim:"Это только чат. Помощников нет, картинок нет, работы с файлами на компьютере нет. Для знакомства подходит, для курса целиком – нет.",
+    foreign:false,
+    steps:[
+      ["Открой сайт и заведи аккаунт","<p>Открой <code>chat.deepseek.com</code>, войди по почте или через аккаунт Google.</p>"],
+      ["Напиши первый запрос","<p>Возьми задачу из своей работы – посмотри, как справляется.</p>"]
+    ],
+    faq:[["Можно ли пройти на нём курс","Первый модуль – да. Дальше упрёшься: помощников и работы с файлами здесь нет."],
+      ["Он правда бесплатный","Да, базовое использование бесплатное."]]
   },
   {
     id:"claude", em:"🟠", name:"Claude", tagline:"Хорош в текстах, но капризный",
     badges:[["pink","Не основной для курса"],["grey","Капризный по доступу"]],
-    why:[
-      "Очень хорош в длинных текстах и документах",
+    caps:{chat:["yes"],files:["yes","силён на длинных документах"],bots:["yes"],agent:["yes","через Claude Code"],img:["no","напрямую не рисует, только через подключаемые инструменты"]},
+    why:["Очень хорош в длинных текстах и документах",
       "Аккуратный, живой стиль письма – меньше «пластика»",
-      "Свои проекты и постоянные настройки"
-    ],
+      "Свои проекты и постоянные настройки"],
     lim:"Честно: капризный по доступу и оплате, случается блокировка аккаунта без предупреждения и без объяснений. Работать в нём можно, но для курса это лишний риск и лишние нервы. Хочешь один инструмент на всё – бери ChatGPT.",
-    access:true, pay:"foreign",
+    foreign:true,
     steps:[
-      ["Проверь, открывается ли сайт",
-       "<p>Открой <code>claude.ai</code>. Не открылось – смотри блок «Если сайт не открывается» под шагами.</p>"],
-      ["Заведи аккаунт",
-       "<p>Проще всего – через аккаунт Google, одной кнопкой.</p>"],
-      ["Дай ему свой текст",
-       "<p>Попроси переписать что-нибудь из написанного тобой – сразу увидишь, чем он отличается по стилю.</p>"]
+      ["Заведи аккаунт","<p>Открой <code>claude.ai</code> и зарегистрируйся – проще всего через аккаунт Google, одной кнопкой.</p><div class=\"tip\">Регистрируйся с компьютера, не с телефона – так надёжнее. И лучше на нероссийскую почту.</div>"+SMS_TIP],
+      ["Дай ему свой текст","<p>Попроси переписать что-нибудь из написанного тобой – сразу увидишь, чем он отличается по стилю.</p>"]
     ],
-    faq:[
-      ["Заблокировали аккаунт – что делать","Заведи новый на другую почту. Именно из-за этого мы не берём его основным на курсе."],
-      ["Стоит ли вообще регистрироваться","Если много пишешь – попробуй, стиль понравится. Но основной рабочий инструмент держи другой."]
-    ]
+    payExtra:`<h3>Отдельно для Claude – подарочная подписка</h3>
+      <div class="way best"><div class="wt">Самый чистый вариант, если есть знакомый с зарубежной картой<span class="mark">рекомендуем</span></div><div class="wd">Он заходит на <a href="https://claude.ai/gift" target="_blank" rel="noopener">claude.ai/gift</a>, покупает подписку на 1, 3, 6 или 12 месяцев и присылает ссылку. Ты активируешь – тариф включается сразу. Его карта к твоему аккаунту <b>не привязывается</b>.</div></div>`,
+    faq:[["Заблокировали аккаунт – что делать","Заведи новый на другую почту. Именно из-за этого мы не берём его основным на курсе."],
+      ["Стоит ли вообще регистрироваться","Если много пишешь – попробуй, стиль понравится. Но основной рабочий инструмент держи другой."]]
   }
 ];
 
-const KEY = "fs-reg-guide-v2";
-let state = {}; try{ state = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ state = {}; }
-let active = DATA[0].id;
+/* ============ состояние ============ */
+const KEY = "fs-reg-guide-v4";
+let st = {}; try{ st = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ st = {}; }
+if(!st.steps) st.steps = {};
+let active = st.active || DATA[0].id;
+const save = ()=>{ st.active=active; localStorage.setItem(KEY, JSON.stringify(st)); };
 
-const chips = document.getElementById('chips');
-const panel = document.getElementById('panel');
-const save = ()=>localStorage.setItem(KEY, JSON.stringify(state));
-const doneFor = d => d.steps.filter((_,i)=>state[d.id+"-"+i]).length;
+const forkEl = document.getElementById('fork');
+const chipsEl = document.getElementById('chips');
+const panelEl = document.getElementById('panel');
+
+function stepsFor(d){
+  return (d.foreign && st.country==='ru') ? [["Включи доступ к сервису", VPN_BODY], ...d.steps] : d.steps;
+}
+const doneFor = d => stepsFor(d).filter((_,i)=>st.steps[d.id+"-"+i]).length;
+const plural = n => n===1?'шаг':(n<5?'шага':'шагов');
+
+function renderFork(){
+  if(!st.country){
+    forkEl.innerHTML =
+      '<div class="fork"><div class="kick">Шаг 1</div><h2 style="margin-top:8px">Где ты сейчас?</h2>'+
+      '<p class="muted" style="margin-top:6px">От этого зависит весь маршрут. Дальше покажем только то, что нужно именно тебе – без лишнего.</p>'+
+      '<div class="forkcards">'+
+        '<div class="fc" data-c="ru"><div class="fe">🇷🇺</div><div class="fn">Я в России</div><div class="fd">Понадобится один дополнительный шаг</div></div>'+
+        '<div class="fc" data-c="other"><div class="fe">🌍</div><div class="fn">Я в другой стране</div><div class="fd">Регистрируешься сразу</div></div>'+
+      '</div></div>';
+    forkEl.querySelectorAll('.fc').forEach(c=>c.onclick=()=>{ st.country=c.dataset.c; save(); render(); });
+    chipsEl.style.display='none'; panelEl.innerHTML='';
+    return false;
+  }
+  forkEl.innerHTML = '<div class="chosen"><span>'+(st.country==='ru'?'🇷🇺 Ты в России':'🌍 Ты не в России')+'</span><button id="chg">изменить</button></div>';
+  document.getElementById('chg').onclick=()=>{ st.country=null; save(); render(); };
+  chipsEl.style.display='flex';
+  return true;
+}
 
 function renderChips(){
-  chips.innerHTML = DATA.map(d=>{
-    const dn = doneFor(d), all = d.steps.length;
+  chipsEl.innerHTML = DATA.map(d=>{
+    const dn=doneFor(d), all=stepsFor(d).length;
     const mark = dn===all ? ' <span class="done">✓</span>' : (dn? ' <span class="done">'+dn+'/'+all+'</span>' : '');
-    return '<div class="chip'+(d.id===active?' on':'')+'" data-id="'+d.id+'"><span>'+d.em+'</span>'+d.name+mark+'</div>';
+    const our = d.our ? '<span class="ourmark">наш</span>' : '';
+    return '<div class="chip'+(d.our?' star':'')+(d.id===active?' on':'')+'" data-id="'+d.id+'"><span>'+d.em+'</span>'+d.name+our+mark+'</div>';
   }).join('');
-  chips.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ active=c.dataset.id; render(); });
+  chipsEl.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ active=c.dataset.id; save(); render(); });
+}
+
+function renderCaps(d){
+  return '<div class="caps">'+CAPS.map(c=>{
+    const v = d.caps[c.k] || ["no"];
+    const cls = v[0]==='yes'?'yes':(v[0]==='part'?'part':'no');
+    const sym = v[0]==='yes'?'✓':(v[0]==='part'?'~':'—');
+    const note = v[1] ? ' – '+v[1] : '';
+    return '<div class="cap'+(v[0]==='no'?' off':'')+'"><span class="m '+cls+'">'+sym+'</span><span>'+
+      '<span class="ct">'+c.t+'</span><span class="cd">'+(v[1]?v[1]:c.d)+'</span></span></div>';
+  }).join('')+'</div>';
 }
 
 function renderPanel(){
   const d = DATA.find(x=>x.id===active);
-  const dn = doneFor(d), all = d.steps.length;
-  let cur = d.steps.findIndex((_,i)=>!state[d.id+"-"+i]);
+  const steps = stepsFor(d);
+  const all = steps.length, dn = doneFor(d);
+  const cur = steps.findIndex((_,i)=>!st.steps[d.id+"-"+i]);
 
-  const stepsHtml = d.steps.map((s,i)=>{
-    const k = d.id+"-"+i;
-    const cls = state[k] ? 'done' : (i===cur ? 'now' : 'next');
+  const stepsHtml = steps.map((s,i)=>{
+    const k=d.id+"-"+i;
+    const cls = st.steps[k] ? 'done' : (i===cur ? 'now' : 'next');
     return '<li class="step '+cls+'" data-k="'+k+'">'+
       '<div class="row" data-toggle="'+k+'"><span class="box">✓</span><span>'+
-        '<span class="num">Шаг '+(i+1)+' из '+all+'</span><br><span class="st">'+s[0]+'</span>'+
-      '</span></div>'+
-      '<div class="body">'+s[1]+
-        (state[k]?'':'<button class="btn" data-do="'+k+'">Готово, дальше →</button>')+
-      '</div></li>';
+      '<span class="num">Шаг '+(i+1)+' из '+all+'</span><br><span class="st">'+s[0]+'</span></span></div>'+
+      '<div class="body">'+s[1]+(st.steps[k]?'':'<button class="btn" data-do="'+k+'">Готово, дальше →</button>')+'</div></li>';
   }).join('');
 
   const allDone = dn===all
-    ? '<div class="alldone"><p><b>Готово.</b> Ты зарегистрирован – этого уже хватает, чтобы прийти на практикум и начать курс. Подписка понадобится позже и только если упрёшься в лимиты.</p></div>'
-    : '';
+    ? '<div class="alldone"><p><b>Готово.</b> Ты зарегистрирован – этого уже хватает, чтобы прийти на практикум 19 августа и начать курс. Подписка понадобится позже и только если упрёшься в лимиты.</p></div>' : '';
 
-  const foldAccess = d.access
-    ? '<details class="fold"><summary><span class="ic">🌐</span>Если сайт не открывается<span class="arr">▾</span></summary><div class="in">'+ACCESS+'</div></details>'
-    : '';
+  const payIn = d.foreign
+    ? (st.country==='ru' ? PAY_FOREIGN + (d.payExtra||'')
+       : '<p>Ты не в России – оплата проходит обычной местной картой. Настройки аккаунта → тарифы → минимальный платный.</p><p class="muted" style="margin-top:8px">Подписка нужна не сразу: бесплатного хватает, чтобы попробовать.</p>')
+    : PAY_RU;
 
-  const payIn = d.pay==='foreign' ? PAY_FOREIGN : `
-    <p><b>Здесь всё просто.</b> Оплата обычной российской картой, как в любом магазине.</p>
-    <ol><li>Зайди в раздел с тарифами.</li><li>Выбери минимальный платный.</li><li>Оплати картой.</li></ol>
-    <p class="muted" style="margin-top:10px">Для начала подписка не нужна – бесплатного хватает, чтобы попробовать.</p>`;
-
-  const foldPay = '<details class="fold"><summary><span class="ic">💳</span>Когда решишь оформить подписку<span class="arr">▾</span></summary><div class="in">'+payIn+'</div></details>';
-
-  panel.innerHTML =
+  panelEl.innerHTML =
     '<div class="panel">'+
       '<div class="phead"><span class="big">'+d.em+'</span><h2>'+d.name+'</h2></div>'+
       '<p class="muted" style="margin-top:4px">'+d.tagline+'</p>'+
       '<div class="badges">'+d.badges.map(b=>'<span class="b '+b[0]+'">'+b[1]+'</span>').join('')+'</div>'+
-      '<div class="why"><ul>'+d.why.map(w=>'<li>'+w+'</li>').join('')+'</ul>'+
-        (d.lim?'<div class="lim">'+d.lim+'</div>':'')+'</div>'+
-      '<div class="pathhead"><div class="kick">Путь – всего '+all+' шага</div><div class="small">'+dn+' из '+all+' пройдено</div></div>'+
-      '<ul class="path">'+stepsHtml+'</ul>'+
-      allDone+
-      foldAccess+
-      foldPay+
+      '<div class="why"><ul>'+d.why.map(w=>'<li>'+w+'</li>').join('')+'</ul>'+(d.lim?'<div class="lim">'+d.lim+'</div>':'')+'</div>'+
+      '<div class="kick" style="margin-top:22px">Что умеет</div>'+ renderCaps(d) +
+      '<div class="pathhead"><div class="kick">Путь – '+all+' '+plural(all)+'</div><div class="small">'+dn+' из '+all+' пройдено</div></div>'+
+      '<ul class="path">'+stepsHtml+'</ul>'+ allDone +
+      '<details class="fold"><summary><span class="ic">💳</span>Когда решишь оформить подписку<span class="arr">▾</span></summary><div class="in">'+payIn+'</div></details>'+
       '<div style="margin-top:24px"><div class="kick" style="margin-bottom:4px">Частые вопросы</div>'+
-        d.faq.map(q=>'<details class="qa"><summary>'+q[0]+'</summary><div class="ans">'+q[1]+'</div></details>').join('')+
-      '</div>'+
+        d.faq.map(q=>'<details class="qa"><summary>'+q[0]+'</summary><div class="ans">'+q[1]+'</div></details>').join('')+'</div>'+
     '</div>';
 
-  panel.querySelectorAll('[data-do]').forEach(b=>b.onclick=e=>{
-    e.stopPropagation(); state[b.dataset.do]=true; save(); render();
-  });
-  panel.querySelectorAll('[data-toggle]').forEach(r=>r.onclick=()=>{
+  panelEl.querySelectorAll('[data-do]').forEach(b=>b.onclick=e=>{ e.stopPropagation(); st.steps[b.dataset.do]=true; save(); render(); });
+  panelEl.querySelectorAll('[data-toggle]').forEach(r=>r.onclick=e=>{
+    if(e.target.closest('a')) return;
     const k=r.dataset.toggle;
-    if(state[k]){ state[k]=false; save(); render(); }
+    if(st.steps[k]){ st.steps[k]=false; save(); render(); }
     else{
       const li=r.closest('.step');
       if(li.classList.contains('next')){
-        panel.querySelectorAll('.step').forEach(s=>{ if(!s.classList.contains('done')) s.classList.replace('now','next'); });
+        panelEl.querySelectorAll('.step').forEach(s=>{ if(!s.classList.contains('done')) s.classList.replace('now','next'); });
         li.classList.replace('next','now');
       }
     }
   });
 }
 
-function render(){ renderChips(); renderPanel(); }
-document.getElementById('reset').onclick = ()=>{ state={}; save(); render(); };
+/* ============ таблица сравнения ============ */
+function renderCmp(){
+  const cell = v => {
+    const s = v[0]==='yes'?'<span class="y">✓</span>':(v[0]==='part'?'<span class="p">~</span>':'<span class="n">—</span>');
+    return s + (v[1]?'<small>'+v[1]+'</small>':'');
+  };
+  document.getElementById('cmp').innerHTML =
+    '<table><thead><tr><th></th>'+DATA.map(d=>'<th class="'+(d.our?'our':'')+'"><span class="e">'+d.em+'</span>'+d.name+'</th>').join('')+'</tr></thead><tbody>'+
+    CAPS.map(c=>'<tr><td>'+c.t+'<small>'+c.d+'</small></td>'+
+      DATA.map(d=>'<td class="'+(d.our?'our':'')+'">'+cell(d.caps[c.k]||['no'])+'</td>').join('')+'</tr>').join('')+
+    '</tbody></table>';
+}
+
+/* ============ календарь ============ */
+document.getElementById('gcal').href =
+  'https://calendar.google.com/calendar/render?action=TEMPLATE'+
+  '&text='+encodeURIComponent(EV.title)+
+  '&dates='+EV.startUTC+'/'+EV.endUTC+
+  '&details='+encodeURIComponent(EV.desc);
+
+document.getElementById('ical').onclick = ()=>{
+  const ics = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FitStars//Praktikum//RU','CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT','UID:fitstars-praktikum-2026-08-19@fitstars',
+    'DTSTAMP:'+EV.startUTC,'DTSTART:'+EV.startUTC,'DTEND:'+EV.endUTC,
+    'SUMMARY:'+EV.title,
+    'DESCRIPTION:'+EV.desc.replace(/,/g,'\\,'),
+    'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY','DESCRIPTION:Завтра практикум по ИИ','END:VALARM',
+    'BEGIN:VALARM','TRIGGER:-PT1H','ACTION:DISPLAY','DESCRIPTION:Через час практикум по ИИ','END:VALARM',
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+  const url = URL.createObjectURL(new Blob([ics],{type:'text/calendar;charset=utf-8'}));
+  const a = document.createElement('a');
+  a.href = url; a.download = 'praktikum-fitstars-19-avgusta.ics';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1500);
+};
+
+function render(){ if(renderFork()){ renderChips(); renderPanel(); } }
+document.getElementById('reset').onclick=()=>{ st={steps:{}}; save(); render(); };
+renderCmp();
 render();
 </script>
 </body>
