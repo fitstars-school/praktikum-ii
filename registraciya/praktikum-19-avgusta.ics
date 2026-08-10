@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FitStars//Praktikum//RU
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Практикум по ИИ · FitStars
+BEGIN:VEVENT
+UID:fitstars-praktikum-2026-08-19@fitstars
+DTSTAMP:20260810T090000Z
+DTSTART:20260819T150000Z
+DTEND:20260819T170000Z
+SUMMARY:Практикум по ИИ · FitStars
+DESCRIPTION:Практикум «Как делать своё дело легко и в удовольствие». Работаем в ChatGPT – если ещё не зарегистрирован\, гайд здесь: https://fitstars-school.github.io/praktikum-ii/registraciya/
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Завтра практикум по ИИ
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Через час практикум по ИИ
+END:VALARM
+END:VEVENT
+END:VCALENDAR
