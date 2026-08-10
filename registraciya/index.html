@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гайд по регистрации в нейросетях · FitStars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--magenta:#E6198C;--magenta-d:#C0116E;--ink:#211829;--dark:#1B1420;--wash:#FBF4F8;--line:#ECE1EC;
+    --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);
+    --radius:20px;--radius-lg:26px;--shadow:0 18px 44px -26px rgba(120,20,90,.24);}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 22px 60px}
+
+  .kick{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
+  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.4vw,50px);line-height:1.06;margin:10px 0 14px;text-wrap:balance}
+  h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(21px,2.8vw,26px);text-wrap:balance}
+  .sub{font-weight:700;font-size:20px}
+  p,li,td{font-size:17px;text-wrap:pretty}
+  .muted{color:#6a5d68}
+  .small{font-size:13px;color:#9a8d98}
+  code{background:#F5EDF3;border-radius:6px;padding:1px 7px;font-family:Manrope,sans-serif;font-weight:700;color:var(--magenta-d)}
+
+  .banner{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius-lg);padding:22px 24px;margin:24px 0 6px;display:flex;gap:16px;align-items:flex-start}
+  .banner .ico{flex:0 0 46px;height:46px;border-radius:14px;background:#fff;display:grid;place-items:center;font-size:22px;border:1px solid #F1D9EC}
+  .banner b{color:var(--magenta-d)}
+  .pill{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-weight:700;font-size:13.5px;color:var(--magenta)}
+
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 18px}
+  .chip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 17px;cursor:pointer;font-weight:700;font-size:14.5px;color:var(--ink);transition:.18s}
+  .chip:hover{border-color:var(--magenta);transform:translateY(-2px)}
+  .chip.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 12px 30px -14px rgba(230,25,140,.6)}
+  .chip .done{font-size:12px;opacity:.8}
+
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);animation:pop .3s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .phead{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .phead .big{font-size:32px}
+  .badges{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 18px}
+  .b{font-size:11.5px;font-weight:700;border-radius:999px;padding:4px 11px}
+  .b.pink{color:var(--magenta);background:#FCE6F1}
+  .b.green{color:#1FA24E;background:#EAF7EE}
+  .b.violet{color:#7a4bd0;background:#EFEAFE}
+  .b.grey{color:#6a5d68;background:#F2EDF1}
+
+  .why{background:var(--wash);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:6px}
+  .why ul{list-style:none}
+  .why li{padding:5px 0 5px 24px;position:relative;font-size:16.5px}
+  .why li::before{content:"✓";position:absolute;left:0;color:var(--magenta);font-weight:700}
+  .why .lim{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:#6a5d68;font-size:15.5px}
+
+  /* — путь — */
+  .pathhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:26px 0 12px}
+  .path{list-style:none}
+  .step{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:#fff;transition:.2s;overflow:hidden}
+  .step .row{display:flex;gap:13px;align-items:flex-start;padding:15px 16px;cursor:pointer}
+  .step .box{flex:0 0 26px;height:26px;border-radius:9px;border:2px solid #DCCEDA;display:grid;place-items:center;font-size:14px;color:transparent;transition:.18s;margin-top:1px;font-weight:700}
+  .step .num{color:#b8a8b6;font-size:13px;font-weight:800}
+  .step .st{font-weight:700;font-size:17px}
+  .step .body{padding:0 16px 16px 55px;color:#4a3d48;font-size:16px;display:none}
+  .step .body p+p{margin-top:8px}
+  .step .body .tip{margin-top:10px;background:var(--wash);border-radius:14px;padding:11px 13px;font-size:15.5px;color:#6a5d68}
+  .step.now{border-color:var(--magenta);box-shadow:0 16px 38px -26px rgba(230,25,140,.7)}
+  .step.now .num{color:var(--magenta)}
+  .step.now .body{display:block}
+  .step.done{background:var(--wash);border-color:#F0D3E6}
+  .step.done .box{background:var(--magenta);border-color:var(--magenta);color:#fff}
+  .step.done .st{color:#8d7f8b;text-decoration:line-through;text-decoration-color:#dcc9d8}
+  .step.next .st{color:#a4959f}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--grad);color:#fff;font:800 15px Manrope,sans-serif;padding:11px 22px;cursor:pointer;margin-top:14px;box-shadow:0 14px 32px -18px rgba(230,25,140,.8)}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none;font-weight:700}
+
+  .alldone{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:18px 20px;margin-top:4px}
+
+  /* — раскрывающиеся блоки — */
+  .fold{border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-top:12px;overflow:hidden}
+  .fold>summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;gap:13px;align-items:center;font-weight:700;font-size:17px}
+  .fold>summary::-webkit-details-marker{display:none}
+  .fold>summary .ic{flex:0 0 34px;height:34px;border-radius:11px;background:var(--wash);display:grid;place-items:center;font-size:17px;border:1px solid var(--line)}
+  .fold>summary .arr{margin-left:auto;color:#b8a8b6;font-size:14px}
+  .fold[open]>summary{border-bottom:1px solid var(--line)}
+  .fold[open]>summary .arr{transform:rotate(180deg)}
+  .fold .in{padding:18px}
+  .fold .in ol{margin-left:19px}
+  .fold .in ol li{padding:5px 0}
+  .fold .in h3{font-weight:700;font-size:17px;margin:16px 0 6px}
+  .fold .in h3:first-child{margin-top:0}
+
+  .way{border:1px solid var(--line);border-radius:16px;padding:14px 15px;margin-bottom:10px;background:#fff}
+  .way .wt{font-weight:700;font-size:16.5px;margin-bottom:3px}
+  .way .wd{font-size:15.5px;color:#6a5d68}
+  .way.best{border-color:#F0C9E0;background:#FFFAFD}
+  .way .mark{font-size:11.5px;font-weight:700;color:var(--magenta);background:#FCE6F1;border-radius:999px;padding:3px 10px;margin-left:8px;white-space:nowrap}
+
+  .warn{background:#FFF6F4;border:1px solid #FADFD8;border-radius:16px;padding:14px 15px;margin-top:12px;font-size:15.5px;color:#7a4a3f}
+  .warn b{color:#c2452a}
+
+  .qa{border-top:1px dashed var(--line);padding:13px 0}
+  .qa summary{cursor:pointer;font-weight:700;font-size:16.5px;list-style:none;display:flex;gap:11px;align-items:flex-start}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa summary::before{content:"?";flex:0 0 22px;height:22px;border-radius:7px;background:#F2EDF1;color:#6a5d68;display:grid;place-items:center;font-size:13px;margin-top:1px;font-weight:700}
+  .qa[open] summary::before{content:"✓";background:#FCE6F1;color:var(--magenta)}
+  .qa .ans{padding:9px 0 2px 33px;color:#4a3d48;font-size:16px}
+
+  .dark{margin-top:34px;background:var(--dark);color:#f3e6ee;border-radius:var(--radius-lg);padding:30px 28px;position:relative;overflow:hidden}
+  .dark::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;background:radial-gradient(circle,rgba(230,25,140,.28),transparent 70%)}
+  .dark .tag{color:#ff7ac2;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+  .dark h2{color:#fff;margin:9px 0 12px}
+  .dark p,.dark li{color:#eddce6}
+  .dark ul{list-style:none;margin-top:10px}
+  .dark li{padding:7px 0 7px 26px;position:relative}
+  .dark li::before{content:"✓";position:absolute;left:0;color:#ff7ac2;font-weight:700}
+
+  .note{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+  .foot{text-align:center;color:#9a8d98;font-size:13px;margin-top:26px}
+  .reset{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font:700 13px Manrope,sans-serif;color:#9a8d98;cursor:pointer}
+  .reset:hover{border-color:var(--magenta);color:var(--magenta)}
+
+  @media(max-width:560px){
+    .panel{padding:20px 17px}
+    .banner{flex-direction:column;gap:12px}
+    .step .body{padding-left:16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kick">FitStars · практикум по ИИ</div>
+  <h1>Регистрация в нейросетях: <span class="g">спокойно, по шагам</span></h1>
+  <p class="muted">Один шаг за раз. Сделал – нажал «готово», открылся следующий. Прогресс сохранится, можно закрыть и вернуться.</p>
+
+  <div class="banner">
+    <div class="ico">🎯</div>
+    <div>
+      <div class="pill">● 19 августа</div>
+      <p style="margin-top:10px"><b>Зачем этот гайд.</b> На практикуме мы работаем в ChatGPT – показываем всё на нём. Если к 19 августа у тебя уже есть аккаунт, хотя бы бесплатный, ты сможешь повторять вместе с нами, а не смотреть со стороны.</p>
+      <p class="muted" style="margin-top:8px">Регистрация занимает несколько минут и ничего не стоит. Ниже – три шага, спокойно и по порядку.</p>
+      <p class="muted" style="margin-top:8px">Остальные нейросети собраны здесь же. Принципы одинаковые везде – меняются кнопки, а не метод. Вернёшься, когда понадобится.</p>
+    </div>
+  </div>
+
+  <div class="chips" id="chips"></div>
+  <div id="panel"></div>
+
+  <div class="dark">
+    <div class="tag">Почему начинаем именно с этих</div>
+    <h2>Текстовые нейросети – это база</h2>
+    <p>Кажется, что интереснее сразу картинки и видео. Но без текстовой модели там мало что получится.</p>
+    <ul>
+      <li>Сценарий к видео пишет текстовая модель. Промпт к картинке – тоже текст.</li>
+      <li>С их помощью можно научиться чему угодно – это не «ещё один инструмент», а способ учиться.</li>
+      <li>Навык переносится. Освоите одну – легко перейдёте в любую другую.</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <p class="small">Рекомендация приведена исключительно в целях обеспечения технической доступности веб-интерфейса и корректной маршрутизации сетевых пакетов. Напоминаем о необходимости соблюдения действующего законодательства и внутренних правил информационной безопасности вашей организации при настройке сетевых соединений.</p>
+  </div>
+
+  <div class="foot">
+    Гайд обновляется – условия сервисов меняются. Проверяй актуальность на дату регистрации.<br><br>
+    <button class="reset" id="reset">Сбросить весь прогресс</button>
+  </div>
+</div>
+
+<script>
+/* ——— блоки, общие для зарубежных сервисов ——— */
+const ACCESS = `
+  <p>Если страница не открывается или пишет, что сервис недоступен в твоём регионе – значит нужен доступ. Это делается один раз, дальше про него можно забыть.</p>
+  <h3>Что важно при выборе</h3>
+  <div class="way best"><div class="wt">Платный, а не бесплатный<span class="mark">главное</span></div><div class="wd">Бесплатные живут за счёт твоих данных и отваливаются в самый неподходящий момент. Стоит это как чашка кофе в месяц.</div></div>
+  <div class="way"><div class="wt">Стабильный, а не самый быстрый</div><div class="wd">Тут не видео смотреть. Важно, чтобы соединение не рвалось посреди работы.</div></div>
+  <div class="way"><div class="wt">Одна и та же страна</div><div class="wd">Выбрал страну подключения – держись её. Если сегодня ты «из Германии», а завтра «из Японии», сервис насторожится и попросит подтверждений.</div></div>
+  <h3>Порядок действий</h3>
+  <ol>
+    <li>Сначала включаешь доступ.</li>
+    <li>Только потом открываешь сайт и регистрируешься.</li>
+    <li>Дальше держишь включённым, когда работаешь.</li>
+  </ol>
+  <div class="warn"><b>Не надо:</b> ставить незнакомые расширения для браузера по совету из комментариев и вводить куда-либо пароль от своей почты. Доступ и аккаунт – разные вещи, доступ пароля не требует.</div>
+  <p class="small" style="margin-top:12px">⬜ СЛОТ ДЛЯ СВЕТЫ: сюда – конкретный сервис, который ты проверила сама, и скрин настройки. Я намеренно ничего не рекламирую.</p>
+`;
+
+const PAY_FOREIGN = `
+  <p><b>Сначала главное: подписка нужна не сразу.</b> Бесплатного тарифа хватает, чтобы попробовать и понять, твоё ли это. Платить – когда упрёшься в лимиты и увидишь, что окупается. Не наоборот.</p>
+  <h3>Российская карта напрямую не пройдёт</h3>
+  <p class="muted">Это не твоя ошибка и не сломанный сайт – так устроено у сервиса. Поэтому есть три обходных пути.</p>
+  <h3>Три пути – выбери один</h3>
+  <div class="way best"><div class="wt">1. Сервис-посредник<span class="mark">чаще всего выбирают</span></div><div class="wd">Платишь рублями, они оплачивают подписку за тебя. Ничего открывать и заводить не нужно. Комиссию узнавай до оплаты, а не после.</div></div>
+  <div class="way"><div class="wt">2. Своя зарубежная карта</div><div class="wd">Если она есть – самый простой путь: вводишь её прямо в настройках сервиса, как в любом интернет-магазине.</div></div>
+  <div class="way"><div class="wt">3. Через приложение на телефоне</div><div class="wd">Если есть зарубежный аккаунт в магазине приложений с пополненным балансом – можно оплатить прямо из приложения.</div></div>
+  <h3>Как оплатить, когда способ выбран</h3>
+  <ol>
+    <li>Зайди в настройки аккаунта, найди раздел с тарифами.</li>
+    <li>Выбери минимальный платный тариф. Дороже для начала не нужно.</li>
+    <li>Оплати выбранным способом.</li>
+    <li>Вернись в чат и проверь, что тариф сменился. Обычно это видно сразу возле имени.</li>
+  </ol>
+  <div class="warn"><b>Правила безопасности, три штуки:</b><br>
+  · Никогда не отдавай посреднику пароль от своего аккаунта. Нормальному сервису он не нужен.<br>
+  · Спрашивай полную сумму с комиссией <b>до</b> оплаты.<br>
+  · Бери один месяц, а не год. Понравится – продлишь.</div>
+  <p class="small" style="margin-top:12px">⬜ СЛОТ ДЛЯ СВЕТЫ: проверенный посредник и актуальная цена на дату запуска. Специально не называю сервисы, которые не проверяла.</p>
+`;
+
+/* ——— данные ——— */
+const DATA = [
+  {
+    id:"gpt", em:"🟢", name:"ChatGPT", tagline:"Основной инструмент практикума и курса",
+    badges:[["pink","Работаем на нём"],["green","Регистрация бесплатная"],["violet","Codex в подписке"]],
+    why:[
+      "Самый понятный вход для новичка – всё на виду",
+      "Свои помощники, проекты и постоянные настройки – это весь второй модуль курса",
+      "Читает твои файлы: документы, таблицы, картинки",
+      "Голосовой ввод – можно не печатать, а наговаривать",
+      "В подписку входит Codex – работа с файлами прямо на компьютере, это четвёртый модуль"
+    ],
+    lim:"",
+    access:true, pay:"foreign",
+    steps:[
+      ["Проверь, открывается ли сайт",
+       "<p>Просто открой <code>chatgpt.com</code>. Страница загрузилась – отлично, иди дальше, больше ничего не нужно.</p><p>Пишет, что сервис недоступен – раскрой блок «Если сайт не открывается» под шагами. Это решается один раз.</p>"],
+      ["Войди через аккаунт Google",
+       "<p>На странице входа нажми кнопку с Google и выбери свою почту. Всё – ты внутри.</p><div class=\"tip\">Номер телефона не нужен. Отдельный пароль придумывать тоже не нужно – вход идёт через твой Google.</div>"],
+      ["Напиши первый запрос",
+       "<p>Не «расскажи анекдот», а что-нибудь из своей настоящей работы. Так сразу видно, полезно тебе это или нет.</p><div class=\"tip\">Например: «Я работаю бухгалтером. Задай мне 5 вопросов, чтобы понять, чем ты можешь мне помочь».</div>"]
+    ],
+    faq:[
+      ["Всё-таки просит номер телефона","Такое бывает не у всех и не всегда. Попробуй войти именно через Google, а не через почту с паролем – чаще всего этого достаточно."],
+      ["Не могу вспомнить, есть ли у меня Google-аккаунт","Если есть почта, которая заканчивается на gmail.com – аккаунт есть, это он и есть."],
+      ["Можно ли пользоваться бесплатно","Да. На практикуме и первые недели курса бесплатного тарифа хватает. Платить – когда упрёшься в лимиты."]
+    ]
+  },
+  {
+    id:"giga", em:"🟩", name:"GigaChat", tagline:"Российский, открывается напрямую",
+    badges:[["green","Без доп. настроек"],["green","Российская карта"],["violet","Бесплатный старт"]],
+    why:[
+      "Открывается из России напрямую – ничего настраивать не нужно",
+      "Оплата обычной российской картой",
+      "Лучше понимает российские реалии – законы, документы, города",
+      "Разбирает загруженные документы, в том числе сканы",
+      "Картинки через Kandinsky – прямо внутри"
+    ],
+    lim:"Своего помощника с инструкцией здесь собрать нельзя – это чат плюс работа с файлами. Второй модуль курса на нём получится наполовину, и мы это обойдём: соберём помощника как текст, который ты вставляешь в начало чата.",
+    access:false, pay:"ru",
+    steps:[
+      ["Открой сайт GigaChat",
+       "<p>Открывается напрямую, ничего дополнительно включать не нужно.</p><p class=\"small\">⬜ СЛОТ: подтвердить актуальный адрес перед публикацией.</p>"],
+      ["Войди по номеру телефона или через Сбер ID",
+       "<p>Отдельный пароль придумывать не нужно. Придёт код в СМС – введи его.</p>"],
+      ["Напиши первый запрос",
+       "<p>Сразу бери задачу из своей работы, а не пробный вопрос.</p>"],
+      ["Загрузи свой документ",
+       "<p>Это его сильная сторона – посмотри, как он разбирает твой файл.</p>"]
+    ],
+    faq:[
+      ["Нужна ли карта","Нет. Для старта не нужна вообще."],
+      ["Можно ли собрать помощника","В обычной версии – нет, только через программирование. На курсе мы это обойдём: помощник будет жить как текст, который ты вставляешь в начало чата. Работает везде."]
+    ]
+  },
+  {
+    id:"gem", em:"🔷", name:"Gemini", tagline:"Если вы живёте в документах Google",
+    badges:[["violet","Только аккаунт Google"],["green","Есть бесплатный тариф"]],
+    why:[
+      "Отдельная регистрация не нужна – хватает аккаунта Google",
+      "Хорошо работает с длинными документами",
+      "Живёт рядом с твоими Google-документами и почтой",
+      "Своя расшифровка голоса внутри – удобно наговаривать"
+    ],
+    lim:"",
+    access:true, pay:"foreign",
+    steps:[
+      ["Проверь, открывается ли сайт",
+       "<p>Открой <code>gemini.google.com</code>. Загрузилось – иди дальше.</p><p>Не открылось – смотри блок «Если сайт не открывается» под шагами.</p>"],
+      ["Войди своим аккаунтом Google",
+       "<p>Отдельной регистрации нет. Тот же аккаунт, что и у почты.</p><div class=\"tip\">Нет аккаунта? Заведи почту gmail – это и будет твой аккаунт, займёт пару минут.</div>"],
+      ["Напиши первый запрос",
+       "<p>Попробуй сразу дать ему большой документ – это его сильная сторона.</p>"]
+    ],
+    faq:[
+      ["Чем отличается от ChatGPT","Принцип тот же. Отличия в мелочах интерфейса и в том, что Gemini стоит рядом с документами Google."],
+      ["Стоит ли брать вместо ChatGPT","Если вся твоя работа живёт в Google-документах – попробуй. В остальном на курсе удобнее с ChatGPT."]
+    ]
+  },
+  {
+    id:"claude", em:"🟠", name:"Claude", tagline:"Хорош в текстах, но капризный",
+    badges:[["pink","Не основной для курса"],["grey","Капризный по доступу"]],
+    why:[
+      "Очень хорош в длинных текстах и документах",
+      "Аккуратный, живой стиль письма – меньше «пластика»",
+      "Свои проекты и постоянные настройки"
+    ],
+    lim:"Честно: капризный по доступу и оплате, случается блокировка аккаунта без предупреждения и без объяснений. Работать в нём можно, но для курса это лишний риск и лишние нервы. Хочешь один инструмент на всё – бери ChatGPT.",
+    access:true, pay:"foreign",
+    steps:[
+      ["Проверь, открывается ли сайт",
+       "<p>Открой <code>claude.ai</code>. Не открылось – смотри блок «Если сайт не открывается» под шагами.</p>"],
+      ["Заведи аккаунт",
+       "<p>Проще всего – через аккаунт Google, одной кнопкой.</p>"],
+      ["Дай ему свой текст",
+       "<p>Попроси переписать что-нибудь из написанного тобой – сразу увидишь, чем он отличается по стилю.</p>"]
+    ],
+    faq:[
+      ["Заблокировали аккаунт – что делать","Заведи новый на другую почту. Именно из-за этого мы не берём его основным на курсе."],
+      ["Стоит ли вообще регистрироваться","Если много пишешь – попробуй, стиль понравится. Но основной рабочий инструмент держи другой."]
+    ]
+  }
+];
+
+const KEY = "fs-reg-guide-v2";
+let state = {}; try{ state = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ state = {}; }
+let active = DATA[0].id;
+
+const chips = document.getElementById('chips');
+const panel = document.getElementById('panel');
+const save = ()=>localStorage.setItem(KEY, JSON.stringify(state));
+const doneFor = d => d.steps.filter((_,i)=>state[d.id+"-"+i]).length;
+
+function renderChips(){
+  chips.innerHTML = DATA.map(d=>{
+    const dn = doneFor(d), all = d.steps.length;
+    const mark = dn===all ? ' <span class="done">✓</span>' : (dn? ' <span class="done">'+dn+'/'+all+'</span>' : '');
+    return '<div class="chip'+(d.id===active?' on':'')+'" data-id="'+d.id+'"><span>'+d.em+'</span>'+d.name+mark+'</div>';
+  }).join('');
+  chips.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ active=c.dataset.id; render(); });
+}
+
+function renderPanel(){
+  const d = DATA.find(x=>x.id===active);
+  const dn = doneFor(d), all = d.steps.length;
+  let cur = d.steps.findIndex((_,i)=>!state[d.id+"-"+i]);
+
+  const stepsHtml = d.steps.map((s,i)=>{
+    const k = d.id+"-"+i;
+    const cls = state[k] ? 'done' : (i===cur ? 'now' : 'next');
+    return '<li class="step '+cls+'" data-k="'+k+'">'+
+      '<div class="row" data-toggle="'+k+'"><span class="box">✓</span><span>'+
+        '<span class="num">Шаг '+(i+1)+' из '+all+'</span><br><span class="st">'+s[0]+'</span>'+
+      '</span></div>'+
+      '<div class="body">'+s[1]+
+        (state[k]?'':'<button class="btn" data-do="'+k+'">Готово, дальше →</button>')+
+      '</div></li>';
+  }).join('');
+
+  const allDone = dn===all
+    ? '<div class="alldone"><p><b>Готово.</b> Ты зарегистрирован – этого уже хватает, чтобы прийти на практикум и начать курс. Подписка понадобится позже и только если упрёшься в лимиты.</p></div>'
+    : '';
+
+  const foldAccess = d.access
+    ? '<details class="fold"><summary><span class="ic">🌐</span>Если сайт не открывается<span class="arr">▾</span></summary><div class="in">'+ACCESS+'</div></details>'
+    : '';
+
+  const payIn = d.pay==='foreign' ? PAY_FOREIGN : `
+    <p><b>Здесь всё просто.</b> Оплата обычной российской картой, как в любом магазине.</p>
+    <ol><li>Зайди в раздел с тарифами.</li><li>Выбери минимальный платный.</li><li>Оплати картой.</li></ol>
+    <p class="muted" style="margin-top:10px">Для начала подписка не нужна – бесплатного хватает, чтобы попробовать.</p>`;
+
+  const foldPay = '<details class="fold"><summary><span class="ic">💳</span>Когда решишь оформить подписку<span class="arr">▾</span></summary><div class="in">'+payIn+'</div></details>';
+
+  panel.innerHTML =
+    '<div class="panel">'+
+      '<div class="phead"><span class="big">'+d.em+'</span><h2>'+d.name+'</h2></div>'+
+      '<p class="muted" style="margin-top:4px">'+d.tagline+'</p>'+
+      '<div class="badges">'+d.badges.map(b=>'<span class="b '+b[0]+'">'+b[1]+'</span>').join('')+'</div>'+
+      '<div class="why"><ul>'+d.why.map(w=>'<li>'+w+'</li>').join('')+'</ul>'+
+        (d.lim?'<div class="lim">'+d.lim+'</div>':'')+'</div>'+
+      '<div class="pathhead"><div class="kick">Путь – всего '+all+' шага</div><div class="small">'+dn+' из '+all+' пройдено</div></div>'+
+      '<ul class="path">'+stepsHtml+'</ul>'+
+      allDone+
+      foldAccess+
+      foldPay+
+      '<div style="margin-top:24px"><div class="kick" style="margin-bottom:4px">Частые вопросы</div>'+
+        d.faq.map(q=>'<details class="qa"><summary>'+q[0]+'</summary><div class="ans">'+q[1]+'</div></details>').join('')+
+      '</div>'+
+    '</div>';
+
+  panel.querySelectorAll('[data-do]').forEach(b=>b.onclick=e=>{
+    e.stopPropagation(); state[b.dataset.do]=true; save(); render();
+  });
+  panel.querySelectorAll('[data-toggle]').forEach(r=>r.onclick=()=>{
+    const k=r.dataset.toggle;
+    if(state[k]){ state[k]=false; save(); render(); }
+    else{
+      const li=r.closest('.step');
+      if(li.classList.contains('next')){
+        panel.querySelectorAll('.step').forEach(s=>{ if(!s.classList.contains('done')) s.classList.replace('now','next'); });
+        li.classList.replace('next','now');
+      }
+    }
+  });
+}
+
+function render(){ renderChips(); renderPanel(); }
+document.getElementById('reset').onclick = ()=>{ state={}; save(); render(); };
+render();
+</script>
+</body>
+</html>
