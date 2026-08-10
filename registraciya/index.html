@@ -52,7 +52,24 @@
   .banner .ico{flex:0 0 auto;width:46px;height:46px;border-radius:14px;background:#fff;display:grid;place-items:center;font-size:22px;border:1px solid #F1D9EC}
   .banner b{color:var(--magenta-d)}
   .banner p+p{margin-top:9px}
-  .banner .txt{position:relative;z-index:1}
+  .banner .txt{position:relative;z-index:1;flex:1}
+  .banner .lead{font-size:18px;line-height:1.5}
+  .banner .lead b{color:var(--magenta-d)}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  .vs .col{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px 16px}
+  .vs .col.yes{border-color:#CFE9D9;background:#F7FCF9}
+  .vs .ch{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+  .vs .col.yes .ch{color:var(--green)}
+  .vs ul{list-style:none}
+  .vs li{position:relative;padding:5px 0 5px 24px;font-size:15.5px;color:var(--muted)}
+  .vs li::before{position:absolute;left:0;top:5px;font-weight:800;content:"✕";color:#c9b9c5}
+  .vs .col.yes li{color:var(--ink)}
+  .vs .col.yes li::before{content:"✓";color:var(--green)}
+  .vsfoot{margin-top:14px;font-size:15.5px;color:var(--muted);text-align:center}
+  .vsfoot b{color:var(--ink)}
+
+  .navnote{margin:22px 0 -4px;font-size:15px;color:var(--faint);text-align:center;text-wrap:balance}
 
   /* ——— общий пилюльный слой: одна геометрия на всё ——— */
   .pill,.chip,.b,.bot,.btn,.reset,.chosen button{
@@ -263,6 +280,7 @@
     .panel,.fork,.cmpwrap{padding:20px 17px}
     .cal{padding:28px 18px}
     .banner{flex-direction:column;gap:14px;padding:20px 18px}
+    .vs{grid-template-columns:1fr;gap:10px}
     .banner .ico{width:44px;height:44px}
     .step .body{padding:0 16px 16px 16px}
     .forkcards{grid-template-columns:1fr}
@@ -286,14 +304,35 @@
   <div class="banner rv">
     <div class="ico">🎯</div>
     <div class="txt">
-      <div class="pill"><span class="dot"></span>19 августа, 18:00 МСК</div>
-      <p style="margin-top:12px"><b>Зачем этот гайд.</b> На практикуме мы работаем в ChatGPT – показываем всё на нём. Если к 19 августа у тебя уже есть аккаунт, хотя бы бесплатный, ты сможешь повторять вместе с нами, а не смотреть со стороны.</p>
-      <p class="muted">Многими нейросетями можно пользоваться и без регистрации. Но тогда открыта только часть: не сохраняется история, не работают файлы, помощники и настройки под себя. Поэтому если ещё не регистрировался – зарегистрируйся, это бесплатно и открывает всё остальное.</p>
-      <p class="muted">Остальные нейросети собраны здесь же. Принципы одинаковые везде – меняются кнопки, а не метод. Вернёшься, когда понадобится.</p>
+      <p class="lead"><b>На практикуме мы работаем в ChatGPT.</b> Если к 19 августа у тебя уже есть аккаунт – будешь повторять вместе с нами, а не смотреть со стороны.</p>
+
+      <div class="vs">
+        <div class="col">
+          <div class="ch">Без регистрации</div>
+          <ul>
+            <li>история не сохраняется</li>
+            <li>файлы не загрузить</li>
+            <li>помощников нет</li>
+            <li>настроек под себя нет</li>
+          </ul>
+        </div>
+        <div class="col yes">
+          <div class="ch">С аккаунтом</div>
+          <ul>
+            <li>история на месте</li>
+            <li>файлы работают</li>
+            <li>помощники доступны</li>
+            <li>настройки под себя</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="foot vsfoot"><b>Регистрация бесплатная</b> и занимает пару минут.</div>
     </div>
   </div>
 
   <div id="fork"></div>
+  <p class="navnote" id="navnote">Остальные нейросети собраны здесь же. Принципы одинаковые везде – меняются кнопки, а не метод.</p>
   <div id="chips" class="chips" style="display:none"></div>
   <div id="panel"></div>
 
@@ -579,11 +618,13 @@ function renderFork(){
       '</div></div>';
     forkEl.querySelectorAll('.fc').forEach(c=>c.onclick=()=>{ st.country=c.dataset.c; save(); render(); });
     chipsEl.style.display='none'; panelEl.innerHTML='';
+    document.getElementById('navnote').style.display='none';
     return false;
   }
   forkEl.innerHTML = '<div class="chosen"><span>'+(st.country==='ru'?'🇷🇺 Ты в России':'🌍 Ты не в России')+'</span><button id="chg">изменить</button></div>';
   document.getElementById('chg').onclick=()=>{ st.country=null; save(); render(); };
   chipsEl.style.display='block';
+  document.getElementById('navnote').style.display='block';
   return true;
 }
 
