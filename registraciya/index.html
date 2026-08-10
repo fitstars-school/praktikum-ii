@@ -23,6 +23,7 @@
   p,li{font-size:17px;text-wrap:pretty}
   .muted{color:#6a5d68}
   .small{font-size:13px;color:#9a8d98}
+  a code{border-bottom:1px solid #F0C9E0}
   code{background:#F5EDF3;border-radius:6px;padding:1px 7px;font-family:Manrope,sans-serif;font-weight:700;color:var(--magenta-d)}
 
   .banner{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius-lg);padding:22px 24px;margin:24px 0 6px;display:flex;gap:16px;align-items:flex-start}
@@ -41,7 +42,14 @@
   .chosen button{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:700 13px Manrope,sans-serif;color:#6a5d68;cursor:pointer}
   .chosen button:hover{border-color:var(--magenta);color:var(--magenta)}
 
-  .chips{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 18px}
+  .chips{display:block;margin:20px 0 18px}
+  .grp{margin-bottom:14px}
+  .grplbl{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a4959f;margin-bottom:8px}
+  .grplbl span{font-weight:600;letter-spacing:0;text-transform:none;font-size:13px;color:#c0b3bd}
+  .grprow{display:flex;gap:10px;flex-wrap:wrap}
+  .chip.g-ru{border-color:#CDEBD6;background:#F5FBF7}
+  .chip.g-ru:hover{border-color:#1FA24E}
+  .chip.g-ru.on{background:linear-gradient(100deg,#1FA24E,#3EC177);border-color:transparent;box-shadow:0 12px 30px -14px rgba(31,162,78,.6)}
   .chip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 17px;cursor:pointer;font-weight:700;font-size:14.5px;color:var(--ink);transition:.18s}
   .chip:hover{border-color:var(--magenta);transform:translateY(-2px)}
   .chip.star{background:#FCE6F1;border-color:#F3B6D8;color:var(--magenta-d)}
@@ -75,8 +83,8 @@
   .cap .m.yes{background:#EAF7EE;color:#1FA24E}
   .cap .m.no{background:#F2EDF1;color:#a4959f}
   .cap .m.part{background:#FFF6E6;color:#C58A11}
-  .cap .ct{font-weight:700;font-size:16.5px}
-  .cap .cd{font-size:15px;color:#6a5d68}
+  .cap .ct{font-weight:700;font-size:16.5px;display:block}
+  .cap .cd{font-size:15px;color:#6a5d68;display:block;margin-top:1px}
   .cap.off .ct{color:#a4959f}
 
   .pathhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:26px 0 12px}
@@ -149,6 +157,11 @@
   td .p{color:#C58A11;font-weight:800;font-size:17px}
   td small{display:block;font-size:12px;color:#9a8d98;line-height:1.35;margin-top:2px}
   .cmpwrap .our{background:#FFFAFD}
+  .grouprow th{padding:0 8px 8px;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-top:0}
+  .gh-foreign{color:#8d7f8b;border-bottom:2px solid #ECE1EC}
+  .gh-ru{color:#1FA24E;border-bottom:2px solid #CDEBD6}
+  td.c-ru,th.c-ru{background:#F5FBF7}
+  thead tr:last-child th{border-top:0}
   .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:#6a5d68}
 
   /* — календарь — */
@@ -180,15 +193,17 @@
 <body>
 <div class="wrap">
 
-  <div class="kick">FitStars · практикум по ИИ</div>
+  <div class="kick">Гайд для участников практикума</div>
   <h1>Регистрация в нейросетях: <span class="g">спокойно, по шагам</span></h1>
-  <p class="muted">Один шаг за раз. Сделал – нажал «готово», открылся следующий. Прогресс сохранится, можно закрыть и вернуться.</p>
+  <p class="muted" style="font-size:18px"><b>Практикум по ИИ: как делать своё дело легко и в удовольствие</b><br>19 августа, 18:00–20:00 по Москве</p>
+  <p class="muted" style="margin-top:10px">Один шаг за раз. Сделал – нажал «готово», открылся следующий. Прогресс сохранится, можно закрыть и вернуться.</p>
 
   <div class="banner">
     <div class="ico">🎯</div>
     <div>
       <div class="pill">● 19 августа, 18:00 МСК</div>
       <p style="margin-top:10px"><b>Зачем этот гайд.</b> На практикуме мы работаем в ChatGPT – показываем всё на нём. Если к 19 августа у тебя уже есть аккаунт, хотя бы бесплатный, ты сможешь повторять вместе с нами, а не смотреть со стороны.</p>
+      <p class="muted" style="margin-top:8px">Многими нейросетями можно пользоваться и без регистрации. Но тогда открыта только часть: не сохраняется история, не работают файлы, помощники и настройки под себя. Поэтому если ещё не регистрировался – зарегистрируйся, это бесплатно и открывает всё остальное.</p>
       <p class="muted" style="margin-top:8px">Остальные нейросети собраны здесь же. Принципы одинаковые везде – меняются кнопки, а не метод. Вернёшься, когда понадобится.</p>
     </div>
   </div>
@@ -214,17 +229,6 @@
       <button class="btn ghost" id="ical">🍎 В Apple Календарь</button>
     </div>
     <p class="small" style="margin-top:14px">Apple, Outlook и почти все остальные календари понимают скачанный файл – просто открой его после загрузки.</p>
-  </div>
-
-  <div class="dark">
-    <div class="tag">Почему начинаем именно с этих</div>
-    <h2>Текстовые нейросети – это база</h2>
-    <p>Кажется, что интереснее сразу картинки и видео. Но без текстовой модели там мало что получится.</p>
-    <ul>
-      <li>Сценарий к видео пишет текстовая модель. Промпт к картинке – тоже текст.</li>
-      <li>С их помощью можно научиться чему угодно – это не «ещё один инструмент», а способ учиться.</li>
-      <li>Навык переносится. Освоил одну – легко перейдёшь в любую другую.</li>
-    </ul>
   </div>
 
   <div class="note">
@@ -326,7 +330,7 @@ const CAPS = [
 /* ============ нейросети ============ */
 const DATA = [
   {
-    id:"gpt", em:"🟢", name:"ChatGPT", tagline:"Основной инструмент практикума и курса", our:true,
+    id:"gpt", group:"foreign", em:"🟢", name:"ChatGPT", tagline:"Основной инструмент практикума и курса", our:true,
     badges:[["pink","Работаем на нём"],["green","Регистрация бесплатная"],["violet","Codex в подписке"]],
     caps:{chat:["yes"],files:["yes"],bots:["yes"],agent:["yes","через Codex, входит в подписку"],img:["yes"]},
     why:["Самый понятный вход для новичка – всё на виду",
@@ -336,7 +340,7 @@ const DATA = [
     lim:"", foreign:true,
     steps:[
       ["Войди через аккаунт Google",
-       "<p>Открой <code>chatgpt.com</code>, на странице входа нажми кнопку с Google и выбери свою почту. Всё – ты внутри.</p><div class=\"tip\">Номер телефона не нужен. И отдельный пароль придумывать не нужно – вход идёт через твой Google.</div>"+SMS_TIP],
+       "<p>Открой <a href=\"https://chatgpt.com\" target=\"_blank\" rel=\"noopener\"><code>chatgpt.com</code></a>, на странице входа нажми кнопку с Google и выбери свою почту. Всё – ты внутри.</p><div class=\"tip\">Номер телефона не нужен. И отдельный пароль придумывать не нужно – вход идёт через твой Google.</div>"+SMS_TIP],
       ["Напиши первый запрос",
        "<p>Не «расскажи анекдот», а что-нибудь из своей настоящей работы. Так сразу видно, полезно тебе это или нет.</p><div class=\"tip\">Например: «Я работаю бухгалтером. Задай мне 5 вопросов, чтобы понять, чем ты можешь мне помочь».</div>"]
     ],
@@ -345,26 +349,7 @@ const DATA = [
       ["Можно ли пользоваться бесплатно","Да. На практикуме и первые недели курса бесплатного тарифа хватает."]]
   },
   {
-    id:"giga", em:"🟩", name:"GigaChat", tagline:"Российский, открывается напрямую",
-    badges:[["green","Без доп. настроек"],["green","Российская карта"],["violet","Бесплатный старт"]],
-    caps:{chat:["yes"],files:["yes","в том числе сканы"],bots:["no","только через программирование"],agent:["no"],img:["yes","через Kandinsky"]},
-    why:["Открывается из России напрямую – ничего настраивать не нужно",
-      "Оплата обычной российской картой",
-      "Лучше понимает российские реалии – законы, документы, города",
-      "Разбирает загруженные документы, в том числе сканы"],
-    lim:"Своего помощника с инструкцией здесь собрать нельзя. Второй модуль курса на нём получится наполовину – и мы это обойдём: соберём помощника как текст, который ты вставляешь в начало чата.",
-    foreign:false,
-    steps:[
-      ["Открой сайт GigaChat","<p>Открывается напрямую, ничего дополнительно включать не нужно.</p>"],
-      ["Войди по номеру телефона или через Сбер ID","<p>Отдельный пароль придумывать не нужно. Придёт код в СМС – введи его.</p>"],
-      ["Напиши первый запрос","<p>Сразу бери задачу из своей работы, а не пробный вопрос.</p>"],
-      ["Загрузи свой документ","<p>Это его сильная сторона – посмотри, как он разбирает твой файл.</p>"]
-    ],
-    faq:[["Нужна ли карта","Нет. Для старта не нужна вообще."],
-      ["Можно ли собрать помощника","В обычной версии – нет. На курсе обойдём: помощник будет жить как текст, который ты вставляешь в начало чата. Работает везде."]]
-  },
-  {
-    id:"gem", em:"🔷", name:"Gemini", tagline:"Если ты живёшь в документах Google",
+    id:"gem", group:"foreign", em:"🔷", name:"Gemini", tagline:"Если ты живёшь в документах Google",
     badges:[["violet","Только аккаунт Google"],["green","Есть бесплатный тариф"]],
     caps:{chat:["yes"],files:["yes","хорош с длинными документами"],bots:["yes"],agent:["part","отдельные инструменты есть, но не для новичка"],img:["yes"]},
     why:["Отдельная регистрация не нужна – хватает аккаунта Google",
@@ -373,14 +358,32 @@ const DATA = [
       "Своя расшифровка голоса внутри – удобно наговаривать"],
     lim:"", foreign:true,
     steps:[
-      ["Войди своим аккаунтом Google","<p>Открой <code>gemini.google.com</code>. Отдельной регистрации нет – тот же аккаунт, что и у почты.</p><div class=\"tip\">Нет аккаунта? Заведи почту gmail – это и будет твой аккаунт, займёт пару минут.</div>"],
+      ["Войди своим аккаунтом Google","<p>Открой <a href=\"https://gemini.google.com\" target=\"_blank\" rel=\"noopener\"><code>gemini.google.com</code></a>. Отдельной регистрации нет – тот же аккаунт, что и у почты.</p><div class=\"tip\">Нет аккаунта? Заведи почту gmail – это и будет твой аккаунт, займёт пару минут.</div>"],
       ["Напиши первый запрос","<p>Попробуй сразу дать ему большой документ – это его сильная сторона.</p>"]
     ],
     faq:[["Чем отличается от ChatGPT","Принцип тот же. Отличия в мелочах интерфейса и в том, что Gemini стоит рядом с документами Google."],
       ["Стоит ли брать вместо ChatGPT","Если вся твоя работа живёт в Google-документах – попробуй. В остальном на курсе удобнее с ChatGPT."]]
   },
   {
-    id:"perp", em:"🔎", name:"Perplexity", tagline:"Не собеседник, а поисковик со ссылками",
+    id:"claude", group:"foreign", em:"🟠", name:"Claude", tagline:"Хорош в текстах, но капризный",
+    badges:[["pink","Не основной для курса"],["grey","Капризный по доступу"]],
+    caps:{chat:["yes"],files:["yes","силён на длинных документах"],bots:["yes"],agent:["yes","через Claude Code"],img:["no","напрямую не рисует, только через подключаемые инструменты"]},
+    why:["Очень хорош в длинных текстах и документах",
+      "Аккуратный, живой стиль письма – меньше «пластика»",
+      "Свои проекты и постоянные настройки"],
+    lim:"Честно: капризный по доступу и оплате, случается блокировка аккаунта без предупреждения и без объяснений. Работать в нём можно, но для курса это лишний риск и лишние нервы. Хочешь один инструмент на всё – бери ChatGPT.",
+    foreign:true,
+    steps:[
+      ["Заведи аккаунт","<p>Открой <a href=\"https://claude.ai\" target=\"_blank\" rel=\"noopener\"><code>claude.ai</code></a> и зарегистрируйся – проще всего через аккаунт Google, одной кнопкой.</p><div class=\"tip\">Регистрируйся с компьютера, не с телефона – так надёжнее. И лучше на нероссийскую почту.</div>"+SMS_TIP],
+      ["Дай ему свой текст","<p>Попроси переписать что-нибудь из написанного тобой – сразу увидишь, чем он отличается по стилю.</p>"]
+    ],
+    payExtra:`<h3>Отдельно для Claude – подарочная подписка</h3>
+      <div class="way best"><div class="wt">Самый чистый вариант, если есть знакомый с зарубежной картой<span class="mark">рекомендуем</span></div><div class="wd">Он заходит на <a href="https://claude.ai/gift" target="_blank" rel="noopener">claude.ai/gift</a>, покупает подписку на 1, 3, 6 или 12 месяцев и присылает ссылку. Ты активируешь – тариф включается сразу. Его карта к твоему аккаунту <b>не привязывается</b>.</div></div>`,
+    faq:[["Заблокировали аккаунт – что делать","Заведи новый на другую почту. Именно из-за этого мы не берём его основным на курсе."],
+      ["Стоит ли вообще регистрироваться","Если много пишешь – попробуй, стиль понравится. Но основной рабочий инструмент держи другой."]]
+  },
+  {
+    id:"perp", group:"foreign", em:"🔎", name:"Perplexity", tagline:"Не собеседник, а поисковик со ссылками",
     badges:[["violet","Про поиск и проверку"],["green","Есть бесплатный тариф"]],
     caps:{chat:["yes"],files:["yes"],bots:["part","есть пространства под тему, но это не полноценный помощник"],agent:["no"],img:["part","есть, но это не его сила"]},
     why:["Отвечает со ссылками на источники – видно, откуда взята каждая мысль",
@@ -390,14 +393,14 @@ const DATA = [
     lim:"Это инструмент под задачу «найти и проверить», а не рабочее место. Помощника и работу с файлами на компьютере тут не построишь.",
     foreign:true,
     steps:[
-      ["Заведи аккаунт","<p>Открой <code>perplexity.ai</code> и войди – проще всего через аккаунт Google.</p>"],
+      ["Заведи аккаунт","<p>Открой <a href=\"https://perplexity.ai\" target=\"_blank\" rel=\"noopener\"><code>perplexity.ai</code></a> и войди – проще всего через аккаунт Google.</p>"],
       ["Задай вопрос и посмотри на ссылки","<p>Главное отличие – под ответом список источников. Открой пару и проверь, правда ли там написано то, что он говорит.</p><div class=\"tip\">Это ровно тот навык, который мы разбираем на курсе в уроке про фактчекинг.</div>"]
     ],
     faq:[["Чем отличается от обычного чата","Обычный чат отвечает по памяти и может выдумать. Perplexity ищет прямо сейчас и показывает, откуда взял."],
       ["Заменит ли он ChatGPT","Нет. Это разные задачи: один – рабочее место, второй – способ быстро найти и проверить."]]
   },
   {
-    id:"deep", em:"🐋", name:"DeepSeek", tagline:"Бесплатный, работает напрямую",
+    id:"deep", group:"foreign", em:"🐋", name:"DeepSeek", tagline:"Бесплатный, работает напрямую",
     badges:[["green","Без доп. настроек"],["green","Бесплатный"]],
     caps:{chat:["yes"],files:["yes"],bots:["no"],agent:["no"],img:["no"]},
     why:["Открывается из России напрямую",
@@ -406,29 +409,30 @@ const DATA = [
     lim:"Это только чат. Помощников нет, картинок нет, работы с файлами на компьютере нет. Для знакомства подходит, для курса целиком – нет.",
     foreign:false,
     steps:[
-      ["Открой сайт и заведи аккаунт","<p>Открой <code>chat.deepseek.com</code>, войди по почте или через аккаунт Google.</p>"],
+      ["Открой сайт и заведи аккаунт","<p>Открой <a href=\"https://chat.deepseek.com\" target=\"_blank\" rel=\"noopener\"><code>chat.deepseek.com</code></a>, войди по почте или через аккаунт Google.</p>"],
       ["Напиши первый запрос","<p>Возьми задачу из своей работы – посмотри, как справляется.</p>"]
     ],
     faq:[["Можно ли пройти на нём курс","Первый модуль – да. Дальше упрёшься: помощников и работы с файлами здесь нет."],
       ["Он правда бесплатный","Да, базовое использование бесплатное."]]
   },
   {
-    id:"claude", em:"🟠", name:"Claude", tagline:"Хорош в текстах, но капризный",
-    badges:[["pink","Не основной для курса"],["grey","Капризный по доступу"]],
-    caps:{chat:["yes"],files:["yes","силён на длинных документах"],bots:["yes"],agent:["yes","через Claude Code"],img:["no","напрямую не рисует, только через подключаемые инструменты"]},
-    why:["Очень хорош в длинных текстах и документах",
-      "Аккуратный, живой стиль письма – меньше «пластика»",
-      "Свои проекты и постоянные настройки"],
-    lim:"Честно: капризный по доступу и оплате, случается блокировка аккаунта без предупреждения и без объяснений. Работать в нём можно, но для курса это лишний риск и лишние нервы. Хочешь один инструмент на всё – бери ChatGPT.",
-    foreign:true,
+    id:"giga", group:"ru", em:"🟩", name:"GigaChat", tagline:"Российский, открывается напрямую",
+    badges:[["green","Без доп. настроек"],["green","Российская карта"],["violet","Бесплатный старт"]],
+    caps:{chat:["yes"],files:["yes","в том числе сканы"],bots:["no","только через программирование"],agent:["no"],img:["yes","через Kandinsky"]},
+    why:["Открывается из России напрямую – ничего настраивать не нужно",
+      "Оплата обычной российской картой",
+      "Лучше понимает российские реалии – законы, документы, города",
+      "Разбирает загруженные документы, в том числе сканы"],
+    lim:"Своего помощника с инструкцией здесь собрать нельзя. Второй модуль курса на нём получится наполовину – и мы это обойдём: соберём помощника как текст, который ты вставляешь в начало чата.",
+    foreign:false,
     steps:[
-      ["Заведи аккаунт","<p>Открой <code>claude.ai</code> и зарегистрируйся – проще всего через аккаунт Google, одной кнопкой.</p><div class=\"tip\">Регистрируйся с компьютера, не с телефона – так надёжнее. И лучше на нероссийскую почту.</div>"+SMS_TIP],
-      ["Дай ему свой текст","<p>Попроси переписать что-нибудь из написанного тобой – сразу увидишь, чем он отличается по стилю.</p>"]
+      ["Открой сайт GigaChat","<p>Открой <a href=\"https://giga.chat\" target=\"_blank\" rel=\"noopener\"><code>giga.chat</code></a> – открывается из России напрямую, ничего дополнительно включать не нужно.</p>"],
+      ["Войди по номеру телефона или через Сбер ID","<p>Отдельный пароль придумывать не нужно. Придёт код в СМС – введи его.</p>"],
+      ["Напиши первый запрос","<p>Сразу бери задачу из своей работы, а не пробный вопрос.</p>"],
+      ["Загрузи свой документ","<p>Это его сильная сторона – посмотри, как он разбирает твой файл.</p>"]
     ],
-    payExtra:`<h3>Отдельно для Claude – подарочная подписка</h3>
-      <div class="way best"><div class="wt">Самый чистый вариант, если есть знакомый с зарубежной картой<span class="mark">рекомендуем</span></div><div class="wd">Он заходит на <a href="https://claude.ai/gift" target="_blank" rel="noopener">claude.ai/gift</a>, покупает подписку на 1, 3, 6 или 12 месяцев и присылает ссылку. Ты активируешь – тариф включается сразу. Его карта к твоему аккаунту <b>не привязывается</b>.</div></div>`,
-    faq:[["Заблокировали аккаунт – что делать","Заведи новый на другую почту. Именно из-за этого мы не берём его основным на курсе."],
-      ["Стоит ли вообще регистрироваться","Если много пишешь – попробуй, стиль понравится. Но основной рабочий инструмент держи другой."]]
+    faq:[["Нужна ли карта","Нет. Для старта не нужна вообще."],
+      ["Можно ли собрать помощника","В обычной версии – нет. На курсе обойдём: помощник будет жить как текст, который ты вставляешь в начало чата. Работает везде."]]
   }
 ];
 
@@ -469,12 +473,16 @@ function renderFork(){
 }
 
 function renderChips(){
-  chipsEl.innerHTML = DATA.map(d=>{
+  const one = d => {
     const dn=doneFor(d), all=stepsFor(d).length;
     const mark = dn===all ? ' <span class="done">✓</span>' : (dn? ' <span class="done">'+dn+'/'+all+'</span>' : '');
     const our = d.our ? '<span class="ourmark">наш</span>' : '';
-    return '<div class="chip'+(d.our?' star':'')+(d.id===active?' on':'')+'" data-id="'+d.id+'"><span>'+d.em+'</span>'+d.name+our+mark+'</div>';
-  }).join('');
+    return '<div class="chip g-'+d.group+(d.our?' star':'')+(d.id===active?' on':'')+'" data-id="'+d.id+'"><span>'+d.em+'</span>'+d.name+our+mark+'</div>';
+  };
+  const grp = (g,label,note) =>
+    '<div class="grp"><div class="grplbl">'+label+' <span>'+note+'</span></div><div class="grprow">'+
+    DATA.filter(d=>d.group===g).map(one).join('')+'</div></div>';
+  chipsEl.innerHTML = grp('foreign','Зарубежные','нужен доступ') + grp('ru','Российские','открываются напрямую');
   chipsEl.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ active=c.dataset.id; save(); render(); });
 }
 
@@ -547,10 +555,15 @@ function renderCmp(){
     const s = v[0]==='yes'?'<span class="y">✓</span>':(v[0]==='part'?'<span class="p">~</span>':'<span class="n">—</span>');
     return s + (v[1]?'<small>'+v[1]+'</small>':'');
   };
+  const nF = DATA.filter(d=>d.group==='foreign').length;
+  const nR = DATA.filter(d=>d.group==='ru').length;
   document.getElementById('cmp').innerHTML =
-    '<table><thead><tr><th></th>'+DATA.map(d=>'<th class="'+(d.our?'our':'')+'"><span class="e">'+d.em+'</span>'+d.name+'</th>').join('')+'</tr></thead><tbody>'+
+    '<table><thead>'+
+    '<tr class="grouprow"><th></th><th colspan="'+nF+'" class="gh-foreign">Зарубежные</th><th colspan="'+nR+'" class="gh-ru">Российские</th></tr>'+
+    '<tr><th></th>'+DATA.map(d=>'<th class="c-'+d.group+(d.our?' our':'')+'"><span class="e">'+d.em+'</span>'+d.name+'</th>').join('')+'</tr>'+
+    '</thead><tbody>'+
     CAPS.map(c=>'<tr><td>'+c.t+'<small>'+c.d+'</small></td>'+
-      DATA.map(d=>'<td class="'+(d.our?'our':'')+'">'+cell(d.caps[c.k]||['no'])+'</td>').join('')+'</tr>').join('')+
+      DATA.map(d=>'<td class="c-'+d.group+(d.our?' our':'')+'">'+cell(d.caps[c.k]||['no'])+'</td>').join('')+'</tr>').join('')+
     '</tbody></table>';
 }
 
