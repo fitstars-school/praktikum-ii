@@ -104,8 +104,8 @@
   .chip.g-ru:hover{border-color:var(--green)}
   .chip.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 12px 30px -14px rgba(230,25,140,.6)}
   .chip.g-ru.on{background:linear-gradient(100deg,#1FA24E,#3EC177);box-shadow:0 12px 30px -14px rgba(31,162,78,.55)}
-  .chip .done{font-size:12px;font-weight:800;opacity:.75}
-  .chip .ourmark{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#fff;color:var(--magenta);border-radius:999px;padding:3px 8px}
+  .chip .done{font-size:12px;font-weight:800;line-height:1.2;opacity:.75}
+  .chip .ourmark{font-size:11.5px;font-weight:700;line-height:1.2;background:#fff;color:var(--magenta);border-radius:999px;padding:3px 10px;white-space:nowrap}
   .chip.on .ourmark{background:rgba(255,255,255,.24);color:#fff}
 
   /* ——— карточка нейросети ——— */
@@ -483,7 +483,7 @@ const DATA = [
        +IMG('gpt-2-okno-vhoda.png','Первая кнопка в списке')
        +"<p>Google попросит подтверждение – нажми <b>«Продолжить»</b>. Всё, ты внутри.</p>"
        +IMG('gpt-3-podtverzhdenie.png','Кнопка справа внизу')
-       +"<div class=\"tip\">Номер телефона не нужен. И отдельный пароль придумывать не нужно – вход идёт через твой Google.</div>"+SMS_TIP],
+       +"<div class=\"tip\">Отдельный пароль придумывать не нужно – вход идёт через твой Google.</div>"],
       ["Напиши первый запрос",
        "<p>Поле для запроса – посередине экрана. Пиши туда обычными словами.</p>"
        +IMG('gpt-4-pole-zaprosa.png','Сюда пишешь – можно текстом, можно голосом')
@@ -630,7 +630,7 @@ function renderChips(){
   const one = d => {
     const dn=doneFor(d), all=stepsFor(d).length;
     const mark = dn===all ? ' <span class="done">✓</span>' : (dn? ' <span class="done">'+dn+'/'+all+'</span>' : '');
-    const our = d.our ? '<span class="ourmark">наш</span>' : '';
+    const our = d.our ? '<span class="ourmark">нужен для практикума</span>' : '';
     return '<div class="chip g-'+d.group+(d.our?' star':'')+(d.id===active?' on':'')+'" data-id="'+d.id+'"><span>'+d.em+'</span>'+d.name+our+mark+'</div>';
   };
   const grp = (g,label,note) =>
