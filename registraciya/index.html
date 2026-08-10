@@ -7,194 +7,268 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--magenta:#E6198C;--magenta-d:#C0116E;--ink:#211829;--dark:#1B1420;--wash:#FBF4F8;--line:#ECE1EC;
+  :root{
+    --magenta:#E6198C; --magenta-d:#C0116E; --ink:#211829; --dark:#1B1420;
+    --wash:#FBF4F8; --line:#ECE1EC; --line-soft:#F5EDF3; --muted:#6a5d68; --faint:#9a8d98;
     --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);
-    --radius:20px;--radius-lg:26px;--shadow:0 18px 44px -26px rgba(120,20,90,.24);}
+    --green:#1FA24E; --green-bg:#EAF7EE; --green-line:#CDEBD6;
+    --radius:20px; --radius-lg:26px;
+    --shadow:0 18px 44px -26px rgba(120,20,90,.24);
+    --shadow-lift:0 22px 50px -30px rgba(120,20,90,.42);
+    --pill-pad:11px 17px;
+  }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(circle at 12% -4%,rgba(230,25,140,.10),transparent 45%),
+                     radial-gradient(circle at 92% 6%,rgba(178,58,224,.09),transparent 42%);
+    background-repeat:no-repeat;background-attachment:fixed}
   .wrap{max-width:920px;margin:0 auto;padding:44px 22px 60px}
-  a{color:var(--magenta-d);text-decoration:none;border-bottom:1px solid #F0C9E0}
-  a:hover{color:var(--magenta)}
 
+  /* ——— типографика: 4 роли ——— */
   .kick{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
-  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.4vw,50px);line-height:1.06;margin:10px 0 14px;text-wrap:balance}
+  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.4vw,50px);line-height:1.06;margin:12px 0 16px;text-wrap:balance}
   h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(21px,2.8vw,26px);text-wrap:balance}
+  h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(21px,2.8vw,26px);line-height:1.2;text-wrap:balance}
+  h3{font-weight:700;font-size:17px}
   p,li{font-size:17px;text-wrap:pretty}
-  .muted{color:#6a5d68}
-  .small{font-size:13px;color:#9a8d98}
-  a code{border-bottom:1px solid #F0C9E0}
-  code{background:#F5EDF3;border-radius:6px;padding:1px 7px;font-family:Manrope,sans-serif;font-weight:700;color:var(--magenta-d)}
+  .muted{color:var(--muted)}
+  .small{font-size:13px;color:var(--faint)}
+  a{color:var(--magenta-d);text-decoration:none;border-bottom:1px solid #F0C9E0;transition:.15s}
+  a:hover{color:var(--magenta);border-bottom-color:var(--magenta)}
+  code{background:var(--line-soft);border-radius:6px;padding:2px 8px;font-family:Manrope,sans-serif;font-weight:700;color:var(--magenta-d)}
+  a code{border-bottom:0}
 
-  .banner{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius-lg);padding:22px 24px;margin:24px 0 6px;display:flex;gap:16px;align-items:flex-start}
-  .banner .ico{flex:0 0 46px;height:46px;border-radius:14px;background:#fff;display:grid;place-items:center;font-size:22px;border:1px solid #F1D9EC}
+  /* ——— шапка ——— */
+  .lede{margin-top:2px}
+  .lede .name{font-weight:700;font-size:19px;line-height:1.35;text-wrap:balance}
+  .lede .when{color:var(--muted);font-size:17px;margin-top:2px}
+  .hint{color:var(--muted);margin-top:14px}
+
+  .banner{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius-lg);
+    padding:24px 26px;margin:26px 0 0;display:flex;gap:18px;align-items:flex-start;position:relative;overflow:hidden}
+  .banner::after{content:"";position:absolute;right:-60px;bottom:-80px;width:220px;height:220px;
+    background:radial-gradient(circle,rgba(230,25,140,.16),transparent 70%);pointer-events:none}
+  .banner .ico{flex:0 0 auto;width:46px;height:46px;border-radius:14px;background:#fff;display:grid;place-items:center;font-size:22px;border:1px solid #F1D9EC}
   .banner b{color:var(--magenta-d)}
-  .pill{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-weight:700;font-size:13.5px;color:var(--magenta)}
+  .banner p+p{margin-top:9px}
+  .banner .txt{position:relative;z-index:1}
 
-  .fork{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;margin-top:26px;box-shadow:var(--shadow)}
-  .forkcards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
-  .fc{border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;text-align:center;cursor:pointer;transition:.18s;background:#fff}
-  .fc:hover{border-color:var(--magenta);transform:translateY(-3px);box-shadow:0 18px 40px -26px rgba(230,25,140,.6)}
-  .fc .fe{font-size:34px}
-  .fc .fn{font-weight:800;font-size:19px;margin:8px 0 4px}
-  .fc .fd{font-size:15px;color:#6a5d68}
-  .chosen{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 10px 9px 18px;margin-top:26px;font-weight:700;font-size:15px}
-  .chosen button{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:700 13px Manrope,sans-serif;color:#6a5d68;cursor:pointer}
+  /* ——— общий пилюльный слой: одна геометрия на всё ——— */
+  .pill,.chip,.b,.bot,.btn,.reset,.chosen button{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    border-radius:999px;border:1px solid transparent;font-family:Manrope,sans-serif;
+    text-decoration:none;white-space:nowrap;cursor:default}
+  .pill{background:#fff;border-color:var(--line);padding:7px 16px;font-weight:700;font-size:13.5px;color:var(--magenta)}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--magenta);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(230,25,140,.45)}50%{box-shadow:0 0 0 6px rgba(230,25,140,0)}}
+
+  /* ——— развилка ——— */
+  .fork{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;margin-top:26px;box-shadow:var(--shadow)}
+  .forkcards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  .fc{border:1px solid var(--line);border-radius:var(--radius);padding:24px 18px;text-align:center;cursor:pointer;transition:.2s;background:#fff}
+  .fc:hover{border-color:var(--magenta);transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+  .fc .fe{font-size:34px;line-height:1}
+  .fc .fn{font-weight:800;font-size:19px;margin:10px 0 4px}
+  .fc .fd{font-size:15px;color:var(--muted)}
+  .chosen{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:8px 8px 8px 18px;margin-top:26px;font-weight:700;font-size:15px}
+  .chosen button{margin-left:auto;border-color:var(--line);background:#fff;padding:7px 15px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:.15s}
   .chosen button:hover{border-color:var(--magenta);color:var(--magenta)}
 
-  .chips{display:block;margin:20px 0 18px}
-  .grp{margin-bottom:14px}
-  .grplbl{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a4959f;margin-bottom:8px}
+  /* ——— вкладки нейросетей ——— */
+  .chips{display:block;margin:22px 0 18px}
+  .grp+.grp{margin-top:16px}
+  .grplbl{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a4959f;margin-bottom:9px}
   .grplbl span{font-weight:600;letter-spacing:0;text-transform:none;font-size:13px;color:#c0b3bd}
-  .grprow{display:flex;gap:10px;flex-wrap:wrap}
-  .chip.g-ru{border-color:#CDEBD6;background:#F5FBF7}
-  .chip.g-ru:hover{border-color:#1FA24E}
-  .chip.g-ru.on{background:linear-gradient(100deg,#1FA24E,#3EC177);border-color:transparent;box-shadow:0 12px 30px -14px rgba(31,162,78,.6)}
-  .chip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 17px;cursor:pointer;font-weight:700;font-size:14.5px;color:var(--ink);transition:.18s}
+  .grprow{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+  .chip{background:#fff;border-color:var(--line);padding:var(--pill-pad);font-weight:700;font-size:14.5px;color:var(--ink);cursor:pointer;transition:.18s}
   .chip:hover{border-color:var(--magenta);transform:translateY(-2px)}
   .chip.star{background:#FCE6F1;border-color:#F3B6D8;color:var(--magenta-d)}
+  .chip.g-ru{background:#F5FBF7;border-color:var(--green-line)}
+  .chip.g-ru:hover{border-color:var(--green)}
   .chip.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 12px 30px -14px rgba(230,25,140,.6)}
-  .chip .done{font-size:12px;opacity:.8}
-  .chip .ourmark{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#fff;color:var(--magenta);border-radius:999px;padding:2px 8px}
+  .chip.g-ru.on{background:linear-gradient(100deg,#1FA24E,#3EC177);box-shadow:0 12px 30px -14px rgba(31,162,78,.55)}
+  .chip .done{font-size:12px;font-weight:800;opacity:.75}
+  .chip .ourmark{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#fff;color:var(--magenta);border-radius:999px;padding:3px 8px}
   .chip.on .ourmark{background:rgba(255,255,255,.24);color:#fff}
 
-  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);animation:pop .3s ease}
-  @keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  /* ——— карточка нейросети ——— */
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow);animation:pop .32s cubic-bezier(.2,.8,.3,1)}
+  @keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   .phead{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-  .phead .big{font-size:32px}
-  .badges{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 18px}
-  .b{font-size:11.5px;font-weight:700;border-radius:999px;padding:4px 11px}
+  .phead .big{font-size:32px;line-height:1}
+  .tagline{color:var(--muted);margin-top:6px}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px;align-items:stretch}
+  .b{font-size:11.5px;font-weight:700;padding:5px 12px;letter-spacing:.01em}
   .b.pink{color:var(--magenta);background:#FCE6F1}
-  .b.green{color:#1FA24E;background:#EAF7EE}
+  .b.green{color:var(--green);background:var(--green-bg)}
   .b.violet{color:#7a4bd0;background:#EFEAFE}
-  .b.grey{color:#6a5d68;background:#F2EDF1}
+  .b.grey{color:var(--muted);background:#F2EDF1}
 
-  .why{background:var(--wash);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:6px}
+  .why{background:var(--wash);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
   .why ul{list-style:none}
-  .why li{padding:5px 0 5px 24px;position:relative;font-size:16.5px}
-  .why li::before{content:"✓";position:absolute;left:0;color:var(--magenta);font-weight:700}
-  .why .lim{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:#6a5d68;font-size:15.5px}
+  .why li{padding:6px 0 6px 26px;position:relative;font-size:16.5px}
+  .why li::before{content:"✓";position:absolute;left:0;top:6px;color:var(--magenta);font-weight:800}
+  .why .lim{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);color:var(--muted);font-size:15.5px}
 
-  /* — что умеет: строки-возможности — */
-  .caps{margin-top:16px}
-  .cap{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px dashed var(--line)}
-  .cap:first-child{border-top:0}
+  /* ——— что умеет ——— */
+  .secthead{margin:26px 0 2px}
+  .caps{margin-top:10px}
+  .cap{display:flex;gap:13px;align-items:flex-start;padding:12px 0;border-top:1px dashed var(--line)}
+  .cap:first-child{border-top:0;padding-top:4px}
   .cap .m{flex:0 0 26px;height:26px;border-radius:9px;display:grid;place-items:center;font-size:14px;font-weight:800;margin-top:1px}
-  .cap .m.yes{background:#EAF7EE;color:#1FA24E}
-  .cap .m.no{background:#F2EDF1;color:#a4959f}
+  .cap .m.yes{background:var(--green-bg);color:var(--green)}
+  .cap .m.no{background:#F2EDF1;color:#bdaeba}
   .cap .m.part{background:#FFF6E6;color:#C58A11}
   .cap .ct{font-weight:700;font-size:16.5px;display:block}
-  .cap .cd{font-size:15px;color:#6a5d68;display:block;margin-top:1px}
+  .cap .cd{font-size:15px;color:var(--muted);display:block;margin-top:1px}
   .cap.off .ct{color:#a4959f}
 
-  .pathhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:26px 0 12px}
+  /* ——— путь ——— */
+  .pathhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:28px 0 14px}
+  .prog{flex:1 1 120px;min-width:110px;height:6px;border-radius:999px;background:#F3E7F0;overflow:hidden}
+  .prog i{display:block;height:100%;width:0;background:var(--grad);border-radius:999px;transition:width .45s cubic-bezier(.2,.8,.3,1)}
   .path{list-style:none}
-  .step{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:#fff;transition:.2s;overflow:hidden}
-  .step .row{display:flex;gap:13px;align-items:flex-start;padding:15px 16px;cursor:pointer}
-  .step .box{flex:0 0 26px;height:26px;border-radius:9px;border:2px solid #DCCEDA;display:grid;place-items:center;font-size:14px;color:transparent;transition:.18s;margin-top:1px;font-weight:700}
-  .step .num{color:#b8a8b6;font-size:13px;font-weight:800}
-  .step .st{font-weight:700;font-size:17px}
-  .step .body{padding:0 16px 16px 55px;color:#4a3d48;font-size:16px;display:none}
-  .step .body p+p{margin-top:8px}
-  .shot{margin-top:12px}
-  .shot img{display:block;width:100%;border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 34px -24px rgba(120,20,90,.5)}
-  .shot figcaption{font-size:13.5px;color:#9a8d98;margin-top:7px}
-  .shot+.shot{margin-top:14px}
-  .step .body .tip{margin-top:10px;background:var(--wash);border-radius:14px;padding:11px 13px;font-size:15.5px;color:#6a5d68}
-  .step.now{border-color:var(--magenta);box-shadow:0 16px 38px -26px rgba(230,25,140,.7)}
+  .step{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:#fff;transition:.22s;overflow:hidden}
+  .step .row{display:flex;gap:14px;align-items:flex-start;padding:16px;cursor:pointer}
+  .step .box{flex:0 0 27px;height:27px;border-radius:9px;border:2px solid #DCCEDA;display:grid;place-items:center;font-size:14px;color:transparent;transition:.2s;margin-top:1px;font-weight:800}
+  .step .num{color:#b8a8b6;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;display:block}
+  .step .st{font-weight:700;font-size:17px;display:block;margin-top:2px}
+  .step .body{padding:0 18px 18px 57px;color:#4a3d48;font-size:16px;display:none}
+  .step .body p+p{margin-top:10px}
+  .step .body .tip{margin-top:12px;background:var(--wash);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15.5px;color:var(--muted)}
+  .step.now{border-color:var(--magenta);box-shadow:0 16px 38px -26px rgba(230,25,140,.75)}
   .step.now .num{color:var(--magenta)}
-  .step.now .body{display:block}
+  .step.now .body{display:block;animation:pop .3s ease}
   .step.done{background:var(--wash);border-color:#F0D3E6}
   .step.done .box{background:var(--magenta);border-color:var(--magenta);color:#fff}
-  .step.done .st{color:#8d7f8b;text-decoration:line-through;text-decoration-color:#dcc9d8}
-  .step.next .st{color:#a4959f}
-  .btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--grad);color:#fff;font:800 15px Manrope,sans-serif;padding:11px 22px;cursor:pointer;margin-top:14px;box-shadow:0 14px 32px -18px rgba(230,25,140,.8);text-decoration:none;border-bottom:0}
-  .btn:hover{color:#fff}
-  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none;font-weight:700}
+  .step.done .st{color:#9a8b97}
+  .step.next{opacity:.72}
+  .step.next .st{color:#8f8090}
+  .step:not(.now):hover{border-color:#F0C9E0}
+
+  /* ——— кнопки ——— */
+  .btn{padding:12px 24px;font-weight:800;font-size:15px;background:var(--grad);background-size:220% 100%;color:#fff;
+    border:1px solid transparent;box-shadow:0 14px 32px -18px rgba(230,25,140,.85);cursor:pointer;
+    animation:shimmer 5s ease-in-out infinite;transition:transform .15s,box-shadow .15s}
+  @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  .btn:hover{color:#fff;transform:translateY(-1px);box-shadow:0 18px 38px -18px rgba(230,25,140,.95);border-bottom-color:transparent}
+  .btn.ghost{background:#fff;background-image:none;animation:none;color:var(--ink);border-color:var(--line);box-shadow:none;font-weight:700}
   .btn.ghost:hover{color:var(--magenta);border-color:var(--magenta)}
+  .step .btn{margin-top:16px}
 
-  .desk{margin-top:14px;background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:18px 20px}
-  .desk .dt{font-weight:700;font-size:17px;margin-bottom:6px}
-  .desk p{font-size:16px;color:#4a3d48}
-  .desk .btn{margin-top:14px}
-  .alldone{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:18px 20px;margin-top:4px}
+  .alldone{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:20px 22px;margin-top:6px}
 
+  /* ——— раскрывашки ——— */
   .fold{border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-top:12px;overflow:hidden}
-  .fold>summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;gap:13px;align-items:center;font-weight:700;font-size:17px}
+  .fold>summary{cursor:pointer;list-style:none;padding:17px 19px;display:flex;gap:14px;align-items:center;font-weight:700;font-size:17px;transition:.15s}
   .fold>summary::-webkit-details-marker{display:none}
+  .fold>summary:hover{background:var(--wash)}
   .fold>summary .ic{flex:0 0 34px;height:34px;border-radius:11px;background:var(--wash);display:grid;place-items:center;font-size:17px;border:1px solid var(--line)}
-  .fold>summary .arr{margin-left:auto;color:#b8a8b6;font-size:14px}
+  .fold>summary .arr{margin-left:auto;color:#b8a8b6;font-size:13px;transition:transform .2s}
   .fold[open]>summary{border-bottom:1px solid var(--line)}
-  .fold .in{padding:18px}
-  .fold .in ol{margin-left:19px}
-  .fold .in ol li{padding:5px 0}
-  .fold .in h3{font-weight:700;font-size:17px;margin:18px 0 8px}
+  .fold[open]>summary .arr{transform:rotate(180deg)}
+  .fold .in{padding:20px}
+  .fold .in>p+h3{margin-top:20px}
+  .fold .in h3{margin:20px 0 10px}
   .fold .in h3:first-child{margin-top:0}
+  .fold .in ol{margin-left:20px}
+  .fold .in ol li{padding:5px 0}
+  .fold .in>p+p{margin-top:9px}
 
-  .way{border:1px solid var(--line);border-radius:16px;padding:14px 15px;margin-bottom:10px;background:#fff}
-  .way .wt{font-weight:700;font-size:16.5px;margin-bottom:3px}
-  .way .wd{font-size:15.5px;color:#6a5d68}
+  .way{border:1px solid var(--line);border-radius:16px;padding:15px 16px;margin-bottom:10px;background:#fff;transition:.18s}
+  .way:hover{border-color:#F0C9E0}
+  .way .wt{font-weight:700;font-size:16.5px;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .way .wd{font-size:15.5px;color:var(--muted)}
   .way.best{border-color:#F0C9E0;background:#FFFAFD}
-  .way .mark{font-size:11.5px;font-weight:700;color:var(--magenta);background:#FCE6F1;border-radius:999px;padding:3px 10px;margin-left:8px;white-space:nowrap}
+  .way .mark{font-size:11px;font-weight:800;letter-spacing:.02em;color:var(--magenta);background:#FCE6F1;border-radius:999px;padding:4px 10px;white-space:nowrap}
 
-  .bots{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .bot{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-weight:700;font-size:14px;color:var(--ink)}
-  .bot:hover{border-color:var(--magenta);color:var(--magenta)}
+  /* ——— ссылки-пилюли: одна высота в ряду ——— */
+  .bots{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px;align-items:stretch}
+  .bot{background:#fff;border-color:var(--line);border-bottom-color:var(--line);padding:9px 15px;font-weight:700;font-size:14px;color:var(--ink);
+    white-space:normal;text-align:center;cursor:pointer;transition:.16s}
+  .bot:hover{border-color:var(--magenta);border-bottom-color:var(--magenta);color:var(--magenta);transform:translateY(-2px)}
 
-  .warn{background:#FFF6F4;border:1px solid #FADFD8;border-radius:16px;padding:14px 15px;margin-top:12px;font-size:15.5px;color:#7a4a3f}
+  .warn{background:#FFF6F4;border:1px solid #FADFD8;border-radius:16px;padding:15px 16px;margin-top:14px;font-size:15.5px;color:#7a4a3f;line-height:1.6}
   .warn b{color:#c2452a}
-  .gold{background:#FFFBEF;border:1px solid #F3E4BE;border-radius:16px;padding:14px 15px;margin-top:12px;font-size:15.5px;color:#6b5726}
+  .gold{background:#FFFBEF;border:1px solid #F3E4BE;border-radius:16px;padding:15px 16px;margin-top:14px;font-size:15.5px;color:#6b5726;line-height:1.6}
   .gold b{color:#996f14}
 
-  .qa{border-top:1px dashed var(--line);padding:13px 0}
-  .qa summary{cursor:pointer;font-weight:700;font-size:16.5px;list-style:none;display:flex;gap:11px;align-items:flex-start}
+  .qa{border-top:1px dashed var(--line);padding:14px 0}
+  .qa summary{cursor:pointer;font-weight:700;font-size:16.5px;list-style:none;display:flex;gap:12px;align-items:flex-start}
   .qa summary::-webkit-details-marker{display:none}
-  .qa summary::before{content:"?";flex:0 0 22px;height:22px;border-radius:7px;background:#F2EDF1;color:#6a5d68;display:grid;place-items:center;font-size:13px;margin-top:1px;font-weight:700}
+  .qa summary::before{content:"?";flex:0 0 23px;height:23px;border-radius:8px;background:#F2EDF1;color:var(--muted);display:grid;place-items:center;font-size:13px;margin-top:1px;font-weight:800;transition:.15s}
   .qa[open] summary::before{content:"✓";background:#FCE6F1;color:var(--magenta)}
-  .qa .ans{padding:9px 0 2px 33px;color:#4a3d48;font-size:16px}
+  .qa .ans{padding:10px 0 2px 35px;color:#4a3d48;font-size:16px}
 
-  /* — сравнение — */
-  .cmpwrap{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);overflow-x:auto}
-  table{border-collapse:collapse;min-width:640px;width:100%;margin-top:16px}
-  th,td{text-align:center;padding:11px 8px;border-top:1px solid var(--line);font-size:15px}
-  th:first-child,td:first-child{text-align:left;font-weight:700;min-width:210px}
+  /* ——— сравнение ——— */
+  .cmpwrap{margin-top:32px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow)}
+  .cmpscroll{overflow-x:auto;margin-top:18px;-webkit-overflow-scrolling:touch}
+  .swipe{display:none;font-size:13px;color:var(--faint);margin-top:10px}
+  table{border-collapse:collapse;min-width:660px;width:100%}
+  th,td{text-align:center;padding:12px 8px;border-top:1px solid var(--line);font-size:15px;vertical-align:middle}
+  th:first-child,td:first-child{text-align:left;font-weight:700;min-width:200px;padding-left:2px}
   thead th{border-top:0;font-size:14px;font-weight:800;padding-bottom:14px}
-  thead th .e{display:block;font-size:20px;margin-bottom:2px}
-  td .y{color:#1FA24E;font-weight:800;font-size:17px}
-  td .n{color:#c8bcc6;font-weight:800;font-size:17px}
+  thead th .e{display:block;font-size:20px;margin-bottom:3px}
+  td .y{color:var(--green);font-weight:800;font-size:17px}
+  td .n{color:#cdc0cb;font-weight:800;font-size:17px}
   td .p{color:#C58A11;font-weight:800;font-size:17px}
-  td small{display:block;font-size:12px;color:#9a8d98;line-height:1.35;margin-top:2px}
+  td small,th:first-child small,td:first-child small{display:block;font-size:12px;color:var(--faint);line-height:1.4;margin-top:3px;font-weight:500}
   .cmpwrap .our{background:#FFFAFD}
-  .grouprow th{padding:0 8px 8px;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-top:0}
-  .gh-foreign{color:#8d7f8b;border-bottom:2px solid #ECE1EC}
-  .gh-ru{color:#1FA24E;border-bottom:2px solid #CDEBD6}
+  thead .our{border-radius:14px 14px 0 0}
+  .grouprow th{padding:0 8px 10px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-top:0}
+  .gh-foreign{color:#a4959f;border-bottom:2px solid var(--line)}
+  .gh-ru{color:var(--green);border-bottom:2px solid var(--green-line)}
   td.c-ru,th.c-ru{background:#F5FBF7}
-  thead tr:last-child th{border-top:0}
-  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:#6a5d68}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:var(--muted)}
+  .legend b{font-size:15px}
 
-  /* — календарь — */
-  .cal{margin-top:30px;background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius-lg);padding:28px 26px;text-align:center}
-  .cal .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
-
-  .dark{margin-top:30px;background:var(--dark);color:#f3e6ee;border-radius:var(--radius-lg);padding:30px 28px;position:relative;overflow:hidden}
-  .dark::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;background:radial-gradient(circle,rgba(230,25,140,.28),transparent 70%)}
-  .dark .tag{color:#ff7ac2;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-  .dark h2{color:#fff;margin:9px 0 12px}
-  .dark p,.dark li{color:#eddce6}
-  .dark ul{list-style:none;margin-top:10px}
-  .dark li{padding:7px 0 7px 26px;position:relative}
-  .dark li::before{content:"✓";position:absolute;left:0;color:#ff7ac2;font-weight:700}
+  /* ——— календарь ——— */
+  .cal{margin-top:32px;background:var(--dark);color:#f3e6ee;border-radius:var(--radius-lg);padding:34px 28px;text-align:center;position:relative;overflow:hidden}
+  .cal::after{content:"";position:absolute;left:-80px;top:-90px;width:280px;height:280px;background:radial-gradient(circle,rgba(230,25,140,.30),transparent 70%);pointer-events:none}
+  .cal::before{content:"";position:absolute;right:-90px;bottom:-110px;width:300px;height:300px;background:radial-gradient(circle,rgba(178,58,224,.26),transparent 70%);pointer-events:none}
+  .cal>*{position:relative;z-index:1}
+  .cal .kick{color:#ff7ac2}
+  .cal h2{color:#fff;margin-top:10px}
+  .cal .when{color:#eddce6;margin-top:10px;font-size:17px}
+  .cal .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px;align-items:stretch}
+  .cal .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.34)}
+  .cal .btn.ghost:hover{color:#fff;border-color:#ff7ac2;background:rgba(255,255,255,.06)}
+  .cal .small{color:#a1919c;margin-top:16px}
 
   .note{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
-  .foot{text-align:center;color:#9a8d98;font-size:13px;margin-top:26px}
-  .reset{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font:700 13px Manrope,sans-serif;color:#9a8d98;cursor:pointer}
+  .foot{text-align:center;color:var(--faint);font-size:13px;margin-top:28px;line-height:1.7}
+  .reset{border-color:var(--line);background:#fff;padding:8px 16px;font-size:13px;font-weight:700;color:var(--faint);cursor:pointer;margin-top:14px;transition:.15s}
   .reset:hover{border-color:var(--magenta);color:var(--magenta)}
 
-  @media(max-width:560px){
-    .panel,.fork,.cmpwrap,.cal{padding:20px 17px}
-    .banner{flex-direction:column;gap:12px}
-    .step .body{padding-left:16px}
+  /* ——— скриншоты ——— */
+  .shot{margin-top:14px}
+  .shot img{display:block;width:100%;border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 38px -26px rgba(120,20,90,.55)}
+  .shot figcaption{font-size:13.5px;color:var(--faint);margin-top:8px;padding-left:2px}
+  .shot+.shot{margin-top:16px}
+
+  /* ——— появление при скролле ——— */
+  .rv{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.3,1)}
+  .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none;transition:none}
+    .btn{animation:none}
+    .pill .dot{animation:none}
+    html{scroll-behavior:auto}
+  }
+
+  @media(max-width:640px){
+    .wrap{padding:32px 16px 48px}
+    .panel,.fork,.cmpwrap{padding:20px 17px}
+    .cal{padding:28px 18px}
+    .banner{flex-direction:column;gap:14px;padding:20px 18px}
+    .banner .ico{width:44px;height:44px}
+    .step .body{padding:0 16px 16px 16px}
     .forkcards{grid-template-columns:1fr}
+    .swipe{display:block}
+    .cal .btns .btn{width:100%}
+    .legend{gap:12px}
   }
 </style>
 </head>
@@ -203,16 +277,19 @@
 
   <div class="kick">Гайд для участников практикума</div>
   <h1>Регистрация в нейросетях: <span class="g">спокойно, по шагам</span></h1>
-  <p class="muted" style="font-size:18px"><b>Практикум по ИИ: как делать своё дело легко и в удовольствие</b><br>19 августа, 18:00–20:00 по Москве</p>
-  <p class="muted" style="margin-top:10px">Один шаг за раз. Сделал – нажал «готово», открылся следующий. Прогресс сохранится, можно закрыть и вернуться.</p>
+  <div class="lede">
+    <div class="name">Практикум по ИИ: как делать своё дело легко и в удовольствие</div>
+    <div class="when">19 августа, 18:00–20:00 по Москве</div>
+  </div>
+  <p class="hint">Один шаг за раз. Сделал – нажал «готово», открылся следующий. Прогресс сохранится, можно закрыть и вернуться.</p>
 
-  <div class="banner">
+  <div class="banner rv">
     <div class="ico">🎯</div>
-    <div>
-      <div class="pill">● 19 августа, 18:00 МСК</div>
-      <p style="margin-top:10px"><b>Зачем этот гайд.</b> На практикуме мы работаем в ChatGPT – показываем всё на нём. Если к 19 августа у тебя уже есть аккаунт, хотя бы бесплатный, ты сможешь повторять вместе с нами, а не смотреть со стороны.</p>
-      <p class="muted" style="margin-top:8px">Многими нейросетями можно пользоваться и без регистрации. Но тогда открыта только часть: не сохраняется история, не работают файлы, помощники и настройки под себя. Поэтому если ещё не регистрировался – зарегистрируйся, это бесплатно и открывает всё остальное.</p>
-      <p class="muted" style="margin-top:8px">Остальные нейросети собраны здесь же. Принципы одинаковые везде – меняются кнопки, а не метод. Вернёшься, когда понадобится.</p>
+    <div class="txt">
+      <div class="pill"><span class="dot"></span>19 августа, 18:00 МСК</div>
+      <p style="margin-top:12px"><b>Зачем этот гайд.</b> На практикуме мы работаем в ChatGPT – показываем всё на нём. Если к 19 августа у тебя уже есть аккаунт, хотя бы бесплатный, ты сможешь повторять вместе с нами, а не смотреть со стороны.</p>
+      <p class="muted">Многими нейросетями можно пользоваться и без регистрации. Но тогда открыта только часть: не сохраняется история, не работают файлы, помощники и настройки под себя. Поэтому если ещё не регистрировался – зарегистрируйся, это бесплатно и открывает всё остальное.</p>
+      <p class="muted">Остальные нейросети собраны здесь же. Принципы одинаковые везде – меняются кнопки, а не метод. Вернёшься, когда понадобится.</p>
     </div>
   </div>
 
@@ -220,23 +297,24 @@
   <div id="chips" class="chips" style="display:none"></div>
   <div id="panel"></div>
 
-  <div class="cmpwrap">
+  <div class="cmpwrap rv">
     <div class="kick">Что умеет каждая</div>
-    <h2 style="margin-top:8px">Сравнение в одной таблице</h2>
-    <p class="muted" style="margin-top:6px">Здесь видно, почему на курсе мы берём ChatGPT: он единственный закрывает всё, что нам понадобится за четыре недели.</p>
-    <div id="cmp"></div>
-    <div class="legend"><span><b style="color:#1FA24E">✓</b> есть</span><span><b style="color:#C58A11">~</b> есть, но с оговоркой</span><span><b style="color:#c8bcc6">—</b> нет</span></div>
+    <h2 class="secthead">Сравнение в одной таблице</h2>
+    <p class="muted">Здесь видно, почему на курсе мы берём ChatGPT: он единственный закрывает всё, что понадобится за четыре недели.</p>
+    <div class="cmpscroll"><div id="cmp"></div></div>
+    <div class="swipe">↔ таблицу можно листать вбок</div>
+    <div class="legend"><span><b style="color:#1FA24E">✓</b> есть</span><span><b style="color:#C58A11">~</b> есть, но с оговоркой</span><span><b style="color:#cdc0cb">—</b> нет</span></div>
   </div>
 
-  <div class="cal">
+  <div class="cal rv">
     <div class="kick">Чтобы не забыть</div>
-    <h2 style="margin-top:8px">Поставь напоминание о практикуме</h2>
-    <p class="muted" style="margin-top:8px">19 августа, 18:00–20:00 по Москве. Нажми – и он встанет в твой календарь вместе с напоминанием за день и за час.</p>
+    <h2>Поставь напоминание о практикуме</h2>
+    <p class="when">19 августа, 18:00–20:00 по Москве. Нажми – встанет в твой календарь вместе с напоминанием за день и за час.</p>
     <div class="btns">
       <a class="btn" id="gcal" href="#" target="_blank" rel="noopener">📅 В Google Календарь</a>
-      <button class="btn ghost" id="ical">🍎 В Apple Календарь</button>
+      <a class="btn ghost" id="ical" href="#" role="button">🍎 В Apple Календарь</a>
     </div>
-    <p class="small" style="margin-top:14px">Apple, Outlook и почти все остальные календари понимают скачанный файл – просто открой его после загрузки.</p>
+    <p class="small">Apple, Outlook и почти все остальные календари понимают скачанный файл – просто открой его после загрузки.</p>
   </div>
 
   <div class="note">
@@ -262,14 +340,14 @@ const EV = {
 /* ============ общие блоки ============ */
 const VPN_BODY = `
   <p>Сервис из России напрямую не открывается, поэтому доступ включаем <b>до</b> того, как заходить на сайт. Настраивается один раз – дальше можно забыть.</p>
-  <h3 style="margin-top:14px">Вариант 1 – приложение на компьютер или телефон</h3>
+  <h3>Вариант 1 – приложение на компьютер или телефон</h3>
   <div class="bots">
     <a class="bot" href="https://amnezia.org" target="_blank" rel="noopener">🛡️ Amnezia VPN</a>
     <a class="bot" href="https://getoutline.org" target="_blank" rel="noopener">🔵 Outline VPN</a>
     <a class="bot" href="https://psiphon.ca" target="_blank" rel="noopener">🔒 Psiphon</a>
   </div>
   <h3>Вариант 2 – бот в Telegram</h3>
-  <p class="muted" style="font-size:15.5px">Проще, если не хочется ничего устанавливать. Открой любой, дальше по подсказкам бота.</p>
+  <p class="muted">Проще, если не хочется ничего устанавливать. Открой любой, дальше по подсказкам бота.</p>
   <div class="bots">
     <a class="bot" href="https://t.me/vpn_noproblem_bot" target="_blank" rel="noopener">@vpn_noproblem_bot</a>
     <a class="bot" href="https://t.me/VpnDucksBot" target="_blank" rel="noopener">@VpnDucksBot</a>
@@ -297,15 +375,15 @@ const PAY_FOREIGN = `
   <div class="way"><div class="wt">Он оплачивает – ты пользуешься</div><div class="wd">Просишь знакомого оплатить подписку на твоём аккаунте. Минус: карта привязывается, и если он её сменит или заблокирует – подписка слетит.</div></div>
 
   <h3>Путь 3. Через Telegram-бот</h3>
-  <p class="muted" style="font-size:15.5px">Платишь рублями, они оформляют подписку. Ничего открывать и заводить не нужно.</p>
+  <p class="muted">Платишь рублями, они оформляют подписку. Ничего открывать и заводить не нужно.</p>
   <div class="bots">
-    <a class="bot" href="https://t.me/paymentserv_bot" target="_blank" rel="noopener">✈️ @paymentserv_bot · Foreign Pay</a>
-    <a class="bot" href="https://t.me/Help_with_subscribes_bot" target="_blank" rel="noopener">🤝 @Help_with_subscribes_bot · через оператора</a>
+    <a class="bot" href="https://t.me/paymentserv_bot" target="_blank" rel="noopener">✈️ @paymentserv_bot</a>
+    <a class="bot" href="https://t.me/Help_with_subscribes_bot" target="_blank" rel="noopener">🤝 @Help_with_subscribes_bot</a>
   </div>
-  <p class="muted" style="font-size:15.5px;margin-top:10px">Foreign Pay работает автоматически: в меню выбираешь «Зарубежные сервисы → Нейросети», дальше нужный сервис. Во втором с тобой общается живой оператор и подбирает способ.</p>
+  <p class="muted">Первый работает автоматически: в меню выбираешь «Зарубежные сервисы → Нейросети», дальше нужный сервис. Во втором с тобой общается живой оператор и подбирает способ.</p>
 
   <h3>Путь 4. Оформить себе виртуальную карту</h3>
-  <p class="muted" style="font-size:15.5px">Если планируешь платить регулярно и не хочешь ни от кого зависеть.</p>
+  <p class="muted">Если планируешь платить регулярно и не хочешь ни от кого зависеть.</p>
   <div class="bots">
     <a class="bot" href="https://t.me/WantToPayBot" target="_blank" rel="noopener">💳 @WantToPayBot</a>
   </div>
@@ -319,7 +397,7 @@ const PAY_FOREIGN = `
 const PAY_RU = `
   <p><b>Здесь всё просто.</b> Оплата обычной российской картой, как в любом магазине.</p>
   <ol><li>Зайди в раздел с тарифами.</li><li>Выбери минимальный платный.</li><li>Оплати картой.</li></ol>
-  <p class="muted" style="margin-top:10px">Для начала подписка не нужна – бесплатного хватает, чтобы попробовать.</p>
+  <p class="muted">Для начала подписка не нужна – бесплатного хватает, чтобы попробовать.</p>
 `;
 
 const SMS_TIP = `<div class="tip">Если вдруг попросит номер телефона: российский он не примет. Временный зарубежный номер покупается на <a href="https://smsfast.io" target="_blank" rel="noopener">smsfast.io</a> прямо в момент регистрации – заранее покупать не надо. Страну номера бери ту же, что и страну подключения.</div>`;
@@ -493,8 +571,8 @@ const plural = n => n===1?'шаг':(n<5?'шага':'шагов');
 function renderFork(){
   if(!st.country){
     forkEl.innerHTML =
-      '<div class="fork"><div class="kick">Шаг 1</div><h2 style="margin-top:8px">Где ты сейчас?</h2>'+
-      '<p class="muted" style="margin-top:6px">От этого зависит весь маршрут. Дальше покажем только то, что нужно именно тебе – без лишнего.</p>'+
+      '<div class="fork"><div class="kick">Шаг 1</div><h2 class="secthead">Где ты сейчас?</h2>'+
+      '<p class="muted">От этого зависит весь маршрут. Дальше покажем только то, что нужно именно тебе – без лишнего.</p>'+
       '<div class="forkcards">'+
         '<div class="fc" data-c="ru"><div class="fe">🇷🇺</div><div class="fn">Я в России</div><div class="fd">Понадобится один дополнительный шаг</div></div>'+
         '<div class="fc" data-c="other"><div class="fe">🌍</div><div class="fn">Я в другой стране</div><div class="fd">Регистрируешься сразу</div></div>'+
@@ -505,7 +583,7 @@ function renderFork(){
   }
   forkEl.innerHTML = '<div class="chosen"><span>'+(st.country==='ru'?'🇷🇺 Ты в России':'🌍 Ты не в России')+'</span><button id="chg">изменить</button></div>';
   document.getElementById('chg').onclick=()=>{ st.country=null; save(); render(); };
-  chipsEl.style.display='flex';
+  chipsEl.style.display='block';
   return true;
 }
 
@@ -561,20 +639,22 @@ function renderPanel(){
 
   const payIn = d.foreign
     ? (st.country==='ru' ? PAY_FOREIGN + (d.payExtra||'')
-       : '<p>Ты не в России – оплата проходит обычной местной картой. Настройки аккаунта → тарифы → минимальный платный.</p><p class="muted" style="margin-top:8px">Подписка нужна не сразу: бесплатного хватает, чтобы попробовать.</p>')
+       : '<p>Ты не в России – оплата проходит обычной местной картой. Настройки аккаунта → тарифы → минимальный платный.</p><p class="muted">Подписка нужна не сразу: бесплатного хватает, чтобы попробовать.</p>')
     : PAY_RU;
 
   panelEl.innerHTML =
     '<div class="panel">'+
       '<div class="phead"><span class="big">'+d.em+'</span><h2>'+d.name+'</h2></div>'+
-      '<p class="muted" style="margin-top:4px">'+d.tagline+'</p>'+
+      '<p class="tagline">'+d.tagline+'</p>'+
       '<div class="badges">'+d.badges.map(b=>'<span class="b '+b[0]+'">'+b[1]+'</span>').join('')+'</div>'+
       '<div class="why"><ul>'+d.why.map(w=>'<li>'+w+'</li>').join('')+'</ul>'+(d.lim?'<div class="lim">'+d.lim+'</div>':'')+'</div>'+
-      '<div class="kick" style="margin-top:22px">Что умеет</div>'+ renderCaps(d) +
-      '<div class="pathhead"><div class="kick">Путь – '+all+' '+plural(all)+'</div><div class="small">'+dn+' из '+all+' пройдено</div></div>'+
+      '<div class="kick secthead">Что умеет</div>'+ renderCaps(d) +
+      '<div class="pathhead"><div class="kick">Путь – '+all+' '+plural(all)+'</div>'+
+        '<div class="prog"><i style="width:'+Math.round(dn/all*100)+'%"></i></div>'+
+        '<div class="small">'+dn+' из '+all+'</div></div>'+
       '<ul class="path">'+stepsHtml+'</ul>'+ allDone + deskHtml +
       '<details class="fold"><summary><span class="ic">💳</span>Когда решишь оформить подписку<span class="arr">▾</span></summary><div class="in">'+payIn+'</div></details>'+
-      '<div style="margin-top:24px"><div class="kick" style="margin-bottom:4px">Частые вопросы</div>'+
+      '<div class="secthead"><div class="kick">Частые вопросы</div>'+
         d.faq.map(q=>'<details class="qa"><summary>'+q[0]+'</summary><div class="ans">'+q[1]+'</div></details>').join('')+'</div>'+
     '</div>';
 
@@ -618,7 +698,8 @@ document.getElementById('gcal').href =
   '&dates='+EV.startUTC+'/'+EV.endUTC+
   '&details='+encodeURIComponent(EV.desc);
 
-document.getElementById('ical').onclick = ()=>{
+document.getElementById('ical').onclick = (e)=>{
+  e.preventDefault();
   const ics = [
     'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FitStars//Praktikum//RU','CALSCALE:GREGORIAN',
     'BEGIN:VEVENT','UID:fitstars-praktikum-2026-08-19@fitstars',
@@ -636,10 +717,19 @@ document.getElementById('ical').onclick = ()=>{
   setTimeout(()=>URL.revokeObjectURL(url), 1500);
 };
 
-function render(){ if(renderFork()){ renderChips(); renderPanel(); } }
+const io_ = ('IntersectionObserver' in window)
+  ? new IntersectionObserver((es,o)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); o.unobserve(e.target); } }), {rootMargin:'0px 0px -8% 0px'})
+  : null;
+function reveal(){
+  if(!io_){ document.querySelectorAll('.rv').forEach(el=>el.classList.add('in')); return; }
+  document.querySelectorAll('.rv:not(.in)').forEach(el=>io_.observe(el));
+}
+
+function render(){ if(renderFork()){ renderChips(); renderPanel(); } reveal(); }
 document.getElementById('reset').onclick=()=>{ st={steps:{}}; save(); render(); };
 renderCmp();
 render();
+reveal();
 </script>
 </body>
 </html>
