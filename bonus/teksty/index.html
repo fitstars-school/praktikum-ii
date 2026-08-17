@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тексты, которые звучат как ты · Усилитель практикума</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --magenta:#E6198C; --magenta-d:#C0116E; --ink:#211829; --dark:#1B1420;
+    --wash:#FBF4F8; --line:#ECE1EC; --muted:#6b5c69;
+    --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);
+    --radius:20px; --radius-lg:26px;
+    --shadow:0 18px 44px -26px rgba(120,20,90,.24);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+  /* ---- роли типографики: Р1 заголовок, Р2 подзаголовок, Р3 текст 17px, Р4 метка ---- */
+  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.2vw,50px);line-height:1.06;text-wrap:balance;margin:12px 0 16px}
+  h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.12;text-wrap:balance;margin-bottom:14px}
+  h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;line-height:1.25;text-wrap:balance}
+  p,li,td,th,summary,label{font-size:17px;text-wrap:pretty}
+  .kick{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
+  .small{font-size:13px;color:#9a8d98}
+  b,strong{font-weight:700}
+  a{color:var(--magenta);text-decoration:none;border-bottom:1px solid rgba(230,25,140,.3)}
+  a:hover{color:var(--magenta-d)}
+
+  /* ---- шапка ---- */
+  .top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:12px;padding-bottom:12px}
+  .back{font-size:15px;font-weight:700;color:var(--ink);border:none}
+  .back:hover{color:var(--magenta)}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta)}
+
+  header.hero{padding:48px 0 40px}
+  .lead{font-size:19px;color:#4a3d48;max-width:660px;text-wrap:pretty}
+
+  section{padding:36px 0}
+  .sec-dark{background:var(--dark);color:#fff;position:relative;overflow:hidden;margin:20px 0}
+  .sec-dark::before{content:"";position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.30),transparent 70%);pointer-events:none}
+  .sec-dark h2,.sec-dark p,.sec-dark li,.sec-dark h3{color:#fff}
+  .sec-dark .kick{color:#FF8FC6}
+  .sec-white{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  .soft{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:20px 22px}
+
+  /* ---- конвейер ---- */
+  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:20px}
+  .flow a{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 15px;color:var(--ink);box-shadow:var(--shadow)}
+  .flow a:hover{transform:translateY(-2px);border-color:#F1D9EC}
+  .flow .n{font-family:'Unbounded',sans-serif;font-weight:700;font-size:13px;color:var(--magenta)}
+  .flow .t{font-weight:700;font-size:16px;margin-top:5px}
+  .flow .s{font-size:13px;color:var(--muted);margin-top:3px}
+
+  /* ---- карточка промпта ---- */
+  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
+  .p-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:14px}
+  .p-num{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .p-out{margin-top:6px;color:var(--muted)}
+  .meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:16px 0}
+  .meta p+p{margin-top:7px}
+  .steps{counter-reset:s;margin:16px 0}
+  .steps li{list-style:none;position:relative;padding-left:34px;margin-bottom:9px;color:#4a3d48}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:6px}
+  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.6;color:#33283b}
+  .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
+  .hint{font-size:13px;color:#9a8d98;margin-top:10px}
+
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:999px;padding:13px 22px;cursor:pointer;color:#fff;background:var(--grad);background-size:200% 100%;transition:background-position .35s,transform .15s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+  .btn:hover{background-position:100% 0}
+  .btn:active{transform:scale(.98)}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn.done{background:#EAF7EE;color:#1FA24E;border:1px solid #CDEBD6}
+
+  details{border:1px solid var(--line);border-radius:16px;padding:0;margin-top:12px;background:#fff;overflow:hidden}
+  details summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;background:#fff}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"+";font-family:'Unbounded',sans-serif;color:var(--magenta);font-size:16px;width:22px;height:22px;border-radius:7px;background:#FCE6F1;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  details[open] summary::before{content:"–"}
+  .det-body{padding:0 18px 18px;color:#4a3d48;font-size:16px}
+  .det-body p+p{margin-top:10px}
+  .det-body .ex{background:var(--wash);border:1px solid var(--line);border-radius:14px;padding:15px;font-size:15px;line-height:1.55;white-space:pre-wrap}
+  .fix{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-top:9px;font-size:15px}
+  .fix b{color:var(--magenta)}
+
+  .next{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:15px;color:var(--muted)}
+  .next a{font-weight:700}
+
+  ul.plain{list-style:none}
+  ul.plain li{position:relative;padding-left:30px;margin-bottom:11px}
+  ul.plain li::before{content:"✓";position:absolute;left:0;top:0;color:#1FA24E;font-weight:700}
+  ul.no li::before{content:"✕";color:var(--magenta)}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}
+
+  footer{background:var(--dark);color:#fff;padding:40px 0;margin-top:20px}
+  footer p{color:#bdb0bd;font-size:15px}
+  footer a{color:#FF8FC6;border:none}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:13px 22px;border-radius:999px;font-weight:700;font-size:15px;opacity:0;pointer-events:none;transition:.3s;z-index:60;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:520px){
+    .p{padding:20px}
+    .promptbox{padding:16px}
+    .btn{width:100%;justify-content:center}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="back" href="../">← Весь набор</a>
+    <span class="pill"><span class="dot"></span>Бонус 2 из 5</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">Усилитель практикума · набор для тех, кто с нами</div>
+    <h1>Тексты, которые <span class="g">звучат как ты</span></h1>
+    <p class="lead">Шесть промптов, которые работают как конвейер: ты приносишь свою мысль, ИИ доводит её до чистого текста. Не «напиши за меня» – а редактор, критик и проверяющий, которые есть у больших авторов и не было у тебя.</p>
+  </div>
+</header>
+
+<section class="sec-white">
+  <div class="wrap">
+    <div class="kick">Главное правило</div>
+    <h2>Мысль твоя. Работа руками – его</h2>
+    <p>Когда просишь ИИ «напиши пост про X», он выдаёт гладкий пустой текст: он не знает ни тебя, ни твоего читателя. Поэтому здесь другой порядок. Ты даёшь сырое – голосовое, заметку, обрывок мысли. А дальше прогоняешь через шесть ролей. Каждая делает ровно одну вещь и не лезет в чужую.</p>
+    <div class="flow">
+      <a href="#p1"><span class="n">01</span><div class="t">Черновик</div><div class="s">вытащить мысль</div></a>
+      <a href="#p2"><span class="n">02</span><div class="t">Редактор</div><div class="s">убрать лишнее</div></a>
+      <a href="#p3"><span class="n">03</span><div class="t">Критик</div><div class="s">найти слабое</div></a>
+      <a href="#p4"><span class="n">04</span><div class="t">Проверка</div><div class="s">поймать враньё</div></a>
+      <a href="#p5"><span class="n">05</span><div class="t">Мой голос</div><div class="s">сверить с собой</div></a>
+      <a href="#p6"><span class="n">06</span><div class="t">Площадка</div><div class="s">разложить по форматам</div></a>
+    </div>
+    <p style="margin-top:20px"><b>Можно не по порядку.</b> Есть готовый текст и надо просто вычистить – бери промпт 2. Сомневаешься в тексте – бери 3 и 4. Полный круг нужен, когда текст важный: продающий пост, письмо, страница.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick">Две минуты подготовки</div>
+    <h2>Что собрать перед стартом</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Три своих текста</h3>
+        <p style="margin-top:8px;color:var(--muted)">Написанных тобой, без ИИ. Любых – посты, письма клиенту, сообщения. Они понадобятся в промпте 5, чтобы ИИ понял твой почерк. Сохрани их в отдельную заметку, чтобы не искать каждый раз.</p>
+      </div>
+      <div class="card">
+        <h3>Кто твой читатель</h3>
+        <p style="margin-top:8px;color:var(--muted)">Одна честная фраза: кто он, что у него болит, чего хочет. Если уже собрал «Паспорт аудитории» из первого бонуса – вставляй его целиком, тексты сразу станут точнее.</p>
+      </div>
+    </div>
+    <div class="soft" style="margin-top:16px">
+      <p><b>Где всё это запускать.</b> Промпты написаны так, чтобы работать в любом чате: ChatGPT, Claude, Gemini, GigaChat, Алиса. Кнопка ниже открывает ChatGPT, потому что он у большинства. Открылся пустой чат – просто вставь скопированный промпт и нажми отправить.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick">Шесть промптов</div>
+    <h2>Конвейер</h2>
+
+    <!-- 1 -->
+    <article class="p" id="p1">
+      <div class="p-head">
+        <div class="p-num">1</div>
+        <div>
+          <h3>Черновик из моей мысли</h3>
+          <p class="p-out">На выходе: черновик, в котором есть твои мысли, а не общие слова из интернета.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> есть что сказать, но пока это голосовое на семь минут, заметка в телефоне или каша в голове.</p>
+        <p><b>Фишка:</b> ИИ сначала задаёт тебе вопросы и только потом пишет. Именно ответы на эти вопросы делают текст живым.</p>
+      </div>
+      <ol class="steps">
+        <li>Нажми «Копировать промпт» – он целиком попадёт в буфер обмена.</li>
+        <li>Открой чат, вставь: на компьютере Ctrl+V, на Маке Cmd+V, на телефоне долгое нажатие и «Вставить».</li>
+        <li>Замени розовые куски в скобках на своё. Отправь и <b>ответь на вопросы</b>, которые он задаст.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Ты – редактор, который помогает мне вытащить и оформить мою собственную мысль. Ты не придумываешь за меня содержание.
+
+Вот моя сырая мысль, это может быть расшифровка голосового с обрывками и повторами:
+"""
+<span class="tok">[ВСТАВЬ СВОЙ СЫРОЙ ТЕКСТ]</span>
+"""
+
+Для кого я пишу: <span class="tok">[КТО МОЙ ЧИТАТЕЛЬ, ОДНОЙ ФРАЗОЙ]</span>
+Где это будет опубликовано: <span class="tok">[ПОСТ В ТЕЛЕГРАМ / ДЛИННЫЙ ПОСТ / ПИСЬМО / СТРАНИЦА САЙТА]</span>
+Что читатель должен понять или сделать после прочтения: <span class="tok">[ОДНА ФРАЗА]</span>
+
+Работай так:
+1. Перескажи мне в двух-трёх предложениях, какую главную мысль ты услышал. Если главных мыслей несколько – скажи об этом и предложи, какую взять в этот текст, а какую отложить на следующий.
+2. Задай мне от трёх до пяти вопросов, ответы на которые сделают текст конкретным: где не хватает примера, цифры, случая из практики, имени, срока.
+3. Остановись и жди моих ответов. Не пиши текст, пока я не отвечу.
+
+Правила: не добавляй фактов, которых нет в моём тексте. Не приукрашивай. Если чего-то не знаешь – спрашивай, а не выдумывай.</pre>
+      </div>
+      <div class="btns">
+        <button class="btn" data-copy>Копировать промпт</button>
+        <button class="btn ghost" data-open>Открыть ChatGPT</button>
+      </div>
+      <p class="hint">Розовым выделено то, что нужно заменить на своё. Скобки удаляй вместе с подсказкой.</p>
+
+      <details>
+        <summary>Шаг 2 – когда ответил на вопросы</summary>
+        <div class="det-body">
+          <p>Ответил в том же чате своими словами, без причёсывания. Дальше отправь второе сообщение:</p>
+          <div class="promptbox" style="margin-top:10px">
+<pre>Теперь собери черновик, опираясь на мою мысль и мои ответы.
+
+Требования:
+– используй мои формулировки, где они есть, не переписывай их на свой лад
+– один текст = одна главная мысль
+– конкретика вместо обобщений: если я дал пример или цифру, они должны остаться
+– никаких вступлений вроде «в современном мире» и выводов вроде «подводя итог»
+– объём: <span class="tok">[СКОЛЬКО ЗНАКОВ ИЛИ АБЗАЦЕВ]</span>
+
+Сначала покажи план из трёх-четырёх пунктов, потом сам текст.</pre>
+          </div>
+          <div class="btns"><button class="btn ghost" data-copy>Копировать</button></div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Пример ответа</summary>
+        <div class="det-body">
+          <p>Сокращённый пример, чтобы ты понимал, чего ждать:</p>
+          <div class="ex">Главная мысль, которую я услышал: клиенты уходят не из-за цены, а из-за того, что не понимают, что будет происходить после оплаты.
+
+Здесь есть вторая мысль – про то, как ты делаешь первую встречу. Она сильная, но тянет на отдельный текст. Предлагаю отложить.
+
+Вопросы:
+1. Сколько примерно клиентов задавали вам вопрос «а что дальше» за последние месяцы?
+2. Что конкретно вы поменяли после того, как поняли это?
+3. Есть случай, когда человек сомневался, а после объяснения остался? Что вы ему сказали?</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Сразу начал писать текст, не спросив.</b> Ответь: «Остановись. Ты пропустил шаг с вопросами. Задай мне вопросы и жди ответа.»</div>
+          <div class="fix"><b>Вопросы общие, ни о чём.</b> Ответь: «Вопросы слишком общие. Задай такие, на которые может ответить только я – про мой конкретный случай, цифры, клиентов.»</div>
+          <div class="fix"><b>Придумал за тебя факты.</b> Ответь: «Ты добавил то, чего я не говорил: [цитата]. Убери. Работай только с тем, что я дал.»</div>
+        </div>
+      </details>
+
+      <div class="next">Дальше: <a href="#p2">промпт 2 – убрать из черновика лишнее</a></div>
+    </article>
+
+    <!-- 2 -->
+    <article class="p" id="p2">
+      <div class="p-head">
+        <div class="p-num">2</div>
+        <div>
+          <h3>Редактор: убрать лишнее</h3>
+          <p class="p-out">На выходе: тот же текст, но короче и чище. Плюс таблица «было → стало», по которой видно, за что цепляется глаз.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> текст готов, но читается вязко. Или ты чувствуешь «пахнет нейросетью», а объяснить не можешь.</p>
+        <p><b>Фишка:</b> редактору запрещено переписывать. Он только убирает. Поэтому текст остаётся твоим.</p>
+      </div>
+      <ol class="steps">
+        <li>Скопируй промпт и вставь в чат.</li>
+        <li>Между тройными кавычками вставь свой текст целиком.</li>
+        <li>Получишь таблицу правок и чистую версию. Читай таблицу – через пять текстов начнёшь ловить эти обороты сам.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Ты – строгий редактор. Твоя работа – убирать лишнее, а не переписывать смысл.
+
+Мой текст:
+"""
+<span class="tok">[ВСТАВЬ ТЕКСТ]</span>
+"""
+
+Убери:
+– канцелярит и отглагольные существительные: «осуществление подготовки» превращай в «подготовить»
+– воду и дежурные заходы: «в современном мире», «не секрет, что», «важно понимать», «давайте разберёмся», «в этой статье мы рассмотрим», «подводя итог»
+– оценочные прилагательные без доказательств: уникальный, эффективный, инновационный, мощный, невероятный
+– длинные тире «—», заменяй на короткие «–»
+– списки, которые появились ради красоты, а не ради смысла: если пункты можно сказать одним предложением, скажи одним
+– повторы: когда одна и та же мысль сказана дважды разными словами, оставь сильную формулировку
+
+Не делай: не меняй мою интонацию, не добавляй новых мыслей и фактов, не удлиняй текст, не заменяй мои слова синонимами просто ради разнообразия.
+
+Формат ответа:
+1. Таблица «было → стало»: цитата, во что превратилась, одним словом причина.
+2. Чистая версия текста целиком.
+3. Строка: было столько-то знаков, стало столько-то.</pre>
+      </div>
+      <div class="btns">
+        <button class="btn" data-copy>Копировать промпт</button>
+        <button class="btn ghost" data-open>Открыть ChatGPT</button>
+      </div>
+
+      <details>
+        <summary>Пример ответа</summary>
+        <div class="det-body">
+          <div class="ex">Было → Стало → Причина
+
+«В современном мире всё больше людей сталкивается с проблемой выгорания» → «Выгорание догоняет почти каждого, кто работает на себя» → дежурный заход
+
+«Осуществление регулярной практики позволяет добиться» → «Если практиковать регулярно, получается» → канцелярит
+
+«Это действительно уникальный и эффективный подход» → удалено → оценка без доказательства
+
+Чистая версия:
+[текст целиком]
+
+Было 2840 знаков, стало 2110.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Переписал по-своему, текст стал чужим.</b> Ответь: «Ты переписал. Верни мои формулировки и убери только лишние слова. Покажи новую таблицу.»</div>
+          <div class="fix"><b>Почти ничего не тронул.</b> Ответь: «Ты слишком осторожен. Пройди ещё раз и сократи минимум на четверть, не теряя ни одной мысли.»</div>
+          <div class="fix"><b>Выкинул важное.</b> Ответь: «Ты убрал [цитата]. Это важно, верни. Остальные правки оставь.»</div>
+        </div>
+      </details>
+
+      <div class="next">Дальше: <a href="#p3">промпт 3 – узнать, что с текстом не так</a></div>
+    </article>
+
+    <!-- 3 -->
+    <article class="p" id="p3">
+      <div class="p-head">
+        <div class="p-num">3</div>
+        <div>
+          <h3>Критик: найти слабое место</h3>
+          <p class="p-out">На выходе: честный разбор по пунктам и одно изменение, которое усилит текст сильнее всего.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> текст вроде нормальный, но ты не уверен, что его дочитают. И спросить не у кого.</p>
+        <p><b>Фишка:</b> хвалить запрещено прямым текстом. Иначе ИИ по умолчанию говорит «отличный текст, лишь пара мелочей» – и толку ноль.</p>
+      </div>
+      <ol class="steps">
+        <li>Скопируй промпт, вставь текст и заполни две строки про читателя.</li>
+        <li>Прочитай разбор целиком, не защищаясь. Согласен не со всем – нормально.</li>
+        <li>Внеси только последний пункт – одно главное изменение. Остальное по желанию.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Ты – жёсткий критик текста. Твоя задача – найти слабые места, а не поддержать меня. Хвалить запрещено. Фразы «в целом неплохо», «хорошая основа», «уже сильный текст» – запрещены. Каждое замечание подтверждай цитатой из текста.
+
+Текст:
+"""
+<span class="tok">[ВСТАВЬ ТЕКСТ]</span>
+"""
+
+Для кого он написан: <span class="tok">[КТО ЧИТАТЕЛЬ]</span>
+Что должно произойти после прочтения: <span class="tok">[ЧТО ЧИТАТЕЛЬ ПОЙМЁТ ИЛИ СДЕЛАЕТ]</span>
+
+Разбери по пунктам:
+1. Первые две строки: читатель остановится или пролистает? Процитируй место, где он уходит.
+2. Что здесь банально – то, что читатель слышал сто раз. Цитируй.
+3. Где я утверждаю, но не доказываю. Цитируй.
+4. Чего не хватает, чтобы мне поверили: примера, цифры, случая, признания в ошибке.
+5. Соответствует ли финал тому действию, которое я заявил.
+
+В конце назови одно изменение, которое усилит текст сильнее всего. Только одно, самое важное. Объясни в двух предложениях, почему именно оно.</pre>
+      </div>
+      <div class="btns">
+        <button class="btn" data-copy>Копировать промпт</button>
+        <button class="btn ghost" data-open>Открыть ChatGPT</button>
+      </div>
+
+      <details>
+        <summary>Пример ответа</summary>
+        <div class="det-body">
+          <div class="ex">1. Первые две строки. «Сегодня хочу поговорить о важной теме» – читатель уходит здесь. Это фраза ни о чём, она не обещает ему ничего.
+
+2. Банальное. «Планирование помогает экономить время» – это знают все, и все всё равно не планируют. Текст не отвечает, почему не получается.
+
+3. Утверждаю без доказательств. «Большинство моих клиентов приходят с этой проблемой» – сколько это, из скольких?
+
+4. Не хватает одного живого случая: кто пришёл, что было, что сделали, что стало.
+
+5. Финал зовёт написать в личку, но до этого текст не дал ни одной причины, зачем.
+
+Главное изменение: замени вступление на конкретный случай клиента из первого абзаца. Тогда и доверие появится, и банальность уйдёт сама – история не бывает банальной.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Всё равно хвалит.</b> Ответь: «Ты снова хвалишь. Дай только замечания, каждое с цитатой. Ни одного одобрительного слова.»</div>
+          <div class="fix"><b>Замечания расплывчатые.</b> Ответь: «Замечания общие. По каждому дай цитату из моего текста и объясни, что именно в ней не работает.»</div>
+          <div class="fix"><b>Хочешь поспорить.</b> Ответь: «Я не согласен с пунктом [номер], потому что [твой довод]. Возрази мне или признай, что был неправ.»</div>
+        </div>
+      </details>
+
+      <div class="next">Дальше: <a href="#p4">промпт 4 – проверить, за что может быть стыдно</a></div>
+    </article>
+
+    <!-- 4 -->
+    <article class="p" id="p4">
+      <div class="p-head">
+        <div class="p-num">4</div>
+        <div>
+          <h3>Экспертная проверка: где я рискую</h3>
+          <p class="p-out">На выходе: список утверждений, которые надо проверить руками до публикации, и подсказки, как сказать честно.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> в тексте есть цифры, ссылки на исследования, слова «доказано», «все», «всегда». И особенно если эти цифры тебе выдал сам ИИ.</p>
+        <p><b>Фишка:</b> промпт прямо запрещает выдумывать источники. ИИ охотно сочиняет правдоподобные исследования с фамилиями и годами – и это главный способ опозориться публично.</p>
+      </div>
+      <ol class="steps">
+        <li>Скопируй промпт, вставь текст и напиши свою тему.</li>
+        <li>Разбор придёт тремя группами: факты, твой опыт, обобщения.</li>
+        <li>Всё из группы А с пометкой «не подтверждено» – проверь сам в поиске. Не проверил – убери из текста.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Ты – проверяющий редактор. Ты ищешь в моём тексте утверждения, за которые мне может быть стыдно после публикации.
+
+Текст:
+"""
+<span class="tok">[ВСТАВЬ ТЕКСТ]</span>
+"""
+
+Моя тема и мой опыт в ней: <span class="tok">[ЧЕМ ЗАНИМАЕШЬСЯ И СКОЛЬКО ЛЕТ]</span>
+
+Раздели все утверждения на три группы и выпиши каждое цитатой.
+
+А. Проверяемые факты – цифры, исследования, чужие результаты, ссылки на закон или норму.
+По каждому напиши: подтверждается или нет. Если ты не можешь подтвердить – пиши прямо «не подтверждено, нужно проверить самому». Не придумывай исследования, фамилии учёных, годы и ссылки. Выдуманный источник хуже, чем никакого.
+
+Б. Мой личный опыт – это допустимо, но отметь, где не хватает конкретики: срок, число, случай, имя.
+
+В. Обобщения, которые выглядят как факт: «все клиенты», «всегда», «это не работает», «люди не читают». По каждому предложи честную формулировку, которую я смогу защитить.
+
+В конце дай короткий список: что я обязан проверить руками до публикации.</pre>
+      </div>
+      <div class="btns">
+        <button class="btn" data-copy>Копировать промпт</button>
+        <button class="btn ghost" data-open>Открыть ChatGPT</button>
+      </div>
+
+      <details>
+        <summary>Пример ответа</summary>
+        <div class="det-body">
+          <div class="ex">А. Проверяемые факты
+«По данным исследований, 80% людей бросают на второй неделе» – не подтверждено. Ни цифра, ни источник не проверяются. Либо найди конкретное исследование, либо убери процент.
+
+Б. Личный опыт
+«Ко мне часто приходят с этим» – допустимо, но «часто» ничего не значит. Замени на число за конкретный период.
+
+В. Обобщения
+«Люди не читают длинные тексты» → честнее: «Мои читатели чаще дочитывают короткие посты – по статистике моего канала за последние месяцы».
+
+Проверить руками:
+1. Цифру 80% или убрать.
+2. Число обращений за период.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Подсунул ссылки на исследования.</b> Проверь их в поиске сам. Не нашёл за минуту – значит их нет. Ответь: «Я не нашёл этот источник. Убери его и пометь утверждение как непроверяемое.»</div>
+          <div class="fix"><b>Сказал, что всё в порядке.</b> Ответь: «Пройди ещё раз построже. Выпиши каждое утверждение с цифрой или словом "все", "всегда", "никогда" – без исключений.»</div>
+        </div>
+      </details>
+
+      <div class="next">Дальше: <a href="#p5">промпт 5 – проверить, звучит ли это как ты</a></div>
+    </article>
+
+    <!-- 5 -->
+    <article class="p" id="p5">
+      <div class="p-head">
+        <div class="p-num">5</div>
+        <div>
+          <h3>Звучит ли это как я</h3>
+          <p class="p-out">На выходе: описание твоего почерка словами и построчный разбор, где текст сбился на чужой голос.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> перед публикацией. Особенно если текст важный и его будут читать люди, которые тебя знают.</p>
+        <p><b>Фишка:</b> ИИ правит только расхождения, а не весь текст. Обычно их три-четыре строки – и именно они выдают, что писала машина.</p>
+      </div>
+      <ol class="steps">
+        <li>Скопируй промпт.</li>
+        <li>Вставь три своих текста, написанных без ИИ. Чем они живее, тем лучше – годятся даже длинные сообщения из переписки.</li>
+        <li>Вставь новый текст и отправь. Первый пункт ответа сохрани себе: это описание твоего голоса, оно пригодится дальше.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Ты – редактор, который следит за авторским голосом.
+
+Вот три моих текста, написанных мной без всякого ИИ:
+"""
+ТЕКСТ 1: <span class="tok">[ВСТАВЬ]</span>
+
+ТЕКСТ 2: <span class="tok">[ВСТАВЬ]</span>
+
+ТЕКСТ 3: <span class="tok">[ВСТАВЬ]</span>
+"""
+
+А вот новый текст, который нужно проверить:
+"""
+<span class="tok">[ВСТАВЬ НОВЫЙ ТЕКСТ]</span>
+"""
+
+Сделай три вещи.
+
+1. Опиши мой почерк по признакам: средняя длина предложений, как я обращаюсь к читателю, любимые слова и обороты, как я начинаю, как заканчиваю, чего я себе не позволяю. Пиши конкретно, с примерами из моих текстов.
+
+2. Пройди по новому тексту и покажи таблицей: строка из текста – чем она выбивается из моего почерка – как звучало бы по-моему.
+
+3. Дай версию, в которой исправлены только расхождения. Всё остальное не трогай.
+
+Если новый текст и правда звучит как я – так и скажи, не выдумывай расхождения ради работы.</pre>
+      </div>
+      <div class="btns">
+        <button class="btn" data-copy>Копировать промпт</button>
+        <button class="btn ghost" data-open>Открыть ChatGPT</button>
+      </div>
+
+      <details>
+        <summary>Пример ответа</summary>
+        <div class="det-body">
+          <div class="ex">1. Ваш почерк
+Короткие предложения, часто по одному в абзаце. Обращаетесь на «вы», но без дистанции – как коллега. Любите начинать с конкретного случая, а не с тезиса. Не используете восклицательных знаков и слов «друзья», «ребята». Заканчиваете вопросом или одним коротким выводом.
+
+2. Расхождения
+«Давайте вместе разберёмся, почему это происходит» – у вас нет «давайте», вы говорите прямо → «Почему так происходит».
+«Это невероятно эффективный способ» – вы не используете усилители → «Это работает».
+«Друзья, напишите в комментариях» – слово «друзья» вам не свойственно → «Напишите, как у вас».
+
+3. Версия с правками:
+[текст]</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Переписал весь текст.</b> Ответь: «Ты изменил больше, чем нужно. Верни исходник и поправь только те строки, которые есть в таблице расхождений.»</div>
+          <div class="fix"><b>Описание почерка общее.</b> Ответь: «Опиши мой почерк конкретнее, с примерами фраз из моих текстов. Общие слова вроде "дружелюбный тон" не подходят.»</div>
+          <div class="fix"><b>Придумал расхождения на пустом месте.</b> Ответь: «Часть замечаний надуманна. Оставь только те, где расхождение с моими текстами очевидно.»</div>
+        </div>
+      </details>
+
+      <div class="next">Дальше: <a href="#p6">промпт 6 – разложить текст по площадкам</a></div>
+    </article>
+
+    <!-- 6 -->
+    <article class="p" id="p6">
+      <div class="p-head">
+        <div class="p-num">6</div>
+        <div>
+          <h3>Одна мысль – четыре площадки</h3>
+          <p class="p-out">На выходе: пост, серия сторис, длинный текст и письмо. Из одного готового текста, без потери смысла.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> текст уже доведён. Это последний шаг, а не первый – если раскладывать сырое, размножишь слабый текст в четырёх местах.</p>
+        <p><b>Фишка:</b> не «перепиши покрасивее для соцсетей», а разные требования формата при одной мысли.</p>
+      </div>
+      <ol class="steps">
+        <li>Скопируй промпт и вставь финальную версию текста.</li>
+        <li>Лишние площадки просто удали из списка, ненужное не генерируй.</li>
+        <li>Перед публикацией пробеги глазами: формат мог утащить интонацию, особенно в сторис.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Ты – редактор, который раскладывает один готовый текст по разным площадкам, не теряя смысл.
+
+Исходный текст:
+"""
+<span class="tok">[ВСТАВЬ ГОТОВЫЙ ТЕКСТ]</span>
+"""
+
+Сделай версии:
+
+1. Пост в Телеграм. До 1200 знаков. Первая строка держит внимание, но без кликбейта и без интриги ради интриги. Абзацы по две-три строки. В конце один вопрос читателю.
+
+2. Серия из четырёх-пяти сторис. Одна мысль на экран, до 200 знаков каждая. Последняя ведёт к действию.
+
+3. Длинный текст. Подзаголовки. Один пример разложен подробно, с деталями.
+
+4. Письмо в рассылку. Три варианта темы письма. Обращение к одному человеку, а не к аудитории.
+
+Правила: не добавляй новых фактов и мыслей. Не меняй мою интонацию. Не ставь эмодзи, если их не было в исходнике. Если для какого-то формата текст не годится – скажи честно, почему, и не выдумывай версию.</pre>
+      </div>
+      <div class="btns">
+        <button class="btn" data-copy>Копировать промпт</button>
+        <button class="btn ghost" data-open>Открыть ChatGPT</button>
+      </div>
+
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Все версии похожи одна на другую.</b> Ответь: «Версии почти одинаковые. Сторис должны читаться с экрана телефона за секунду, письмо – как обращение к одному человеку. Переделай с учётом этого.»</div>
+          <div class="fix"><b>Налепил эмодзи и восклицательных знаков.</b> Ответь: «Убери эмодзи и восклицательные знаки, их не было в исходнике.»</div>
+        </div>
+      </details>
+
+      <div class="next">Конвейер пройден. Дальше – <a href="../">остальные бонусы набора</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section class="sec-dark">
+  <div class="wrap">
+    <div class="kick">Чтобы не потерять себя</div>
+    <h2>Пять правил</h2>
+    <ul class="plain" style="margin-top:16px">
+      <li><b>Мысль приносишь ты.</b> Как только начинаешь спрашивать «о чём бы мне написать» – текст становится ничей, и это слышно.</li>
+      <li><b>Один промпт – одна задача.</b> «Напиши, отредактируй, проверь и адаптируй» в одном сообщении даёт средний результат по всем четырём.</li>
+      <li><b>Не принимай первый ответ.</b> Первый ответ – это черновик разговора, а не результат. Нормально – две-три доводки.</li>
+      <li><b>Оставляй свои неровности.</b> Странное словечко, резкий переход, личная деталь – это и есть ты. Редактор всё вылижет, если не остановить.</li>
+      <li><b>Последнее слово – твоё.</b> Читай вслух перед публикацией. Споткнулся – правь рукой, не промптом.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick">Чтобы не тратить время зря</div>
+    <h2>Частые ошибки в начале</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Не сказал, для кого</h3>
+        <p style="margin-top:8px;color:var(--muted)">Без читателя ИИ пишет «для всех» – то есть ни для кого. Одна фраза про читателя меняет текст сильнее, чем десять уточнений про стиль.</p>
+      </div>
+      <div class="card">
+        <h3>Новый чат на каждый шаг</h3>
+        <p style="margin-top:8px;color:var(--muted)">Веди весь конвейер в одном диалоге: он помнит текст и твои правки. Новый чат – только для нового текста.</p>
+      </div>
+      <div class="card">
+        <h3>Просишь «сделай красиво»</h3>
+        <p style="margin-top:8px;color:var(--muted)">Красиво – это не задача. Задача – «убери оценки без доказательств». Чем конкретнее требование, тем меньше воды на выходе.</p>
+      </div>
+      <div class="card">
+        <h3>Веришь цифрам на слово</h3>
+        <p style="margin-top:8px;color:var(--muted)">Любую цифру и любой источник, которые дал ИИ, проверяй сам. Это две минуты, а цена ошибки – твоя репутация.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="soft">
+      <div class="kick">Что дальше</div>
+      <h3 style="margin:8px 0 10px">Это разовая доводка. На курсе – помощник, который так пишет всегда</h3>
+      <p style="color:#4a3d48">Здесь ты каждый раз объясняешь заново: кто читатель, какой у тебя голос, что нельзя. В модуле 2 собираем помощника, который это уже знает – с твоим корпусом текстов, твоими правилами и памятью. Тогда конвейер из шести шагов сворачивается в одну команду.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="kick" style="color:#FF8FC6">Усилитель практикума</div>
+    <p style="margin-top:10px">Бонус 2 из 5 · <a href="../">вернуться ко всему набору</a></p>
+    <p class="small" style="margin-top:14px;color:#8a7c8a">Материалы практикума «НейроСтарс». Для личного использования участниками курса.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Промпт скопирован</div>
+
+<script>
+(function(){
+  var toast = document.getElementById('toast'), t;
+  function say(msg){
+    toast.textContent = msg; toast.classList.add('on');
+    clearTimeout(t); t = setTimeout(function(){ toast.classList.remove('on'); }, 2600);
+  }
+  function textOf(btn){
+    var scope = btn.closest('.det-body') || btn.closest('.p');
+    var box = scope.querySelector('.promptbox pre');
+    return box ? box.innerText : '';
+  }
+  function copy(text){
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function(res, rej){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); res(); } catch(e){ rej(e); }
+      document.body.removeChild(ta);
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      copy(textOf(btn)).then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Скопировано ✓'; btn.classList.add('done');
+        say('Промпт скопирован. Вставь его в чат');
+        setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 2400);
+      }).catch(function(){
+        say('Не вышло скопировать – выдели текст промпта вручную');
+      });
+    });
+  });
+  document.querySelectorAll('[data-open]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      copy(textOf(btn)).then(function(){
+        say('Промпт скопирован. В чате нажми вставить');
+        setTimeout(function(){ window.open('https://chatgpt.com/', '_blank', 'noopener'); }, 600);
+      }).catch(function(){
+        window.open('https://chatgpt.com/', '_blank', 'noopener');
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
