@@ -20,28 +20,32 @@
 body{font-family:'Manrope',sans-serif;font-size:17px;line-height:1.6;color:var(--ink);background:#FFFFFF}
 .wrap{max-width:840px;margin:0 auto;padding:0 20px}
 section{padding:56px 0}
-h1,h2{font-family:'Unbounded',sans-serif;font-weight:800;text-wrap:balance}
+h1,h2{font-family:'Unbounded',sans-serif;font-weight:800}
+h2{text-wrap:balance}
 h1{font-size:clamp(27px,5vw,44px);line-height:1.15}
 h2{font-size:clamp(22px,3.4vw,30px);line-height:1.2;margin-bottom:24px}
 p{text-wrap:pretty}
 .label{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--magenta);margin-bottom:14px}
-.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad-text{background:var(--grad);background-size:200% 200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 6s ease infinite}
 .card-title{font-weight:700;font-size:20px;margin-bottom:8px}
 
 /* герой */
 .hero{background:var(--wash);padding:72px 0 64px}
 .hero p{margin-top:18px;max-width:620px}
 .badge{display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:22px}
-.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--magenta)}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--magenta);animation:pulse 2.4s ease infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(230,25,140,.35)}50%{box-shadow:0 0 0 6px rgba(230,25,140,0)}}
 
 /* карточки */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:8px}
-.card{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.card{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:transform .25s,border-color .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);border-color:#F3B9DA;box-shadow:0 24px 50px -24px rgba(230,25,140,.35)}
 .card .ico{width:46px;height:46px;border-radius:14px;background:var(--wash);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
 
 /* шаги */
 .steps{counter-reset:step;display:grid;gap:14px;margin-top:8px}
-.step{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px 20px 74px;position:relative;box-shadow:var(--shadow)}
+.step{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px 20px 74px;position:relative;box-shadow:var(--shadow);transition:transform .25s,border-color .25s}
+.step:hover{transform:translateY(-3px);border-color:#F3B9DA}
 .step::before{counter-increment:step;content:counter(step);position:absolute;left:20px;top:20px;width:38px;height:38px;border-radius:50%;background:var(--grad);color:#FFFFFF;font-family:'Unbounded',sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center}
 .step strong{display:block;margin-bottom:4px;font-size:20px}
 
@@ -49,7 +53,10 @@ p{text-wrap:pretty}
 .dark{background:var(--dark);color:#FFFFFF;position:relative;overflow:hidden}
 .dark::after{content:"";position:absolute;top:-120px;right:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.18),transparent 70%);pointer-events:none}
 .dark .label{color:#FF7AC1}
-.prompt-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-lg);padding:28px;margin-top:20px;position:relative;z-index:1}
+.prompt-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-lg);padding:64px 28px 28px;margin-top:20px;position:relative;z-index:1;transition:border-color .25s}
+.prompt-box:hover{border-color:rgba(230,25,140,.45)}
+.corner-copy{position:absolute;top:16px;right:16px;border:none;cursor:pointer;border-radius:999px;padding:10px 20px;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;color:#FFFFFF;background:var(--grad);background-size:200% 200%;animation:shimmer 5s ease infinite;box-shadow:0 10px 24px -10px rgba(230,25,140,.55)}
+.corner-copy:active{transform:translateY(1px)}
 .prompt-box pre{font-family:'Manrope',sans-serif;font-size:17px;line-height:1.6;white-space:pre-wrap;color:#F4EDF6}
 .copy-btn{display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;border-radius:999px;padding:16px 34px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#FFFFFF;background:var(--grad);background-size:200% 200%;animation:shimmer 5s ease infinite;box-shadow:0 14px 34px -14px rgba(230,25,140,.55);margin-top:22px;position:relative;z-index:1}
 .copy-btn:active{transform:translateY(1px)}
@@ -57,19 +64,22 @@ p{text-wrap:pretty}
 
 /* докрутка */
 .tune{background:var(--wash)}
-.phrase{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:18px 24px;margin-top:12px;box-shadow:var(--shadow)}
+.phrase{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:18px 24px;margin-top:12px;box-shadow:var(--shadow);transition:transform .25s,border-color .25s}
+.phrase:hover{transform:translateX(6px);border-color:#F3B9DA}
 .phrase strong{color:var(--magenta)}
 
 /* выбор сервиса */
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 22px}
-.chip{border:1px solid var(--line);background:#FFFFFF;border-radius:999px;padding:10px 22px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:var(--ink);cursor:pointer}
+.chip{border:1px solid var(--line);background:#FFFFFF;border-radius:999px;padding:10px 22px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:var(--ink);cursor:pointer;transition:border-color .2s,transform .2s}
+.chip:hover{border-color:var(--magenta);transform:translateY(-2px)}
 .chip.active{background:var(--grad);color:#FFFFFF;border-color:transparent}
 .svc{display:none}
 .svc.active{display:block}
 .svc-card{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px 28px;box-shadow:var(--shadow)}
 .svc-card ol{margin:12px 0 0 22px;display:grid;gap:8px}
 .svc-note{background:var(--wash);border-radius:14px;padding:14px 18px;margin-top:16px}
-.open-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;border-radius:999px;padding:12px 26px;font-weight:700;font-size:17px;color:#FFFFFF;background:var(--grad);text-decoration:none}
+.open-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;border-radius:999px;padding:12px 26px;font-weight:700;font-size:17px;color:#FFFFFF;background:var(--grad);background-size:200% 200%;animation:shimmer 5s ease infinite;text-decoration:none;transition:transform .2s}
+.open-link:hover{transform:translateY(-2px)}
 .shots{display:grid;gap:14px;margin-top:16px}
 .shots figure{margin:0}
 .shots img{width:100%;max-width:100%;border-radius:14px;border:1px solid var(--line);display:block}
@@ -90,8 +100,8 @@ footer p{font-size:13px;color:rgba(255,255,255,.55)}
 
 <div class="hero">
   <div class="wrap">
-    <div class="badge">Подарок за то, что ты с нами до конца</div>
-    <h1>Персональный разбор: <span class="grad-text">чем ИИ полезен именно тебе</span></h1>
+    <div class="badge">Подарок для тех, кто досмотрел практикум до конца</div>
+    <h1>Персональный разбор:<br><span class="grad-text">чем ИИ полезен именно тебе</span></h1>
     <p>Это готовый промпт-помощник. Вставляешь его в любую нейросеть, отвечаешь на пять вопросов – можно голосом, как есть, без подготовки. В ответ получаешь честный разбор своей ситуации, путь по шагам и план первых действий на неделю.</p>
   </div>
 </div>
@@ -213,7 +223,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.55)}
   <div class="wrap">
     <div class="label">Промпт</div>
     <h2>Скопируй отсюда – целиком</h2>
-    <div class="prompt-box"><pre id="prompt">Ты – тёплый и внимательный проводник по ИИ. Твоя задача – помочь мне увидеть, чем ИИ полезен именно мне, и собрать ясный путь по шагам. Обращайся на «ты», по-человечески, без канцелярита и без обещаний лёгких миллионов. Пиши короткими абзацами, списки – не длиннее 3–4 пунктов. Тире используй короткое «–».
+    <div class="prompt-box"><button class="corner-copy" id="cornerCopy" type="button">Скопировать</button><pre id="prompt">Ты – тёплый и внимательный проводник по ИИ. Твоя задача – помочь мне увидеть, чем ИИ полезен именно мне, и собрать ясный путь по шагам. Обращайся на «ты», по-человечески, без канцелярита и без обещаний лёгких миллионов. Пиши короткими абзацами, списки – не длиннее 3–4 пунктов. Тире используй короткое «–».
 
 ЧАСТЬ 1 – РАЗГОВОР
 Задавай вопросы строго по одному и жди моего ответа. Не переходи к следующему, пока я не ответил(а).
@@ -258,7 +268,10 @@ footer p{font-size:13px;color:rgba(255,255,255,.55)}
     <div class="phrase"><strong>«Я не всё рассказал(а), вот ещё…»</strong> – доскажи, что вспомнилось. Разбор пересоберётся под новое.</div>
     <div class="phrase"><strong>«Сомневаюсь, что ИИ справится с …»</strong> – назови задачу. Пусть покажет на примере, как именно это будет выглядеть.</div>
     <div class="phrase"><strong>«Составь план первой недели по дням»</strong> – если хочешь совсем конкретики: что и в какой день пробуешь.</div>
-    <div class="note"><div class="label">Честно</div>Этот разбор покажет тебе путь – но пройти его он за тебя не сможет. Если захочется идти по шагам и с поддержкой, а не методом проб – это курс «Нейро-архитектор»: ИИ для жизни и дела, от первого промпта до автономного помощника. Детали у команды FitStars.</div>
+    <div class="note"><div class="label">Что дальше</div>
+      <p>То, что откроется в разборе, – это правда классно. Но самое интересное в другом: твои возможности почти наверняка шире, чем покажет один разговор. Что тебе по-настоящему интересно, что получается и что ты на самом деле можешь с помощью ИИ – понимаешь только на практике, когда навык строится шаг за шагом.</p>
+      <p style="margin-top:12px">Ровно для этого мы собрали курс <strong>«Нейро-архитектор»</strong>: ИИ для жизни и дела – от первого промпта до автономного помощника.</p>
+      <a class="open-link" href="https://fitstars-school.github.io/ii-course/" target="_blank" rel="noopener">Посмотреть курс «Нейро-архитектор»</a></div>
   </div>
 </section>
 
@@ -309,13 +322,14 @@ Object.keys(SHOTS).forEach(function(svc){
 });
 </script>
 <script>
-document.getElementById('copyBtn').addEventListener('click',function(){
+function bindCopy(id,label){var b=document.getElementById(id);if(!b)return;b.addEventListener('click',function(){
   var t=document.getElementById('prompt').innerText;
-  var b=this;
-  function ok(){b.textContent='Скопировано ✓';setTimeout(function(){b.textContent='Скопировать промпт'},2200)}
+  function ok(){b.textContent='Скопировано ✓';setTimeout(function(){b.textContent=label},2200)}
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fallback()})}else{fallback()}
   function fallback(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(ta);ok()}
-});
+})}
+bindCopy('copyBtn','Скопировать промпт');
+bindCopy('cornerCopy','Скопировать');
 </script>
 </body>
 </html>
