@@ -74,7 +74,15 @@
   .steps li{list-style:none;position:relative;padding-left:36px;margin-bottom:13px;color:#4a3d48}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin-top:18px}
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:50px 26px 24px;margin-top:18px}
+  .promptbox::before{content:"ПРОМПТ · КОПИРУЕТСЯ ЦЕЛИКОМ";position:absolute;top:18px;left:26px;font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--magenta)}
+  .copyicon{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;padding:0}
+  .copyicon:hover{border-color:#F1D9EC;box-shadow:0 8px 20px -14px rgba(120,20,90,.5);transform:translateY(-1px)}
+  .copyicon svg{width:19px;height:19px;stroke:var(--magenta);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .copyicon.done{background:#EAF7EE;border-color:#CDEBD6}
+  .copyicon.done svg{stroke:#1FA24E}
+  .subblock{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+  .subblock .sublabel{font-weight:700;font-size:17.5px;margin-bottom:12px}
   .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15.5px;line-height:1.65;color:#33283b}
   .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
   .hint{font-size:13px;color:#9a8d98;margin-top:10px}
@@ -169,8 +177,8 @@
   <div class="wrap">
     <div class="kick">Почему это вообще не работает само</div>
     <h2>Дело не в том, что ты медленно читаешь</h2>
-    <p>У всех нас есть папка непросмотренных вебинаров и десяток книг с закладками на середине. И каждый раз кажется, что дело в дисциплине или во времени. На самом деле нет: между «узнала» и «применила» просто нет ни одного шага, поэтому знание спокойно испаряется за 3 дня, как будто его и не было.</p>
-    <p>Этот шаг добавляет недостающее звено. Правило простое и довольно жёсткое: каждый материал должен закончиться чем-то, что можно потрогать – записанным решением, изменённым процессом, готовым текстом. Не закончился – значит, это был не разбор, а просмотр, и ничего страшного, но и результата ждать не стоит.</p>
+    <p>У всех нас есть папка непросмотренных вебинаров и десяток книг с закладками на середине. И каждый раз кажется, что дело в дисциплине или во времени. На самом деле нет: <b>между «узнала» и «применила» просто нет ни одного шага</b>, поэтому знание спокойно испаряется за 3 дня, как будто его и не было.</p>
+    <p>Этот шаг добавляет недостающее звено. Правило простое и довольно жёсткое: <b>каждый материал должен закончиться чем-то, что можно потрогать</b> – записанным решением, изменённым процессом, готовым текстом. Не закончился – значит, это был не разбор, а просмотр, и ничего страшного, но и результата ждать не стоит.</p>
   </div>
 </section>
 
@@ -182,7 +190,7 @@
       <p class="p-out" style="margin-top:8px">Нейросеть работает с текстом, поэтому первым делом любое видео превращаем в буквы. Это самая механическая часть, и занимает она меньше, чем кажется.</p>
 
       <ol class="steps">
-        <li>Выбери один материал, который давно откладываешь. Именно тот, до которого «всё никак».</li>
+        <li><b>Выбери один материал, который давно откладываешь.</b> Именно тот, до которого «всё никак».</li>
         <li>Получи из него текст – способы ниже, выбирай любой, они все рабочие.</li>
         <li>Сохрани расшифровку отдельным файлом. Тайм-коды убирать не надо, они не мешают.</li>
       </ol>
@@ -201,10 +209,10 @@
     <article class="p" id="z2">
       <div class="thead"><span class="tnum">Задача 2</span><span class="tmin">20 минут</span></div>
       <h3>Сделать конспект под свою задачу</h3>
-      <p class="p-out" style="margin-top:8px">Не пересказ, а выжимка того, что относится именно к твоей ситуации. Разница между этими двумя вещами примерно как между «прочитала» и «поняла, что делать».</p>
+      <p class="p-out" style="margin-top:8px"><b>Не пересказ, а выжимка того, что относится именно к твоей ситуации.</b> Разница между этими двумя вещами примерно как между «прочитала» и «поняла, что делать».</p>
 
       <ol class="steps">
-        <li>Скопируй промпт. Главная строка в нём – твоя задача, от неё зависит весь ответ, так что напиши её честно.</li>
+        <li>Скопируй промпт. <b>Главная строка в нём – твоя задача</b>, от неё зависит весь ответ, так что напиши её честно.</li>
         <li>Вставь расшифровку внутрь или прикрепи файлом.</li>
         <li>Материал большой – давай частями: «Это первая часть из 3, прими её и жди следующую». Разбор проси после последней.</li>
       </ol>
@@ -251,7 +259,7 @@
       <ol class="steps">
         <li>Оставайся в том же чате, где делали конспект.</li>
         <li>Честно опиши свои условия – сколько времени есть и чего точно не будет. Тогда советы будут выполнимыми, а не красивыми.</li>
-        <li>Первое действие поставь в календарь на ближайшие сутки. То, что отложено на неделю, не делается никогда, и мы все это прекрасно знаем.</li>
+        <li><b>Первое действие поставь в календарь на ближайшие сутки.</b> То, что отложено на неделю, не делается никогда, и мы все это прекрасно знаем.</li>
       </ol>
 
       <div class="promptbox"><pre>На основе этого конспекта скажи, что мне сделать в ближайшие дни.
@@ -339,6 +347,25 @@
         window.open('https://chatgpt.com/', '_blank', 'noopener');
       });
     });
+  });
+
+  // иконка копирования в правом верхнем углу каждого промпта
+  var ICON = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg>';
+  var OKICON = '<svg viewBox="0 0 24 24"><path d="M4 12.5L9.5 18L20 6.5"/></svg>';
+  document.querySelectorAll('.promptbox').forEach(function(box){
+    var pre = box.querySelector('pre'); if (!pre) return;
+    var b = document.createElement('button');
+    b.className = 'copyicon'; b.type = 'button';
+    b.setAttribute('aria-label', 'Копировать промпт'); b.title = 'Копировать промпт';
+    b.innerHTML = ICON;
+    b.addEventListener('click', function(){
+      copy(pre.innerText).then(function(){
+        b.innerHTML = OKICON; b.classList.add('done');
+        say('Промпт скопирован. Вставь его в чат');
+        setTimeout(function(){ b.innerHTML = ICON; b.classList.remove('done'); }, 2400);
+      }).catch(function(){ say('Не вышло скопировать – выдели текст промпта вручную'); });
+    });
+    box.appendChild(b);
   });
 })();
 </script>
