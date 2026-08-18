@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кто твой человек · Усилитель практикума</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --magenta:#E6198C; --magenta-d:#C0116E; --ink:#211829; --dark:#1B1420;
+    --wash:#FBF4F8; --line:#ECE1EC; --muted:#6b5c69;
+    --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);
+    --radius:20px; --radius-lg:26px;
+    --shadow:0 18px 44px -26px rgba(120,20,90,.24);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+  /* ---- роли типографики: Р1 заголовок, Р2 подзаголовок, Р3 текст 17px, Р4 метка ---- */
+  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.2vw,50px);line-height:1.06;text-wrap:balance;margin:12px 0 16px}
+  h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.12;text-wrap:balance;margin-bottom:14px}
+  h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;line-height:1.25;text-wrap:balance}
+  p,li,td,th,summary,label{font-size:17px;text-wrap:pretty}
+  .kick{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
+  .small{font-size:13px;color:#9a8d98}
+  b,strong{font-weight:700}
+  a{color:var(--magenta);text-decoration:none;border-bottom:1px solid rgba(230,25,140,.3)}
+  a:hover{color:var(--magenta-d)}
+
+  /* ---- шапка ---- */
+  .top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:12px;padding-bottom:12px}
+  .back{font-size:15px;font-weight:700;color:var(--ink);border:none}
+  .back:hover{color:var(--magenta)}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta)}
+
+  header.hero{padding:48px 0 40px}
+  .lead{font-size:19px;color:#4a3d48;max-width:660px;text-wrap:pretty}
+
+  section{padding:36px 0}
+  .sec-dark{background:var(--dark);color:#fff;position:relative;overflow:hidden;margin:20px 0}
+  .sec-dark::before{content:"";position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.30),transparent 70%);pointer-events:none}
+  .sec-dark h2,.sec-dark p,.sec-dark li,.sec-dark h3{color:#fff}
+  .sec-dark .kick{color:#FF8FC6}
+  .sec-white{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  .soft{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:20px 22px}
+
+  /* ---- конвейер ---- */
+  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:20px}
+  .flow a{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 15px;color:var(--ink);box-shadow:var(--shadow)}
+  .flow a:hover{transform:translateY(-2px);border-color:#F1D9EC}
+  .flow .n{font-family:'Unbounded',sans-serif;font-weight:700;font-size:13px;color:var(--magenta)}
+  .flow .t{font-weight:700;font-size:16px;margin-top:5px}
+  .flow .s{font-size:13px;color:var(--muted);margin-top:3px}
+
+  /* ---- карточка промпта ---- */
+  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
+  .p-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:14px}
+  .p-num{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .p-out{margin-top:6px;color:var(--muted)}
+  .meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:16px 0}
+  .meta p+p{margin-top:7px}
+  .steps{counter-reset:s;margin:16px 0}
+  .steps li{list-style:none;position:relative;padding-left:34px;margin-bottom:9px;color:#4a3d48}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:6px}
+  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.6;color:#33283b}
+  .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
+  .hint{font-size:13px;color:#9a8d98;margin-top:10px}
+
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:999px;padding:13px 22px;cursor:pointer;color:#fff;background:var(--grad);background-size:200% 100%;transition:background-position .35s,transform .15s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+  .btn:hover{background-position:100% 0}
+  .btn:active{transform:scale(.98)}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn.done{background:#EAF7EE;color:#1FA24E;border:1px solid #CDEBD6}
+
+  details{border:1px solid var(--line);border-radius:16px;padding:0;margin-top:12px;background:#fff;overflow:hidden}
+  details summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;background:#fff}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"+";font-family:'Unbounded',sans-serif;color:var(--magenta);font-size:16px;width:22px;height:22px;border-radius:7px;background:#FCE6F1;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  details[open] summary::before{content:"–"}
+  .det-body{padding:0 18px 18px;color:#4a3d48;font-size:16px}
+  .det-body p+p{margin-top:10px}
+  .det-body .ex{background:var(--wash);border:1px solid var(--line);border-radius:14px;padding:15px;font-size:15px;line-height:1.55;white-space:pre-wrap}
+  .fix{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-top:9px;font-size:15px}
+  .fix b{color:var(--magenta)}
+
+  .next{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:15px;color:var(--muted)}
+  .next a{font-weight:700}
+
+  ul.plain{list-style:none}
+  ul.plain li{position:relative;padding-left:30px;margin-bottom:11px}
+  ul.plain li::before{content:"✓";position:absolute;left:0;top:0;color:#1FA24E;font-weight:700}
+  ul.no li::before{content:"✕";color:var(--magenta)}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}
+
+  footer{background:var(--dark);color:#fff;padding:40px 0;margin-top:20px}
+  footer p{color:#bdb0bd;font-size:15px}
+  footer a{color:#FF8FC6;border:none}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:13px 22px;border-radius:999px;font-weight:700;font-size:15px;opacity:0;pointer-events:none;transition:.3s;z-index:60;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .way{display:flex;gap:18px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);margin-bottom:14px}
+  .way .wn{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .way .wb{flex:1;min-width:0}
+  .way .wd{color:var(--muted);margin-top:7px}
+
+  @media (max-width:520px){
+    .way{flex-direction:column;gap:12px;padding:20px}
+    .p{padding:20px}
+    .promptbox{padding:16px}
+    .btn{width:100%;justify-content:center}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="back" href="../">&larr; Весь набор</a>
+    <span class="pill"><span class="dot"></span>Бонус 1 из 5</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">Усилитель практикума · набор для тех, кто с нами</div>
+    <h1>Кто твой <span class="g">человек</span></h1>
+    <p class="lead">Семь промптов, чтобы перестать писать «для всех». На выходе – «Паспорт аудитории»: один документ, который дальше вставляется в любой промпт и делает тексты и продукты точнее в разы.</p>
+  </div>
+</header>
+
+<section class="sec-white">
+  <div class="wrap">
+    <div class="kick">Главное правило</div>
+    <h2>Нейросеть не знает твою аудиторию</h2>
+    <p>Если спросить «опиши мою целевую аудиторию», получишь усреднённый портрет из интернета: «женщина 30–45, ценит качество и заботу о себе». Под такого человека невозможно написать ни одного живого текста. Знание о твоей аудитории есть в трёх местах – и ни одно из них не находится внутри нейросети.</p>
+    <div class="grid2">
+      <div class="card"><h3>В твоей голове</h3><p style="margin-top:8px;color:var(--muted)">Ты уже говоришь с этими людьми. Просто это знание не разложено по полочкам. Промпт 1 достаёт его вопросами.</p></div>
+      <div class="card"><h3>В твоих материалах</h3><p style="margin-top:8px;color:var(--muted)">Отзывы, переписки, комментарии, вопросы на консультациях. Там их настоящие слова. Промпты 2 и 3.</p></div>
+      <div class="card"><h3>Снаружи</h3><p style="margin-top:8px;color:var(--muted)">Форумы, отзывы на чужие продукты, обсуждения. Полезно, но требует проверки. Промпт 4.</p></div>
+    </div>
+    <div class="flow">
+      <a href="#p1"><span class="n">01</span><div class="t">Интервью</div><div class="s">вытащить из тебя</div></a>
+      <a href="#p2"><span class="n">02</span><div class="t">Их слова</div><div class="s">боли и желания</div></a>
+      <a href="#p3"><span class="n">03</span><div class="t">Разбор архива</div><div class="s">отзывы и переписки</div></a>
+      <a href="#p4"><span class="n">04</span><div class="t">Снаружи</div><div class="s">живые обсуждения</div></a>
+      <a href="#p5"><span class="n">05</span><div class="t">Возражения</div><div class="s">что мешает купить</div></a>
+      <a href="#p6"><span class="n">06</span><div class="t">Проверка</div><div class="s">спросить людей</div></a>
+      <a href="#p7"><span class="n">07</span><div class="t">Паспорт</div><div class="s">собрать в документ</div></a>
+    </div>
+    <p style="margin-top:20px"><b>Минимальный маршрут – час времени:</b> промпт 1, потом сразу промпт 7. Уже получится документ, с которым можно работать. Остальные добавляют точности.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick">Две минуты подготовки</div>
+    <h2>Что собрать перед стартом</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Всё, что писали тебе люди</h3>
+        <p style="margin-top:8px;color:var(--muted)">Отзывы, благодарности, вопросы в личку, комментарии, заявки с описанием запроса. Даже десять сообщений уже работают. Персональные данные – имена, телефоны, диагнозы, суммы – убрать заранее.</p>
+      </div>
+      <div class="card">
+        <h3>Три реальных человека</h3>
+        <p style="margin-top:8px;color:var(--muted)">Вспомни трёх конкретных клиентов: с чем пришли, что говорили, чем закончилось. Не «сегмент», а живые люди с именами. Они понадобятся в первом же промпте.</p>
+      </div>
+    </div>
+    <div class="soft" style="margin-top:16px">
+      <p><b>Если клиентов ещё не было.</b> Это не повод пропускать. Возьми тех, кому ты уже помогаешь бесплатно – подруге, коллеге, себе полтора года назад. В промпте 1 так и напиши: клиентов пока нет, разбираю случаи из жизни. Работает.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick">Семь промптов</div>
+    <h2>По порядку</h2>
+
+    <article class="p" id="p1">
+      <div class="p-head">
+        <div class="p-num">1</div>
+        <div>
+          <h3>Интервью: достать знание из тебя</h3>
+          <p class="p-out">На выходе: разложенное по полочкам понимание, кому ты нужна – собранное из твоего опыта, а не придуманное нейросетью.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> первым делом. Даже если кажется, что «я и так знаю свою аудиторию» – после этого разговора обычно выясняется, что знаешь не то, что думаешь.</p>
+        <p><b>Фишка:</b> нейросеть здесь не отвечает, а спрашивает. По одному вопросу за раз, как на интервью. Это неудобно и именно поэтому работает.</p>
+      </div>
+      <ol class="steps">
+        <li>Скопируй промпт и вставь в чат: Ctrl+V на компьютере, Cmd+V на Маке, долгое нажатие и «Вставить» на телефоне.</li>
+        <li>Отвечай коротко и честно, своими словами. Не старайся формулировать красиво.</li>
+        <li>Заложи 20–30 минут. Ответ «не знаю» – нормальный ответ, так и пиши.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Ты – интервьюер, который помогает мне понять мою аудиторию. Ты ничего не придумываешь и не предлагаешь готовых портретов. Ты только задаёшь вопросы и слушаешь.
+
+Чем я занимаюсь: <span class="tok">[ЧЕМ ЗАНИМАЕШЬСЯ, ОДНОЙ ФРАЗОЙ]</span>
+Что я продаю или собираюсь продавать: <span class="tok">[УСЛУГА, ПРОДУКТ ИЛИ «ПОКА НИЧЕГО»]</span>
+
+Проведи со мной интервью. Правила:
+– задавай ровно один вопрос за сообщение и жди моего ответа
+– если мой ответ общий, задай уточняющий вопрос вместо следующего
+– не подсказывай варианты ответов, не пиши «например, это может быть...»
+– не переходи к выводам, пока не задашь минимум пятнадцать вопросов
+
+Иди по темам в таком порядке:
+1. Три конкретных человека, которым я уже помогаю: кто они, с чем пришли, какими словами описывали свою проблему.
+2. Что происходило в их жизни в тот момент, когда они решили обратиться. Что стало последней каплей.
+3. Что они пробовали до меня и почему не сработало.
+4. Чего они боялись, когда решались.
+5. Что изменилось после. Их слова, не мои.
+6. Кому я не могу помочь и с кем не хочу работать.
+
+Начни с первого вопроса. Больше ничего пока не пиши.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <p class="hint">Розовым выделено то, что нужно заменить на своё. Скобки удаляй вместе с подсказкой.</p>
+
+      <details>
+        <summary>Когда интервью закончится</summary>
+        <div class="det-body">
+          <p>После пятнадцати-двадцати вопросов отправь в том же чате:</p>
+          <div class="promptbox" style="margin-top:10px">
+<pre>Интервью закончено. Собери из моих ответов краткий разбор:
+1. Кто мой человек – не «женщина 35 лет», а описание через ситуацию: что у него в жизни происходит.
+2. Момент, в который он созревает обратиться. Что должно случиться.
+3. Его собственные формулировки проблемы – цитатами из моих ответов.
+4. Что он уже пробовал и почему не сработало.
+5. Чего он боится, обращаясь ко мне.
+6. Кому я не помогаю.
+
+Опирайся только на мои ответы. Где информации не хватило – так и напиши, не додумывай.</pre>
+          </div>
+          <div class="btns"><button class="btn ghost" data-copy>Копировать</button></div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Вывалил все вопросы списком.</b> Ответь: «Ты задал всё сразу. Начни заново: один вопрос, потом жди мой ответ.»</div>
+          <div class="fix"><b>Подсказывает варианты.</b> Ответь: «Не подсказывай мне ответы. Просто задавай вопрос и жди.»</div>
+          <div class="fix"><b>Слишком быстро перешёл к выводам.</b> Ответь: «Рано. Задай ещё вопросов, особенно про то, что они пробовали до меня.»</div>
+        </div>
+      </details>
+      <div class="next">Дальше: <a href="#p2">промпт 2 – собрать их собственные слова</a></div>
+    </article>
+
+    <article class="p" id="p2">
+      <div class="p-head">
+        <div class="p-num">2</div>
+        <div>
+          <h3>Боли и желания их словами</h3>
+          <p class="p-out">На выходе: список фраз, которыми твои люди сами описывают проблему. Это заготовки для заголовков, постов и описаний продукта.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> сразу после интервью, в том же чате.</p>
+        <p><b>Фишка:</b> разница между «оптимизация рабочего процесса» и «я не успеваю ничего, а вечером стыдно» – это разница между текстом, который пролистывают, и текстом, под которым пишут «это про меня».</p>
+      </div>
+      <ol class="steps">
+        <li>Продолжай тот же диалог, где проходило интервью – он помнит твои ответы.</li>
+        <li>Начинаешь с нуля в новом чате – вставь перед промптом разбор из первого промпта.</li>
+        <li>Готовый список сохрани. Дальше он идёт в паспорт.</li>
+      </ol>
+      <div class="promptbox">
+<pre>На основе моих ответов собери словарь моей аудитории.
+
+1. Боли – как они сами их называют. Не «сложности с самоорганизацией», а живая фраза, которую человек говорит вслух или пишет в переписке. Минимум десять формулировок.
+2. Желания – так же, их словами. Что человек хочет на самом деле, а не то, что звучит правильно.
+3. Слова и выражения, которые они используют постоянно.
+4. Слова, которых в их речи нет – профессиональные термины, которые понятны мне, но не им.
+5. Отдельно: где я говорю на своём языке, а не на их. Приведи мои формулировки и рядом – их вариант.
+
+Бери только те формулировки, которые звучали в моих ответах или в материалах, которые я привожу. Если своими словами их мало, скажи об этом прямо и предложи, где мне их взять.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Выдал канцелярит вместо живой речи.</b> Ответь: «Это формулировки из учебника. Мне нужно, как человек говорит подруге на кухне. Перепиши.»</div>
+          <div class="fix"><b>Придумал фразы, которых не было.</b> Ответь: «Пометь, какие формулировки взяты из моих ответов, а какие ты придумал. Придуманные убери.»</div>
+        </div>
+      </details>
+      <div class="next">Дальше: <a href="#p3">промпт 3 – разобрать то, что тебе уже писали</a></div>
+    </article>
+
+    <article class="p" id="p3">
+      <div class="p-head">
+        <div class="p-num">3</div>
+        <div>
+          <h3>Разбор архива: что тебе уже говорили</h3>
+          <p class="p-out">На выходе: что люди покупают на самом деле – часто не то, что ты думаешь, что продаёшь.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> есть хотя бы десять отзывов, вопросов или переписок.</p>
+        <p><b>Фишка:</b> в отзывах люди хвалят не то, чем ты гордишься. Это самое ценное, что можно найти – и это лежит у тебя в переписке бесплатно.</p>
+      </div>
+      <ol class="steps">
+        <li>Собери отзывы, вопросы и заявки в один текстовый файл. Порядок и оформление не важны.</li>
+        <li>Убери имена, телефоны, названия компаний, диагнозы, суммы – всё, по чему можно узнать человека.</li>
+        <li>Скопируй промпт, материал вставь текстом или прикрепи файлом, если чат это умеет.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Ты – аналитик. Разбери мои материалы и найди в них закономерности, а не общие впечатления.
+
+Вот отзывы, вопросы и переписки моих клиентов:
+"""
+<span class="tok">[ВСТАВЬ МАТЕРИАЛЫ]</span>
+"""
+
+Как я описываю свою услугу: <span class="tok">[ОДНОЙ ФРАЗОЙ, СВОИМИ СЛОВАМИ]</span>
+
+Разбери по пунктам:
+1. С какими формулировками ко мне приходят чаще всего. Сгруппируй и укажи, сколько раз встретилось.
+2. За что меня благодарят. Дословно. Совпадает ли это с тем, что я считаю своей главной ценностью – ответь прямо.
+3. Какие вопросы задают перед покупкой. Это и есть их сомнения.
+4. Что они говорят про свой опыт до меня: что пробовали, чем недовольны.
+5. Слова и обороты, которые повторяются у разных людей.
+6. Что в моих материалах отсутствует – о чём стоило бы спросить клиентов, но я этого не делаю.
+
+Не обобщай без опоры. Каждый вывод подтверждай цитатой. Мало данных для вывода – так и пиши.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <details>
+        <summary>Пример ответа</summary>
+        <div class="det-body">
+          <div class="ex">2. За что благодарят
+
+Вы считаете, что продаёте программу питания. Но в семи отзывах из двенадцати благодарят не за программу, а за то, что «наконец перестала себя грызть» и «не надо ничего считать».
+
+Цитаты:
+«Впервые за три года ем без чувства вины»
+«Вы не заставляли, и от этого получилось»
+
+Вывод: люди покупают снятие вины, а не систему питания. В ваших описаниях услуги слова «вина» нет ни разу.</div>
+        </div>
+      </details>
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Общие выводы без цитат.</b> Ответь: «Каждый пункт подтверди цитатой из материалов. Без цитаты – убирай.»</div>
+          <div class="fix"><b>Материал не влез.</b> Дели на части: «Это первая часть материалов, просто запомни её и жди следующую.» После последней части проси разбор.</div>
+        </div>
+      </details>
+      <div class="next">Дальше: <a href="#p4">промпт 4 – посмотреть, что происходит снаружи</a></div>
+    </article>
+
+    <article class="p" id="p4">
+      <div class="p-head">
+        <div class="p-num">4</div>
+        <div>
+          <h3>Что говорят снаружи</h3>
+          <p class="p-out">На выходе: как твою проблему обсуждают люди, которые тебя не знают – и на что жалуются в чужих продуктах.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> своих материалов мало, или хочется понять рынок шире.</p>
+        <p><b>Важно:</b> нужен чат с доступом в интернет. Если нейросеть отвечает без поиска, она просто сочинит правдоподобные цитаты. Всё, что она принесёт, проверяй по ссылкам.</p>
+      </div>
+      <ol class="steps">
+        <li>Включи режим поиска, если он есть отдельной кнопкой – обычно значок глобуса или пункт «Поиск в интернете».</li>
+        <li>Скопируй промпт, впиши свою тему.</li>
+        <li>Открой хотя бы три ссылки из ответа и убедись, что цитаты действительно оттуда.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Найди в интернете, как люди обсуждают эту тему своими словами.
+
+Тема: <span class="tok">[ТВОЯ ТЕМА ИЛИ ПРОБЛЕМА КЛИЕНТА]</span>
+Кто эти люди: <span class="tok">[КОРОТКО ОПИШИ АУДИТОРИЮ]</span>
+
+Ищи в отзывах, на форумах, в комментариях, в обсуждениях. Собери:
+1. Реальные формулировки проблемы – цитатами, со ссылкой на источник.
+2. На что жалуются в похожих продуктах и услугах: что не понравилось, чего не хватило.
+3. Что хвалят.
+4. Какие вопросы задают чаще всего.
+5. Какие решения обсуждают между собой.
+
+Обязательно: к каждой цитате давай ссылку. Не нашёл подтверждения – пиши «не найдено» вместо того, чтобы придумывать. Не выдавай общие рассуждения за цитаты людей.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Цитаты без ссылок.</b> Ответь: «Дай ссылку на каждую цитату. Где ссылки нет – удали цитату.»</div>
+          <div class="fix"><b>Ссылки не открываются или не про то.</b> Ответь: «Три ссылки не подтверждают цитаты. Найди заново или честно скажи, что данных нет.» Это нормальный исход – значит, полагайся на свои материалы.</div>
+        </div>
+      </details>
+      <div class="next">Дальше: <a href="#p5">промпт 5 – что мешает людям сказать «да»</a></div>
+    </article>
+
+    <article class="p" id="p5">
+      <div class="p-head">
+        <div class="p-num">5</div>
+        <div>
+          <h3>Возражения и что их снимает</h3>
+          <p class="p-out">На выходе: список причин, по которым человек не покупает, и что конкретно нужно показать, чтобы сомнение ушло.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> перед запуском, перед продающим текстом, перед описанием услуги.</p>
+        <p><b>Фишка:</b> отдельно просим не «как отработать возражение», а «что должно быть в моём продукте и текстах, чтобы это возражение не возникло».</p>
+      </div>
+      <ol class="steps">
+        <li>Продолжай диалог, где уже есть интервью и разбор архива – так ответ будет опираться на твои данные.</li>
+        <li>Скопируй промпт, впиши, что и по какой цене продаёшь.</li>
+        <li>Из списка выбери три самых частых – с ними и работай, остальные пока отложи.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Собери список возражений моей аудитории.
+
+Что я продаю: <span class="tok">[ПРОДУКТ ИЛИ УСЛУГА]</span>
+Цена: <span class="tok">[ЦЕНА]</span>
+Кому: <span class="tok">[КОРОТКО ПРО АУДИТОРИЮ ИЛИ ССЫЛКА НА НАШ РАЗБОР ВЫШЕ]</span>
+
+По каждому возражению дай четыре строки:
+– формулировка так, как это скажет сам человек, а не как «дорого» одним словом
+– что за этим стоит на самом деле
+– что должно быть в моём продукте или тексте, чтобы это возражение не возникло
+– чего делать нельзя: как обычно пытаются снять это возражение и почему это отталкивает
+
+Раздели возражения на три группы: про меня и доверие, про продукт, про самого человека и его сомнения в себе.
+
+Опирайся на то, что сказано выше. Возражения, которых в моих данных не было, помечай как предположение.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Учит «отрабатывать» и давить.</b> Ответь: «Мне не нужны техники продаж. Нужно, что изменить в продукте и текстах, чтобы сомнение не возникало.»</div>
+          <div class="fix"><b>Список из учебника по маркетингу.</b> Ответь: «Это общие возражения. Опирайся на мои материалы и пометь, что взято из них, а что ты предположил.»</div>
+        </div>
+      </details>
+      <div class="next">Дальше: <a href="#p6">промпт 6 – проверить на живых людях</a></div>
+    </article>
+
+    <article class="p" id="p6">
+      <div class="p-head">
+        <div class="p-num">6</div>
+        <div>
+          <h3>Проверка на живых людях</h3>
+          <p class="p-out">На выходе: пять вопросов, которые можно отправить в личку или задать в сторис – и получить настоящие ответы, а не вежливые.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> после того как картина сложилась. Это единственный шаг, где данные приходят не из нейросети.</p>
+        <p><b>Фишка:</b> вопросы про прошлое, а не про будущее. «Что вы делали в прошлый раз» даёт правду, «купили бы вы» – вежливую ложь.</p>
+      </div>
+      <ol class="steps">
+        <li>Скопируй промпт, впиши свою гипотезу – во что ты веришь про свою аудиторию.</li>
+        <li>Отправь вопросы пяти-семи реальным людям. Личные сообщения работают лучше, чем опрос в сторис.</li>
+        <li>Ответы сохрани – их можно прогнать через промпт 3 как новый материал.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Помоги мне проверить гипотезу об аудитории через разговор с реальными людьми.
+
+Моя гипотеза: <span class="tok">[ВО ЧТО ТЫ ВЕРИШЬ – НАПРИМЕР, «ИМ ВАЖНА НЕ ЦЕНА, А ПОДДЕРЖКА»]</span>
+Кому я могу написать: <span class="tok">[КЛИЕНТЫ / ПОДПИСЧИКИ / ЗНАКОМЫЕ ИЗ ЭТОЙ СРЕДЫ]</span>
+
+Составь пять вопросов для личной переписки. Требования:
+– вопросы про прошлый опыт, а не про намерения. Никаких «купили бы вы» и «было бы вам интересно»
+– открытые, без вариантов ответа
+– без слов, которые подсказывают правильный ответ
+– такие, чтобы человеку было легко ответить голосовым за две минуты
+– первый вопрос самый лёгкий, чтобы разговор начался
+
+Отдельно напиши короткое сообщение, с которого начать переписку: без официоза, без «уделите пять минут вашего времени», честно объясняющее, зачем мне это.
+
+И скажи, какой ответ будет означать, что моя гипотеза не подтвердилась.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <div class="next">Дальше: <a href="#p7">промпт 7 – собрать всё в паспорт</a></div>
+    </article>
+
+    <article class="p" id="p7">
+      <div class="p-head">
+        <div class="p-num">7</div>
+        <div>
+          <h3>Собрать «Паспорт аудитории»</h3>
+          <p class="p-out">На выходе: один документ на страницу-полторы. Он вставляется в начало любого промпта – и нейросеть сразу пишет для конкретного человека.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <p><b>Когда:</b> в конце, когда пройден хотя бы первый промпт.</p>
+        <p><b>Фишка:</b> паспорт должен быть коротким. Документ на десять страниц никто не будет вставлять в чат, и он умрёт в папке.</p>
+      </div>
+      <ol class="steps">
+        <li>Работай в том же диалоге, где проходили интервью и разборы.</li>
+        <li>Собираешь в новом чате – вставь перед промптом всё, что получилось на предыдущих шагах.</li>
+        <li>Готовый паспорт сохрани в заметку, которая всегда под рукой. Он понадобится в бонусах 2 и 4.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Собери из всего, что мы обсудили, документ «Паспорт аудитории».
+
+Требования к формату: не больше полутора страниц, короткими блоками, без вводных слов и без воды. Это рабочий документ, который я буду вставлять в другие запросы.
+
+Структура:
+1. Кто это – через ситуацию, а не через возраст и доход. Две-три фразы.
+2. Что у него болит – пять формулировок его словами.
+3. Чего он хочет – три формулировки его словами.
+4. Что уже пробовал и почему не сработало.
+5. Момент, когда он созревает обратиться.
+6. Три главных возражения и что их снимает.
+7. Его язык: слова, которые использовать; слова, которых избегать.
+8. Кому я не помогаю.
+9. Что я до сих пор не знаю о своей аудитории – список того, что стоит выяснить.
+
+Опирайся только на мои ответы и мои материалы. Ничего не додумывай: где данных не хватило, пиши «данных нет» – это честнее и полезнее выдумки.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <details>
+        <summary>Как пользоваться паспортом</summary>
+        <div class="det-body">
+          <div class="fix"><b>В любом тексте.</b> Вставляй паспорт первым сообщением, задачу – вторым. Дальше в этом диалоге нейросеть держит твоего человека в голове.</div>
+          <div class="fix"><b>В бонусе «Тексты».</b> В промпте 1 есть строка «для кого я пишу» – вместо одной фразы вставляй туда паспорт целиком.</div>
+          <div class="fix"><b>В бонусе про мини-продукты.</b> Выбор темы без паспорта даёт список «популярных тем из интернета». С паспортом – темы под конкретного человека.</div>
+          <div class="fix"><b>Раз в квартал обновляй.</b> Добавляй новые отзывы и вопросы и проси дополнить паспорт, а не переписывать заново.</div>
+        </div>
+      </details>
+      <details>
+        <summary>Если ответ не тот</summary>
+        <div class="det-body">
+          <div class="fix"><b>Получился том на десять страниц.</b> Ответь: «Слишком длинно. Сократи вдвое, оставь только то, что реально влияет на текст.»</div>
+          <div class="fix"><b>Скатился в маркетинговые формулировки.</b> Ответь: «Убери маркетинговый язык. Пиши так, как говорят сами люди – их словами из моих материалов.»</div>
+          <div class="fix"><b>Заполнил пробелы выдумкой.</b> Ответь: «Пометь, что взято из моих данных, а что ты додумал. Додуманное вынеси в отдельный список гипотез.»</div>
+        </div>
+      </details>
+      <div class="next">Паспорт готов – забирай его в <a href="../teksty/">бонус «Тексты»</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section class="sec-dark">
+  <div class="wrap">
+    <div class="kick">Чтобы не обмануть себя</div>
+    <h2>Четыре правила</h2>
+    <ul class="plain" style="margin-top:16px">
+      <li><b>Один человек, а не сегмент.</b> Если портрет подходит миллиону людей, он не подходит никому. Проверка простая: можешь назвать имя реального человека, который под него попадает?</li>
+      <li><b>Их слова важнее твоих выводов.</b> Цитата клиента ценнее любой аналитики. Собирай цитаты как коллекцию.</li>
+      <li><b>Нейросеть не источник данных о людях.</b> Она хорошо раскладывает по полочкам то, что знаешь ты, и плохо угадывает то, чего не знает никто.</li>
+      <li><b>Проверяй разговором.</b> Пятнадцать минут переписки с настоящим клиентом опровергают или подтверждают то, на что нейросеть потратит десять экранов.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="soft">
+      <div class="kick">Что дальше</div>
+      <h3 style="margin:8px 0 10px">Паспорт – это заготовка. На курсе она становится частью помощника</h3>
+      <p style="color:#4a3d48">Сейчас ты вставляешь паспорт руками в каждый новый чат. В модуле 2 собираем помощника, который знает и твою аудиторию, и твой голос – и не спрашивает об этом дважды. В модуле 3 из паспорта вырастают продукты: тексты, визуал, мини-гайды под конкретного человека.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="kick" style="color:#FF8FC6">Усилитель практикума</div>
+    <p style="margin-top:10px">Бонус 1 из 5 · <a href="../">вернуться ко всему набору</a></p>
+    <p class="small" style="margin-top:14px;color:#8a7c8a">Материалы практикума «НейроСтарс». Для личного использования участниками курса.</p>
+  </div>
+</footer>
+
+
+<div class="toast" id="toast">Промпт скопирован</div>
+<script>
+(function(){
+  var toast = document.getElementById('toast'), t;
+  function say(msg){
+    toast.textContent = msg; toast.classList.add('on');
+    clearTimeout(t); t = setTimeout(function(){ toast.classList.remove('on'); }, 2600);
+  }
+  function textOf(btn){
+    var scope = btn.closest('.det-body') || btn.closest('.p');
+    var box = scope.querySelector('.promptbox pre');
+    return box ? box.innerText : '';
+  }
+  function copy(text){
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function(res, rej){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); res(); } catch(e){ rej(e); }
+      document.body.removeChild(ta);
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      copy(textOf(btn)).then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Скопировано ✓'; btn.classList.add('done');
+        say('Промпт скопирован. Вставь его в чат');
+        setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 2400);
+      }).catch(function(){
+        say('Не вышло скопировать – выдели текст промпта вручную');
+      });
+    });
+  });
+  document.querySelectorAll('[data-open]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      copy(textOf(btn)).then(function(){
+        say('Промпт скопирован. В чате нажми вставить');
+        setTimeout(function(){ window.open('https://chatgpt.com/', '_blank', 'noopener'); }, 600);
+      }).catch(function(){
+        window.open('https://chatgpt.com/', '_blank', 'noopener');
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
