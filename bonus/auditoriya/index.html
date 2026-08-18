@@ -589,7 +589,7 @@
     clearTimeout(t); t = setTimeout(function(){ toast.classList.remove('on'); }, 2600);
   }
   function textOf(btn){
-    var scope = btn.closest('.det-body') || btn.closest('.p');
+    var scope = btn.closest('.det-body') || btn.closest('.p') || btn.closest('.stylecard') || btn.closest('section');
     var box = scope.querySelector('.promptbox pre');
     return box ? box.innerText : '';
   }
