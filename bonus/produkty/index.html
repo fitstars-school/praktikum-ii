@@ -74,7 +74,15 @@
   .steps li{list-style:none;position:relative;padding-left:36px;margin-bottom:13px;color:#4a3d48}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin-top:18px}
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:50px 26px 24px;margin-top:18px}
+  .promptbox::before{content:"ПРОМПТ · КОПИРУЕТСЯ ЦЕЛИКОМ";position:absolute;top:18px;left:26px;font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--magenta)}
+  .copyicon{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;padding:0}
+  .copyicon:hover{border-color:#F1D9EC;box-shadow:0 8px 20px -14px rgba(120,20,90,.5);transform:translateY(-1px)}
+  .copyicon svg{width:19px;height:19px;stroke:var(--magenta);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .copyicon.done{background:#EAF7EE;border-color:#CDEBD6}
+  .copyicon.done svg{stroke:#1FA24E}
+  .subblock{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+  .subblock .sublabel{font-weight:700;font-size:17.5px;margin-bottom:12px}
   .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15.5px;line-height:1.65;color:#33283b}
   .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
   .hint{font-size:13px;color:#9a8d98;margin-top:10px}
@@ -169,8 +177,8 @@
   <div class="wrap">
     <div class="kick">Прежде чем начнём</div>
     <h2>Мини-продукт – это не маленький курс</h2>
-    <p>Обычно бывает так: человек решает «сделаю гайд», садится и начинает писать всё, что знает по теме. Через месяц это тихо бросают – получился учебник, сил больше нет, а результата так и не видно. Знакомо – мы сами так делали не раз.</p>
-    <p>Мини-продукт устроен иначе. В нём одна проблема одного человека, решённая за один заход. Не «всё о питании», а «что положить ребёнку в школу, если утром 10 минут». По форме это чаще всего один файл: чек-лист, шаблон, тест, считалка. И чем уже тема, тем легче собрать, объяснить и отдать – а заодно тем понятнее человеку, зачем ему это брать.</p>
+    <p><b>Обычно бывает так:</b> человек решает «сделаю гайд», садится и начинает писать всё, что знает по теме. Через месяц это тихо бросают – получился учебник, сил больше нет, а результата так и не видно. Знакомо – мы сами так делали не раз.</p>
+    <p>Мини-продукт устроен иначе. <b>В нём одна проблема одного человека, решённая за один заход.</b> Не «всё о питании», а «что положить ребёнку в школу, если утром 10 минут». По форме это чаще всего один файл: чек-лист, шаблон, тест, считалка. <b>И чем уже тема, тем легче собрать, объяснить и отдать</b> – а заодно тем понятнее человеку, зачем ему это брать.</p>
   </div>
 </section>
 
@@ -184,7 +192,7 @@
       <ol class="steps">
         <li>Если бонус 1 <a href="../auditoriya/">«Кто твой человек»</a> уже пройден, возьми оттуда портрет аудитории и живые цитаты – с ними ответ будет заметно точнее.</li>
         <li>Скопируй промпт, заполни розовые куски и отправь.</li>
-        <li>Выбери одну идею. Не 3, а одну – ту, которую хочется сделать прямо сегодня.</li>
+        <li><b>Выбери одну идею.</b> Не 3, а одну – ту, которую хочется сделать прямо сегодня.</li>
       </ol>
 
       <div class="promptbox"><pre>Помоги найти, что из моей экспертизы можно превратить в мини-продукт – один файл, который решает одну проблему за один заход.
@@ -211,7 +219,7 @@
     <article class="p" id="z2">
       <div class="thead"><span class="tnum">Задача 2</span><span class="tmin">20 минут</span></div>
       <h3>Убедиться, что это кому-то нужно</h3>
-      <p class="p-out" style="margin-top:8px">Двадцать минут проверки экономят целые выходные, потраченные на то, чего никто не ждал. И часто именно здесь становится понятно, чем ты можешь отличаться от того, что уже есть.</p>
+      <p class="p-out" style="margin-top:8px"><b>Двадцать минут проверки экономят целые выходные</b>, потраченные на то, чего никто не ждал. И часто именно здесь становится понятно, чем ты можешь отличаться от того, что уже есть.</p>
 
       <div class="tool"><b>Чем будем делать:</b> <a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a> или любой чат с включённым поиском. Без поиска нейросеть просто согласится с тобой – она вообще очень склонна поддакивать, а нам сейчас нужно ровно обратное.</div>
 
@@ -243,11 +251,11 @@
     <article class="p" id="z3">
       <div class="thead"><span class="tnum">Задача 3</span><span class="tmin">полтора часа</span></div>
       <h3>Собрать прототип и научиться его доводить</h3>
-      <p class="p-out" style="margin-top:8px">Самое ценное здесь – не получить идеальный файл с первого раза. Такого не бывает. Ценно другое: научиться разговаривать с нейросетью так, чтобы доводить сделанное до нужного. Этот навык потом пригодится вообще везде.</p>
+      <p class="p-out" style="margin-top:8px">Самое ценное здесь – не получить идеальный файл с первого раза. Такого не бывает. <b>Ценно другое: научиться разговаривать с нейросетью так, чтобы доводить сделанное до нужного.</b> Этот навык потом пригодится вообще везде.</p>
 
       <ol class="steps">
         <li>Скопируй промпт, вставь идею и прототип из первой задачи.</li>
-        <li>Получишь файл и список команд, которыми его правят. Попробуй хотя бы 3 правки – вот это и есть навык, ради которого мы здесь.</li>
+        <li>Получишь файл и список команд, которыми его правят. <b>Попробуй хотя бы 3 правки</b> – вот это и есть навык, ради которого мы здесь.</li>
         <li>Готовый файл оформи по стилю из бонуса 3 <a href="../stili/">«10 готовых стилей»</a>, если он ещё не оформлен.</li>
       </ol>
 
@@ -352,6 +360,25 @@
         window.open('https://chatgpt.com/', '_blank', 'noopener');
       });
     });
+  });
+
+  // иконка копирования в правом верхнем углу каждого промпта
+  var ICON = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg>';
+  var OKICON = '<svg viewBox="0 0 24 24"><path d="M4 12.5L9.5 18L20 6.5"/></svg>';
+  document.querySelectorAll('.promptbox').forEach(function(box){
+    var pre = box.querySelector('pre'); if (!pre) return;
+    var b = document.createElement('button');
+    b.className = 'copyicon'; b.type = 'button';
+    b.setAttribute('aria-label', 'Копировать промпт'); b.title = 'Копировать промпт';
+    b.innerHTML = ICON;
+    b.addEventListener('click', function(){
+      copy(pre.innerText).then(function(){
+        b.innerHTML = OKICON; b.classList.add('done');
+        say('Промпт скопирован. Вставь его в чат');
+        setTimeout(function(){ b.innerHTML = ICON; b.classList.remove('done'); }, 2400);
+      }).catch(function(){ say('Не вышло скопировать – выдели текст промпта вручную'); });
+    });
+    box.appendChild(b);
   });
 })();
 </script>
