@@ -37,8 +37,9 @@
   /* ---- шапка ---- */
   .top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
   .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:12px;padding-bottom:12px}
-  .back{font-size:15px;font-weight:700;color:var(--ink);border:none}
-  .back:hover{color:var(--magenta)}
+  .back{display:inline-flex;align-items:center;gap:9px;font-size:16px;font-weight:700;color:#fff;background:var(--grad);background-size:200% 100%;border:none;border-bottom:none;border-radius:999px;padding:12px 22px;text-decoration:none;transition:background-position .35s,transform .15s,box-shadow .2s}
+  .back,.back:hover,.back:visited{color:#fff}
+  .back:hover{background-position:100% 0;transform:translateY(-1px);box-shadow:0 12px 26px -14px rgba(230,25,140,.6)}
   .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700}
   .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta)}
 
@@ -81,8 +82,11 @@
 
   .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
   .btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:999px;padding:13px 22px;cursor:pointer;color:#fff;background:var(--grad);background-size:200% 100%;transition:background-position .35s,transform .15s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
-  .btn:hover{background-position:100% 0}
+  .btn:hover{background-position:100% 0;transform:translateY(-1px);box-shadow:0 12px 26px -14px rgba(230,25,140,.6)}
   .btn:active{transform:scale(.98)}
+  a.btn,a.btn:hover,a.btn:visited{color:#fff;border-bottom:none}
+  a.btn.ghost,a.btn.ghost:hover{color:var(--ink)}
+  .btn.ghost:hover{border-color:#F1D9EC;box-shadow:0 12px 26px -18px rgba(120,20,90,.4)}
   .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .btn.done{background:#EAF7EE;color:#1FA24E;border:1px solid #CDEBD6}
 
@@ -142,7 +146,7 @@
 
 <div class="top">
   <div class="wrap">
-    <a class="back" href="../">&larr; Весь набор</a>
+    <a class="back" href="../">&larr; Все бонусы</a>
     <span class="pill"><span class="dot"></span>Бонус 3 из 5</span>
   </div>
 </div>
@@ -170,7 +174,7 @@
 </style>
 <header class="hero">
   <div class="wrap">
-    <div class="kick">Шаг 3 после практикума</div>
+    <div class="kick">Бонус 3 · следующий шаг после практикума</div>
     <h1>10 готовых <span class="g">стилей</span></h1>
     <p class="lead">Чтобы то, что ты собираешь, выглядело собранным, а не самодельным. 2 задачи: оформить свой первый документ по готовому стилю и набрать насмотренность, из которой на курсе вырастет твой собственный.</p>
   </div>
@@ -722,8 +726,8 @@
 <footer>
   <div class="wrap">
     <div class="kick" style="color:#FF8FC6">Усилитель практикума</div>
-    <p style="margin-top:10px">Шаг 3 из 5 · <a href="../">вернуться ко всем шагам</a></p>
-    <p class="small" style="margin-top:14px;color:#8a7c8a">Материалы практикума «НейроСтарс». Для личного использования участниками курса.</p>
+    <p style="margin-top:10px">Бонус 3 из 5 · <a href="../">вернуться ко всем бонусам</a></p>
+    <p class="small" style="margin-top:14px;color:#8a7c8a">Бонус к курсу Нейро-архитектор «ИИ для жизни и дела: от первого промпта до автономного помощника». Для личного использования участниками курса.</p>
   </div>
 </footer>
 
