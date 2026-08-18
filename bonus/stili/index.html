@@ -18,14 +18,16 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
 
   /* ---- роли типографики: Р1 заголовок, Р2 подзаголовок, Р3 текст 17px, Р4 метка ---- */
   h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.2vw,50px);line-height:1.06;text-wrap:balance;margin:12px 0 16px}
   h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.12;text-wrap:balance;margin-bottom:14px}
   h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;line-height:1.25;text-wrap:balance}
-  p,li,td,th,summary,label{font-size:17px;text-wrap:pretty}
+  p,li,td,th,summary,label{font-size:17.5px;text-wrap:pretty}
+  section > .wrap > p{max-width:860px}
+  p+p{margin-top:12px}
   .kick{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
   .small{font-size:13px;color:#9a8d98}
   b,strong{font-weight:700}
@@ -41,9 +43,9 @@
   .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta)}
 
   header.hero{padding:48px 0 40px}
-  .lead{font-size:19px;color:#4a3d48;max-width:660px;text-wrap:pretty}
+  .lead{font-size:20px;line-height:1.5;color:#4a3d48;max-width:860px;text-wrap:pretty}
 
-  section{padding:36px 0}
+  section{padding:42px 0}
   .sec-dark{background:var(--dark);color:#fff;position:relative;overflow:hidden;margin:20px 0}
   .sec-dark::before{content:"";position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.30),transparent 70%);pointer-events:none}
   .sec-dark h2,.sec-dark p,.sec-dark li,.sec-dark h3{color:#fff}
@@ -62,7 +64,7 @@
   .flow .s{font-size:13px;color:var(--muted);margin-top:3px}
 
   /* ---- карточка промпта ---- */
-  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
+  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 32px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
   .p-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:14px}
   .p-num{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
   .p-out{margin-top:6px;color:var(--muted)}
@@ -72,8 +74,8 @@
   .steps li{list-style:none;position:relative;padding-left:34px;margin-bottom:9px;color:#4a3d48}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:6px}
-  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.6;color:#33283b}
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-top:6px}
+  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15.5px;line-height:1.65;color:#33283b}
   .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
   .hint{font-size:13px;color:#9a8d98;margin-top:10px}
 
@@ -178,10 +180,10 @@
   <div class="wrap">
     <div class="kick">Зачем это сейчас</div>
     <h2>«Сделай красиво» – не задача</h2>
-    <p>Попроси нейросеть оформить документ «красиво и современно» – получишь случайные цвета, 4 шрифта и градиент на пол-экрана. Дизайнеры так не работают: сначала выбирается система, потом всё делается внутри неё.</p>
-    <p style="margin-top:12px">Стиль и есть такая система, свёрнутая в текст: палитра, шрифты, форма, правила. Ты не объясняешь вкус словами – ты даёшь готовые правила. Один и тот же стиль во всех материалах – и они начинают выглядеть как одна семья.</p>
+    <p>Если попросить нейросеть оформить документ «красиво и современно», она честно постарается – и выдаст случайные цвета, 4 шрифта и градиент на пол-экрана. Обижаться не на что: «красиво» ничего не значит, пока не сказано, что именно красиво. Дизайнеры, кстати, работают наоборот – сначала выбирают систему, а потом всё делают внутри неё, и им от этого только легче.</p>
+    <p>Стиль и есть такая система, свёрнутая в текст: палитра, шрифты, форма, правила. Тебе не нужно объяснять свой вкус словами и мучительно подбирать оттенки – ты просто отдаёшь готовые правила. А если брать один и тот же стиль во всех материалах, они довольно быстро начинают выглядеть как одна семья, и это замечают даже те, кто в дизайне ничего не понимает.</p>
     <div class="soft" style="margin-top:18px">
-      <p><b>Одно ограничение:</b> один документ – один стиль. Не смешивай два и не добавляй «ещё чуть-чуть своих цветов»: именно так рождается самодельный вид, от которого мы уходим. Хочешь другой характер – возьми другой стиль целиком.</p>
+      <p><b>Только одна просьба:</b> один документ – один стиль. Не смешивай два и не добавляй «ещё чуть-чуть своих любимых цветов» – именно так и получается тот самый самодельный вид, от которого мы уходим. Захотелось другого характера – спокойно бери другой стиль целиком, их тут 10.</p>
     </div>
   </div>
 </section>
@@ -191,10 +193,10 @@
     <article class="p" id="z1">
       <div class="thead"><span class="tnum">Задача 1</span><span class="tmin">40 минут</span></div>
       <h3>Оформить свой материал по готовому стилю</h3>
-      <p class="p-out" style="margin-top:6px">Берём то, что у тебя уже написано – чек-лист, гайд, программу, конспект – и превращаем в документ, который не стыдно отправить.</p>
+      <p class="p-out" style="margin-top:8px">Ничего нового писать не надо. Берём то, что у тебя уже есть – чек-лист, гайд, программу, конспект, – и превращаем в документ, который не стыдно отправить клиенту.</p>
 
       <ol class="steps">
-        <li>Пролистай 10 стилей ниже, посмотри превью и выбери один. Не выбирается – бери тот, который просто нравится, это рабочая гипотеза.</li>
+        <li>Пролистай 10 стилей ниже и посмотри превью. Не выбирается – бери тот, который просто нравится: это нормальная рабочая гипотеза, а не легкомыслие.</li>
         <li>Нажми «Копировать стиль» – описание стиля попадёт в буфер обмена.</li>
         <li>Открой чат, вставь промпт-обёртку, а в неё – стиль и свой текст.</li>
         <li>Полученный файл сохрани и открой – как именно, в блоке ниже.</li>
@@ -681,7 +683,7 @@
     <article class="p" id="z2">
       <div class="thead"><span class="tnum">Задача 2</span><span class="tmin">20 минут</span></div>
       <h3>Набрать насмотренность и сохранить референсы</h3>
-      <p class="p-out" style="margin-top:6px">Готовые стили закрывают ближайшие задачи. Свой собственный начинается с того, что ты научишься замечать, что тебе нравится и почему.</p>
+      <p class="p-out" style="margin-top:8px">Готовые стили закрывают ближайшие задачи, и этого пока достаточно. А свой собственный начинается с простой вещи – с умения замечать, что тебе нравится и почему. Это тренируется быстрее, чем кажется.</p>
 
       <div class="tool"><b>Где смотреть:</b>
         <a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a> – работы дизайнеров, удобно искать по словам вроде guide, ebook, landing ·
@@ -693,15 +695,15 @@
 
       <ol class="steps">
         <li>Заведи доску в Pinterest или просто папку со скриншотами.</li>
-        <li>Сохрани 5 работ, которые нравятся. Не думай, подходят ли они твоей теме – сейчас важно только «нравится или нет».</li>
+        <li>Сохрани 5 работ, которые нравятся. Не думай пока, подходят ли они твоей теме, – сейчас важно только «нравится или нет», без обоснований.</li>
         <li>К каждой допиши одну фразу: что именно цепляет. «Много воздуха», «крупный заголовок», «спокойные цвета», «жёсткие рамки».</li>
         <li>Отдельно сохрани 2 работы, которые не нравятся, и тоже подпиши почему. Это работает не хуже.</li>
       </ol>
 
-      <div class="res"><b>Что должно получиться:</b> папка из 7 картинок с пометками. Дальше – либо ты узнаёшь свой вкус в одном из 10 стилей выше, либо приносишь эту папку на курс, и мы собираем твой собственный.</div>
+      <div class="res"><b>Что должно получиться:</b> папка из 7 картинок с короткими пометками. Дальше одно из двух, и оба варианта хорошие: либо ты узнаёшь свой вкус в одном из 10 стилей выше и спокойно им пользуешься, либо приносишь эту папку на курс, и мы собираем твой собственный стиль.</div>
 
       <div class="soft" style="margin-top:18px">
-        <p><b>Почему свой стиль – не сегодня.</b> Собрать дизайн-код под свой бренд можно, и мы это делаем на курсе, в модуле 3: там есть и проверка контраста, и подбор шрифтов с кириллицей, и как удержать один стиль во всех материалах. Сегодня задача другая – начать пользоваться готовым и накопить, из чего потом собирать своё.</p>
+        <p><b>Почему свой стиль – не сегодня.</b> Собрать дизайн-код под свой бренд вполне реально, и мы обязательно сделаем это на курсе, в модуле 3: там и проверка контраста, и подбор шрифтов с кириллицей, и то, как удержать один стиль во всех материалах сразу. Но сегодня задача другая и, честно говоря, более полезная – начать наконец пользоваться готовым и накопить то, из чего потом соберётся своё.</p>
       </div>
     </article>
   </div>
@@ -712,7 +714,7 @@
     <div class="soft">
       <div class="kick">Куда ещё это годится</div>
       <h3 style="margin:8px 0 10px">Не только документы</h3>
-      <p style="color:#4a3d48">Цвета и шрифты из выбранного стиля можно перенести в редактор презентаций, в обложки постов, даже в обычную таблицу – достаточно взять акцентный цвет для шапки. Одна палитра во всех материалах узнаётся быстрее, чем логотип.</p>
+      <p style="color:#4a3d48">Цвета и шрифты из выбранного стиля спокойно переносятся в редактор презентаций, в обложки постов и даже в обычную таблицу – там достаточно взять акцентный цвет для шапки, и она перестаёт выглядеть черновиком. Одна палитра во всех материалах, кстати, узнаётся быстрее, чем логотип.</p>
     </div>
   </div>
 </section>
