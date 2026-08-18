@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Персональный разбор: чем ИИ полезен именно тебе</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --magenta:#E6198C; --magenta-dark:#C0116E;
+  --ink:#211829; --dark:#1B1420;
+  --wash:#FBF4F8; --line:#ECE1EC;
+  --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);
+  --radius:20px; --radius-lg:26px;
+  --shadow:0 18px 44px -26px rgba(120,20,90,.24);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;font-size:17px;line-height:1.6;color:var(--ink);background:#FFFFFF}
+.wrap{max-width:840px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+h1,h2{font-family:'Unbounded',sans-serif;font-weight:800;text-wrap:balance}
+h1{font-size:clamp(27px,5vw,44px);line-height:1.15}
+h2{font-size:clamp(22px,3.4vw,30px);line-height:1.2;margin-bottom:24px}
+p{text-wrap:pretty}
+.label{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--magenta);margin-bottom:14px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card-title{font-weight:700;font-size:20px;margin-bottom:8px}
+
+/* герой */
+.hero{background:var(--wash);padding:72px 0 64px}
+.hero p{margin-top:18px;max-width:620px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:22px}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--magenta)}
+
+/* карточки */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:8px}
+.card{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.card .ico{width:46px;height:46px;border-radius:14px;background:var(--wash);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+
+/* шаги */
+.steps{counter-reset:step;display:grid;gap:14px;margin-top:8px}
+.step{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px 20px 74px;position:relative;box-shadow:var(--shadow)}
+.step::before{counter-increment:step;content:counter(step);position:absolute;left:20px;top:20px;width:38px;height:38px;border-radius:50%;background:var(--grad);color:#FFFFFF;font-family:'Unbounded',sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center}
+.step strong{display:block;margin-bottom:4px;font-size:20px}
+
+/* тёмная глава с промптом */
+.dark{background:var(--dark);color:#FFFFFF;position:relative;overflow:hidden}
+.dark::after{content:"";position:absolute;top:-120px;right:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.18),transparent 70%);pointer-events:none}
+.dark .label{color:#FF7AC1}
+.prompt-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-lg);padding:28px;margin-top:20px;position:relative;z-index:1}
+.prompt-box pre{font-family:'Manrope',sans-serif;font-size:17px;line-height:1.6;white-space:pre-wrap;color:#F4EDF6}
+.copy-btn{display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;border-radius:999px;padding:16px 34px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#FFFFFF;background:var(--grad);background-size:200% 200%;animation:shimmer 5s ease infinite;box-shadow:0 14px 34px -14px rgba(230,25,140,.55);margin-top:22px;position:relative;z-index:1}
+.copy-btn:active{transform:translateY(1px)}
+@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* докрутка */
+.tune{background:var(--wash)}
+.phrase{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:18px 24px;margin-top:12px;box-shadow:var(--shadow)}
+.phrase strong{color:var(--magenta)}
+
+/* сноска-плашка */
+.note{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius-lg);padding:26px 28px;margin-top:36px}
+
+/* подвал */
+footer{background:var(--dark);color:#FFFFFF;padding:34px 0;position:relative;overflow:hidden}
+footer::after{content:"";position:absolute;bottom:-140px;left:-100px;width:380px;height:380px;background:radial-gradient(circle,rgba(178,58,224,.16),transparent 70%);pointer-events:none}
+footer p{font-size:13px;color:rgba(255,255,255,.55)}
+@media(max-width:560px){section{padding:40px 0}.hero{padding:56px 0 44px}.prompt-box{padding:20px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="badge">Подарок за то, что ты с нами до конца</div>
+    <h1>Персональный разбор: <span class="grad-text">чем ИИ полезен именно тебе</span></h1>
+    <p>Это готовый промпт-помощник. Вставляешь его в любую нейросеть, отвечаешь на пять вопросов – можно голосом, как есть, без подготовки. В ответ получаешь честный разбор своей ситуации, путь по шагам и план первых действий на неделю.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="label">Что внутри</div>
+    <h2>Три вещи, которые он сделает</h2>
+    <div class="cards">
+      <div class="card"><div class="ico">🎙</div><div class="card-title">Выслушает</div>Задаст вопросы по одному и даст спокойно поныть – про работу, быт, время и то, что бесит. Нытьё здесь – самый полезный материал.</div>
+      <div class="card"><div class="ico">🗺</div><div class="card-title">Разберёт</div>Покажет, какие из твоих задач уже сегодня можно отдать ИИ, сколько времени это вернёт – и честно скажет, где ИИ пока не поможет.</div>
+      <div class="card"><div class="ico">👣</div><div class="card-title">Даст путь</div>Соберёт твой личный маршрут по шагам и три первых действия на неделю – по 15–20 минут каждое.</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="label">Как запустить</div>
+    <h2>Четыре шага – и разбор у тебя</h2>
+    <div class="steps">
+      <div class="step"><strong>Скопируй промпт</strong>Кнопка «Скопировать промпт» ниже – он скопируется целиком.</div>
+      <div class="step"><strong>Открой нейросеть</strong>ChatGPT, Claude, Gemini или GigaChat – помощник работает в любой. Если пока ни одной нет – подойдёт та, куда проще войти.</div>
+      <div class="step"><strong>Вставь и отправь</strong>Вставь текст в поле сообщения и отправь как обычное сообщение.</div>
+      <div class="step"><strong>Отвечай голосом</strong>В приложении на телефоне жми значок микрофона и наговаривай как думается – не причёсывай речь. Чем живее ответ, тем точнее разбор. Нет микрофона – пиши текстом, тоже сработает.</div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="label">Промпт</div>
+    <h2>Скопируй отсюда – целиком</h2>
+    <div class="prompt-box"><pre id="prompt">Ты – тёплый и внимательный проводник по ИИ. Твоя задача – помочь мне увидеть, чем ИИ полезен именно мне, и собрать ясный путь по шагам. Обращайся на «ты», по-человечески, без канцелярита и без обещаний лёгких миллионов. Пиши короткими абзацами, списки – не длиннее 3–4 пунктов. Тире используй короткое «–».
+
+ЧАСТЬ 1 – РАЗГОВОР
+Задавай вопросы строго по одному и жди моего ответа. Не переходи к следующему, пока я не ответил(а).
+
+1. Чем ты занимаешься и как выглядит твоя обычная неделя? Найм, фриланс, декрет, своё дело, совмещаешь – расскажи как есть.
+2. Что в твоих делах бесит или выматывает? Можно прямо поныть – это самый полезный ответ. Что бы ты с радостью никогда больше не делал(а) руками?
+3. Что съедает больше всего времени? Назови 2–3 вещи.
+4. Чего хочется в итоге: больше зарабатывать, освободить время, навести порядок, меньше уставать, вернуться в профессию? Что из этого главное?
+5. Какими нейросетями уже пользуешься или пробовал(а)? Что понравилось, что разочаровало?
+
+Если я отвечаю голосом и сумбурно – это нормально: собирай смысл сам и уточняй только то, без чего разбор не сложится.
+
+ЧАСТЬ 2 – РАЗБОР
+Когда получишь ответы на все пять вопросов, собери персональный разбор по этой структуре.
+
+«Что я услышал». Отрази мою ситуацию в 3–4 строках, опираясь на мои же слова, – чтобы я увидел(а), что меня поняли.
+
+«Что из этого можно отдать ИИ». Выбери из моих ответов 3–5 конкретных задач. По каждой: что именно сделает ИИ, в каком инструменте это удобнее (например «прямо в чате ChatGPT» или «в той нейросети, которой ты уже пользуешься») и сколько примерно часов в неделю это вернёт. Если я зарабатываю – покажи, как это влияет на доход или чек. Будь честен: если задача пока не для ИИ – так и скажи.
+
+«Твой путь по шагам». Разложи мой маршрут строго в этой логике, но словами моей жизни и под мою главную цель из вопроса 4:
+– Шаг 1. Научиться ставить ИИ задачи так, чтобы ответ был рабочим с первого-второго раза. Первые победы – уже на этой неделе.
+– Шаг 2. Настроить ИИ под себя: мой стиль, мои правила, собрать мои подходы в повторяемые навыки – чтобы результат был «как у меня», а не усреднённый.
+– Шаг 3. Навести порядок в моих файлах и материалах – чтобы ИИ работал на моём, а не выдумывал.
+– Шаг 4. Собрать свою систему: ИИ работает в моих файлах и задачах, рутина идёт по расписанию.
+– Шаг 5, только если мне важен доход: мой мини-продукт или услуга на этих навыках, с честной вилкой цен. Если доход сейчас не главное – вместо этого покажи, как вернуть высвобожденное время себе и семье.
+
+«С чего начать завтра». Три конкретных действия на ближайшую неделю, по 15–20 минут каждое, под мои задачи из ответов.
+
+ЧАСТЬ 3 – ФИНАЛ
+Заверши тепло и честно, в двух-трёх предложениях: путь я теперь вижу; пройти его можно самостоятельно – медленнее и методом проб; а можно по шагам и с поддержкой – на курсе FitStars «Нейро-архитектор», который вырос из этого практикума: от первого промпта до автономного помощника. Без давления и без капслока. Начни с первого вопроса.</pre></div>
+    <button class="copy-btn" id="copyBtn" type="button">Скопировать промпт</button>
+  </div>
+</section>
+
+<section class="tune">
+  <div class="wrap">
+    <div class="label">После разбора</div>
+    <h2>Как докрутить ответ</h2>
+    <p>Разбор – это начало разговора, а не финал. Вот фразы, которые делают его точнее, – просто отправь следующим сообщением:</p>
+    <div class="phrase"><strong>«Разбери подробнее шаг 1</strong> – что конкретно мне сделать первым?»</div>
+    <div class="phrase"><strong>«Объясни проще»</strong> – если встретилось слово, которое непонятно. Проси объяснять, пока действительно не станет ясно.</div>
+    <div class="phrase"><strong>«Я не всё рассказал(а), вот ещё…»</strong> – доскажи, что вспомнилось. Разбор пересоберётся под новое.</div>
+    <div class="phrase"><strong>«Сомневаюсь, что ИИ справится с …»</strong> – назови задачу. Пусть покажет на примере, как именно это будет выглядеть.</div>
+    <div class="phrase"><strong>«Составь план первой недели по дням»</strong> – если хочешь совсем конкретики: что и в какой день пробуешь.</div>
+    <div class="note"><div class="label">Честно</div>Этот разбор покажет тебе путь – но пройти его он за тебя не сможет. Если захочется идти по шагам и с поддержкой, а не методом проб – это курс «Нейро-архитектор»: ИИ для жизни и дела, от первого промпта до автономного помощника. Детали у команды FitStars.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><p>Практикум по ИИ «Как делать своё дело легко и в удовольствие» · FitStars · Подарок участникам</p></div>
+</footer>
+
+<script>
+document.getElementById('copyBtn').addEventListener('click',function(){
+  var t=document.getElementById('prompt').innerText;
+  var b=this;
+  function ok(){b.textContent='Скопировано ✓';setTimeout(function(){b.textContent='Скопировать промпт'},2200)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fallback()})}else{fallback()}
+  function fallback(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(ta);ok()}
+});
+</script>
+</body>
+</html>
