@@ -6,7 +6,7 @@
 <title>10 готовых стилей · Усилитель практикума</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@700&family=IBM+Plex+Mono:wght@400;600&family=JetBrains+Mono:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Fraunces:wght@600;700&family=Golos+Text:wght@400;600;700&family=Onest:wght@400;600;700&family=Philosopher:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;600;700&family=Unbounded:wght@700;800&family=Manrope:wght@400;600;700;800&family=Cormorant+Garamond:wght@600;700&family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:wght@700&family=Fraunces:wght@600;700&family=Golos+Text:wght@400;600;700&family=Onest:wght@400;600;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --magenta:#E6198C; --magenta-d:#C0116E; --ink:#211829; --dark:#1B1420;
@@ -75,7 +75,15 @@
   .steps li{list-style:none;position:relative;padding-left:36px;margin-bottom:13px;color:#4a3d48}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin-top:18px}
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:50px 26px 24px;margin-top:18px}
+  .promptbox::before{content:"ПРОМПТ · КОПИРУЕТСЯ ЦЕЛИКОМ";position:absolute;top:18px;left:26px;font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--magenta)}
+  .copyicon{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;padding:0}
+  .copyicon:hover{border-color:#F1D9EC;box-shadow:0 8px 20px -14px rgba(120,20,90,.5);transform:translateY(-1px)}
+  .copyicon svg{width:19px;height:19px;stroke:var(--magenta);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .copyicon.done{background:#EAF7EE;border-color:#CDEBD6}
+  .copyicon.done svg{stroke:#1FA24E}
+  .subblock{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+  .subblock .sublabel{font-weight:700;font-size:17.5px;margin-bottom:12px}
   .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15.5px;line-height:1.65;color:#33283b}
   .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
   .hint{font-size:13px;color:#9a8d98;margin-top:10px}
@@ -160,24 +168,26 @@
 
 
 <style>
-  .kit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px;scroll-margin-top:80px}
-  .kit-top{padding:22px 24px 0}
-  .kit-name{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
-  .kit-name .en{font-family:'Unbounded',sans-serif;font-weight:700;font-size:19px}
-  .kit-name .ru{font-size:15px;color:var(--muted)}
-  .kit-simple{margin-top:10px;color:#4a3d48;font-size:16px}
-  .kit-use{margin-top:8px;font-size:15px;color:var(--muted)}
-  .pal{display:flex;gap:6px;margin:14px 0 0}
-  .pal i{width:34px;height:34px;border-radius:9px;border:1px solid rgba(0,0,0,.08);display:block}
-  .kit-fonts{font-size:13px;color:#9a8d98;margin-top:10px}
-  .kit-prev{margin-top:18px;padding:24px;border-top:1px solid var(--line);background:var(--pbg)}
-  .kit-prev .doc{max-width:520px}
-  .kit-prev .pk{font-family:var(--ptf);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--pacc)}
-  .kit-prev .ph{font-family:var(--phf);font-weight:700;font-size:32px;line-height:1.1;color:var(--pink);margin:10px 0 12px}
-  .kit-prev .pt{font-family:var(--ptf);font-weight:400;font-size:15px;line-height:1.6;color:var(--pink);opacity:.88}
-  .kit-prev .pl{height:1px;background:var(--pacc);opacity:.35;margin:16px 0}
-  .kit-prev .pb{display:inline-block;margin-top:14px;font-family:var(--ptf);font-weight:700;font-size:14px;color:var(--pbtxt);background:var(--pacc);padding:11px 20px;border-radius:var(--prad)}
-  .kit-bot{padding:18px 24px 22px}
+  .kit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px;scroll-margin-top:80px}
+  .kit-top{padding:26px 28px 0}
+  .kit-name{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+  .kit-name .en{font-family:'Unbounded',sans-serif;font-weight:700;font-size:20px}
+  .kit-name .ru{font-size:14px;color:var(--muted);text-transform:lowercase}
+  .kit-simple{margin-top:12px;color:#4a3d48;font-size:16.5px}
+  .kit-use{margin-top:10px;font-size:15px;color:var(--muted)}
+  .pal{display:flex;gap:7px;margin:18px 0 0}
+  .pal i{width:32px;height:32px;border-radius:9px;border:1px solid rgba(0,0,0,.1);display:block}
+  .kit-fonts{font-size:13.5px;color:#9a8d98;margin-top:12px}
+  .kit-prev{margin-top:22px;padding:30px 28px;border-top:1px solid var(--line);background:var(--pbg)}
+  .kit-prev .doc{max-width:560px}
+  .kit-prev .pk{font-family:var(--ptf);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--pacc)}
+  .kit-prev .ph{font-family:var(--phf);font-weight:700;font-size:31px;line-height:1.14;color:var(--pink);margin:12px 0 14px}
+  .kit-prev .pt{font-family:var(--ptf);font-weight:400;font-size:15.5px;line-height:1.65;color:var(--pink)}
+  .kit-prev .pcard{background:var(--pcard);border:1px solid var(--pline);border-radius:var(--prad);padding:18px 20px;margin-top:18px}
+  .kit-prev .pcard b{font-family:var(--ptf);font-weight:600;color:var(--pink);font-size:15.5px}
+  .kit-prev .pcard span{display:block;font-family:var(--ptf);font-size:14.5px;color:var(--pink);opacity:.75;margin-top:6px}
+  .kit-prev .pb{display:inline-block;margin-top:20px;font-family:var(--ptf);font-weight:700;font-size:14.5px;color:var(--pbtxt);background:var(--pacc);padding:12px 22px;border-radius:var(--prad)}
+  .kit-bot{padding:22px 28px 26px}
 </style>
 <header class="hero">
   <div class="wrap">
@@ -191,10 +201,29 @@
   <div class="wrap">
     <div class="kick">Зачем это сейчас</div>
     <h2>«Сделай красиво» – не задача</h2>
-    <p>Если попросить нейросеть оформить документ «красиво и современно», она честно постарается – и выдаст случайные цвета, 4 шрифта и градиент на пол-экрана. Обижаться не на что: «красиво» ничего не значит, пока не сказано, что именно красиво. Дизайнеры, кстати, работают наоборот – сначала выбирают систему, а потом всё делают внутри неё, и им от этого только легче.</p>
-    <p>Стиль и есть такая система, свёрнутая в текст: палитра, шрифты, форма, правила. Тебе не нужно объяснять свой вкус словами и мучительно подбирать оттенки – ты просто отдаёшь готовые правила. А если брать один и тот же стиль во всех материалах, они довольно быстро начинают выглядеть как одна семья, и это замечают даже те, кто в дизайне ничего не понимает.</p>
+    <p>Если попросить нейросеть оформить документ «красиво и современно», она честно постарается – и выдаст случайные цвета, 4 шрифта и градиент на пол-экрана. <b>Обижаться не на что: «красиво» ничего не значит, пока не сказано, что именно красиво.</b> Дизайнеры, кстати, работают наоборот – сначала выбирают систему, а потом всё делают внутри неё, и им от этого только легче.</p>
+    <p><b>Стиль и есть такая система, свёрнутая в текст:</b> палитра, шрифты, форма, правила. Тебе не нужно объяснять свой вкус словами и мучительно подбирать оттенки – ты просто отдаёшь готовые правила. А если брать один и тот же стиль во всех материалах, они довольно быстро начинают выглядеть как одна семья, и это замечают даже те, кто в дизайне ничего не понимает.</p>
     <div class="soft" style="margin-top:18px">
       <p><b>Только одна просьба:</b> один документ – один стиль. Не смешивай два и не добавляй «ещё чуть-чуть своих любимых цветов» – именно так и получается тот самый самодельный вид, от которого мы уходим. Захотелось другого характера – спокойно бери другой стиль целиком, их тут 10.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick">Что этим вообще можно оформить</div>
+    <h2>Почти всё, что ты и так делаешь</h2>
+    <p>Стиль – это не только про «красивый гайд». В нём собирается любой материал, который ты отдаёшь людям или используешь сама. Вот что участники оформляют чаще всего:</p>
+    <div class="grid2">
+      <div class="card"><h3>Чек-лист или памятка</h3><p style="margin-top:8px;color:var(--muted)">То, что человек открывает и сразу делает. Самый быстрый материал: собирается за вечер.</p></div>
+      <div class="card"><h3>Конспект лекции или книги</h3><p style="margin-top:8px;color:var(--muted)">Особенно если делаешь их регулярно – в одном стиле они складываются в личную библиотеку.</p></div>
+      <div class="card"><h3>Трекер или дневник</h3><p style="margin-top:8px;color:var(--muted)">Привычки, тренировки, питание, продажи. Заполняется на телефоне или печатается.</p></div>
+      <div class="card"><h3>Карусель для поста</h3><p style="margin-top:8px;color:var(--muted)">Несколько экранов с одной мыслью на каждом – в едином оформлении, без дизайнера.</p></div>
+      <div class="card"><h3>Программа или расписание</h3><p style="margin-top:8px;color:var(--muted)">Что и в каком порядке, с датами. Клиенту сразу видно, за что он платит.</p></div>
+      <div class="card"><h3>Коммерческое предложение</h3><p style="margin-top:8px;color:var(--muted)">Один файл вместо длинного сообщения в мессенджере. Работает заметно лучше.</p></div>
+    </div>
+    <div class="soft" style="margin-top:24px">
+      <p><b>Правило простое:</b> всё, что ты сейчас отправляешь простым текстом в переписке, можно отдать файлом в своём стиле. Времени уходит столько же, а выглядит совсем иначе.</p>
     </div>
   </div>
 </section>
@@ -207,7 +236,7 @@
       <p class="p-out" style="margin-top:8px">Ничего нового писать не надо. Берём то, что у тебя уже есть – чек-лист, гайд, программу, конспект, – и превращаем в документ, который не стыдно отправить клиенту.</p>
 
       <ol class="steps">
-        <li>Пролистай 10 стилей ниже и посмотри превью. Не выбирается – бери тот, который просто нравится: это нормальная рабочая гипотеза, а не легкомыслие.</li>
+        <li><b>Пролистай 10 стилей ниже и посмотри превью.</b> Не выбирается – бери тот, который просто нравится: это нормальная рабочая гипотеза, а не легкомыслие.</li>
         <li>Нажми «Копировать стиль» – описание стиля попадёт в буфер обмена.</li>
         <li>Открой чат, вставь промпт-обёртку, а в неё – стиль и свой текст.</li>
         <li>Полученный файл сохрани и открой – как именно, в блоке ниже.</li>
@@ -223,7 +252,7 @@
 
 МОЙ МАТЕРИАЛ:
 """
-<span class="tok">[ВСТАВЬ ТЕКСТ: ГАЙД, ЧЕК-ЛИСТ, ПРОГРАММУ, КОНСПЕКТ]</span>
+<span class="tok">[ВСТАВЬ СВОЙ ТЕКСТ: ЧЕК-ЛИСТ, КОНСПЕКТ, ТРЕКЕР, ПРОГРАММУ, ТЕКСТ КАРУСЕЛИ, КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ]</span>
 """
 
 Собери один файл HTML: всё оформление внутри файла, шрифты подключи ссылкой с Google Fonts, никаких внешних картинок и библиотек.
@@ -274,416 +303,514 @@
     <h2>10 стилей</h2>
     <p>Под каждым – превью: так будут выглядеть заголовок, текст и кнопка. Кнопка копирует полное описание стиля, его и вставляешь в промпт.</p>
     <div style="margin-top:22px">
-    <div class="kit" id="kit1">
+    <div class="kit" id="teplyy">
       <div class="kit-top">
-        <div class="kit-name"><span class="en">Editorial Serif</span><span class="ru">Редакционный журнальный</span></div>
-        <p class="kit-simple">Представь обложку серьёзного журнала – много воздуха, крупный заголовок с классическими засечками, мелкий текст рядом, приглушённые тёплые цвета.</p>
-        <p class="kit-use"><b>Для кого:</b> лонгриды, авторские колонки, премиальные отчёты, культурные проекты.</p>
-        <div class="pal"><i style="background:#f3efe8"></i><i style="background:#1a1a1a"></i><i style="background:#8b6d4a"></i><i style="background:#555555"></i><i style="background:#c8b89a"></i></div>
-        <p class="kit-fonts">Заголовки Playfair Display · текст Inter</p>
+        <div class="kit-name"><span class="en">Тёплый минимализм</span><span class="ru">светлый · бумажный</span></div>
+        <p class="kit-simple">Представь хорошую бумажную книгу: кремовый фон, спокойные засечки в заголовке, много воздуха и ничего лишнего.</p>
+        <p class="kit-use"><b>Для чего:</b> гайды, методички, длинные тексты, всё, что читают вдумчиво.</p>
+        <div class="pal"><i style="background:#F7F3EC"></i><i style="background:#FFFFFF"></i><i style="background:#2B2B28"></i><i style="background:#A8632B"></i><i style="background:#E2DACB"></i></div>
+        <p class="kit-fonts">Заголовки Lora · текст Inter</p>
       </div>
-      <div class="kit-prev" style="--pbg:#f3efe8;--pink:#1a1a1a;--pacc:#8b6d4a;--prad:10px;--phf:'Playfair Display',serif;--ptf:'Inter',sans-serif;--pbtxt:#ffffff">
+      <div class="kit-prev" style="--pbg:#F7F3EC;--pcard:#FFFFFF;--pink:#2B2B28;--pacc:#A8632B;--pline:#E2DACB;--prad:14px;--phf:'Lora',serif;--ptf:'Inter',sans-serif;--pbtxt:#FFFFFF">
         <div class="doc">
           <div class="pk">Раздел документа</div>
           <div class="ph">Так выглядит заголовок</div>
           <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
           <span class="pb">Кнопка или ссылка</span>
         </div>
       </div>
       <div class="kit-bot">
         <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Editorial Serif» (редакционный журнальный):
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Тёплый минимализм» (светлый · бумажный):
 
 ПАЛИТРА:
-- Фон #f3efe8 (кремовый беж)
-- Текст #1a1a1a
-- Акцент #8b6d4a (медь)
-- Вторичный #555555
+- Фон страницы #F7F3EC
+- Карточки и плашки #FFFFFF
+- Текст и заголовки #2B2B28
+- Акцент: кнопки, метки, выделения #A8632B
+- Линии и рамки #E2DACB
+- Текст на кнопке #FFFFFF
 
-ТИПОГРАФИКА (Google Fonts, кириллица):
-- Заголовки: Playfair Display 900
-- Курсив – для смысловых акцентов
-- Текст: Inter 300–400
-- Метки: Inter 10px UPPERCASE letter-spacing 0.3em
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Lora, вес 700
+- Текст: Inter, веса 400 и 600
+
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Lora 700, от 28 до 44 пикселей
+- Р2 подзаголовок: Inter 600, 20 пикселей
+- Р3 текст: Inter 400, 17 пикселей
+- Р4 метка над блоком: Inter 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #A8632B
+
+ФОРМА:
+- Скругление карточек 14px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
 
 ПРАВИЛА:
-- Много воздуха
-- Тонкие линии 1px как разделители
-- Крупные заголовки 48–96px
-- Без теней, всё плоское
-
-Тон: интеллектуальный, медленный, премиальный.</pre></div>
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
       </div>
     </div>
-    <div class="kit" id="kit2">
+    <div class="kit" id="swiss">
       <div class="kit-top">
-        <div class="kit-name"><span class="en">Swiss Minimal</span><span class="ru">Швейцарский минимализм</span></div>
-        <p class="kit-simple">Представь хороший корпоративный сайт: белый фон, чёрный текст, всё выровнено по строгой сетке, одна красная кнопка. Никаких закруглений, только прямые линии и порядок.</p>
-        <p class="kit-use"><b>Для кого:</b> корпоративные сайты, архитектурные бюро, дизайн-студии, B2B.</p>
-        <div class="pal"><i style="background:#ffffff"></i><i style="background:#000000"></i><i style="background:#ff3300"></i><i style="background:#555555"></i><i style="background:#e5e5e5"></i></div>
+        <div class="kit-name"><span class="en">Швейцарский</span><span class="ru">светлый · строгий</span></div>
+        <p class="kit-simple">Белый фон, чёрный текст, одна красная кнопка, всё выровнено по сетке. Никаких закруглений – только порядок.</p>
+        <p class="kit-use"><b>Для чего:</b> деловые документы, отчёты, коммерческие предложения.</p>
+        <div class="pal"><i style="background:#FFFFFF"></i><i style="background:#F6F6F6"></i><i style="background:#111111"></i><i style="background:#D62828"></i><i style="background:#DDDDDD"></i></div>
         <p class="kit-fonts">Заголовки Inter · текст Inter</p>
       </div>
-      <div class="kit-prev" style="--pbg:#ffffff;--pink:#000000;--pacc:#ff3300;--prad:0px;--phf:'Inter',sans-serif;--ptf:'Inter',sans-serif;--pbtxt:#ffffff">
+      <div class="kit-prev" style="--pbg:#FFFFFF;--pcard:#F6F6F6;--pink:#111111;--pacc:#D62828;--pline:#DDDDDD;--prad:0px;--phf:'Inter',sans-serif;--ptf:'Inter',sans-serif;--pbtxt:#FFFFFF">
         <div class="doc">
           <div class="pk">Раздел документа</div>
           <div class="ph">Так выглядит заголовок</div>
           <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
           <span class="pb">Кнопка или ссылка</span>
         </div>
       </div>
       <div class="kit-bot">
         <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Swiss Minimal»:
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Швейцарский» (светлый · строгий):
 
 ПАЛИТРА:
-- Фон #ffffff
-- Текст #000000
-- Акцент #ff3300 (один на экран)
-- Разделители #e5e5e5
+- Фон страницы #FFFFFF
+- Карточки и плашки #F6F6F6
+- Текст и заголовки #111111
+- Акцент: кнопки, метки, выделения #D62828
+- Линии и рамки #DDDDDD
+- Текст на кнопке #FFFFFF
 
-ТИПОГРАФИКА:
-- Всё Inter
-- Заголовки 700 tracking -0.03em
-- Метки 500 UPPERCASE letter-spacing 0.15em
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Inter, вес 700
+- Текст: Inter, веса 400 и 600
+
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Inter 700, от 28 до 44 пикселей
+- Р2 подзаголовок: Inter 600, 20 пикселей
+- Р3 текст: Inter 400, 17 пикселей
+- Р4 метка над блоком: Inter 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #D62828
+
+ФОРМА:
+- Скругление карточек 0px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
 
 ПРАВИЛА:
-- Жёсткая сетка 12 колонок
-- Чёрные линии 1–2px
-- Без скруглений, градиентов, теней
-- Один красный акцент
-
-Тон: рациональный, точный.</pre></div>
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
       </div>
     </div>
-    <div class="kit" id="kit3">
+    <div class="kit" id="nejro">
       <div class="kit-top">
-        <div class="kit-name"><span class="en">Neo-Brutalism</span><span class="ru">Нео-брутализм</span></div>
-        <p class="kit-simple">Представь дерзкий стикер: цветной блок с толстой чёрной обводкой, резкая тень наискосок, иногда блок слегка наклонён. Громко, по-молодёжному.</p>
-        <p class="kit-use"><b>Для кого:</b> стартапы, digital-продукты, креативные агентства, SaaS, независимые медиа.</p>
-        <div class="pal"><i style="background:#faf8f2"></i><i style="background:#000000"></i><i style="background:#ffeb3b"></i><i style="background:#ff006e"></i><i style="background:#00d4aa"></i></div>
+        <div class="kit-name"><span class="en">Нейро-архитектор</span><span class="ru">светлый · фирменный стиль курса</span></div>
+        <p class="kit-simple">Наш стиль: тёплая розовая магента, мягкий сиреневый, крупные геометричные заголовки и много воздуха.</p>
+        <p class="kit-use"><b>Для чего:</b> материалы курса и всё, что хочется показать как часть общей истории.</p>
+        <div class="pal"><i style="background:#FBF4F8"></i><i style="background:#FFFFFF"></i><i style="background:#211829"></i><i style="background:#E6198C"></i><i style="background:#ECE1EC"></i></div>
         <p class="kit-fonts">Заголовки Unbounded · текст Manrope</p>
       </div>
-      <div class="kit-prev" style="--pbg:#faf8f2;--pink:#000000;--pacc:#ffeb3b;--prad:0px;--phf:'Unbounded',sans-serif;--ptf:'Manrope',sans-serif;--pbtxt:#111111">
+      <div class="kit-prev" style="--pbg:#FBF4F8;--pcard:#FFFFFF;--pink:#211829;--pacc:#E6198C;--pline:#ECE1EC;--prad:22px;--phf:'Unbounded',sans-serif;--ptf:'Manrope',sans-serif;--pbtxt:#FFFFFF">
         <div class="doc">
           <div class="pk">Раздел документа</div>
           <div class="ph">Так выглядит заголовок</div>
           <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
           <span class="pb">Кнопка или ссылка</span>
         </div>
       </div>
       <div class="kit-bot">
         <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Neo-Brutalism»:
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Нейро-архитектор» (светлый · фирменный стиль курса):
 
 ПАЛИТРА:
-- Фон #faf8f2
-- Основа #000000
-- Жёлтый #ffeb3b, Розовый #ff006e, Бирюзовый #00d4aa
+- Фон страницы #FBF4F8
+- Карточки и плашки #FFFFFF
+- Текст и заголовки #211829
+- Акцент: кнопки, метки, выделения #E6198C
+- Линии и рамки #ECE1EC
+- Текст на кнопке #FFFFFF
 
-ТИПОГРАФИКА:
-- Заголовки: Unbounded 800 UPPERCASE
-- Текст: Manrope 500
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Unbounded, вес 700
+- Текст: Manrope, веса 400 и 600
+
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Unbounded 700, от 28 до 44 пикселей
+- Р2 подзаголовок: Manrope 600, 20 пикселей
+- Р3 текст: Manrope 400, 17 пикселей
+- Р4 метка над блоком: Manrope 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #E6198C
+
+ФОРМА:
+- Скругление карточек 22px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
 
 ПРАВИЛА:
-- Чёрная обводка 3–4px на блоках
-- Офсетная тень 8px 8px 0 #000 без размытия
-- Блоки слегка наклонены (-1 до 2 градусов)
-- Плоские цветные прямоугольники без скруглений
-
-Тон: смелый, молодой.</pre></div>
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
       </div>
     </div>
-    <div class="kit" id="kit4">
+    <div class="kit" id="lyuks">
       <div class="kit-top">
-        <div class="kit-name"><span class="en">Essence Clean</span><span class="ru">Чистый светлый с фуксией</span></div>
-        <p class="kit-simple">Представь современный лендинг IT-продукта: почти белый фон с едва заметным розовым свечением по краям, крупный чёрный заголовок с курсивной фуксиевой фразой-акцентом, чёрная овальная кнопка.</p>
-        <p class="kit-use"><b>Для кого:</b> AI-продукты, онлайн-школы, сервисные стартапы, подписочные продукты, образовательные платформы.</p>
-        <div class="pal"><i style="background:#fafafa"></i><i style="background:#1a1628"></i><i style="background:#d93e94"></i><i style="background:#4a4457"></i><i style="background:#f5e8f1"></i></div>
-        <p class="kit-fonts">Заголовки Manrope · текст Manrope</p>
+        <div class="kit-name"><span class="en">Тёмный люкс</span><span class="ru">тёмный · дорогой</span></div>
+        <p class="kit-simple">Глубокий графит, золотые тонкие акценты, изящные заголовки с засечками. Выглядит недёшево.</p>
+        <p class="kit-use"><b>Для чего:</b> премиальные услуги, наставничество, консультации с высоким чеком.</p>
+        <div class="pal"><i style="background:#15161A"></i><i style="background:#1E2026"></i><i style="background:#F2EFE9"></i><i style="background:#D9B26A"></i><i style="background:#2E313A"></i></div>
+        <p class="kit-fonts">Заголовки Cormorant Garamond · текст Manrope</p>
       </div>
-      <div class="kit-prev" style="--pbg:#fafafa;--pink:#1a1628;--pacc:#d93e94;--prad:10px;--phf:'Manrope',sans-serif;--ptf:'Manrope',sans-serif;--pbtxt:#ffffff">
+      <div class="kit-prev" style="--pbg:#15161A;--pcard:#1E2026;--pink:#F2EFE9;--pacc:#D9B26A;--pline:#2E313A;--prad:10px;--phf:'Cormorant Garamond',serif;--ptf:'Manrope',sans-serif;--pbtxt:#111111">
         <div class="doc">
           <div class="pk">Раздел документа</div>
           <div class="ph">Так выглядит заголовок</div>
           <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
           <span class="pb">Кнопка или ссылка</span>
         </div>
       </div>
       <div class="kit-bot">
         <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Essence Clean» (чистый светлый с фуксией):
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Тёмный люкс» (тёмный · дорогой):
 
 ПАЛИТРА:
-- Фон #fafafa (почти белый)
-- Едва заметное розовое свечение по углам: radial-gradient rgba(217, 62, 148, 0.08)
-- Текст #1a1628 (тёмный индиго-сливовый)
-- Акцент #d93e94 (фуксия) – только для ключевых фраз курсивом
-- Вторичный #4a4457
-- Плашки #f5e8f1
+- Фон страницы #15161A
+- Карточки и плашки #1E2026
+- Текст и заголовки #F2EFE9
+- Акцент: кнопки, метки, выделения #D9B26A
+- Линии и рамки #2E313A
+- Текст на кнопке #111111
 
-ТИПОГРАФИКА:
-- Manrope везде
-- Заголовки 800, tracking -0.03em
-- Ключевая фраза курсивом 500 цветом фуксии (отдельной строкой)
-- Метки 700 UPPERCASE letter-spacing 0.25em с кружком-маркером
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Cormorant Garamond, вес 700
+- Текст: Manrope, веса 400 и 600
 
-ПРАВИЛА:
-- Кнопки pill (100px), чёрные #1a1628
-- Стрелки → в кнопках
-- Щедрые отступы 40–80px
-- Минимум декора, без теней
-- Курсив магента – главный приём (1–2 слова на экран)
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Cormorant Garamond 700, от 28 до 44 пикселей
+- Р2 подзаголовок: Manrope 600, 20 пикселей
+- Р3 текст: Manrope 400, 17 пикселей
+- Р4 метка над блоком: Manrope 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #D9B26A
 
-Тон: чистый, современный, тёплый, доверительный.</pre></div>
-      </div>
-    </div>
-    <div class="kit" id="kit5">
-      <div class="kit-top">
-        <div class="kit-name"><span class="en">Dark Luxury</span><span class="ru">Тёмный люкс</span></div>
-        <p class="kit-simple">Представь сайт дорогого отеля или ювелирного бренда: глубокий тёмный фон с тёплым оттенком, золотые тонкие линии, засечки тонкого начертания. Много пустоты.</p>
-        <p class="kit-use"><b>Для кого:</b> премиум-бренды, ювелирные, винные проекты, отели, консалтинг.</p>
-        <div class="pal"><i style="background:#0f0a05"></i><i style="background:#f0e6d2"></i><i style="background:#c9a55c"></i><i style="background:#a89c80"></i><i style="background:#1a1410"></i></div>
-        <p class="kit-fonts">Заголовки Cormorant Garamond · текст Inter</p>
-      </div>
-      <div class="kit-prev" style="--pbg:#0f0a05;--pink:#f0e6d2;--pacc:#c9a55c;--prad:10px;--phf:'Cormorant Garamond',serif;--ptf:'Inter',sans-serif;--pbtxt:#111111">
-        <div class="doc">
-          <div class="pk">Раздел документа</div>
-          <div class="ph">Так выглядит заголовок</div>
-          <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
-          <span class="pb">Кнопка или ссылка</span>
-        </div>
-      </div>
-      <div class="kit-bot">
-        <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Dark Luxury»:
-
-ПАЛИТРА:
-- Фон #0f0a05 (тёплый почти-чёрный)
-- Светлый текст #f0e6d2 (кремовый)
-- Золотой #c9a55c
-- Вторичный #a89c80
-
-ТИПОГРАФИКА:
-- Заголовки: Cormorant Garamond 300 (тонкий!) + курсив
-- Текст: Inter 300
-- Метки: Inter UPPERCASE letter-spacing 0.4em золотым
+ФОРМА:
+- Скругление карточек 10px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
 
 ПРАВИЛА:
-- Очень много воздуха
-- Тонкие золотые линии 1px
-- Радиальный градиент золотого свечения
-- Засечки тонкие (300)
-
-Тон: сдержанный, дорогой.</pre></div>
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
       </div>
     </div>
-    <div class="kit" id="kit6">
+    <div class="kit" id="tech">
       <div class="kit-top">
-        <div class="kit-name"><span class="en">Tech Monospace</span><span class="ru">Технологический моно</span></div>
-        <p class="kit-simple">Представь сайт разработческого инструмента или AI-стартапа: тёмный терминал-фон, шрифт как в коде, зелёные и фиолетовые акценты как подсветка синтаксиса.</p>
-        <p class="kit-use"><b>Для кого:</b> devtools, AI-стартапы, крипто-проекты, документация, B2B для разработчиков.</p>
-        <div class="pal"><i style="background:#0d0d0f"></i><i style="background:#e4e4e7"></i><i style="background:#4ade80"></i><i style="background:#c084fc"></i><i style="background:#52525b"></i></div>
+        <div class="kit-name"><span class="en">Хай-тек</span><span class="ru">тёмный · технологичный</span></div>
+        <p class="kit-simple">Тёмный экран, мятное свечение, моноширинный шрифт как в редакторе кода. Ощущение приборной панели.</p>
+        <p class="kit-use"><b>Для чего:</b> всё про ИИ, автоматизацию, инструменты и цифры.</p>
+        <div class="pal"><i style="background:#0E1116"></i><i style="background:#171B22"></i><i style="background:#E6EAF2"></i><i style="background:#4FE3C1"></i><i style="background:#262C36"></i></div>
         <p class="kit-fonts">Заголовки Space Grotesk · текст JetBrains Mono</p>
       </div>
-      <div class="kit-prev" style="--pbg:#0d0d0f;--pink:#e4e4e7;--pacc:#4ade80;--prad:10px;--phf:'Space Grotesk','Manrope',sans-serif;--ptf:'JetBrains Mono',monospace;--pbtxt:#111111">
+      <div class="kit-prev" style="--pbg:#0E1116;--pcard:#171B22;--pink:#E6EAF2;--pacc:#4FE3C1;--pline:#262C36;--prad:12px;--phf:'Space Grotesk','Manrope',sans-serif;--ptf:'JetBrains Mono',monospace;--pbtxt:#111111">
         <div class="doc">
           <div class="pk">Раздел документа</div>
           <div class="ph">Так выглядит заголовок</div>
           <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
           <span class="pb">Кнопка или ссылка</span>
         </div>
       </div>
       <div class="kit-bot">
         <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Tech Monospace»:
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Хай-тек» (тёмный · технологичный):
 
 ПАЛИТРА:
-- Фон #0d0d0f
-- Текст #e4e4e7
-- Зелёный #4ade80 (keywords)
-- Фиолетовый #c084fc (строки)
-- Серый #52525b (комментарии)
+- Фон страницы #0E1116
+- Карточки и плашки #171B22
+- Текст и заголовки #E6EAF2
+- Акцент: кнопки, метки, выделения #4FE3C1
+- Линии и рамки #262C36
+- Текст на кнопке #111111
 
-ТИПОГРАФИКА:
-- Заголовки: Space Grotesk 500
-- Код и UI: JetBrains Mono 400
-- Метки: JetBrains Mono UPPERCASE 11–13px
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Space Grotesk, вес 700
+- Текст: JetBrains Mono, веса 400 и 600
+
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Space Grotesk 700, от 28 до 44 пикселей
+- Р2 подзаголовок: JetBrains Mono 600, 20 пикселей
+- Р3 текст: JetBrains Mono 400, 17 пикселей
+- Р4 метка над блоком: JetBrains Mono 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #4FE3C1
+
+ФОРМА:
+- Скругление карточек 12px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
 
 ПРАВИЛА:
-- Терминальная эстетика
-- Подсветка «синтаксиса» в акцентах
-- Тонкие рамки 1px rgba(255,255,255,0.08)
-- Минимум скруглений (2–4px)
-
-Тон: компетентный, AI-индустрия.</pre></div>
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
       </div>
     </div>
-    <div class="kit" id="kit7">
+    <div class="kit" id="magazine">
       <div class="kit-top">
-        <div class="kit-name"><span class="en">Museum Editorial</span><span class="ru">Музейный редакционный</span></div>
-        <p class="kit-simple">Представь каталог музейной выставки: тёплый кремовый фон, огромные тонкие засечные заголовки с курсивом, моноширинные подписи, огромные пустые поля.</p>
-        <p class="kit-use"><b>Для кого:</b> культурные проекты, арт-галереи, книжные издания, портфолио, научные журналы.</p>
-        <div class="pal"><i style="background:#f5f1e8"></i><i style="background:#1f1a14"></i><i style="background:#8a7c60"></i><i style="background:#d4c9a8"></i><i style="background:#2a2218"></i></div>
-        <p class="kit-fonts">Заголовки Fraunces · текст IBM Plex Mono</p>
+        <div class="kit-name"><span class="en">Журнальный</span><span class="ru">светлый · редакционный</span></div>
+        <p class="kit-simple">Как разворот хорошего журнала: крупный заголовок с засечками, тонкие линейки, сдержанный синий акцент.</p>
+        <p class="kit-use"><b>Для чего:</b> экспертные разборы, исследования, авторские колонки.</p>
+        <div class="pal"><i style="background:#FFFDF9"></i><i style="background:#FFFFFF"></i><i style="background:#171717"></i><i style="background:#1F4E79"></i><i style="background:#E6E1D8"></i></div>
+        <p class="kit-fonts">Заголовки Playfair Display · текст Inter</p>
       </div>
-      <div class="kit-prev" style="--pbg:#f5f1e8;--pink:#1f1a14;--pacc:#8a7c60;--prad:10px;--phf:'Fraunces',serif;--ptf:'IBM Plex Mono',monospace;--pbtxt:#ffffff">
+      <div class="kit-prev" style="--pbg:#FFFDF9;--pcard:#FFFFFF;--pink:#171717;--pacc:#1F4E79;--pline:#E6E1D8;--prad:4px;--phf:'Playfair Display',serif;--ptf:'Inter',sans-serif;--pbtxt:#FFFFFF">
         <div class="doc">
           <div class="pk">Раздел документа</div>
           <div class="ph">Так выглядит заголовок</div>
           <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
           <span class="pb">Кнопка или ссылка</span>
         </div>
       </div>
       <div class="kit-bot">
         <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Museum Editorial»:
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Журнальный» (светлый · редакционный):
 
 ПАЛИТРА:
-- Фон #f5f1e8 (айвори)
-- Текст #1f1a14
-- Акцент #8a7c60 (бронза)
+- Фон страницы #FFFDF9
+- Карточки и плашки #FFFFFF
+- Текст и заголовки #171717
+- Акцент: кнопки, метки, выделения #1F4E79
+- Линии и рамки #E6E1D8
+- Текст на кнопке #FFFFFF
 
-ТИПОГРАФИКА:
-- Заголовки: Fraunces 300 (тонкий!) + курсив
-- Метки: IBM Plex Mono UPPERCASE 10px letter-spacing 0.15em
-- Текст: Fraunces 400
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Playfair Display, вес 700
+- Текст: Inter, веса 400 и 600
+
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Playfair Display 700, от 28 до 44 пикселей
+- Р2 подзаголовок: Inter 600, 20 пикселей
+- Р3 текст: Inter 400, 17 пикселей
+- Р4 метка над блоком: Inter 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #1F4E79
+
+ФОРМА:
+- Скругление карточек 4px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
 
 ПРАВИЛА:
-- Огромные поля (padding 40–80px)
-- Заголовки 48–72px тонкие
-- Тонкие бронзовые линии 1px
-- Асимметричная композиция
-
-Тон: куратор музея, медленный.</pre></div>
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
       </div>
     </div>
-    <div class="kit" id="kit8">
+    <div class="kit" id="organic">
       <div class="kit-top">
-        <div class="kit-name"><span class="en">Warm Organic</span><span class="ru">Тёплый органик</span></div>
-        <p class="kit-simple">Представь сайт мастерской керамики или натуральной косметики: тёплый песочный фон, охра и терракота, круглые мягкие формы, ощущение глины и ручной работы.</p>
-        <p class="kit-use"><b>Для кого:</b> wellness, крафт-бренды, натуральная косметика, рестораны, йога-студии.</p>
-        <div class="pal"><i style="background:#e8dcc4"></i><i style="background:#3a2e1f"></i><i style="background:#8b5e34"></i><i style="background:#c89968"></i><i style="background:#5a4a32"></i></div>
-        <p class="kit-fonts">Заголовки Philosopher · текст Golos Text</p>
+        <div class="kit-name"><span class="en">Природный</span><span class="ru">светлый · спокойный</span></div>
+        <p class="kit-simple">Песочный фон, глубокая зелень, мягкие округлые формы. Тихо, тепло, без глянца.</p>
+        <p class="kit-use"><b>Для чего:</b> здоровье, питание, телесные практики, всё про медленную жизнь.</p>
+        <div class="pal"><i style="background:#F4F1E8"></i><i style="background:#FFFFFF"></i><i style="background:#232A20"></i><i style="background:#3F6B4A"></i><i style="background:#DFD8C6"></i></div>
+        <p class="kit-fonts">Заголовки Fraunces · текст Golos Text</p>
       </div>
-      <div class="kit-prev" style="--pbg:#e8dcc4;--pink:#3a2e1f;--pacc:#8b5e34;--prad:10px;--phf:'Philosopher',serif;--ptf:'Golos Text',sans-serif;--pbtxt:#ffffff">
+      <div class="kit-prev" style="--pbg:#F4F1E8;--pcard:#FFFFFF;--pink:#232A20;--pacc:#3F6B4A;--pline:#DFD8C6;--prad:16px;--phf:'Fraunces',serif;--ptf:'Golos Text',sans-serif;--pbtxt:#FFFFFF">
         <div class="doc">
           <div class="pk">Раздел документа</div>
           <div class="ph">Так выглядит заголовок</div>
           <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
           <span class="pb">Кнопка или ссылка</span>
         </div>
       </div>
       <div class="kit-bot">
         <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Warm Organic»:
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Природный» (светлый · спокойный):
 
 ПАЛИТРА:
-- Фон #e8dcc4 (песочный)
-- Основа #3a2e1f (шоколад)
-- Терракота #8b5e34, Охра #c89968
+- Фон страницы #F4F1E8
+- Карточки и плашки #FFFFFF
+- Текст и заголовки #232A20
+- Акцент: кнопки, метки, выделения #3F6B4A
+- Линии и рамки #DFD8C6
+- Текст на кнопке #FFFFFF
 
-ТИПОГРАФИКА:
-- Заголовки: Philosopher 400–700
-- Текст: Golos Text 400–500 (кириллица)
-- Метки: Golos Text UPPERCASE
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Fraunces, вес 700
+- Текст: Golos Text, веса 400 и 600
 
-ПРАВИЛА:
-- Округлые органичные формы
-- Градиенты природных тонов
-- Мягкие inset-тени
-- Текстура бумаги/льна/глины
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Fraunces 700, от 28 до 44 пикселей
+- Р2 подзаголовок: Golos Text 600, 20 пикселей
+- Р3 текст: Golos Text 400, 17 пикселей
+- Р4 метка над блоком: Golos Text 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #3F6B4A
 
-Тон: осознанный, природный.</pre></div>
-      </div>
-    </div>
-    <div class="kit" id="kit9">
-      <div class="kit-top">
-        <div class="kit-name"><span class="en">Bold Colorblock</span><span class="ru">Смелые цветовые блоки</span></div>
-        <p class="kit-simple">Представь постер в стиле Баухауса: экран разделён на 2–3 больших цветных прямоугольника, в каждом – крупный заголовок. Ярко, графично.</p>
-        <p class="kit-use"><b>Для кого:</b> молодые медиа, фестивали, рекламные кампании, бренд-дизайн, постеры.</p>
-        <div class="pal"><i style="background:#ff6b35"></i><i style="background:#ffd23f"></i><i style="background:#004e98"></i><i style="background:#0a0a0a"></i><i style="background:#ffffff"></i></div>
-        <p class="kit-fonts">Заголовки Space Grotesk · текст Space Grotesk</p>
-      </div>
-      <div class="kit-prev" style="--pbg:#ff6b35;--pink:#ffd23f;--pacc:#004e98;--prad:0px;--phf:'Space Grotesk','Manrope',sans-serif;--ptf:'Space Grotesk','Manrope',sans-serif;--pbtxt:#ffffff">
-        <div class="doc">
-          <div class="pk">Раздел документа</div>
-          <div class="ph">Так выглядит заголовок</div>
-          <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
-          <span class="pb">Кнопка или ссылка</span>
-        </div>
-      </div>
-      <div class="kit-bot">
-        <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Bold Colorblock»:
-
-ПАЛИТРА:
-- Оранжевый #ff6b35
-- Жёлтый #ffd23f
-- Синий #004e98
-- Чёрный #0a0a0a, Белый #ffffff
-
-ТИПОГРАФИКА:
-- Всё Space Grotesk
-- Заголовки 700 tracking -0.03em
-- Метки 600 UPPERCASE letter-spacing 0.2em
+ФОРМА:
+- Скругление карточек 16px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
 
 ПРАВИЛА:
-- Страница = 2–4 цветных блока
-- Один контрастный цвет текста в блоке
-- Без градиентов, теней, скруглений
-- Композиция как постер
-
-Тон: энергичный, графичный.</pre></div>
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
       </div>
     </div>
-    <div class="kit" id="kit10">
+    <div class="kit" id="neutral">
       <div class="kit-top">
-        <div class="kit-name"><span class="en">Glass &amp; Light</span><span class="ru">Стекло и свет</span></div>
-        <p class="kit-simple">Представь новый интерфейс Apple: размытые голубо-розовые пятна на фоне, полупрозрачные стеклянные карточки, всё парящее.</p>
-        <p class="kit-use"><b>Для кого:</b> iOS/macOS-приложения, AI-продукты, образовательные, онбординги, wellness.</p>
-        <div class="pal"><i style="background:#a8d8ff"></i><i style="background:#ffc8dd"></i><i style="background:#f0f4ff"></i><i style="background:#1a1a2e"></i><i style="background:#4a4a6a"></i></div>
+        <div class="kit-name"><span class="en">Нейтральный</span><span class="ru">светлый · универсальный</span></div>
+        <p class="kit-simple">Спокойный серо-голубой, один шрифт на всё, максимум читаемости. Подходит подо что угодно.</p>
+        <p class="kit-use"><b>Для чего:</b> инструкции, чек-листы, рабочие документы, когда важна ясность.</p>
+        <div class="pal"><i style="background:#FFFFFF"></i><i style="background:#F3F6FA"></i><i style="background:#16202B"></i><i style="background:#2563C9"></i><i style="background:#DCE4EF"></i></div>
         <p class="kit-fonts">Заголовки Onest · текст Onest</p>
       </div>
-      <div class="kit-prev" style="--pbg:#a8d8ff;--pink:#ffc8dd;--pacc:#f0f4ff;--prad:10px;--phf:'Onest',sans-serif;--ptf:'Onest',sans-serif;--pbtxt:#111111">
+      <div class="kit-prev" style="--pbg:#FFFFFF;--pcard:#F3F6FA;--pink:#16202B;--pacc:#2563C9;--pline:#DCE4EF;--prad:10px;--phf:'Onest',sans-serif;--ptf:'Onest',sans-serif;--pbtxt:#FFFFFF">
         <div class="doc">
           <div class="pk">Раздел документа</div>
           <div class="ph">Так выглядит заголовок</div>
           <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
-          <div class="pl"></div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
           <span class="pb">Кнопка или ссылка</span>
         </div>
       </div>
       <div class="kit-bot">
         <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
-        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Glass &amp; Light»:
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Нейтральный» (светлый · универсальный):
 
 ПАЛИТРА:
-- Фон: градиенты #a8d8ff и #ffc8dd на базе #f0f4ff
-- Стекло: rgba(255,255,255,0.35) + backdrop-blur 20px
-- Текст #1a1a2e, вторичный #4a4a6a
+- Фон страницы #FFFFFF
+- Карточки и плашки #F3F6FA
+- Текст и заголовки #16202B
+- Акцент: кнопки, метки, выделения #2563C9
+- Линии и рамки #DCE4EF
+- Текст на кнопке #FFFFFF
 
-ТИПОГРАФИКА:
-- Onest везде (кириллица)
-- Заголовки 600 tracking -0.02em
-- Метки 500
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Onest, вес 700
+- Текст: Onest, веса 400 и 600
+
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Onest 700, от 28 до 44 пикселей
+- Р2 подзаголовок: Onest 600, 20 пикселей
+- Р3 текст: Onest 400, 17 пикселей
+- Р4 метка над блоком: Onest 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #2563C9
+
+ФОРМА:
+- Скругление карточек 10px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
 
 ПРАВИЛА:
-- Пастельные пятна на фоне
-- Полупрозрачные карточки + blur
-- Скругления 16–20px
-- Чипы и кнопки pill (100px)
-- Тени 0 8px 32px rgba(100,100,200,0.1)
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
+      </div>
+    </div>
+    <div class="kit" id="bold">
+      <div class="kit-top">
+        <div class="kit-name"><span class="en">Смелые блоки</span><span class="ru">светлый · громкий</span></div>
+        <p class="kit-simple">Чёрная типографика, жёлтые блоки, жёсткие рамки без скруглений. Заметно с первого взгляда.</p>
+        <p class="kit-use"><b>Для чего:</b> анонсы, продающие материалы, чек-листы, которые должны цеплять.</p>
+        <div class="pal"><i style="background:#FFFFFF"></i><i style="background:#FFF8D6"></i><i style="background:#101010"></i><i style="background:#111111"></i><i style="background:#101010"></i></div>
+        <p class="kit-fonts">Заголовки Unbounded · текст Manrope</p>
+      </div>
+      <div class="kit-prev" style="--pbg:#FFFFFF;--pcard:#FFF8D6;--pink:#101010;--pacc:#111111;--pline:#101010;--prad:0px;--phf:'Unbounded',sans-serif;--ptf:'Manrope',sans-serif;--pbtxt:#FFFFFF">
+        <div class="doc">
+          <div class="pk">Раздел документа</div>
+          <div class="ph">Так выглядит заголовок</div>
+          <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
+          <span class="pb">Кнопка или ссылка</span>
+        </div>
+      </div>
+      <div class="kit-bot">
+        <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Смелые блоки» (светлый · громкий):
 
-Тон: нежный, современный, премиальный.</pre></div>
+ПАЛИТРА:
+- Фон страницы #FFFFFF
+- Карточки и плашки #FFF8D6
+- Текст и заголовки #101010
+- Акцент: кнопки, метки, выделения #111111
+- Линии и рамки #101010
+- Текст на кнопке #FFFFFF
+
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Unbounded, вес 700
+- Текст: Manrope, веса 400 и 600
+
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Unbounded 700, от 28 до 44 пикселей
+- Р2 подзаголовок: Manrope 600, 20 пикселей
+- Р3 текст: Manrope 400, 17 пикселей
+- Р4 метка над блоком: Manrope 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #111111
+
+ФОРМА:
+- Скругление карточек 0px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
+
+ПРАВИЛА:
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
+      </div>
+    </div>
+    <div class="kit" id="pastel">
+      <div class="kit-top">
+        <div class="kit-name"><span class="en">Мягкая пастель</span><span class="ru">светлый · дружелюбный</span></div>
+        <p class="kit-simple">Светло-розовый фон, сиреневый акцент, округлые карточки. Ничего острого, всё как будто обнимает.</p>
+        <p class="kit-use"><b>Для чего:</b> забота о себе, психология, работа с женской аудиторией.</p>
+        <div class="pal"><i style="background:#FFF7FB"></i><i style="background:#FFFFFF"></i><i style="background:#3B2E3A"></i><i style="background:#8E44BC"></i><i style="background:#F3E1EC"></i></div>
+        <p class="kit-fonts">Заголовки Nunito · текст Nunito</p>
+      </div>
+      <div class="kit-prev" style="--pbg:#FFF7FB;--pcard:#FFFFFF;--pink:#3B2E3A;--pacc:#8E44BC;--pline:#F3E1EC;--prad:22px;--phf:'Nunito',sans-serif;--ptf:'Nunito',sans-serif;--pbtxt:#FFFFFF">
+        <div class="doc">
+          <div class="pk">Раздел документа</div>
+          <div class="ph">Так выглядит заголовок</div>
+          <div class="pt">А так – основной текст: пара строк, чтобы было видно шрифт, воздух и то, как это читается с экрана.</div>
+          <div class="pcard"><b>Так выглядит карточка или пункт списка</b><span>И пояснение к нему помельче</span></div>
+          <span class="pb">Кнопка или ссылка</span>
+        </div>
+      </div>
+      <div class="kit-bot">
+        <div class="btns"><button class="btn" data-copy>Копировать стиль</button></div>
+        <div class="promptbox" style="display:none"><pre>Сделай в стиле «Мягкая пастель» (светлый · дружелюбный):
+
+ПАЛИТРА:
+- Фон страницы #FFF7FB
+- Карточки и плашки #FFFFFF
+- Текст и заголовки #3B2E3A
+- Акцент: кнопки, метки, выделения #8E44BC
+- Линии и рамки #F3E1EC
+- Текст на кнопке #FFFFFF
+
+ТИПОГРАФИКА (Google Fonts, с кириллицей):
+- Заголовки: Nunito, вес 700
+- Текст: Nunito, веса 400 и 600
+
+РОВНО 4 РОЛИ ТЕКСТА, больше размеров и цветов не вводить:
+- Р1 заголовок: Nunito 700, от 28 до 44 пикселей
+- Р2 подзаголовок: Nunito 600, 20 пикселей
+- Р3 текст: Nunito 400, 17 пикселей
+- Р4 метка над блоком: Nunito 700, 12 пикселей ЗАГЛАВНЫМИ, разрядка 0.14em, цвет #8E44BC
+
+ФОРМА:
+- Скругление карточек 22px
+- Отступ внутри карточек 24 пикселя, между блоками 40 пикселей
+- Ширина текстовой колонки не больше 760 пикселей
+
+ПРАВИЛА:
+- Много воздуха, один акцентный цвет на экран
+- Выделять только жирностью и цветом акцента, размер при этом не менять
+- Курсива нет, тире везде короткое «–»
+- Иконки только если несут смысл, эмодзи вместо иконок не ставить</pre></div>
       </div>
     </div></div>
   </div>
@@ -694,27 +821,26 @@
     <article class="p" id="z2">
       <div class="thead"><span class="tnum">Задача 2</span><span class="tmin">20 минут</span></div>
       <h3>Набрать насмотренность и сохранить референсы</h3>
-      <p class="p-out" style="margin-top:8px">Готовые стили закрывают ближайшие задачи, и этого пока достаточно. А свой собственный начинается с простой вещи – с умения замечать, что тебе нравится и почему. Это тренируется быстрее, чем кажется.</p>
+      <p class="p-out" style="margin-top:8px">Готовые стили закрывают ближайшие задачи, и этого пока достаточно. А свой собственный начинается с простой вещи – <b>с умения замечать, что тебе нравится и почему</b>. Это тренируется быстрее, чем кажется.</p>
 
       <div class="tool"><b>Где смотреть:</b>
-        <a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a> – работы дизайнеров, удобно искать по словам вроде guide, ebook, landing ·
-        <a href="https://www.behance.net" target="_blank" rel="noopener">Behance</a> – проекты целиком, видно систему, а не одну картинку ·
-        <a href="https://ru.pinterest.com" target="_blank" rel="noopener">Pinterest</a> – самое простое начало, ищи «brand guidelines», «lookbook», «пример гайда» ·
-        <a href="https://www.awwwards.com" target="_blank" rel="noopener">Awwwards</a> – сильные сайты, хорошо для смелых решений ·
-        <a href="https://coolors.co" target="_blank" rel="noopener">Coolors</a> – подобрать палитру, если хочется поиграть с цветом.
+        <a href="https://ru.pinterest.com" target="_blank" rel="noopener">Pinterest</a> – самое простое начало: ищи «brand guidelines», «lookbook», «пример гайда», сохраняй в доску ·
+        <a href="https://styles.refero.design" target="_blank" rel="noopener">styles.refero.design</a> – готовые собранные стили с палитрами и шрифтами, можно прямо копировать ·
+        <a href="https://getdesign.md/" target="_blank" rel="noopener">getdesign.md</a> – подборка готовых дизайн-стилей, тоже удобно забирать целиком.
       </div>
 
       <ol class="steps">
         <li>Заведи доску в Pinterest или просто папку со скриншотами.</li>
         <li>Сохрани 5 работ, которые нравятся. Не думай пока, подходят ли они твоей теме, – сейчас важно только «нравится или нет», без обоснований.</li>
-        <li>К каждой допиши одну фразу: что именно цепляет. «Много воздуха», «крупный заголовок», «спокойные цвета», «жёсткие рамки».</li>
+        <li><b>К каждой допиши одну фразу: что именно цепляет.</b> «Много воздуха», «крупный заголовок», «спокойные цвета», «жёсткие рамки».</li>
         <li>Отдельно сохрани 2 работы, которые не нравятся, и тоже подпиши почему. Это работает не хуже.</li>
       </ol>
 
       <div class="res"><b>Что должно получиться:</b> папка из 7 картинок с короткими пометками. Дальше одно из двух, и оба варианта хорошие: либо ты узнаёшь свой вкус в одном из 10 стилей выше и спокойно им пользуешься, либо приносишь эту папку на курс, и мы собираем твой собственный стиль.</div>
 
-      <div class="soft" style="margin-top:18px">
-        <p><b>Почему свой стиль – не сегодня.</b> Собрать дизайн-код под свой бренд вполне реально, и мы обязательно сделаем это на курсе, в модуле 3: там и проверка контраста, и подбор шрифтов с кириллицей, и то, как удержать один стиль во всех материалах сразу. Но сегодня задача другая и, честно говоря, более полезная – начать наконец пользоваться готовым и накопить то, из чего потом соберётся своё.</p>
+      <div class="soft" style="margin-top:24px">
+        <p><b>А можно собрать свой – просто поговорив с нейросетью.</b> Не обязательно брать готовый: расскажи ей, какое настроение хочешь передать, какие цвета любишь, а какие видеть не можешь, что тебе нравится в чужом оформлении и что раздражает. Или просто приложи скриншот того, что понравилось, и попроси описать это как стиль – с палитрой, шрифтами и правилами. Дальше пользуйся этим описанием так же, как готовыми стилями выше.</p>
+        <p style="margin-top:14px">На курсе, в модуле 3, мы разберём это глубже: как проверить контраст, подобрать шрифты с кириллицей, собрать стиль под свой бренд и удержать его во всех материалах сразу. Но первый свой вариант можно сделать уже сегодня, просто разговором.</p>
       </div>
     </article>
   </div>
@@ -783,6 +909,25 @@
         window.open('https://chatgpt.com/', '_blank', 'noopener');
       });
     });
+  });
+
+  // иконка копирования в правом верхнем углу каждого промпта
+  var ICON = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg>';
+  var OKICON = '<svg viewBox="0 0 24 24"><path d="M4 12.5L9.5 18L20 6.5"/></svg>';
+  document.querySelectorAll('.promptbox').forEach(function(box){
+    var pre = box.querySelector('pre'); if (!pre) return;
+    var b = document.createElement('button');
+    b.className = 'copyicon'; b.type = 'button';
+    b.setAttribute('aria-label', 'Копировать промпт'); b.title = 'Копировать промпт';
+    b.innerHTML = ICON;
+    b.addEventListener('click', function(){
+      copy(pre.innerText).then(function(){
+        b.innerHTML = OKICON; b.classList.add('done');
+        say('Промпт скопирован. Вставь его в чат');
+        setTimeout(function(){ b.innerHTML = ICON; b.classList.remove('done'); }, 2400);
+      }).catch(function(){ say('Не вышло скопировать – выдели текст промпта вручную'); });
+    });
+    box.appendChild(b);
   });
 })();
 </script>
