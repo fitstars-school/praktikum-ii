@@ -60,6 +60,22 @@ p{text-wrap:pretty}
 .phrase{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius);padding:18px 24px;margin-top:12px;box-shadow:var(--shadow)}
 .phrase strong{color:var(--magenta)}
 
+/* выбор сервиса */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 22px}
+.chip{border:1px solid var(--line);background:#FFFFFF;border-radius:999px;padding:10px 22px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:var(--ink);cursor:pointer}
+.chip.active{background:var(--grad);color:#FFFFFF;border-color:transparent}
+.svc{display:none}
+.svc.active{display:block}
+.svc-card{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px 28px;box-shadow:var(--shadow)}
+.svc-card ol{margin:12px 0 0 22px;display:grid;gap:8px}
+.svc-note{background:var(--wash);border-radius:14px;padding:14px 18px;margin-top:16px}
+.open-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;border-radius:999px;padding:12px 26px;font-weight:700;font-size:17px;color:#FFFFFF;background:var(--grad);text-decoration:none}
+.shots{display:grid;gap:14px;margin-top:16px}
+.shots figure{margin:0}
+.shots img{width:100%;max-width:100%;border-radius:14px;border:1px solid var(--line);display:block}
+.shots img.tall{max-width:340px;margin:0 auto}
+.shots figcaption{font-size:13px;color:#7A6B80;margin-top:6px}
+
 /* сноска-плашка */
 .note{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius-lg);padding:26px 28px;margin-top:36px}
 
@@ -98,10 +114,98 @@ footer p{font-size:13px;color:rgba(255,255,255,.55)}
     <h2>Четыре шага – и разбор у тебя</h2>
     <div class="steps">
       <div class="step"><strong>Скопируй промпт</strong>Кнопка «Скопировать промпт» ниже – он скопируется целиком.</div>
-      <div class="step"><strong>Открой нейросеть</strong>ChatGPT, Claude, Gemini или GigaChat – помощник работает в любой. Если пока ни одной нет – подойдёт та, куда проще войти.</div>
+      <div class="step"><strong>Открой нейросеть</strong>Помощник работает в любой. Ниже – инструкция под каждый сервис: выбери свой и действуй по шагам.</div>
       <div class="step"><strong>Вставь и отправь</strong>Вставь текст в поле сообщения и отправь как обычное сообщение.</div>
       <div class="step"><strong>Отвечай голосом</strong>В приложении на телефоне жми значок микрофона и наговаривай как думается – не причёсывай речь. Чем живее ответ, тем точнее разбор. Нет микрофона – пиши текстом, тоже сработает.</div>
     </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="label">Где запускать</div>
+    <h2>Выбери свой сервис</h2>
+    <p>Промпт один и тот же – различаются только кнопки. Можно прогнать его в двух-трёх сервисах и сравнить ответы: заодно поймёшь, какая нейросеть тебе ближе.</p>
+    <div class="chips" id="chips">
+      <button class="chip active" data-svc="gpt" type="button">ChatGPT</button>
+      <button class="chip" data-svc="claude" type="button">Claude</button>
+      <button class="chip" data-svc="gemini" type="button">Gemini</button>
+      <button class="chip" data-svc="giga" type="button">GigaChat</button>
+      <button class="chip" data-svc="deepseek" type="button">DeepSeek</button>
+      <button class="chip" data-svc="kimi" type="button">Kimi</button>
+    </div>
+
+    <div class="svc active" data-svc="gpt"><div class="svc-card">
+      <div class="card-title">ChatGPT</div>
+      <ol>
+        <li>Открой chatgpt.com или приложение ChatGPT и войди в аккаунт.</li>
+        <li>Вставь скопированный промпт в поле сообщения внизу и отправь.</li>
+        <li>Отвечай на вопросы по одному. Голосом удобнее в приложении – значок микрофона рядом с полем.</li>
+      </ol>
+      <div class="svc-note">Нет аккаунта или не пускает из России – держи наш <a href="https://fitstars-school.github.io/praktikum-ii/registraciya/">гайд по регистрации и оплате</a>.</div>
+      <div class="shots" data-shots="gpt"></div>
+      <a class="open-link" href="https://chatgpt.com" target="_blank" rel="noopener">Открыть ChatGPT</a>
+    </div></div>
+
+    <div class="svc" data-svc="claude"><div class="svc-card">
+      <div class="card-title">Claude</div>
+      <ol>
+        <li>Открой claude.ai и войди – почтой или через Google.</li>
+        <li>Вставь промпт в поле сообщения и отправь.</li>
+        <li>Голосового ввода на сайте нет – диктуй микрофоном на клавиатуре телефона, получится то же самое.</li>
+      </ol>
+      <div class="svc-note">Бесплатного лимита на один разбор хватает. Если лимит кончился на середине – вернись через несколько часов, диалог сохранится.</div>
+      <div class="shots" data-shots="claude"></div>
+      <a class="open-link" href="https://claude.ai" target="_blank" rel="noopener">Открыть Claude</a>
+    </div></div>
+
+    <div class="svc" data-svc="gemini"><div class="svc-card">
+      <div class="card-title">Gemini</div>
+      <ol>
+        <li>Открой gemini.google.com и войди в свой Google-аккаунт.</li>
+        <li>Вставь промпт в поле и отправь.</li>
+        <li>Голос – значок микрофона прямо в поле ввода.</li>
+      </ol>
+      <div class="svc-note">Если ты и так живёшь в Google-почте и документах – начни отсюда, будет роднее всего.</div>
+      <div class="shots" data-shots="gemini"></div>
+      <a class="open-link" href="https://gemini.google.com" target="_blank" rel="noopener">Открыть Gemini</a>
+    </div></div>
+
+    <div class="svc" data-svc="giga"><div class="svc-card">
+      <div class="card-title">GigaChat</div>
+      <ol>
+        <li>Открой giga.chat – работает из России без VPN, вход по российскому номеру.</li>
+        <li>Вставь промпт и отправь.</li>
+        <li>Отвечай на вопросы текстом или надиктуй с клавиатуры телефона.</li>
+      </ol>
+      <div class="svc-note">Честно: разбор получится проще, чем в ChatGPT или Claude, – но для первого знакомства и старта этого достаточно.</div>
+      <div class="shots" data-shots="giga"></div>
+      <a class="open-link" href="https://giga.chat" target="_blank" rel="noopener">Открыть GigaChat</a>
+    </div></div>
+
+    <div class="svc" data-svc="deepseek"><div class="svc-card">
+      <div class="card-title">DeepSeek</div>
+      <ol>
+        <li>Открой chat.deepseek.com, зарегистрируйся почтой или через Google.</li>
+        <li>Вставь промпт и отправь.</li>
+        <li>Интерфейс английский, но на русский промпт он отвечает по-русски.</li>
+      </ol>
+      <div class="svc-note">Полностью бесплатный – удобный вариант, чтобы просто попробовать без карты и подписок.</div>
+      <div class="shots" data-shots="deepseek"></div>
+      <a class="open-link" href="https://chat.deepseek.com" target="_blank" rel="noopener">Открыть DeepSeek</a>
+    </div></div>
+
+    <div class="svc" data-svc="kimi"><div class="svc-card">
+      <div class="card-title">Kimi</div>
+      <ol>
+        <li>Открой kimi.com и войди.</li>
+        <li>Вставь промпт и отправь.</li>
+        <li>Отвечай текстом или надиктуй с клавиатуры телефона.</li>
+      </ol>
+      <div class="svc-note">Сильная нейросеть уровня ChatGPT и Claude. Тестировать можно бесплатно; платную подписку новым пользователям сейчас не продают – для разбора она и не нужна.</div>
+      <div class="shots" data-shots="kimi"></div>
+      <a class="open-link" href="https://www.kimi.com" target="_blank" rel="noopener">Открыть Kimi</a>
+    </div></div>
   </div>
 </section>
 
@@ -162,6 +266,48 @@ footer p{font-size:13px;color:rgba(255,255,255,.55)}
   <div class="wrap"><p>Практикум по ИИ «Как делать своё дело легко и в удовольствие» · FitStars · Подарок участникам</p></div>
 </footer>
 
+<script>
+/* Чипсы выбора сервиса */
+document.getElementById('chips').addEventListener('click', function(e){
+  var b = e.target.closest('.chip'); if(!b) return;
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('active')});
+  document.querySelectorAll('.svc').forEach(function(c){c.classList.remove('active')});
+  b.classList.add('active');
+  document.querySelector('.svc[data-svc="'+b.dataset.svc+'"]').classList.add('active');
+});
+
+/* Скриншоты. Как добавить:
+   1. Положи скрин в img/ (латиницей, без пробелов).
+   2. Запусти: python3 vshit-skriny.py  – он вошьёт файл в блок IMGS ниже.
+   3. Добавь строку в SHOTS: сервис → [имя файла, подпись] (третьим 'tall' для
+      вертикальных скринов с телефона). Порядок строк = порядок на странице. */
+const SHOTS = {
+  gpt: [],
+  claude: [],
+  gemini: [],
+  giga: [],
+  deepseek: [],
+  kimi: []
+};
+
+const IMGS = {
+};
+
+Object.keys(SHOTS).forEach(function(svc){
+  var box = document.querySelector('.shots[data-shots="'+svc+'"]');
+  if(!box) return;
+  SHOTS[svc].forEach(function(row){
+    var src = IMGS[row[0]]; if(!src) return;
+    var fig = document.createElement('figure');
+    var img = document.createElement('img');
+    img.src = src; img.alt = row[1]||''; img.loading = 'lazy';
+    if(row[2]==='tall') img.className = 'tall';
+    fig.appendChild(img);
+    if(row[1]){var c=document.createElement('figcaption');c.textContent=row[1];fig.appendChild(c)}
+    box.appendChild(fig);
+  });
+});
+</script>
 <script>
 document.getElementById('copyBtn').addEventListener('click',function(){
   var t=document.getElementById('prompt').innerText;
