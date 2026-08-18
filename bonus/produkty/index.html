@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Что продавать · Усилитель практикума</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --magenta:#E6198C; --magenta-d:#C0116E; --ink:#211829; --dark:#1B1420;
+    --wash:#FBF4F8; --line:#ECE1EC; --muted:#6b5c69;
+    --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);
+    --radius:20px; --radius-lg:26px;
+    --shadow:0 18px 44px -26px rgba(120,20,90,.24);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+  /* ---- роли типографики: Р1 заголовок, Р2 подзаголовок, Р3 текст 17px, Р4 метка ---- */
+  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.2vw,50px);line-height:1.06;text-wrap:balance;margin:12px 0 16px}
+  h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.12;text-wrap:balance;margin-bottom:14px}
+  h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;line-height:1.25;text-wrap:balance}
+  p,li,td,th,summary,label{font-size:17px;text-wrap:pretty}
+  .kick{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
+  .small{font-size:13px;color:#9a8d98}
+  b,strong{font-weight:700}
+  a{color:var(--magenta);text-decoration:none;border-bottom:1px solid rgba(230,25,140,.3)}
+  a:hover{color:var(--magenta-d)}
+
+  /* ---- шапка ---- */
+  .top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:12px;padding-bottom:12px}
+  .back{font-size:15px;font-weight:700;color:var(--ink);border:none}
+  .back:hover{color:var(--magenta)}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta)}
+
+  header.hero{padding:48px 0 40px}
+  .lead{font-size:19px;color:#4a3d48;max-width:660px;text-wrap:pretty}
+
+  section{padding:36px 0}
+  .sec-dark{background:var(--dark);color:#fff;position:relative;overflow:hidden;margin:20px 0}
+  .sec-dark::before{content:"";position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.30),transparent 70%);pointer-events:none}
+  .sec-dark h2,.sec-dark p,.sec-dark li,.sec-dark h3{color:#fff}
+  .sec-dark .kick{color:#FF8FC6}
+  .sec-white{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  .soft{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:20px 22px}
+
+  /* ---- конвейер ---- */
+  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:20px}
+  .flow a{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 15px;color:var(--ink);box-shadow:var(--shadow)}
+  .flow a:hover{transform:translateY(-2px);border-color:#F1D9EC}
+  .flow .n{font-family:'Unbounded',sans-serif;font-weight:700;font-size:13px;color:var(--magenta)}
+  .flow .t{font-weight:700;font-size:16px;margin-top:5px}
+  .flow .s{font-size:13px;color:var(--muted);margin-top:3px}
+
+  /* ---- карточка промпта ---- */
+  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
+  .p-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:14px}
+  .p-num{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .p-out{margin-top:6px;color:var(--muted)}
+  .meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:16px 0}
+  .meta p+p{margin-top:7px}
+  .steps{counter-reset:s;margin:16px 0}
+  .steps li{list-style:none;position:relative;padding-left:34px;margin-bottom:9px;color:#4a3d48}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:6px}
+  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.6;color:#33283b}
+  .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
+  .hint{font-size:13px;color:#9a8d98;margin-top:10px}
+
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:999px;padding:13px 22px;cursor:pointer;color:#fff;background:var(--grad);background-size:200% 100%;transition:background-position .35s,transform .15s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+  .btn:hover{background-position:100% 0}
+  .btn:active{transform:scale(.98)}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn.done{background:#EAF7EE;color:#1FA24E;border:1px solid #CDEBD6}
+
+  details{border:1px solid var(--line);border-radius:16px;padding:0;margin-top:12px;background:#fff;overflow:hidden}
+  details summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;background:#fff}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"+";font-family:'Unbounded',sans-serif;color:var(--magenta);font-size:16px;width:22px;height:22px;border-radius:7px;background:#FCE6F1;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  details[open] summary::before{content:"–"}
+  .det-body{padding:0 18px 18px;color:#4a3d48;font-size:16px}
+  .det-body p+p{margin-top:10px}
+  .det-body .ex{background:var(--wash);border:1px solid var(--line);border-radius:14px;padding:15px;font-size:15px;line-height:1.55;white-space:pre-wrap}
+  .fix{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-top:9px;font-size:15px}
+  .fix b{color:var(--magenta)}
+
+  .next{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:15px;color:var(--muted)}
+  .next a{font-weight:700}
+
+  ul.plain{list-style:none}
+  ul.plain li{position:relative;padding-left:30px;margin-bottom:11px}
+  ul.plain li::before{content:"✓";position:absolute;left:0;top:0;color:#1FA24E;font-weight:700}
+  ul.no li::before{content:"✕";color:var(--magenta)}
+
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}
+
+  footer{background:var(--dark);color:#fff;padding:40px 0;margin-top:20px}
+  footer p{color:#bdb0bd;font-size:15px}
+  footer a{color:#FF8FC6;border:none}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:13px 22px;border-radius:999px;font-weight:700;font-size:15px;opacity:0;pointer-events:none;transition:.3s;z-index:60;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .way{display:flex;gap:18px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);margin-bottom:14px}
+  .way .wn{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .way .wb{flex:1;min-width:0}
+  .way .wd{color:var(--muted);margin-top:7px}
+
+  @media (max-width:520px){
+    .way{flex-direction:column;gap:12px;padding:20px}
+    .p{padding:20px}
+    .promptbox{padding:16px}
+    .btn{width:100%;justify-content:center}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="back" href="../">&larr; Весь набор</a>
+    <span class="pill"><span class="dot"></span>Бонус 4 из 5</span>
+  </div>
+</div>
+
+
+<style>
+  .fcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+  .fcard h3{font-size:19px}
+  .fcard .fd{color:var(--muted);font-size:16px}
+  .fcard .fx{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:10px 13px;font-size:14px;color:#4a3d48}
+  .fcard .fm{font-size:13px;color:#9a8d98;margin-top:auto}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:20px}
+  .fcard.dim{opacity:.28}
+  .fcard.hit{border-color:#F1D9EC;box-shadow:0 18px 44px -20px rgba(230,25,140,.35)}
+  .q{margin-top:18px}
+  .q .qt{font-weight:700;font-size:17px;margin-bottom:10px}
+  .chips{display:flex;gap:9px;flex-wrap:wrap}
+  .chip{font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:11px 18px;cursor:pointer;transition:.2s}
+  .chip:hover{border-color:#F1D9EC}
+  .chip.on{background:var(--grad);color:#fff;border-color:transparent}
+  .qres{margin-top:18px;font-size:16px;color:#4a3d48;background:var(--wash);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .qres b{color:var(--magenta)}
+</style>
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">Усилитель практикума · набор для тех, кто с нами</div>
+    <h1>Что <span class="g">продавать</span></h1>
+    <p class="lead">Четырнадцать форматов мини-продуктов с подбором под твою ситуацию – и промпты, которые помогают выбрать тему, проверить её и собрать первую версию. Чтобы экспертиза перестала лежать в голове.</p>
+  </div>
+</header>
+
+<section class="sec-white">
+  <div class="wrap">
+    <div class="kick">Главное правило</div>
+    <h2>Мини-продукт – это не маленький курс</h2>
+    <p>Самая частая ошибка: человек решает «сделаю гайд» и начинает писать всё, что знает по теме. Через месяц бросает, потому что получается учебник, а сил уже нет.</p>
+    <p style="margin-top:12px">Мини-продукт устроен иначе: <b>одна проблема одного человека, решённая за один заход.</b> Не «всё о питании», а «что положить ребёнку в школу, если утром десять минут». Узко – значит быстро собрать, легко объяснить и понятно, кому это нужно.</p>
+    <div class="grid2">
+      <div class="card"><h3>Признак хорошего</h3><p style="margin-top:8px;color:var(--muted)">Человек может воспользоваться сегодня и увидеть результат сегодня же. Не «через месяц практики».</p></div>
+      <div class="card"><h3>Признак плохого</h3><p style="margin-top:8px;color:var(--muted)">Ты не можешь объяснить, что это, одной фразой без слова «и»: «гайд про питание и режим и мотивацию».</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick">Подбор за три вопроса</div>
+    <h2>С чего начать именно тебе</h2>
+    <p>Отметь то, что про тебя. Подходящие форматы подсветятся в каталоге ниже, остальные приглушатся.</p>
+
+    <div class="card" style="margin-top:20px">
+      <div class="q">
+        <div class="qt">1. Что у тебя уже есть</div>
+        <div class="chips">
+          <button class="chip" data-k="have" data-v="text">Написанные тексты</button>
+          <button class="chip" data-k="have" data-v="exp">Опыт, но ничего не записано</button>
+          <button class="chip" data-k="have" data-v="mat">Отзывы и переписки клиентов</button>
+          <button class="chip" data-k="have" data-v="zero">Почти ничего</button>
+        </div>
+      </div>
+      <div class="q">
+        <div class="qt">2. Сколько времени можешь вложить</div>
+        <div class="chips">
+          <button class="chip" data-k="time" data-v="fast">Пара часов</button>
+          <button class="chip" data-k="time" data-v="mid">Выходные</button>
+          <button class="chip" data-k="time" data-v="long">Неделя</button>
+        </div>
+      </div>
+      <div class="q">
+        <div class="qt">3. Зачем он тебе</div>
+        <div class="chips">
+          <button class="chip" data-k="goal" data-v="lead">Собрать базу, отдаю бесплатно</button>
+          <button class="chip" data-k="goal" data-v="paid">Первые продажи</button>
+          <button class="chip" data-k="goal" data-v="up">Усилить основную услугу</button>
+        </div>
+      </div>
+      <div class="qres" id="qres" style="display:none"></div>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)"><button class="btn ghost" id="qreset" style="padding:9px 18px;font-size:14px">Сбросить фильтры</button></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick">Каталог</div>
+    <h2>Четырнадцать форматов</h2>
+    <div class="fgrid"><div class="fcard" data-t="fast" data-g="lead" data-h="exp text">
+      <h3>Чек-лист</h3>
+      <div class="fd">Список того, что проверить или не забыть, в правильном порядке. Самый быстрый формат, который при этом реально используют.</div>
+      <div class="fx">Пример: «17 пунктов проверить перед тем, как отдавать сайт заказчику»</div>
+      <div class="fm">Текст плюс оформление по дизайн-коду. Пара часов.</div>
+    </div><div class="fcard" data-t="fast" data-g="lead up" data-h="exp mat">
+      <h3>Шаблон-заготовка</h3>
+      <div class="fd">Готовая форма, в которую человек подставляет своё: документ, таблица, структура письма, план.</div>
+      <div class="fx">Пример: «Таблица учёта заказов для мастера маникюра»</div>
+      <div class="fm">Собирается в таблице или документе. 2–3 часа.</div>
+    </div><div class="fcard" data-t="mid" data-g="lead paid" data-h="exp text">
+      <h3>Мини-гайд</h3>
+      <div class="fd">Инструкция от начала до конца по одной узкой задаче. Не «всё о питании», а «что есть в первую неделю после родов».</div>
+      <div class="fx">Пример: «Как за вечер собрать резюме, на которое отвечают»</div>
+      <div class="fm">10–20 страниц с примерами. Выходные.</div>
+    </div><div class="fcard" data-t="fast" data-g="lead up" data-h="mat exp">
+      <h3>Разбор одного случая</h3>
+      <div class="fd">Одна история клиента подробно: что было, что сделали, что вышло. Продаёт лучше любого описания услуги.</div>
+      <div class="fx">Пример: «Как мы за месяц вернули клиента, который уже ушёл к конкуренту»</div>
+      <div class="fm">Нужно согласие клиента. 2–4 часа.</div>
+    </div><div class="fcard" data-t="fast" data-g="lead" data-h="exp zero">
+      <h3>Подборка</h3>
+      <div class="fd">Что читать, смотреть, покупать, куда идти. Экономит человеку часы поиска – и показывает твой вкус.</div>
+      <div class="fx">Пример: «12 бесплатных сервисов, которые заменяют платные»</div>
+      <div class="fm">Главное – личные пометки к каждому пункту. 2–3 часа.</div>
+    </div><div class="fcard" data-t="mid" data-g="lead paid" data-h="exp">
+      <h3>Тест-диагностика</h3>
+      <div class="fd">Человек отвечает на вопросы и получает свой результат с рекомендациями. Даёт понять, где он сейчас.</div>
+      <div class="fx">Пример: «В какой точке выгорания вы находитесь»</div>
+      <div class="fm">Вопросы, варианты, тексты результатов. Выходные.</div>
+    </div><div class="fcard" data-t="mid" data-g="lead up" data-h="exp">
+      <h3>Считалка</h3>
+      <div class="fd">Считает то, что человек не может посчитать сам: норму, стоимость, сроки, нагрузку.</div>
+      <div class="fx">Пример: «Сколько стоит ваш час на самом деле»</div>
+      <div class="fm">Формулу задаёшь ты, оформление собирает нейросеть. Выходные.</div>
+    </div><div class="fcard" data-t="fast" data-g="lead up" data-h="exp">
+      <h3>Трекер или дневник</h3>
+      <div class="fd">Форма, которую заполняют регулярно. Держит человека рядом с тобой неделями, а не минуты.</div>
+      <div class="fx">Пример: «Дневник тренировок на 8 недель с недельными итогами»</div>
+      <div class="fm">Таблица или печатная форма. 3–4 часа.</div>
+    </div><div class="fcard" data-t="long" data-g="lead paid" data-h="text exp">
+      <h3>Мини-курс в письмах</h3>
+      <div class="fd">Пять-семь коротких писем по одному шагу в каждом. Человек получает результат постепенно и привыкает к тебе.</div>
+      <div class="fx">Пример: «Неделя, чтобы разобрать шкаф: 7 писем»</div>
+      <div class="fm">Пишется на основе имеющихся текстов. Неделя.</div>
+    </div><div class="fcard" data-t="fast" data-g="lead paid" data-h="exp mat">
+      <h3>Что сказать: фразы и скрипты</h3>
+      <div class="fd">Готовые формулировки для трудных ситуаций. Люди платят за то, чтобы не подбирать слова самим.</div>
+      <div class="fx">Пример: «Как ответить клиенту, который просит скидку»</div>
+      <div class="fm">Ситуация плюс две-три фразы на выбор. 2–4 часа.</div>
+    </div><div class="fcard" data-t="long" data-g="paid up" data-h="mat text">
+      <h3>База или каталог</h3>
+      <div class="fd">Собранная в одном месте таблица того, что разбросано по интернету. Ценность – в отборе и структуре.</div>
+      <div class="fx">Пример: «База из 80 грантов для НКО с условиями и сроками»</div>
+      <div class="fm">Долго собирать, зато живёт годами. Неделя.</div>
+    </div><div class="fcard" data-t="mid" data-g="paid up" data-h="exp text">
+      <h3>Воркбук</h3>
+      <div class="fd">Рабочая тетрадь: короткая теория и задания, которые человек выполняет письменно. Даёт ощущение проделанной работы.</div>
+      <div class="fx">Пример: «Тетрадь на 5 дней: найти свою нишу»</div>
+      <div class="fm">Задания важнее теории. Выходные.</div>
+    </div><div class="fcard" data-t="long" data-g="paid" data-h="exp text">
+      <h3>Мини-интенсив в записи</h3>
+      <div class="fd">Три коротких видео по одной теме плюс материалы. Первый платный продукт, который не страшно продавать.</div>
+      <div class="fx">Пример: «Три урока: как вести соцсети без выгорания»</div>
+      <div class="fm">Съёмка и монтаж. Неделя.</div>
+    </div><div class="fcard" data-t="fast" data-g="paid up" data-h="exp zero">
+      <h3>Живой разбор</h3>
+      <div class="fd">Групповая встреча, где ты разбираешь случаи участников. Продукта заранее нет – он рождается в моменте.</div>
+      <div class="fx">Пример: «Разбор пяти профилей за полтора часа»</div>
+      <div class="fm">Нужен только анонс и время. Пара часов на подготовку.</div>
+    </div></div>
+    <div class="soft" style="margin-top:20px">
+      <p><b>Не ищи идеальный формат.</b> Один и тот же материал живёт в любом из них: чек-лист превращается в шаблон, шаблон – в воркбук, воркбук – в мини-курс. Начни с самого быстрого, посмотри на отклик, дальше усложняй.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick">Пять промптов</div>
+    <h2>От темы до готовой версии</h2>
+    <p>Работают лучше всего, если в начале диалога вставить «Паспорт аудитории» из <a href="../auditoriya/">первого бонуса</a>. Без него нейросеть предложит темы «вообще», а не под твоего человека.</p>
+
+    <article class="p" id="p1">
+      <div class="p-head"><div class="p-num">1</div><div>
+        <h3>Выбрать тему из своей экспертизы</h3>
+        <p class="p-out">На выходе: список тем, которые ты можешь закрыть уже сегодня, отсортированных по тому, насколько они нужны твоим людям.</p>
+      </div></div>
+      <div class="meta">
+        <p><b>Когда:</b> первым делом. Особенно если кажется, что «я ничего такого не знаю, чтобы за это платили».</p>
+        <p><b>Фишка:</b> темы ищутся на пересечении трёх вещей: что болит у твоих людей, что ты умеешь и что можно собрать быстро. Одного «болит» мало.</p>
+      </div>
+      <ol class="steps">
+        <li>Вставь в чат паспорт аудитории, если он есть.</li>
+        <li>Скопируй промпт, заполни розовые куски.</li>
+        <li>Из списка выбери одну тему. Не три – одну.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Помоги выбрать тему мини-продукта. Мини-продукт – это решение одной узкой проблемы за один заход, а не курс.
+
+Моя аудитория: <span class="tok">[ВСТАВЬ ПАСПОРТ АУДИТОРИИ ИЛИ ОПИШИ ОДНОЙ ФРАЗОЙ]</span>
+Что я умею и делаю руками: <span class="tok">[ПЕРЕЧИСЛИ 5-7 ВЕЩЕЙ, ДАЖЕ МЕЛКИХ]</span>
+Что меня чаще всего спрашивают: <span class="tok">[ВОПРОСЫ, КОТОРЫЕ ЗАДАЮТ РЕГУЛЯРНО]</span>
+Сколько времени у меня есть: <span class="tok">[ПАРА ЧАСОВ / ВЫХОДНЫЕ / НЕДЕЛЯ]</span>
+
+Предложи десять тем. По каждой дай четыре строки:
+– формулировка темы словами моего клиента, а не профессиональными
+– какую конкретную проблему она снимает и за какое время человек получит результат
+– почему именно я могу это сделать – опираясь на то, что перечислено выше
+– насколько быстро это собрать
+
+Отсортируй от самой сильной к самой слабой и объясни в одну строку, почему первая на первом месте.
+
+Не предлагай тем, которые требуют экспертизы, о которой я не говорю. Не предлагай «всё о...» и «полное руководство» – это не мини-продукт.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <details><summary>Если ответ не тот</summary><div class="det-body">
+        <div class="fix"><b>Темы огромные, на курс.</b> Ответь: «Сузь каждую тему так, чтобы человек получил результат за один вечер.»</div>
+        <div class="fix"><b>Общие темы из интернета.</b> Ответь: «Ты предлагаешь темы вообще. Опирайся на то, что спрашивают именно у меня, и на боли моей аудитории.»</div>
+      </div></details>
+      <div class="next">Дальше: <a href="#p2">промпт 2 – проверить, нужна ли эта тема</a></div>
+    </article>
+
+    <article class="p" id="p2">
+      <div class="p-head"><div class="p-num">2</div><div>
+        <h3>Проверить тему до того, как делать</h3>
+        <p class="p-out">На выходе: честный ответ, есть ли у темы спрос, кто её уже закрывает и чем ты можешь отличаться.</p>
+      </div></div>
+      <div class="meta">
+        <p><b>Когда:</b> сразу после выбора темы. Пятнадцать минут проверки экономят выходные работы.</p>
+        <p><b>Важно:</b> нужен чат с поиском в интернете. Без поиска нейросеть просто согласится с тобой – она вообще склонна поддакивать.</p>
+      </div>
+      <div class="promptbox">
+<pre>Проверь мою идею мини-продукта. Твоя задача – не поддержать меня, а найти слабые места. Используй поиск в интернете.
+
+Тема: <span class="tok">[ТЕМА ОДНОЙ ФРАЗОЙ]</span>
+Для кого: <span class="tok">[КОРОТКО ПРО АУДИТОРИЮ]</span>
+Формат: <span class="tok">[ЧЕК-ЛИСТ / ГАЙД / ШАБЛОН / ТЕСТ]</span>
+
+Ответь по пунктам:
+1. Ищут ли эту проблему люди своими словами. Приведи реальные формулировки запросов и обсуждений со ссылками.
+2. Кто уже решает эту проблему и как. Два-три примера со ссылками.
+3. На что жалуются в существующих решениях.
+4. Чем моё может отличаться – не «лучше и качественнее», а конкретно.
+5. Признаки, что тему брать не стоит. Скажи прямо, если они есть.
+
+Не подтверждай мою идею из вежливости. Если тема слабая – так и скажи и предложи, как её сузить или развернуть.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <details><summary>Если ответ не тот</summary><div class="det-body">
+        <div class="fix"><b>Одобрил всё подряд.</b> Ответь: «Ты соглашаешься. Найди три причины, по которым эта идея может не сработать.»</div>
+        <div class="fix"><b>Нет ссылок.</b> Ответь: «Подтверди каждый пункт ссылкой. Без подтверждения помечай как предположение.»</div>
+      </div></details>
+      <div class="next">Дальше: <a href="#p3">промпт 3 – собрать структуру</a></div>
+    </article>
+
+    <article class="p" id="p3">
+      <div class="p-head"><div class="p-num">3</div><div>
+        <h3>Собрать структуру</h3>
+        <p class="p-out">На выходе: оглавление, по которому понятно, что писать в каждом блоке – и видно, что работы меньше, чем казалось.</p>
+      </div></div>
+      <div class="meta">
+        <p><b>Когда:</b> тема выбрана и проверена.</p>
+        <p><b>Фишка:</b> просим не «содержание», а маршрут человека: что он делает шаг за шагом и что у него получается в конце каждого шага.</p>
+      </div>
+      <div class="promptbox">
+<pre>Собери структуру мини-продукта.
+
+Тема: <span class="tok">[ТЕМА]</span>
+Формат: <span class="tok">[ЧЕК-ЛИСТ / ГАЙД / ШАБЛОН / ВОРКБУК / ТЕСТ]</span>
+Для кого: <span class="tok">[АУДИТОРИЯ]</span>
+Что человек должен получить в конце: <span class="tok">[КОНКРЕТНЫЙ РЕЗУЛЬТАТ]</span>
+
+Сделай:
+1. Маршрут из пяти-семи шагов: что человек делает и что у него получается после каждого шага.
+2. По каждому шагу – что там должно быть: объяснение, пример, форма для заполнения, предупреждение об ошибке.
+3. Отметь, какие шаги можно выкинуть без потери результата. Будь безжалостен: короче значит лучше.
+4. Что мне нужно добавить от себя – свой опыт, свои примеры, свои случаи. Отметь эти места отдельно, их нейросеть придумать не может.
+5. Как проверить в конце, что человек справился.
+
+Не раздувай. Если тема решается тремя шагами – значит три.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <div class="next">Дальше: <a href="#p4">промпт 4 – собрать первую версию</a></div>
+    </article>
+
+    <article class="p" id="p4">
+      <div class="p-head"><div class="p-num">4</div><div>
+        <h3>Собрать первую версию</h3>
+        <p class="p-out">На выходе: черновик целиком, с помеченными местами, куда ты вставишь своё.</p>
+      </div></div>
+      <div class="meta">
+        <p><b>Когда:</b> структура утверждена.</p>
+        <p><b>Фишка:</b> нейросеть собирает каркас и формулировки, ты вставляешь опыт. Ровно наоборот бывает у тех, кто потом стыдится своего продукта.</p>
+      </div>
+      <ol class="steps">
+        <li>Собирай по одному блоку, а не всё сразу – качество заметно выше.</li>
+        <li>Готовый текст прогони через бонус <a href="../teksty/">«Тексты»</a>: редактор, критик, проверка фактов.</li>
+        <li>Оформи по <a href="../stili/">дизайн-коду</a> – и продукт готов.</li>
+      </ol>
+      <div class="promptbox">
+<pre>Собираем мини-продукт по утверждённой структуре. Работаем по одному блоку.
+
+Структура целиком:
+"""
+<span class="tok">[ВСТАВЬ СТРУКТУРУ ИЗ ПРЕДЫДУЩЕГО ШАГА]</span>
+"""
+
+Мой голос и мои правила: <span class="tok">[ВСТАВЬ ПАСПОРТ СТИЛЯ ИЛИ ОПИШИ, КАК ТЫ ГОВОРИШЬ]</span>
+
+Начни с блока номер <span class="tok">[НОМЕР]</span>. Для него:
+– напиши текст: коротко, по делу, без вводных абзацев
+– добавь конкретный пример там, где он нужен
+– в местах, где нужен мой личный опыт или мой случай, поставь пометку [СЮДА МОЙ ПРИМЕР] и напиши в скобках, какой именно пример здесь подойдёт
+– отметь, где стоит поставить предупреждение о частой ошибке
+
+Не пиши общих слов. Не придумывай за меня историй и цифр. Закончив блок, остановись и жди, пока я скажу «дальше».</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <details><summary>Если ответ не тот</summary><div class="det-body">
+        <div class="fix"><b>Придумал истории клиентов.</b> Ответь: «Ты выдумал примеры. Убери их и поставь пометки, где мой пример нужен.»</div>
+        <div class="fix"><b>Написал всё сразу и поверхностно.</b> Ответь: «Вернись к блоку 1 и разбери его подробно. Остальное пока не трогай.»</div>
+      </div></details>
+      <div class="next">Дальше: <a href="#p5">промпт 5 – проверить продукт перед выпуском</a></div>
+    </article>
+
+    <article class="p" id="p5">
+      <div class="p-head"><div class="p-num">5</div><div>
+        <h3>Критик продукта и название</h3>
+        <p class="p-out">На выходе: что не работает в продукте, плюс название и описание, по которым понятно, зачем это брать.</p>
+      </div></div>
+      <div class="meta">
+        <p><b>Когда:</b> перед тем, как отдавать людям.</p>
+        <p><b>Фишка:</b> проверяем не «нравится или нет», а сможет ли человек дойти до результата в одиночку, без тебя рядом.</p>
+      </div>
+      <div class="promptbox">
+<pre>Ты – скептичный первый пользователь моего мини-продукта. Хвалить запрещено.
+
+Продукт:
+"""
+<span class="tok">[ВСТАВЬ ГОТОВЫЙ МАТЕРИАЛ]</span>
+"""
+Обещание: <span class="tok">[ЧТО ЧЕЛОВЕК ПОЛУЧИТ]</span>
+Для кого: <span class="tok">[АУДИТОРИЯ]</span>
+
+Часть первая, разбор:
+1. Дойдёт ли человек до конца сам, без меня рядом. Где именно он застрянет – укажи место.
+2. Где не хватает примера или формы, чтобы просто сделать по образцу.
+3. Что здесь лишнее и можно выкинуть.
+4. Выполняется ли обещание. Если нет – в каком месте оно ломается.
+5. После чего человек скажет «и что дальше» – и есть ли у меня ответ.
+
+Часть вторая, упаковка:
+6. Пять вариантов названия: понятных, без пафоса, где видно результат, а не тему.
+7. Описание на три-четыре предложения: для кого, что внутри, что получит, сколько времени займёт.
+8. Одна фраза, которой это можно отправить в личку человеку, которому это нужно.
+
+Не смягчай. Лучше я услышу это от тебя, чем от клиента.</pre>
+      </div>
+      <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
+      <div class="next">Продукт готов – оформляй по <a href="../stili/">дизайн-коду</a> и отдавай людям</div>
+    </article>
+  </div>
+</section>
+
+<section class="sec-dark">
+  <div class="wrap">
+    <div class="kick">Чтобы не застрять</div>
+    <h2>Четыре правила</h2>
+    <ul class="plain" style="margin-top:16px">
+      <li><b>Первая версия – черновая и это нормально.</b> Мини-продукт живёт неделями, а не годами. Выпусти, посмотри на отклик, переделай.</li>
+      <li><b>Одна проблема.</b> Как только появляется «и ещё про это», ты делаешь курс, а курс ты не закончишь в эти выходные.</li>
+      <li><b>Твой опыт – там, где нейросеть бессильна.</b> Каркас, формулировки, оформление – её работа. Случаи, ошибки, цифры – твоя.</li>
+      <li><b>Отдавать раньше, чем страшно.</b> Покажи пяти живым людям до того, как доводить до идеала. Их вопросы перепишут продукт лучше, чем ещё три дня правок.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="soft">
+      <div class="kick">Что дальше</div>
+      <h3 style="margin:8px 0 10px">Здесь один продукт руками. На курсе – линейка и повторяемость</h3>
+      <p style="color:#4a3d48">В модуле 3 разбираем, как из одной экспертизы собирать документы, таблицы и интерактивы – и как делать это быстро, а не героически. В модуле 4 – как выстроить это в систему: папка с материалами, помощник, который знает твою аудиторию и стиль, и повторяемый путь от идеи до готового продукта.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="kick" style="color:#FF8FC6">Усилитель практикума</div>
+    <p style="margin-top:10px">Бонус 4 из 5 · <a href="../">вернуться ко всему набору</a></p>
+    <p class="small" style="margin-top:14px;color:#8a7c8a">Материалы практикума «НейроСтарс». Для личного использования участниками курса.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pick = {have:null, time:null, goal:null};
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.fcard'));
+  var res = document.getElementById('qres');
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click', function(){
+      var k = c.dataset.k, v = c.dataset.v;
+      document.querySelectorAll('.chip[data-k="'+k+'"]').forEach(function(x){ x.classList.remove('on'); });
+      c.classList.add('on'); pick[k] = v; apply();
+    });
+  });
+  function apply(){
+    var any = pick.have || pick.time || pick.goal;
+    cards.forEach(function(el){
+      el.classList.remove('dim','hit');
+      if (!any) return;
+      var score = 0, total = 0;
+      if (pick.have){ total++; if (el.dataset.h.split(' ').indexOf(pick.have) > -1) score++; }
+      if (pick.time){ total++; if (el.dataset.t === pick.time) score++; }
+      if (pick.goal){ total++; if (el.dataset.g.split(' ').indexOf(pick.goal) > -1) score++; }
+      if (score === total) el.classList.add('hit'); else el.classList.add('dim');
+    });
+    if (any){
+      var n = document.querySelectorAll('.fcard.hit').length;
+      res.style.display = 'block';
+      res.innerHTML = n ? ('Подходит форматов: <b>' + n + '</b>. Они подсвечены ниже – начни с того, который проще собрать.')
+                        : 'Под такое сочетание ничего не подходит целиком. Сними один фильтр – скорее всего, дело в сроке.';
+    } else { res.style.display = 'none'; }
+  }
+  document.getElementById('qreset').addEventListener('click', function(){
+    pick = {have:null, time:null, goal:null};
+    document.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('on'); });
+    apply();
+  });
+})();
+</script>
+
+
+<div class="toast" id="toast">Промпт скопирован</div>
+<script>
+(function(){
+  var toast = document.getElementById('toast'), t;
+  function say(msg){
+    toast.textContent = msg; toast.classList.add('on');
+    clearTimeout(t); t = setTimeout(function(){ toast.classList.remove('on'); }, 2600);
+  }
+  function textOf(btn){
+    var scope = btn.closest('.det-body') || btn.closest('.p') || btn.closest('.stylecard') || btn.closest('section');
+    var box = scope.querySelector('.promptbox pre');
+    return box ? box.innerText : '';
+  }
+  function copy(text){
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function(res, rej){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); res(); } catch(e){ rej(e); }
+      document.body.removeChild(ta);
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      copy(textOf(btn)).then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Скопировано ✓'; btn.classList.add('done');
+        say('Промпт скопирован. Вставь его в чат');
+        setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 2400);
+      }).catch(function(){
+        say('Не вышло скопировать – выдели текст промпта вручную');
+      });
+    });
+  });
+  document.querySelectorAll('[data-open]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      copy(textOf(btn)).then(function(){
+        say('Промпт скопирован. В чате нажми вставить');
+        setTimeout(function(){ window.open('https://chatgpt.com/', '_blank', 'noopener'); }, 600);
+      }).catch(function(){
+        window.open('https://chatgpt.com/', '_blank', 'noopener');
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
