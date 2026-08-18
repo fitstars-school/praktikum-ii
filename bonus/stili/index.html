@@ -23,12 +23,12 @@
   /* ---- роли типографики: Р1 заголовок, Р2 подзаголовок, Р3 текст 17px, Р4 метка ---- */
   h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.2vw,50px);line-height:1.06;text-wrap:balance;margin:12px 0 16px}
   h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.12;text-wrap:balance;margin-bottom:14px}
+  h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.12;text-wrap:balance;margin-bottom:20px}
   h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;line-height:1.25;text-wrap:balance}
   p,li,td,th,summary,label{font-size:17.5px;text-wrap:pretty}
   section > .wrap > p{max-width:860px}
-  p+p{margin-top:12px}
-  .kick{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
+  p+p{margin-top:16px}
+  .kick{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);margin-bottom:12px}
   .small{font-size:13px;color:#9a8d98}
   b,strong{font-weight:700}
   a{color:var(--magenta);text-decoration:none;border-bottom:1px solid rgba(230,25,140,.3)}
@@ -43,21 +43,21 @@
   .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700}
   .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta)}
 
-  header.hero{padding:48px 0 40px}
+  header.hero{padding:56px 0 48px}
   .lead{font-size:20px;line-height:1.5;color:#4a3d48;max-width:860px;text-wrap:pretty}
 
-  section{padding:42px 0}
+  section{padding:58px 0}
   .sec-dark{background:var(--dark);color:#fff;position:relative;overflow:hidden;margin:20px 0}
   .sec-dark::before{content:"";position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.30),transparent 70%);pointer-events:none}
   .sec-dark h2,.sec-dark p,.sec-dark li,.sec-dark h3{color:#fff}
   .sec-dark .kick{color:#FF8FC6}
   .sec-white{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 
-  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
-  .soft{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:20px 22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+  .soft{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:var(--radius);padding:26px 28px}
 
   /* ---- конвейер ---- */
-  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:20px}
+  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:26px}
   .flow a{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 15px;color:var(--ink);box-shadow:var(--shadow)}
   .flow a:hover{transform:translateY(-2px);border-color:#F1D9EC}
   .flow .n{font-family:'Unbounded',sans-serif;font-weight:700;font-size:13px;color:var(--magenta)}
@@ -65,22 +65,22 @@
   .flow .s{font-size:13px;color:var(--muted);margin-top:3px}
 
   /* ---- карточка промпта ---- */
-  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 32px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
-  .p-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:14px}
+  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px 34px 32px;box-shadow:var(--shadow);margin-bottom:30px;scroll-margin-top:80px}
+  .p-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:18px}
   .p-num{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
   .p-out{margin-top:6px;color:var(--muted)}
-  .meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:16px 0}
-  .meta p+p{margin-top:7px}
-  .steps{counter-reset:s;margin:16px 0}
-  .steps li{list-style:none;position:relative;padding-left:34px;margin-bottom:9px;color:#4a3d48}
+  .meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;margin:22px 0}
+  .meta p+p{margin-top:10px}
+  .steps{counter-reset:s;margin:22px 0}
+  .steps li{list-style:none;position:relative;padding-left:36px;margin-bottom:13px;color:#4a3d48}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-top:6px}
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin-top:18px}
   .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15.5px;line-height:1.65;color:#33283b}
   .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
   .hint{font-size:13px;color:#9a8d98;margin-top:10px}
 
-  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
   .btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:999px;padding:13px 22px;cursor:pointer;color:#fff;background:var(--grad);background-size:200% 100%;transition:background-position .35s,transform .15s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
   .btn:hover{background-position:100% 0;transform:translateY(-1px);box-shadow:0 12px 26px -14px rgba(230,25,140,.6)}
   .btn:active{transform:scale(.98)}
@@ -90,18 +90,18 @@
   .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .btn.done{background:#EAF7EE;color:#1FA24E;border:1px solid #CDEBD6}
 
-  details{border:1px solid var(--line);border-radius:16px;padding:0;margin-top:12px;background:#fff;overflow:hidden}
+  details{border:1px solid var(--line);border-radius:16px;padding:0;margin-top:16px;background:#fff;overflow:hidden}
   details summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px;background:#fff}
   details summary::-webkit-details-marker{display:none}
   details summary::before{content:"+";font-family:'Unbounded',sans-serif;color:var(--magenta);font-size:16px;width:22px;height:22px;border-radius:7px;background:#FCE6F1;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
   details[open] summary::before{content:"–"}
-  .det-body{padding:0 18px 18px;color:#4a3d48;font-size:16px}
+  .det-body{padding:0 22px 22px;color:#4a3d48;font-size:16px}
   .det-body p+p{margin-top:10px}
   .det-body .ex{background:var(--wash);border:1px solid var(--line);border-radius:14px;padding:15px;font-size:15px;line-height:1.55;white-space:pre-wrap}
-  .fix{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-top:9px;font-size:15px}
+  .fix{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin-top:12px;font-size:15px}
   .fix b{color:var(--magenta)}
 
-  .next{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:15px;color:var(--muted)}
+  .next{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);font-size:15px;color:var(--muted)}
   .next a{font-weight:700}
 
   ul.plain{list-style:none}
@@ -109,9 +109,9 @@
   ul.plain li::before{content:"✓";position:absolute;left:0;top:0;color:#1FA24E;font-weight:700}
   ul.no li::before{content:"✕";color:var(--magenta)}
 
-  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px}
 
-  footer{background:var(--dark);color:#fff;padding:40px 0;margin-top:20px}
+  footer{background:var(--dark);color:#fff;padding:52px 0;margin-top:24px}
   footer p{color:#bdb0bd;font-size:15px}
   footer a{color:#FF8FC6;border:none}
 
@@ -133,13 +133,20 @@
 
   /* ---- задача ---- */
   .tnum{flex:0 0 auto;padding:0 14px;height:34px;border-radius:11px;background:var(--grad);color:#fff;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
-  .thead{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+  .thead{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
   .tmin{font-size:13px;font-weight:700;color:#9a8d98;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
-  .res{background:#EAF7EE;border:1px solid #CDEBD6;border-radius:14px;padding:14px 16px;margin-top:16px;font-size:16px;color:#1c5f36}
+  .res{background:#EAF7EE;border:1px solid #CDEBD6;border-radius:14px;padding:17px 19px;margin-top:24px;font-size:16px;color:#1c5f36}
   .res b{color:#14663a}
-  .tool{background:var(--wash);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:14px 0;font-size:15px;color:#4a3d48}
+  .tool{background:var(--wash);border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin:22px 0;font-size:15.5px;color:#4a3d48}
   .tool b{color:var(--ink)}
   .tool a{font-weight:700}
+
+  /* ---- инструкция со скриншотом ---- */
+  .withpic{display:grid;grid-template-columns:1fr minmax(240px,330px);gap:26px;align-items:start;margin-top:6px}
+  .withpic .shot{margin:0}
+  .withpic .shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+  .withpic .shot figcaption{font-size:13.5px;color:#9a8d98;margin-top:10px;line-height:1.45}
+  @media (max-width:760px){.withpic{grid-template-columns:1fr;gap:18px}}
 </style>
 </head>
 <body>
