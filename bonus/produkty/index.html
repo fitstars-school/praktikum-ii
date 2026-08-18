@@ -17,14 +17,16 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
 
   /* ---- роли типографики: Р1 заголовок, Р2 подзаголовок, Р3 текст 17px, Р4 метка ---- */
   h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.2vw,50px);line-height:1.06;text-wrap:balance;margin:12px 0 16px}
   h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.12;text-wrap:balance;margin-bottom:14px}
   h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;line-height:1.25;text-wrap:balance}
-  p,li,td,th,summary,label{font-size:17px;text-wrap:pretty}
+  p,li,td,th,summary,label{font-size:17.5px;text-wrap:pretty}
+  section > .wrap > p{max-width:860px}
+  p+p{margin-top:12px}
   .kick{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
   .small{font-size:13px;color:#9a8d98}
   b,strong{font-weight:700}
@@ -40,9 +42,9 @@
   .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta)}
 
   header.hero{padding:48px 0 40px}
-  .lead{font-size:19px;color:#4a3d48;max-width:660px;text-wrap:pretty}
+  .lead{font-size:20px;line-height:1.5;color:#4a3d48;max-width:860px;text-wrap:pretty}
 
-  section{padding:36px 0}
+  section{padding:42px 0}
   .sec-dark{background:var(--dark);color:#fff;position:relative;overflow:hidden;margin:20px 0}
   .sec-dark::before{content:"";position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.30),transparent 70%);pointer-events:none}
   .sec-dark h2,.sec-dark p,.sec-dark li,.sec-dark h3{color:#fff}
@@ -61,7 +63,7 @@
   .flow .s{font-size:13px;color:var(--muted);margin-top:3px}
 
   /* ---- карточка промпта ---- */
-  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
+  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 32px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
   .p-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:14px}
   .p-num{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
   .p-out{margin-top:6px;color:var(--muted)}
@@ -71,8 +73,8 @@
   .steps li{list-style:none;position:relative;padding-left:34px;margin-bottom:9px;color:#4a3d48}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:6px}
-  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.6;color:#33283b}
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-top:6px}
+  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15.5px;line-height:1.65;color:#33283b}
   .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
   .hint{font-size:13px;color:#9a8d98;margin-top:10px}
 
@@ -148,16 +150,16 @@
   <div class="wrap">
     <div class="kick">Шаг 4 после практикума</div>
     <h1>Первый <span class="g">мини-продукт</span></h1>
-    <p class="lead">На практикуме мы видели, как из экспертизы получается готовый файл, который можно отдать людям. Здесь собираем такой файл твоими руками. 3 задачи: найти проблему, проверить, что она настоящая, и собрать прототип вместе с нейросетью.</p>
+    <p class="lead">На практикуме мы видели, как из обычной экспертизы получается готовый файл, который можно отдать людям. Сегодня предлагаю собрать такой файл твоими руками. 3 задачи: найти проблему, убедиться, что она настоящая, и собрать прототип вместе с нейросетью. Это выходные, а не месяц.</p>
   </div>
 </header>
 
 <section class="sec-white">
   <div class="wrap">
-    <div class="kick">Зачем это сейчас</div>
+    <div class="kick">Прежде чем начнём</div>
     <h2>Мини-продукт – это не маленький курс</h2>
-    <p>Самая частая ошибка: решить «сделаю гайд» и начать писать всё, что знаешь по теме. Через месяц это бросают, потому что выходит учебник, а сил уже нет.</p>
-    <p style="margin-top:12px">Мини-продукт устроен иначе: <b>одна проблема одного человека, решённая за один заход.</b> Не «всё о питании», а «что положить ребёнку в школу, если утром 10 минут». По форме это чаще всего один файл: чек-лист, шаблон, тест, считалка. Узко – значит быстро собрать и понятно, кому отдавать.</p>
+    <p>Обычно бывает так: человек решает «сделаю гайд», садится и начинает писать всё, что знает по теме. Через месяц это тихо бросают – получился учебник, сил больше нет, а результата так и не видно. Знакомо, я сама так делала не раз.</p>
+    <p>Мини-продукт устроен иначе. В нём одна проблема одного человека, решённая за один заход. Не «всё о питании», а «что положить ребёнку в школу, если утром 10 минут». По форме это чаще всего один файл: чек-лист, шаблон, тест, считалка. И чем уже тема, тем легче собрать, объяснить и отдать – а заодно тем понятнее человеку, зачем ему это брать.</p>
   </div>
 </section>
 
@@ -165,17 +167,16 @@
   <div class="wrap">
     <article class="p" id="z1">
       <div class="thead"><span class="tnum">Задача 1</span><span class="tmin">40 минут</span></div>
-      <h3>Достать проблемы и превратить их в идеи</h3>
-      <p class="p-out" style="margin-top:6px">Не «придумай мне продукт», а «посмотри, что у людей болит, и предложи, что из этого решается одним файлом».</p>
+      <h3>Найти проблему и сразу увидеть прототип</h3>
+      <p class="p-out" style="margin-top:8px">Мы не будем спрашивать «придумай мне продукт» – ничего хорошего из этого не выходит. Мы попросим посмотреть, что у людей болит, и предложить, что из этого решается одним файлом. Разница огромная.</p>
 
       <ol class="steps">
-        <li>Если первый <a href="../auditoriya/">шаг</a> уже пройден – возьми оттуда портрет аудитории и живые цитаты. Это сразу поднимет качество ответа.</li>
-        <li>Скопируй промпт, заполни розовые куски, отправь.</li>
-        <li>Выбери одну идею. Не 3, а одну – ту, которую хочется сделать сегодня.</li>
+        <li>Если <a href="../auditoriya/">первый шаг</a> уже пройден, возьми оттуда портрет аудитории и живые цитаты – с ними ответ будет заметно точнее.</li>
+        <li>Скопируй промпт, заполни розовые куски и отправь.</li>
+        <li>Выбери одну идею. Не 3, а одну – ту, которую хочется сделать прямо сегодня.</li>
       </ol>
 
-      <div class="promptbox">
-<pre>Помоги найти, что из моей экспертизы можно превратить в мини-продукт – один файл, который решает одну проблему за один заход.
+      <div class="promptbox"><pre>Помоги найти, что из моей экспертизы можно превратить в мини-продукт – один файл, который решает одну проблему за один заход.
 
 Что я знаю про свою аудиторию: <span class="tok">[ВСТАВЬ ПОРТРЕТ АУДИТОРИИ ИЛИ ОПИШИ ОДНОЙ ФРАЗОЙ]</span>
 Живые фразы людей, если есть: <span class="tok">[ЦИТАТЫ ИЗ ОТЗЫВОВ, ВОПРОСОВ, ПЕРЕПИСОК]</span>
@@ -189,29 +190,27 @@
 4. Для самой сильной идеи сразу набросай прототип: из каких блоков состоит файл, что в каждом блоке, что человек делает на каждом шаге и что у него получается в конце.
 5. Скажи, что в этом продукте могу дать только я – мой опыт, мои примеры, мои случаи.
 
-Не предлагай «полное руководство» и «всё о...» – это не мини-продукт. Опирайся только на то, что перечислено выше, не выдумывай мне экспертизу.</pre>
-      </div>
+Не предлагай «полное руководство» и «всё о...» – это не мини-продукт. Опирайся только на то, что перечислено выше, не выдумывай мне экспертизу.</pre></div>
       <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
       <p class="hint">Розовым выделено то, что нужно заменить. Скобки удаляй вместе с подсказкой.</p>
 
-      <div class="res"><b>Что должно получиться:</b> одна идея и набросок прототипа – список блоков будущего файла. Если ни одна идея не откликается, попроси: «Ещё 5 вариантов, ближе к тому, что я делаю каждый день».</div>
+      <div class="res"><b>Что должно получиться:</b> одна идея и набросок прототипа – список блоков будущего файла. Если ни одна идея не откликается, попроси спокойно: «Ещё 5 вариантов, ближе к тому, что я делаю каждый день». Обычно со второго захода находится то самое.</div>
     </article>
 
     <article class="p" id="z2">
       <div class="thead"><span class="tnum">Задача 2</span><span class="tmin">20 минут</span></div>
-      <h3>Проверить, что это кому-то нужно</h3>
-      <p class="p-out" style="margin-top:6px">Двадцать минут проверки экономят выходные работы над тем, чего никто не ждал.</p>
+      <h3>Убедиться, что это кому-то нужно</h3>
+      <p class="p-out" style="margin-top:8px">Двадцать минут проверки экономят целые выходные, потраченные на то, чего никто не ждал. И часто именно здесь становится понятно, чем ты можешь отличаться от того, что уже есть.</p>
 
-      <div class="tool"><b>Чем делаем:</b> <a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a> или любой чат с включённым поиском. Без поиска нейросеть просто согласится с тобой – она склонна поддакивать.</div>
+      <div class="tool"><b>Чем будем делать:</b> <a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a> или любой чат с включённым поиском. Без поиска нейросеть просто согласится с тобой – она вообще очень склонна поддакивать, а нам сейчас нужно ровно обратное.</div>
 
       <ol class="steps">
-        <li>Вставь промпт, впиши свою идею.</li>
-        <li>Открой 2–3 ссылки и проверь, что они про то самое.</li>
-        <li>Ответ «тему берут, но жалуются на вот это» – самый полезный: там и есть твоё отличие.</li>
+        <li>Вставь промпт и впиши свою идею.</li>
+        <li>Открой 2–3 ссылки и проверь, что они действительно про то самое.</li>
+        <li>Самый полезный ответ звучит так: «тему берут, но жалуются вот на это». Там и есть твоё место.</li>
       </ol>
 
-      <div class="promptbox">
-<pre>Проверь мою идею мини-продукта. Твоя задача – не поддержать меня, а найти слабые места. Используй поиск в интернете.
+      <div class="promptbox"><pre>Проверь мою идею мини-продукта. Твоя задача – не поддержать меня, а найти слабые места. Используй поиск в интернете.
 
 Идея: <span class="tok">[ЧТО ЭТО, ОДНОЙ ФРАЗОЙ]</span>
 Для кого: <span class="tok">[АУДИТОРИЯ]</span>
@@ -224,26 +223,24 @@
 4. Чем моё может отличаться – конкретно, а не «лучше и качественнее».
 5. Признаки, что идею брать не стоит. Если они есть – скажи прямо.
 
-Не подтверждай идею из вежливости. Слабая – так и скажи и предложи, как её сузить или переформулировать.</pre>
-      </div>
+Не подтверждай идею из вежливости. Слабая – так и скажи и предложи, как её сузить или переформулировать.</pre></div>
       <div class="btns"><button class="btn" data-copy>Копировать промпт</button><a class="btn ghost" href="https://www.perplexity.ai" target="_blank" rel="noopener">Открыть Perplexity</a></div>
 
-      <div class="res"><b>Что должно получиться:</b> понимание, что уже есть у других и чем ты можешь быть полезнее. Плюс 1–2 правки к идее.</div>
+      <div class="res"><b>Что должно получиться:</b> понимание, что уже есть у других и чем ты можешь быть полезнее. Плюс 1–2 правки к идее – и это хорошо, значит проверка была не зря.</div>
     </article>
 
     <article class="p" id="z3">
       <div class="thead"><span class="tnum">Задача 3</span><span class="tmin">полтора часа</span></div>
-      <h3>Собрать прототип и доработать его вместе</h3>
-      <p class="p-out" style="margin-top:6px">Главное здесь – не получить идеальный файл с первого раза, а научиться разговаривать с нейросетью так, чтобы доводить его до нужного.</p>
+      <h3>Собрать прототип и научиться его доводить</h3>
+      <p class="p-out" style="margin-top:8px">Самое ценное здесь – не получить идеальный файл с первого раза. Такого не бывает. Ценно другое: научиться разговаривать с нейросетью так, чтобы доводить сделанное до нужного. Этот навык потом пригодится вообще везде.</p>
 
       <ol class="steps">
         <li>Скопируй промпт, вставь идею и прототип из первой задачи.</li>
-        <li>Получишь файл и список команд, которыми его правят. Попробуй хотя бы 3 правки – это и есть навык.</li>
+        <li>Получишь файл и список команд, которыми его правят. Попробуй хотя бы 3 правки – вот это и есть навык, ради которого мы здесь.</li>
         <li>Готовый файл оформи по стилю из <a href="../stili/">третьего шага</a>, если он ещё не оформлен.</li>
       </ol>
 
-      <div class="promptbox">
-<pre>Собери первую версию моего мини-продукта.
+      <div class="promptbox"><pre>Собери первую версию моего мини-продукта.
 
 Идея и прототип:
 """
@@ -261,8 +258,7 @@
 – какие 3 вещи в этом прототипе спорные и почему
 – список команд, которыми я могу его дорабатывать: как попросить сократить, добавить блок, поменять порядок, изменить тон, сделать проще для новичка. Приведи готовые формулировки, которые я просто скопирую.
 
-Работаем дальше по кругу: я говорю, что поменять, ты возвращаешь обновлённый файл целиком.</pre>
-      </div>
+Работаем дальше по кругу: я говорю, что поменять, ты возвращаешь обновлённый файл целиком.</pre></div>
       <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
 
       <details>
@@ -270,14 +266,14 @@
         <div class="det-body">
           <ol class="steps">
             <li>Скопируй код кнопкой над блоком в чате или скачай файл, если чат это умеет.</li>
-            <li>Открой «Текстовый редактор» на Маке или «Блокнот» на компьютере, вставь код, сохрани с именем вида <b>чек-лист.html</b> – расширение именно .html.</li>
-            <li>Дважды щёлкни по файлу, он откроется в браузере.</li>
-            <li>Для PDF: в браузере Cmd+P или Ctrl+P, в поле принтера – «Сохранить как PDF».</li>
+            <li>Открой «Текстовый редактор» на Маке или «Блокнот» на компьютере, вставь код и сохрани с именем вида <b>чек-лист.html</b> – расширение именно .html, это важно.</li>
+            <li>Дважды щёлкни по файлу, он откроется в браузере. Всё, документ готов.</li>
+            <li>Нужен PDF: в браузере Cmd+P или Ctrl+P, в поле принтера выбери «Сохранить как PDF».</li>
           </ol>
         </div>
       </details>
 
-      <div class="res"><b>Что должно получиться:</b> файл, который можно открыть, показать 5 живым людям и спросить, понятно ли. Их вопросы перепишут продукт лучше, чем ещё 3 дня правок.</div>
+      <div class="res"><b>Что должно получиться:</b> файл, который можно открыть, показать 5 живым людям и спросить, всё ли понятно. Их вопросы перепишут продукт лучше, чем ещё 3 дня твоих правок – проверено много раз.</div>
     </article>
   </div>
 </section>
@@ -287,7 +283,7 @@
     <div class="soft">
       <div class="kick">Что дальше</div>
       <h3 style="margin:8px 0 10px">Один продукт руками – это старт. На курсе делаем это повторяемо</h3>
-      <p style="color:#4a3d48">В модуле 3 разбираем, как из одной экспертизы собирать документы, таблицы и интерактивы – и как доводить их не героическим усилием, а по шагам. В модуле 4 – как сложить это в систему, где у тебя есть папка с материалами, помощник, который знает аудиторию и стиль, и понятный путь от идеи до готового файла.</p>
+      <p style="color:#4a3d48">В модуле 3 разбираем, как из одной экспертизы собирать документы, таблицы и интерактивы – и как доводить их спокойно, по шагам, а не героическим усилием на выходных. А в модуле 4 складываем всё в систему: папка с материалами, помощник, который знает твою аудиторию и стиль, и понятный путь от идеи до готового файла, который не нужно каждый раз изобретать заново.</p>
     </div>
   </div>
 </section>
