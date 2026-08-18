@@ -17,14 +17,16 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
 
   /* ---- роли типографики: Р1 заголовок, Р2 подзаголовок, Р3 текст 17px, Р4 метка ---- */
   h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.2vw,50px);line-height:1.06;text-wrap:balance;margin:12px 0 16px}
   h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.12;text-wrap:balance;margin-bottom:14px}
   h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;line-height:1.25;text-wrap:balance}
-  p,li,td,th,summary,label{font-size:17px;text-wrap:pretty}
+  p,li,td,th,summary,label{font-size:17.5px;text-wrap:pretty}
+  section > .wrap > p{max-width:860px}
+  p+p{margin-top:12px}
   .kick{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
   .small{font-size:13px;color:#9a8d98}
   b,strong{font-weight:700}
@@ -40,9 +42,9 @@
   .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta)}
 
   header.hero{padding:48px 0 40px}
-  .lead{font-size:19px;color:#4a3d48;max-width:660px;text-wrap:pretty}
+  .lead{font-size:20px;line-height:1.5;color:#4a3d48;max-width:860px;text-wrap:pretty}
 
-  section{padding:36px 0}
+  section{padding:42px 0}
   .sec-dark{background:var(--dark);color:#fff;position:relative;overflow:hidden;margin:20px 0}
   .sec-dark::before{content:"";position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.30),transparent 70%);pointer-events:none}
   .sec-dark h2,.sec-dark p,.sec-dark li,.sec-dark h3{color:#fff}
@@ -61,7 +63,7 @@
   .flow .s{font-size:13px;color:var(--muted);margin-top:3px}
 
   /* ---- карточка промпта ---- */
-  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
+  .p{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 32px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:80px}
   .p-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:14px}
   .p-num{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
   .p-out{margin-top:6px;color:var(--muted)}
@@ -71,8 +73,8 @@
   .steps li{list-style:none;position:relative;padding-left:34px;margin-bottom:9px;color:#4a3d48}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:6px}
-  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15px;line-height:1.6;color:#33283b}
+  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-top:6px}
+  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15.5px;line-height:1.65;color:#33283b}
   .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
   .hint{font-size:13px;color:#9a8d98;margin-top:10px}
 
@@ -148,16 +150,16 @@
   <div class="wrap">
     <div class="kick">Шаг 5 после практикума</div>
     <h1>Учиться <span class="g">быстрее</span></h1>
-    <p class="lead">Возьми любой полезный ролик, эфир или подкаст – и за час преврати его в конспект под свою задачу и в список того, что внедришь на этой неделе. 3 задачи. Начни прямо с этого практикума, если есть запись.</p>
+    <p class="lead">Возьми любой полезный ролик, эфир или подкаст – и за час преврати его в конспект под свою задачу и в список того, что внедришь на этой неделе. 3 задачи. Кстати, начать можно прямо с записи нашего практикума, если она у тебя есть.</p>
   </div>
 </header>
 
 <section class="sec-white">
   <div class="wrap">
-    <div class="kick">Зачем это сейчас</div>
-    <h2>Проблема не в том, что ты медленно читаешь</h2>
-    <p>У всех есть папка непросмотренных вебинаров и десяток книг с закладками на середине. Дело не в скорости и не в дисциплине: между «узнал» и «применил» нет ни одного шага, и знание испаряется за 3 дня.</p>
-    <p style="margin-top:12px">Этот шаг добавляет недостающее звено. Правило простое: <b>каждый материал должен закончиться чем-то, что можно потрогать</b> – записанным решением, изменённым процессом, готовым текстом.</p>
+    <div class="kick">Почему это вообще не работает само</div>
+    <h2>Дело не в том, что ты медленно читаешь</h2>
+    <p>У всех нас есть папка непросмотренных вебинаров и десяток книг с закладками на середине. И каждый раз кажется, что дело в дисциплине или во времени. На самом деле нет: между «узнала» и «применила» просто нет ни одного шага, поэтому знание спокойно испаряется за 3 дня, как будто его и не было.</p>
+    <p>Этот шаг добавляет недостающее звено. Правило простое и довольно жёсткое: каждый материал должен закончиться чем-то, что можно потрогать – записанным решением, изменённым процессом, готовым текстом. Не закончился – значит, это был не разбор, а просмотр, и ничего страшного, но и результата ждать не стоит.</p>
   </div>
 </section>
 
@@ -165,39 +167,38 @@
   <div class="wrap">
     <article class="p" id="z1">
       <div class="thead"><span class="tnum">Задача 1</span><span class="tmin">10 минут</span></div>
-      <h3>Взять материал и получить текст</h3>
-      <p class="p-out" style="margin-top:6px">Нейросеть работает с текстом. Значит, первым делом любое видео или аудио превращаем в текст – это самая механическая часть.</p>
+      <h3>Получить текст из видео или аудио</h3>
+      <p class="p-out" style="margin-top:8px">Нейросеть работает с текстом, поэтому первым делом любое видео превращаем в буквы. Это самая механическая часть, и занимает она меньше, чем кажется.</p>
 
       <ol class="steps">
-        <li>Выбери один материал, который давно откладываешь: ролик на YouTube, запись эфира, подкаст.</li>
-        <li>Получи из него текст – способы ниже, выбери любой.</li>
-        <li>Сохрани расшифровку в отдельный файл. Тайм-коды можно не убирать, они не мешают.</li>
+        <li>Выбери один материал, который давно откладываешь. Именно тот, до которого «всё никак».</li>
+        <li>Получи из него текст – способы ниже, выбирай любой, они все рабочие.</li>
+        <li>Сохрани расшифровку отдельным файлом. Тайм-коды убирать не надо, они не мешают.</li>
       </ol>
 
       <div class="tool">
-        <p><b>Буквица</b> – <a href="https://t.me/bykvitsa?start=7558032207" target="_blank" rel="noopener">бот в Телеграме</a>. Бесплатно 3 расшифровки в месяц, до 2 часов каждая, карту привязывать не нужно. Принимает и файлы, и ссылки на YouTube, VK, RuTube. Самый простой путь, если не хочется разбираться.</p>
+        <p><b>Буквица</b> – <a href="https://t.me/bykvitsa?start=7558032207" target="_blank" rel="noopener">бот в Телеграме</a>. Бесплатно 3 расшифровки в месяц, до 2 часов каждая, карту привязывать не нужно. Принимает и файлы, и ссылки на YouTube, VK, RuTube – самый простой путь, если не хочется ни в чём разбираться.</p>
         <p style="margin-top:10px"><b>Расшифровка прямо на YouTube</b> – бесплатно и мгновенно. Под видео нажми «Ещё» или значок ⋮, выбери «Показать расшифровку видео», выдели текст справа и скопируй.</p>
         <p style="margin-top:10px"><b>Glasp</b> – <a href="https://glasp.co/youtube-summary" target="_blank" rel="noopener">расширение для браузера</a>, бесплатно, работает только с YouTube: открывает расшифровку в один клик, без регистрации.</p>
-        <p style="margin-top:10px"><b>Google Диск</b> – если материал лежит у тебя видеофайлом: загрузи на диск и включи автоматические субтитры. Точность ниже, зато бесплатно и без сервисов.</p>
-        <p style="margin-top:10px"><b>Zoom</b> – записи встреч расшифровываются встроенным помощником, но только на платных тарифах.</p>
+        <p style="margin-top:10px"><b>Google Диск</b> – если материал лежит у тебя видеофайлом: загрузи и включи автоматические субтитры. Точность пониже, зато совсем без сервисов.</p>
+        <p style="margin-top:10px"><b>Zoom</b> – записи встреч расшифровывает встроенный помощник, но только на платных тарифах.</p>
       </div>
 
-      <div class="res"><b>Что должно получиться:</b> текстовый файл с расшифровкой. Материал длиннее часа – раздели на части по 20–30 минут, дальше будешь давать их по очереди.</div>
+      <div class="res"><b>Что должно получиться:</b> текстовый файл с расшифровкой. Если материал длиннее часа – раздели на части по 20–30 минут, дальше будешь давать их по очереди, так нейросеть ничего не упустит.</div>
     </article>
 
     <article class="p" id="z2">
       <div class="thead"><span class="tnum">Задача 2</span><span class="tmin">20 минут</span></div>
       <h3>Сделать конспект под свою задачу</h3>
-      <p class="p-out" style="margin-top:6px">Не пересказ, а выжимка того, что относится именно к твоей ситуации. Разница огромная.</p>
+      <p class="p-out" style="margin-top:8px">Не пересказ, а выжимка того, что относится именно к твоей ситуации. Разница между этими двумя вещами примерно как между «прочитала» и «поняла, что делать».</p>
 
       <ol class="steps">
-        <li>Скопируй промпт. Главная строка в нём – твоя задача: от неё зависит весь ответ.</li>
+        <li>Скопируй промпт. Главная строка в нём – твоя задача, от неё зависит весь ответ, так что напиши её честно.</li>
         <li>Вставь расшифровку внутрь или прикрепи файлом.</li>
         <li>Материал большой – давай частями: «Это первая часть из 3, прими её и жди следующую». Разбор проси после последней.</li>
       </ol>
 
-      <div class="promptbox">
-<pre>Сделай конспект материала под мою конкретную задачу. Пересказ мне не нужен.
+      <div class="promptbox"><pre>Сделай конспект материала под мою конкретную задачу. Пересказ мне не нужен.
 
 Моя задача сейчас: <span class="tok">[НАД ЧЕМ РАБОТАЕШЬ – НАПРИМЕР, «СОБИРАЮ ПЕРВЫЙ МИНИ-ПРОДУКТ»]</span>
 Что я уже знаю по теме: <span class="tok">[КОРОТКО, ЧТОБЫ НЕ ПЕРЕСКАЗЫВАЛИ ОЧЕВИДНОЕ]</span>
@@ -215,8 +216,7 @@
 5. Что автор сказал вскользь, но это стоит внимания.
 6. Что здесь спорно или не доказано. Не можешь проверить факт – так и пиши, не выдумывай источников.
 
-Пиши сжато, без вводных слов. Цитируй автора там, где важна формулировка. Не добавляй знаний из других источников – только этот материал.</pre>
-      </div>
+Пиши сжато, без вводных слов. Цитируй автора там, где важна формулировка. Не добавляй знаний из других источников – только этот материал.</pre></div>
       <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
       <p class="hint">Розовым выделено то, что нужно заменить. Скобки удаляй вместе с подсказкой.</p>
 
@@ -229,22 +229,21 @@
         </div>
       </details>
 
-      <div class="res"><b>Что должно получиться:</b> конспект, который не стыдно перечитать через полгода. Первой строкой допиши от себя: зачем это было нужно и что решено сделать.</div>
+      <div class="res"><b>Что должно получиться:</b> конспект, который не стыдно перечитать через полгода. Первой строкой допиши от себя: зачем это было нужно и что решено сделать. Через время эта строка окажется ценнее всего остального.</div>
     </article>
 
     <article class="p" id="z3">
       <div class="thead"><span class="tnum">Задача 3</span><span class="tmin">15 минут</span></div>
       <h3>Решить, что внедряешь на этой неделе</h3>
-      <p class="p-out" style="margin-top:6px">Тот самый недостающий шаг. Без него конспект остаётся файлом, а не изменением в работе.</p>
+      <p class="p-out" style="margin-top:8px">Тот самый недостающий шаг, ради которого всё и затевалось. Без него конспект остаётся просто файлом, а работа – по-прежнему прежней.</p>
 
       <ol class="steps">
-        <li>Продолжай тот же чат, где делали конспект.</li>
-        <li>Честно опиши свои условия – сколько времени есть и чего точно не будет.</li>
-        <li>Первое действие поставь в календарь на ближайшие сутки. Отложенное на неделю не делается никогда.</li>
+        <li>Оставайся в том же чате, где делали конспект.</li>
+        <li>Честно опиши свои условия – сколько времени есть и чего точно не будет. Тогда советы будут выполнимыми, а не красивыми.</li>
+        <li>Первое действие поставь в календарь на ближайшие сутки. То, что отложено на неделю, не делается никогда, и мы обе это знаем.</li>
       </ol>
 
-      <div class="promptbox">
-<pre>На основе этого конспекта скажи, что мне сделать в ближайшие дни.
+      <div class="promptbox"><pre>На основе этого конспекта скажи, что мне сделать в ближайшие дни.
 
 Мои условия: <span class="tok">[СКОЛЬКО ВРЕМЕНИ ЕСТЬ, ЧТО УЖЕ РАБОТАЕТ, ЧЕГО ТОЧНО НЕ БУДЕТ]</span>
 
@@ -258,11 +257,10 @@
 
 Отдельно скажи, что из материала мне не подходит и почему, с учётом моих условий. Не предлагай того, что требует ресурсов, которых у меня нет.
 
-Никаких общих формулировок вроде «внедрить системный подход». Только то, что можно поставить в список дел.</pre>
-      </div>
+Никаких общих формулировок вроде «внедрить системный подход». Только то, что можно поставить в список дел.</pre></div>
       <div class="btns"><button class="btn" data-copy>Копировать промпт</button><button class="btn ghost" data-open>Открыть ChatGPT</button></div>
 
-      <div class="res"><b>Что должно получиться:</b> 3 пункта в списке дел, из которых первый выполняется сегодня. Материал считается изученным, когда сделан хотя бы один.</div>
+      <div class="res"><b>Что должно получиться:</b> 3 пункта в списке дел, из которых первый выполняется сегодня. Материал можно считать изученным, когда сделан хотя бы один – и это честнее любых конспектов.</div>
     </article>
   </div>
 </section>
