@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Как ты звучишь · Усилитель практикума</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --magenta:#E6198C; --magenta-d:#C0116E; --ink:#211829; --dark:#1B1420;
@@ -45,7 +45,9 @@
   header.hero{padding:56px 0 48px}
   .lead{font-size:20px;line-height:1.5;color:#4a3d48;max-width:860px;text-wrap:pretty}
 
-  section{padding:58px 0}
+  section{padding:46px 0}
+  section + section{padding-top:34px}
+  .p:last-of-type{margin-bottom:8px}
   .sec-dark{background:var(--dark);color:#fff;position:relative;overflow:hidden;margin:20px 0}
   .sec-dark::before{content:"";position:absolute;top:-140px;right:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(230,25,140,.30),transparent 70%);pointer-events:none}
   .sec-dark h2,.sec-dark p,.sec-dark li,.sec-dark h3{color:#fff}
@@ -74,17 +76,17 @@
   .steps li{list-style:none;position:relative;padding-left:36px;margin-bottom:13px;color:#4a3d48}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;color:var(--magenta);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-  .promptbox{position:relative;background:var(--wash);border:1px solid var(--line);border-radius:18px;padding:50px 26px 24px;margin-top:18px}
-  .promptbox::before{content:"ПРОМПТ · КОПИРУЕТСЯ ЦЕЛИКОМ";position:absolute;top:18px;left:26px;font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--magenta)}
-  .copyicon{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;padding:0}
-  .copyicon:hover{border-color:#F1D9EC;box-shadow:0 8px 20px -14px rgba(120,20,90,.5);transform:translateY(-1px)}
-  .copyicon svg{width:19px;height:19px;stroke:var(--magenta);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .copyicon.done{background:#EAF7EE;border-color:#CDEBD6}
-  .copyicon.done svg{stroke:#1FA24E}
+  .promptbox{position:relative;background:#171B22;border:1px solid #2A303B;border-radius:18px;padding:52px 26px 26px;margin-top:20px;box-shadow:0 18px 40px -28px rgba(0,0,0,.75)}
+  .promptbox::before{content:"ПРОМПТ · КОПИРУЕТСЯ ЦЕЛИКОМ";position:absolute;top:18px;left:26px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.14em;color:#FF8FC6}
+  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.75;color:#DDE3EC}
+  .promptbox .tok{background:rgba(230,25,140,.22);border:1px solid rgba(255,143,198,.45);border-radius:6px;padding:1px 6px;font-weight:600;color:#FFC2E1}
+  .copyicon{position:absolute;top:13px;right:13px;width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;padding:0}
+  .copyicon:hover{background:rgba(255,255,255,.12);border-color:rgba(255,143,198,.5);transform:translateY(-1px)}
+  .copyicon svg{width:19px;height:19px;stroke:#FF8FC6;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .copyicon.done{background:rgba(31,162,78,.18);border-color:rgba(105,222,150,.5)}
+  .copyicon.done svg{stroke:#69DE96}
   .subblock{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
   .subblock .sublabel{font-weight:700;font-size:17.5px;margin-bottom:12px}
-  .promptbox pre{white-space:pre-wrap;word-wrap:break-word;font-family:'Manrope',sans-serif;font-size:15.5px;line-height:1.65;color:#33283b}
-  .tok{background:#FCE6F1;border:1px solid #F6CFE2;border-radius:6px;padding:1px 5px;font-weight:700;color:var(--magenta-d)}
   .hint{font-size:13px;color:#9a8d98;margin-top:10px}
 
   .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
