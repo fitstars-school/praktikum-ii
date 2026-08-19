@@ -114,6 +114,53 @@
   @media (min-width:901px){
     .panel .foldable>summary{display:none}
   }
+
+  /* ================= ДЕКОР СТИЛЕЙ СЛАЙДА ================= */
+  /* --- 1. Градиент: мягкая заливка + белая карточка под текстом + цифра-призрак --- */
+  .slide[data-deco=grad]{background:linear-gradient(150deg,#FFE3F1 0%,#F6E4FF 45%,#FFE9E2 100%)}
+  .slide[data-deco=grad] .pad{padding:110px 96px 230px}
+  .slide[data-deco=grad] .plate{position:absolute;inset:74px 74px 170px;background:rgba(255,255,255,.86);border-radius:56px;box-shadow:0 40px 90px -50px rgba(120,20,90,.5)}
+  .slide[data-deco=grad] .ghostnum{position:absolute;right:74px;bottom:150px;font-family:'Unbounded',sans-serif;font-weight:800;font-size:300px;line-height:.8;color:rgba(230,25,140,.13);pointer-events:none}
+  .slide[data-deco=grad] .kicker{display:inline-block;background:var(--grad);color:#fff;padding:14px 28px;border-radius:999px;letter-spacing:.1em;margin-bottom:34px;align-self:flex-start}
+  .slide[data-deco=grad] .num{display:none}
+  .slide[data-deco=grad] .bar{height:10px;width:150px}
+  .slide[data-deco=grad].hasphoto .plate{background:rgba(20,10,20,.42);backdrop-filter:blur(6px)}
+
+  /* --- 2. Эстетика: фото во весь кадр, крупный текст поверх, паспарту --- */
+  .slide[data-deco=aest]{background:#EFE9E1}
+  .slide[data-deco=aest] .mat{position:absolute;inset:34px;border:1px solid rgba(255,255,255,.55);border-radius:0;pointer-events:none;z-index:2}
+  .slide[data-deco=aest] .scrim{background:linear-gradient(180deg,rgba(28,22,18,.18) 0%,rgba(28,22,18,.30) 45%,rgba(28,22,18,.72) 100%)}
+  .slide[data-deco=aest] .pad{padding:120px 104px 250px;justify-content:flex-end}
+  .slide[data-deco=aest][data-pos=top] .pad{justify-content:flex-start}
+  .slide[data-deco=aest][data-pos=center] .pad{justify-content:center}
+  .slide[data-deco=aest] .kicker{font-size:23px;letter-spacing:.34em;font-weight:600;color:var(--s-acc);margin-bottom:30px}
+  .slide[data-deco=aest] .title{font-size:96px;line-height:1.0;letter-spacing:-.015em}
+  .slide[data-deco=aest] .head{font-size:72px;line-height:1.05;letter-spacing:-.01em;margin-bottom:24px}
+  .slide[data-deco=aest] .body{font-size:38px;line-height:1.5;max-width:82%}
+  .slide[data-deco=aest] .sub{font-size:37px;opacity:.92;max-width:80%}
+  .slide[data-deco=aest] .bar{display:none}
+  .slide[data-deco=aest] .num{position:absolute;top:104px;right:104px;font-size:30px;font-weight:600;letter-spacing:.2em;color:var(--s-acc);margin:0}
+  .slide[data-deco=aest] .foot{font-size:26px;letter-spacing:.16em;text-transform:uppercase}
+  .slide[data-deco=aest].hasphoto .kicker,.slide[data-deco=aest].hasphoto .num{color:rgba(255,255,255,.9)}
+  .slide[data-deco=aest].hasphoto .mat{border-color:rgba(255,255,255,.65)}
+
+  /* --- 3. Редакционный: узкий гротеск, терракота, номер и линейки --- */
+  .slide[data-deco=edito]{background:#F4F1EA}
+  .slide[data-deco=edito] .topline{position:absolute;left:84px;right:84px;top:96px;height:3px;background:#161616}
+  .slide[data-deco=edito] .botline{position:absolute;left:84px;right:84px;bottom:150px;height:1px;background:rgba(22,22,22,.25)}
+  .slide[data-deco=edito] .bignum{position:absolute;right:84px;top:128px;font-family:'Oswald',sans-serif;font-weight:700;font-size:150px;line-height:.9;color:var(--s-acc);opacity:.92;pointer-events:none}
+  .slide[data-deco=edito] .pad{padding:210px 84px 240px}
+  .slide[data-deco=edito] .kicker{position:absolute;top:52px;left:84px;font-family:'Inter',sans-serif;font-size:22px;letter-spacing:.3em;color:#161616;margin:0}
+  .slide[data-deco=edito] .title{font-family:'Oswald',sans-serif;font-weight:700;font-size:132px;line-height:.94;letter-spacing:-.01em;text-transform:uppercase;max-width:88%}
+  .slide[data-deco=edito] .head{font-family:'Oswald',sans-serif;font-weight:700;font-size:86px;line-height:.98;text-transform:uppercase;margin-bottom:26px;max-width:74%}
+  .slide[data-deco=edito] .num{display:none}
+  .slide[data-deco=edito] .body{font-size:34px;line-height:1.55;max-width:74%;opacity:.86}
+  .slide[data-deco=edito] .sub{font-size:34px;line-height:1.5;max-width:70%;opacity:.86}
+  .slide[data-deco=edito] .bar{background:var(--s-acc);height:8px;width:210px;margin:34px 0 28px}
+  .slide[data-deco=edito] .foot{font-family:'Inter',sans-serif;font-size:25px;letter-spacing:.14em;text-transform:uppercase;bottom:88px}
+  .slide[data-deco=edito].hasphoto .topline,.slide[data-deco=edito].hasphoto .botline{background:rgba(255,255,255,.7)}
+  .slide[data-deco=edito].hasphoto .kicker{color:#fff}
+  .chip .chiphint{display:block;font-size:10.5px;font-weight:600;opacity:.75;margin-top:3px}
 </style>
 </head>
 <body>
@@ -206,24 +253,36 @@
 </script>
 <script>
 const STYLES = {
-  nejro: {name:"Фирменный", sw:["#FBF4F8","#E6198C","#211829"], v:{
-    "--s-bg":"#FBF4F8","--s-ink":"#211829","--s-acc":"#E6198C","--s-foot":"#9a8d98",
+  grad: {name:"Градиент", deco:"grad", sw:["#FFE3F1","#E6198C","#F6E4FF"], v:{
+    "--s-bg":"#FBF4F8","--s-ink":"#211829","--s-acc":"#E6198C","--s-foot":"#7d6e7f",
     "--s-hf":"'Unbounded',sans-serif","--s-tf":"'Manrope',sans-serif",
     "--s-bar":"linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%)",
-    "--s-glow":"radial-gradient(circle at 82% 12%,rgba(230,25,140,.16),transparent 60%),radial-gradient(circle at 12% 92%,rgba(178,58,224,.12),transparent 62%)",
-    "--s-scrim":"linear-gradient(180deg,rgba(20,10,20,.15) 0%,rgba(20,10,20,.72) 100%)"}},
-  luxe: {name:"Тёмный", sw:["#15161A","#D9B26A","#F2EFE9"], v:{
-    "--s-bg":"#15161A","--s-ink":"#F2EFE9","--s-acc":"#D9B26A","--s-foot":"rgba(242,239,233,.6)",
-    "--s-hf":"'Cormorant Garamond',serif","--s-tf":"'Manrope',sans-serif",
-    "--s-bar":"#D9B26A",
-    "--s-glow":"radial-gradient(circle at 80% 10%,rgba(217,178,106,.16),transparent 58%)",
-    "--s-scrim":"linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.78) 100%)"}},
-  teplyy: {name:"Светлый", sw:["#F7F3EC","#A8632B","#2B2B28"], v:{
-    "--s-bg":"#F7F3EC","--s-ink":"#2B2B28","--s-acc":"#A8632B","--s-foot":"#8d8578",
-    "--s-hf":"'Lora',serif","--s-tf":"'Inter',sans-serif",
-    "--s-bar":"#A8632B",
-    "--s-glow":"radial-gradient(circle at 85% 8%,rgba(168,99,43,.10),transparent 58%)",
-    "--s-scrim":"linear-gradient(180deg,rgba(30,20,10,.15) 0%,rgba(30,20,10,.72) 100%)"}}
+    "--s-glow":"none",
+    "--s-scrim":"linear-gradient(180deg,rgba(20,10,20,.15) 0%,rgba(20,10,20,.7) 100%)"}},
+  neon: {name:"Неон", deco:"neon", sw:["#0C0F14","#4FE3C1","#1B2430"], v:{
+    "--s-bg":"#0C0F14","--s-ink":"#EAF3F1","--s-acc":"#4FE3C1","--s-foot":"rgba(234,243,241,.62)",
+    "--s-hf":"'Unbounded',sans-serif","--s-tf":"'Manrope',sans-serif",
+    "--s-bar":"#4FE3C1",
+    "--s-glow":"none",
+    "--s-scrim":"linear-gradient(180deg,rgba(0,0,0,.3) 0%,rgba(0,0,0,.8) 100%)"}},
+  aest: {name:"Эстетика", deco:"aest", hint:"под фото", sw:["#E3D8CE","#FFFFFF","#8C7A6B"], v:{
+    "--s-bg":"#E7DDD4","--s-ink":"#FFFFFF","--s-acc":"#FFFFFF","--s-foot":"rgba(255,255,255,.85)",
+    "--s-hf":"'Manrope',sans-serif","--s-tf":"'Manrope',sans-serif",
+    "--s-bar":"rgba(255,255,255,.9)",
+    "--s-glow":"none",
+    "--s-scrim":"linear-gradient(180deg,rgba(28,22,18,.12) 0%,rgba(28,22,18,.72) 100%)"}},
+  edito: {name:"Редакционный", deco:"edito", sw:["#F4F0E9","#151515","#E2552A"], v:{
+    "--s-bg":"#F4F0E9","--s-ink":"#151515","--s-acc":"#E2552A","--s-foot":"#151515",
+    "--s-hf":"'Playfair Display',serif","--s-tf":"'Inter',sans-serif",
+    "--s-bar":"#E2552A",
+    "--s-glow":"none",
+    "--s-scrim":"linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.7) 100%)"}},
+  mag: {name:"Журнал", deco:"mag", sw:["#FFFFFF","#111111","#D62828"], v:{
+    "--s-bg":"#FFFFFF","--s-ink":"#111111","--s-acc":"#D62828","--s-foot":"#8a8a8a",
+    "--s-hf":"'Playfair Display',serif","--s-tf":"'Inter',sans-serif",
+    "--s-bar":"#111111",
+    "--s-glow":"none",
+    "--s-scrim":"linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.72) 100%)"}}
 };
 const FORMATS = {
   "45": {name:"4:5 · лента", w:1080, h:1350},
@@ -231,7 +290,7 @@ const FORMATS = {
   "916":{name:"9:16 · сторис", w:1080, h:1920}
 };
 const KEY = "carousel-editor-v2";
-const DEFAULT = {brand:"", kicker:"", style:"nejro", format:"45", touched:false, tipSeen:false, slides:[
+const DEFAULT = {brand:"", kicker:"", style:"grad", format:"45", touched:false, tipSeen:false, slides:[
   {type:"cover",title:"ИИ, который пишет в твоём стиле",body:"5 шагов, чтобы посты звучали как ты",photo:null,pos:"center"},
   {type:"content",title:"Проблема",body:"ИИ из коробки пишет средне – он не знает ни тебя, ни твою аудиторию.",photo:null,pos:"top"},
   {type:"content",title:"Что делать",body:"Собери короткую инструкцию: твой тон, для кого пишешь, примеры своих текстов.",photo:null,pos:"top"},
@@ -261,7 +320,7 @@ function load(){
     if(!raw) return JSON.parse(JSON.stringify(DEFAULT));
     const s = JSON.parse(raw);
     if(!s.slides || !s.slides.length) return JSON.parse(JSON.stringify(DEFAULT));
-    if(!STYLES[s.style]) s.style = "nejro";
+    if(!STYLES[s.style]) s.style = "grad";
     if(!FORMATS[s.format]) s.format = "45";
     return s;
   }catch(e){ return JSON.parse(JSON.stringify(DEFAULT)); }
@@ -294,7 +353,14 @@ const esc=t=>(t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&g
 
 function slideHTML(s,i,total,edit){
   const ce=edit?'contenteditable="true" spellcheck="false"':'';
+  const deco=STYLES[state.style].deco;
   const bg=s.photo?`<div class="photobg" style="background-image:url('${s.photo}')"></div><div class="scrim"></div>`:'<div class="glow"></div>';
+  let layer="";
+  if(deco==="grad") layer='<div class="plate"></div>'+(s.type==="cover"?"":'<div class="ghostnum">'+String(i).padStart(2,"0")+'</div>');
+  if(deco==="neon") layer='<div class="edge"></div>';
+  if(deco==="mag")  layer='<div class="rule"></div><div class="stripe"></div>';
+  if(deco==="aest") layer = s.photo ? '' : '<div class="hintphoto">добавь фото – этот стиль для него</div>';
+  if(deco==="edito") layer='<div class="topline"></div><div class="botstripe"></div>'+(s.type==="cover"?'':'<div class="bignum">'+String(i).padStart(2,"0")+'</div>');
   let main;
   if(s.type==="cover"){
     main=`${state.kicker?`<div class="kicker">${esc(state.kicker)}</div>`:''}
@@ -309,7 +375,7 @@ function slideHTML(s,i,total,edit){
   const foot=s.type==="cover"
     ?`<div class="foot"><span><span class="dot"></span>листай →</span><span>${esc(state.brand)}</span></div>`
     :`<div class="foot"><span>${esc(state.brand)}</span><span>${i} / ${total-1}</span></div>`;
-  return {cls:"slide "+(s.type==="cover"?"cover":"content")+(s.photo?" hasphoto":""),html:bg+'<div class="pad">'+main+'</div>'+foot};
+  return {cls:"slide "+(s.type==="cover"?"cover":"content")+(s.photo?" hasphoto":""),html:bg+layer+'<div class="pad">'+main+'</div>'+foot};
 }
 function applyStyle(el){
   const v = STYLES[state.style].v;
@@ -318,8 +384,16 @@ function applyStyle(el){
 }
 function makeSlide(s,i,total,edit){
   const el=document.createElement("div");const o=slideHTML(s,i,total,edit);
-  el.className=o.cls; el.setAttribute("data-pos",s.pos||"top"); el.innerHTML=o.html;
-  applyStyle(el); return el;
+  el.className=o.cls; el.setAttribute("data-pos",s.pos||"top"); el.setAttribute("data-deco",STYLES[state.style].deco);
+  el.innerHTML=o.html;
+  applyStyle(el);
+  if(STYLES[state.style].deco==="aest" && !s.photo){
+    el.style.setProperty("--s-ink","#2C231C");
+    el.style.setProperty("--s-acc","#2C231C");
+    el.style.setProperty("--s-foot","rgba(44,35,28,.68)");
+    el.style.setProperty("--s-bar","rgba(44,35,28,.5)");
+  }
+  return el;
 }
 // текст не помещается? уменьшаем кегль, а если совсем никак – предупреждаем
 function fitText(slideEl){
@@ -402,7 +476,7 @@ function renderChips(){
   for(const k in STYLES){
     const b=document.createElement("button");
     b.className="chip"+(state.style===k?" on":"");
-    b.innerHTML='<span class="sw">'+STYLES[k].sw.map(c=>'<i style="background:'+c+'"></i>').join("")+'</span>'+STYLES[k].name;
+    b.innerHTML='<span class="sw">'+STYLES[k].sw.map(c=>'<i style="background:'+c+'"></i>').join("")+'</span>'+STYLES[k].name+(STYLES[k].hint?'<span class="chiphint">'+STYLES[k].hint+'</span>':'');
     b.onclick=()=>{state.style=k;save();render();};
     sc.appendChild(b);
   }
