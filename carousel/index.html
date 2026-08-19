@@ -9,7 +9,7 @@
 <style>
   :root{
     --magenta:#E6198C; --magenta-d:#FF8FC6; --ink:#F4EDF4; --dark:#0F0C14;
-    --wash:#241C2C; --line:#332A3D; --muted:#B3A4B6;
+    --wash:#241C2C; --line:#332A3D; --muted:#C7BBC9;
     --surface:#1E1826; --bg:#14101A;
     --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);
     --radius:20px; --radius-lg:26px;
@@ -44,7 +44,7 @@
   .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta)}
 
   header.hero{padding:56px 0 48px}
-  .lead{font-size:20px;line-height:1.5;color:#C9BBCB;max-width:860px;text-wrap:pretty}
+  .lead{font-size:20px;line-height:1.5;color:#E0D7E1;max-width:860px;text-wrap:pretty}
 
   section{padding:46px 0}
   section + section{padding-top:34px}
@@ -70,11 +70,11 @@
   .p{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px 34px 32px;box-shadow:var(--shadow);margin-bottom:30px;scroll-margin-top:80px}
   .p-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:18px}
   .p-num{flex:0 0 auto;width:42px;height:42px;border-radius:13px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
-  .p-out{margin-top:6px;color:#B3A4B6}
+  .p-out{margin-top:6px;color:#C7BBC9}
   .meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;margin:22px 0}
   .meta p+p{margin-top:10px}
   .steps{counter-reset:s;margin:22px 0}
-  .steps li{list-style:none;position:relative;padding-left:36px;margin-bottom:13px;color:#D5C8D6}
+  .steps li{list-style:none;position:relative;padding-left:36px;margin-bottom:13px;color:#E8DFE9}
   .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:8px;background:#3A1B31;border:1px solid #57264A;color:#FF8FC6;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
   .promptbox{position:relative;background:#0D1016;border:1px solid #2F3745;border-radius:18px;padding:52px 26px 26px;margin-top:20px;box-shadow:0 18px 40px -28px rgba(0,0,0,.75)}
@@ -88,7 +88,7 @@
   .copyicon.done svg{stroke:#69DE96}
   .subblock{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
   .subblock .sublabel{font-weight:700;font-size:17.5px;margin-bottom:12px}
-  .hint{font-size:13px;color:#9A8AA0;margin-top:10px}
+  .hint{font-size:13px;color:#AFA1B4;margin-top:10px}
 
   .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
   .btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:999px;padding:13px 22px;cursor:pointer;color:#fff;background:var(--grad);background-size:200% 100%;transition:background-position .35s,transform .15s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
@@ -105,10 +105,10 @@
   details summary::-webkit-details-marker{display:none}
   details summary::before{content:"+";font-family:'Unbounded',sans-serif;color:#FF8FC6;font-size:16px;width:22px;height:22px;border-radius:7px;background:#3A1B31;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
   details[open] summary::before{content:"–"}
-  .det-body{padding:0 22px 22px;color:#D5C8D6;font-size:16px}
+  .det-body{padding:0 22px 22px;color:#E2D9E3;font-size:16px}
   .det-body p+p{margin-top:10px}
   .det-body .ex{background:#191320;border:1px solid var(--line);border-radius:14px;padding:15px;font-size:15px;line-height:1.55;white-space:pre-wrap}
-  .fix{background:#191320;border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin-top:12px;font-size:15px;color:#D5C8D6}
+  .fix{background:#191320;border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin-top:12px;font-size:15px;color:#E2D9E3}
   .fix b{color:#FF8FC6}
 
   .next{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);font-size:15px;color:var(--muted)}
@@ -163,7 +163,7 @@
   .tmin{font-size:13px;font-weight:700;color:#B3A4B6;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
   .res{background:#15291D;border:1px solid #24503A;border-radius:14px;padding:17px 19px;margin-top:24px;font-size:16px;color:#9FE4BC}
   .res b{color:#C6F5DC}
-  .tool{background:#191320;border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin:22px 0;font-size:15.5px;color:#D5C8D6}
+  .tool{background:#191320;border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin:22px 0;font-size:15.5px;color:#E2D9E3}
   .tool b{color:var(--ink)}
   .tool a{font-weight:700}
 
@@ -189,6 +189,30 @@
   .shots img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
   .shots figcaption{font-size:13.5px;color:#9A8AA0;margin-top:10px;line-height:1.5}
   .shots figcaption b{color:var(--ink)}
+
+  /* ---- светлый остров на тёмной странице ---- */
+  .sec-light{background:#F6F1F6;border-top:1px solid #E7DCE8;border-bottom:1px solid #E7DCE8}
+  .sec-light h1,.sec-light h2,.sec-light h3,.sec-light h4{color:#211829}
+  .sec-light p,.sec-light li{color:#4a3d48}
+  .sec-light b,.sec-light strong{color:#211829}
+  .sec-light .kick{color:#C0116E}
+  .sec-light a{color:#C0116E;border-bottom-color:rgba(192,17,110,.35)}
+  .sec-light a:hover{color:#8E0B51}
+  .sec-light .card{background:#fff;border-color:#E7DCE8;box-shadow:0 14px 34px -26px rgba(120,20,90,.3)}
+  .sec-light .card p{color:#5a4d58}
+  .sec-light .soft{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border-color:#F1D9EC}
+  .sec-light .soft p{color:#4a3d48}
+
+  /* ---- шаги карточками ---- */
+  .stepcards{display:grid;gap:14px;margin-top:26px}
+  .stepcard{display:flex;gap:18px;align-items:flex-start;background:#fff;border:1px solid #E7DCE8;border-radius:18px;padding:20px 22px;box-shadow:0 14px 34px -28px rgba(120,20,90,.35)}
+  .stepcard .n{flex:0 0 auto;width:38px;height:38px;border-radius:12px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .stepcard h4{font-size:18px;font-weight:700;margin-bottom:7px;color:#211829}
+  .stepcard p{font-size:16.5px;line-height:1.55;color:#4a3d48;margin:0}
+  .sec-dark .stepcard,.stepcard.dark{background:var(--surface);border-color:var(--line)}
+  .sec-dark .stepcard h4,.stepcard.dark h4{color:var(--ink)}
+  .sec-dark .stepcard p,.stepcard.dark p{color:#E2D9E3}
+  @media (max-width:560px){.stepcard{padding:18px;gap:14px}}
 </style>
 
 <style>
@@ -207,20 +231,39 @@
   </div>
 </header>
 
-<section class="sec-white">
+<section class="sec-light">
   <div class="wrap">
     <div class="kick">Как этим пользоваться</div>
     <h2>6 шагов, дальше он сам</h2>
-    <ol class="steps" style="margin-top:24px">
-      <li><b>Выбери, с чего начать.</b> Редактор сразу спросит: есть готовый пост, нужно собрать текст с ИИ или просто посмотреть пример. Если текста ещё нет, вторая кнопка выдаст промпт – скопируешь, сходишь в чат и вернёшься с готовыми блоками.</li>
-      <li><b>Вставь текст</b> в поле и нажми «Раскидать по карусели». Абзацы станут слайдами: первый – обложкой, остальные по порядку, а короткие первые фразы сами превратятся в заголовки.</li>
-      <li><b>Выбери стиль и формат.</b> Три стиля: фирменный, тёмный и светлый. Форматы: 4:5 для ленты, квадрат и 9:16 для сторис.</li>
-      <li><b>Правь текст прямо на карточке.</b> Кликаешь по надписи на слайде и печатаешь – никаких отдельных полей. Если текст не влезает, редактор сам уменьшит кегль, а совсем длинный подсветит предупреждением.</li>
-      <li><b>Добавь фото</b> самым удобным способом: перетащи картинку прямо на слайд, вставь из буфера через Ctrl+V или Cmd+V, либо нажми «Фото» под карточкой. Стрелками «↑ ⋯ ↓» двигаешь текст вверх, по центру или вниз – удобно подгонять, чтобы он не лёг на лицо.</li>
-      <li><b>Скачай слайды.</b> Проще всего одним архивом – кнопка «Скачать все одним архивом», внутри готовые PNG по порядку. Можно и по одной картинке, если нужен только один слайд. Всё, что ты сделала, сохраняется автоматически: можно закрыть вкладку и вернуться позже.</li>
-    </ol>
+    <p>Каждый шаг занимает минуту. Если что-то забудешь – редактор подскажет прямо на экране.</p>
+    <div class="stepcards">
+      <div class="stepcard"><div class="n">1</div><div>
+        <h4>Выбери, с чего начать</h4>
+        <p>Редактор сразу спросит: <b>есть готовый пост</b>, <b>нужно собрать текст с ИИ</b> или <b>просто посмотреть пример</b>. Если текста ещё нет, вторая кнопка выдаст промпт – скопируешь, сходишь в чат и вернёшься с готовыми блоками.</p>
+      </div></div>
+      <div class="stepcard"><div class="n">2</div><div>
+        <h4>Вставь текст и раскидай</h4>
+        <p>Абзацы станут слайдами: <b>первый – обложкой</b>, остальные по порядку. Короткие первые фразы сами превратятся в заголовки, придумывать их заново не нужно.</p>
+      </div></div>
+      <div class="stepcard"><div class="n">3</div><div>
+        <h4>Выбери стиль и формат</h4>
+        <p>Три стиля: <b>фирменный, тёмный и светлый</b>. Форматы: <b>4:5</b> для ленты, <b>квадрат</b> и <b>9:16</b> для сторис. Переключается в одно нажатие, всё перестраивается сразу.</p>
+      </div></div>
+      <div class="stepcard"><div class="n">4</div><div>
+        <h4>Правь текст прямо на карточке</h4>
+        <p>Кликаешь по надписи на слайде и печатаешь – <b>никаких отдельных полей</b>. Не влезает – редактор сам уменьшит кегль, а совсем длинный текст подсветит предупреждением.</p>
+      </div></div>
+      <div class="stepcard"><div class="n">5</div><div>
+        <h4>Добавь фото</h4>
+        <p>Тремя способами: <b>перетащи картинку прямо на слайд</b>, вставь из буфера через Ctrl+V или Cmd+V, либо нажми «Фото» под карточкой. Стрелки «↑ ⋯ ↓» двигают текст вверх, по центру или вниз – чтобы он не лёг на лицо.</p>
+      </div></div>
+      <div class="stepcard"><div class="n">6</div><div>
+        <h4>Скачай слайды</h4>
+        <p>Проще всего <b>одним архивом</b> – внутри готовые PNG по порядку. Можно и по одной картинке, если нужен только один слайд. Всё сделанное <b>сохраняется автоматически</b>: закрывай вкладку спокойно.</p>
+      </div></div>
+    </div>
     <div class="soft" style="margin-top:24px">
-      <p><b>Небольшая подсказка про телефон.</b> С телефона удобнее скачивать архивом – это один файл вместо десяти. Если всё же качаешь по картинкам, браузер может спросить разрешение сохранить несколько файлов подряд, соглашайся. С компьютера всё падает в «Загрузки» само.</p>
+      <p><b>Небольшая подсказка про телефон.</b> С телефона удобнее скачивать архивом – это один файл вместо десяти. Если качаешь по картинкам, браузер может спросить разрешение сохранить несколько файлов подряд, соглашайся.</p>
     </div>
   </div>
 </section>
@@ -292,7 +335,7 @@
   </div>
 </section>
 
-<section>
+<section class="sec-light">
   <div class="wrap">
     <div class="kick">Проверь на себе</div>
     <h2>Что обычно неудобно – и что с этим можно сделать</h2>
@@ -326,15 +369,28 @@
   </div>
 </section>
 
-<section class="sec-white">
+<section class="sec-dark">
   <div class="wrap">
     <div class="kick">Следующий уровень</div>
     <h2>Когда неудобно делать по одной: агентский формат</h2>
-    <p>Редактор – это всё ещё ручная работа: ты открываешь страницу, вставляешь текст, правишь, скачиваешь. Пока каруселей немного, это быстро. Но если ты выпускаешь их регулярно, начинается другая история.</p>
-    <p><b>Дальше ИИ перестаёт быть окошком в браузере и начинает работать прямо с твоими файлами.</b> Выглядит это так: ты отдаёшь ему план контента на месяц или просто папку со своими заметками и голосовыми. Он сам пишет тексты твоим голосом, сам собирает по ним карусели в твоём стиле, сам сохраняет готовые картинки на компьютер и раскладывает по папкам – по датам, по темам, как тебе удобно. Тебе остаётся открыть нужную папку, посмотреть и опубликовать.</p>
-    <p>И это не фантазия и не корпоративная разработка: ровно так у меня собираются конспекты, материалы курсов и рабочие документы. Разница с обычным чатом одна – у помощника есть доступ к папкам и понятные инструкции, что и куда складывать.</p>
-    <div class="soft" style="margin-top:22px">
-      <p><b>Важная оговорка, чтобы не было разочарования.</b> Такой агент не собирается одним промптом за вечер. Сначала нужен свой стиль и свой голос, потом понятный процесс, который ты и сама умеешь повторить руками, и только потом его можно отдать ИИ. Поэтому мы и идём по шагам: сначала редактор, потом свой инструмент, потом система.</p>
+    <p>Редактор – это всё ещё ручная работа: открыть страницу, вставить текст, поправить, скачать. Пока каруселей одна-две, это быстро. Если ты выпускаешь их регулярно, начинается совсем другая история.</p>
+    <div class="stepcards">
+      <div class="stepcard dark"><div class="n">1</div><div>
+        <h4>Ты отдаёшь материал, а не задачу</h4>
+        <p>План контента на месяц, папку со своими заметками или расшифровки голосовых. Больше ничего формулировать не надо.</p>
+      </div></div>
+      <div class="stepcard dark"><div class="n">2</div><div>
+        <h4>Он пишет и собирает сам</h4>
+        <p>Тексты <b>твоим голосом</b>, карусели <b>в твоём стиле</b>, сразу в нужных форматах – без твоего участия в каждой мелочи.</p>
+      </div></div>
+      <div class="stepcard dark"><div class="n">3</div><div>
+        <h4>И раскладывает по папкам</h4>
+        <p>Готовые картинки <b>сохраняются прямо на компьютер</b> и раскладываются по датам или темам – как удобно тебе. Ты открываешь нужную папку, смотришь и публикуешь.</p>
+      </div></div>
+    </div>
+    <p style="margin-top:24px">И это не фантазия и не корпоративная разработка: ровно так у меня собираются конспекты, материалы курсов и рабочие документы. Разница с обычным чатом одна – <b>у помощника есть доступ к папкам и понятные инструкции, что и куда складывать</b>.</p>
+    <div class="soft" style="margin-top:22px;background:linear-gradient(100deg,#2B1A2C,#221C33);border-color:#3E2E48">
+      <p style="color:#E2D9E3"><b style="color:#FF8FC6">Важная оговорка, чтобы не было разочарования.</b> Такой агент не собирается одним промптом за вечер. Сначала нужен свой стиль и свой голос, потом понятный процесс, который ты и сама умеешь повторить руками, и только потом его можно отдать ИИ. Поэтому и идём по шагам: сначала редактор, потом свой инструмент, потом система.</p>
     </div>
   </div>
 </section>
