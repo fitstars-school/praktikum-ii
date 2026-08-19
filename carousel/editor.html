@@ -18,7 +18,7 @@
   .top p{font-size:13px;color:var(--muted);flex:1;min-width:200px}
   .app{display:grid;grid-template-columns:380px 1fr;min-height:calc(100vh - 64px)}
   .panel{background:var(--surface);border-right:1px solid var(--line);padding:20px;overflow-y:auto;max-height:calc(100vh - 64px)}
-  .stage{padding:26px;overflow-y:auto;max-height:calc(100vh - 64px);display:flex;flex-wrap:wrap;gap:26px;align-content:flex-start}
+  .stage{padding:26px;overflow-y:auto;overflow-x:visible;max-height:calc(100vh - 64px);display:flex;flex-wrap:wrap;gap:26px;align-content:flex-start}
   .note{background:linear-gradient(100deg,#2B1A2C,#221C33);border:1px solid #3E2E48;border-radius:16px;padding:13px 15px;font-size:13px;line-height:1.5;color:#D5C8D6;margin-bottom:14px}
   .note b{color:var(--pink)}
   label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#9A8AA0;margin:14px 0 6px}
@@ -50,7 +50,10 @@
   .frame .slide{transform-origin:top left}
   .cardbar{display:flex;align-items:center;gap:6px;margin-top:9px;flex-wrap:wrap}
   .cardbar .name{font-size:12px;font-weight:700;color:#9A8AA0;margin-right:auto}
-  .poswrap{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .poswrap{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:visible}
+  .poswrap button:first-child{border-radius:8px 0 0 8px}
+  .poswrap button:last-child{border-radius:0 8px 8px 0}
+  .poswrap button+button{border-left:1px solid var(--line)}
   .poswrap button{border:none;background:var(--wash);cursor:pointer;font-size:12px;padding:6px 9px;color:#B3A4B6}
   .poswrap button.on{background:var(--magenta);color:#fff}
   .warn{margin-top:7px;font-size:12px;font-weight:700;color:#FFB6D8;background:#3A1830;border:1px solid #5A2447;border-radius:9px;padding:6px 10px;display:none}
@@ -71,7 +74,7 @@
   .slide .title{font-family:var(--s-hf);font-weight:800;font-size:82px;line-height:1.06;letter-spacing:-.01em}
   .slide .bar{width:132px;height:9px;border-radius:99px;background:var(--s-bar);margin:38px 0 30px}
   .slide .sub{font-size:40px;line-height:1.35;opacity:.82}
-  .slide .num{font-family:var(--s-hf);font-weight:800;font-size:64px;color:var(--s-acc);margin-bottom:22px}
+  .slide .accentline{width:84px;height:8px;border-radius:99px;background:var(--s-bar);margin-bottom:34px;flex:0 0 auto}
   .slide .head{font-family:var(--s-hf);font-weight:700;font-size:60px;line-height:1.12;margin-bottom:28px}
   .slide .body{font-size:42px;line-height:1.45;opacity:.9}
   .slide .foot{position:absolute;left:92px;right:92px;bottom:82px;display:flex;align-items:center;justify-content:space-between;font-size:30px;font-weight:600;color:var(--s-foot)}
@@ -130,7 +133,7 @@
   .slide[data-deco=aest] .body{font-size:38px;line-height:1.5;max-width:82%}
   .slide[data-deco=aest] .sub{font-size:37px;opacity:.92;max-width:80%}
   .slide[data-deco=aest] .bar{display:none}
-  .slide[data-deco=aest] .num{position:absolute;top:104px;right:104px;font-size:30px;font-weight:600;letter-spacing:.2em;color:var(--s-acc);margin:0}
+  .slide[data-deco=aest] .accentline{width:70px;height:4px;opacity:.85;margin-bottom:26px}
   .slide[data-deco=aest] .foot{font-size:26px;letter-spacing:.16em;text-transform:uppercase}
   .slide[data-deco=aest].hasphoto .kicker,.slide[data-deco=aest].hasphoto .num{color:rgba(255,255,255,.9)}
   .slide[data-deco=aest].hasphoto .mat{border-color:rgba(255,255,255,.65)}
@@ -144,7 +147,6 @@
   .slide[data-deco=edito] .kicker{position:absolute;top:52px;left:84px;font-family:'Inter',sans-serif;font-size:22px;letter-spacing:.3em;color:#161616;margin:0}
   .slide[data-deco=edito] .title{font-family:'Oswald',sans-serif;font-weight:700;font-size:132px;line-height:.94;letter-spacing:-.01em;text-transform:uppercase;max-width:88%}
   .slide[data-deco=edito] .head{font-family:'Oswald',sans-serif;font-weight:700;font-size:86px;line-height:.98;text-transform:uppercase;margin-bottom:26px;max-width:74%}
-  .slide[data-deco=edito] .num{display:none}
   .slide[data-deco=edito] .body{font-size:34px;line-height:1.55;max-width:74%;opacity:.86}
   .slide[data-deco=edito] .sub{font-size:34px;line-height:1.5;max-width:70%;opacity:.86}
   .slide[data-deco=edito] .bar{background:var(--s-acc);height:8px;width:210px;margin:34px 0 28px}
@@ -191,6 +193,18 @@
   .helpclose{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--wash);color:var(--ink);cursor:pointer;font-size:14px}
   .helpclose:hover{border-color:var(--pink);color:var(--pink)}
   @media (max-width:560px){.helpcard{padding:24px 20px}.helpbtns .btn{width:100%}}
+
+  /* ---- всплывающие подсказки ---- */
+  [data-tip]{position:relative}
+  [data-tip]:hover::after{
+    content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%);
+    background:#0F0C14;color:#F4EDF4;font-family:'Manrope',sans-serif;font-size:12.5px;font-weight:600;line-height:1.35;
+    padding:8px 12px;border-radius:10px;border:1px solid #3E2E48;white-space:normal;width:max-content;max-width:230px;
+    text-align:center;text-transform:none;letter-spacing:0;z-index:40;box-shadow:0 14px 30px -18px rgba(0,0,0,.9);pointer-events:none}
+  [data-tip]:hover::before{
+    content:"";position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
+    border:5px solid transparent;border-top-color:#0F0C14;z-index:41;pointer-events:none}
+  @media (hover:none){[data-tip]:hover::after,[data-tip]:hover::before{display:none}}
 </style>
 </head>
 <body>
@@ -229,7 +243,7 @@
 
       <label>Вставь готовый пост</label>
       <textarea id="post" rows="5" placeholder="Вставь сюда текст поста целиком – абзацы станут слайдами"></textarea>
-      <button class="btn wide" id="split">Раскидать по карусели</button>
+      <button class="btn wide" id="split" data-tip="разобьёт текст на слайды: абзацы станут отдельными карточками">Раскидать по карусели</button>
 
       <details class="foldable" id="settings" open>
         <summary>Стиль, формат и подписи</summary>
@@ -239,27 +253,27 @@
           <label>Формат</label>
           <div class="chips" id="formats"></div>
           <label>Подпись на слайдах</label>
-          <input type="text" id="brand" placeholder="@твой_ник или имя">
+          <input type="text" id="brand" placeholder="@твой_ник или имя" data-tip="подпись в нижнем углу каждого слайда">
           <label>Метка на обложке</label>
-          <input type="text" id="kicker" placeholder="например: разбор недели">
+          <input type="text" id="kicker" placeholder="например: разбор недели" data-tip="маленькая надпись над заголовком обложки">
         </div>
       </details>
 
       <label>Быстро и сразу</label>
-      <label class="btn ghost sm wide filelbl" style="display:block;text-align:center">
+      <label class="btn ghost sm wide filelbl" style="display:block;text-align:center" data-tip="выбери несколько фото сразу – они разложатся по слайдам с разными видами">
         Загрузить фото пачкой – разложу сама
         <input type="file" id="photos" accept="image/*" multiple>
       </label>
-      <button class="btn ghost sm wide" id="shuffle">Перетасовать раскладки</button>
+      <button class="btn ghost sm wide" id="shuffle" data-tip="случайно поменяет виды слайдов и положение текста – быстрый способ увидеть другой вариант">Перетасовать раскладки</button>
 
       <label>Слайды</label>
       <div id="slist"></div>
       <button class="btn ghost sm wide" id="add">+ Добавить слайд</button>
 
       <div class="sep"></div>
-      <button class="btn wide" id="dlzip">Скачать все одним архивом</button>
-      <button class="btn ghost sm wide" id="dlall">Скачать по одной картинке</button>
-      <button class="btn ghost sm wide" id="reset">Начать заново</button>
+      <button class="btn wide" id="dlzip" data-tip="соберёт все слайды в один zip-файл – удобно на телефоне">Скачать все одним архивом</button>
+      <button class="btn ghost sm wide" id="dlall" data-tip="сохранит каждый слайд отдельным png">Скачать по одной картинке</button>
+      <button class="btn ghost sm wide" id="reset" data-tip="удалит текущую карусель и вернёт пример">Начать заново</button>
       <div class="saved" id="saved"></div>
       <button class="btn ghost sm wide" id="helpbtn">Неудобно? Это нормально</button>
       <div class="hint">Фото можно перетащить прямо на слайд или вставить из буфера. Кнопки «◀ фото ▶» под карточкой меняют фотографии местами между слайдами. Стрелки «↑ ⋯ ↓» двигают текст вверх, по центру или вниз – удобно подгонять под лицо на фото.</div>
@@ -337,13 +351,13 @@ const FORMATS = {
   "916":{name:"9:16 · сторис", w:1080, h:1920}
 };
 const KEY = "carousel-editor-v2";
-const DEFAULT = {brand:"", kicker:"", style:"nejro", format:"45", touched:false, tipSeen:false, slides:[
+const DEFAULT = {brand:"@fitstars", kicker:"", style:"nejro", format:"45", touched:false, tipSeen:false, slides:[
   {"type": "cover", "title": "Делаешь карусель полдня и всё равно недовольна?", "body": "Давай разбираться, как собрать её за 20 минут – и чтобы она была твоей, а не как у всех.", "photo": null, "pos": "center"},
-  {"type": "content", "title": "Мне это знакомо", "body": "Я не дизайнер и никогда им не была. Долго думала, что это приговор: значит, красивого визуала у меня не будет – либо плати за каждую картинку. Оказалось, дело вообще не в таланте. Дело в трёх простых правилах, которых мне никто не сказал.", "photo": null, "pos": "top"},
-  {"type": "content", "title": "Правило 1. Одна мысль на слайд", "body": "Самая частая ошибка – затолкать в первый слайд всё сразу. Не надо. Одна мысль – один экран. Не влезает в три строки? Значит, это две мысли, и им нужно два слайда. Проверка простая: прочитай слайд вслух на одном дыхании.", "photo": null, "pos": "top"},
-  {"type": "content", "title": "Правило 2. Первый обещает, последний зовёт", "body": "Обложка – это не название темы, а обещание: что человек унесёт, если долистает. А на последнем слайде скажи, что сделать дальше – написать, сохранить, попробовать. Без этого карусель просто заканчивается, и всё.", "photo": null, "pos": "top"},
-  {"type": "content", "title": "Правило 3. Найди свой стиль", "body": "Не просто один стиль на карусель, а именно свой: твои цвета, твои шрифты, твоя интонация. Кажется, что ИИ делает всем одинаковые картинки? Он делает их ровно до тех пор, пока ему не объяснили, какая ты. Дай ему свои цвета, свои примеры, скажи, что нравится и что бесит – и одинаковое закончится.", "photo": null, "pos": "top"},
-  {"type": "content", "title": "Дальше – интереснее", "body": "Всё это ты сейчас сделала руками. Но карусели можно собирать иначе: чтобы ИИ сам писал текст твоим голосом, сам раскладывал слайды и складывал готовое в папку на компьютере. Этому учимся на курсе «Нейро-архитектор» – и там же собираем под себя любой рабочий инструмент, вместо того чтобы подстраиваться под чужой.", "photo": null, "pos": "top"}
+  {"type": "content", "title": "Мне это знакомо", "body": "Я не дизайнер и никогда им не была. Долго думала, что это приговор: значит, красивого визуала у меня не будет – либо плати за каждую картинку. Оказалось, дело вообще не в таланте. Дело в трёх простых правилах, которых мне никто не сказал.", "photo": null, "pos": "center"},
+  {"type": "content", "title": "Правило 1. Одна мысль на слайд", "body": "Самая частая ошибка – затолкать в первый слайд всё сразу. Не надо. Одна мысль – один экран. Не влезает в три строки? Значит, это две мысли, и им нужно два слайда. Проверка простая: прочитай слайд вслух на одном дыхании.", "photo": null, "pos": "center"},
+  {"type": "content", "title": "Правило 2. Первый обещает, последний зовёт", "body": "Обложка – это не название темы, а обещание: что человек унесёт, если долистает. А на последнем слайде скажи, что сделать дальше – написать, сохранить, попробовать. Без этого карусель просто заканчивается, и всё.", "photo": null, "pos": "center"},
+  {"type": "content", "title": "Правило 3. Найди свой стиль", "body": "Не просто один стиль на карусель, а именно свой: твои цвета, твои шрифты, твоя интонация. Кажется, что ИИ делает всем одинаковые картинки? Он делает их ровно до тех пор, пока ему не объяснили, какая ты. Дай ему свои цвета, свои примеры, скажи, что нравится и что бесит – и одинаковое закончится.", "photo": null, "pos": "center"},
+  {"type": "content", "title": "Дальше – интереснее", "body": "Всё это ты сейчас сделала руками. Но карусели можно собирать иначе: чтобы ИИ сам писал текст твоим голосом, сам раскладывал слайды и складывал готовое в папку на компьютере. Этому учимся на курсе «Нейро-архитектор» – и там же собираем под себя любой рабочий инструмент, вместо того чтобы подстраиваться под чужой.", "photo": null, "pos": "center"}
 ]};
 let state = load();
 let active = 0;
@@ -409,7 +423,7 @@ function slideHTML(s,i,total,edit){
     : '<div class="glow"></div>';
   let layer="";
   if(deco==="aest") layer = s.photo ? '' : '<div class="hintphoto">добавь фото – этот стиль для него</div>';
-  if(deco==="edito") layer='<div class="topline"></div><div class="botstripe"></div>'+(s.type==="cover"?'':'<div class="bignum">'+String(i).padStart(2,"0")+'</div>');
+  if(deco==="edito") layer='<div class="topline"></div><div class="botstripe"></div>';
   let main;
   if(s.type==="cover"){
     main=`${state.kicker?`<div class="kicker">${esc(state.kicker)}</div>`:''}
@@ -417,7 +431,7 @@ function slideHTML(s,i,total,edit){
       <div class="bar"></div>
       <div class="sub" ${ce} data-idx="${i}" data-field="body" data-ph="Подзаголовок">${esc(s.body)}</div>`;
   }else{
-    main=`<div class="num">${String(i).padStart(2,"0")}</div>
+    main=`<div class="accentline"></div>
       ${ (s.title||edit)?`<div class="head" ${ce} data-idx="${i}" data-field="title" data-ph="Заголовок">${esc(s.title)}</div>`:'' }
       <div class="body" ${ce} data-idx="${i}" data-field="body" data-ph="Текст слайда">${esc(s.body)}</div>`;
   }
@@ -433,7 +447,7 @@ function applyStyle(el){
 }
 function makeSlide(s,i,total,edit){
   const el=document.createElement("div");const o=slideHTML(s,i,total,edit);
-  el.className=o.cls; el.setAttribute("data-pos",s.pos||"top"); el.setAttribute("data-deco",STYLES[state.style].deco);
+  el.className=o.cls; el.setAttribute("data-pos",s.pos||"center"); el.setAttribute("data-deco",STYLES[state.style].deco);
   el.setAttribute("data-lay", s.photo ? (s.layout||"full") : "text");
   el.innerHTML=o.html;
   applyStyle(el);
@@ -496,39 +510,39 @@ function render(){
     bar.innerHTML=`<span class="name">${idx===0?"Обложка":"Слайд "+idx}</span>`;
     const pos=document.createElement("div");pos.className="poswrap";
     [["top","↑"],["center","⋯"],["bottom","↓"]].forEach(([p,ic])=>{
-      const b=document.createElement("button");b.textContent=ic;b.title="текст "+p;
-      if((s.pos||"top")===p)b.className="on";
+      const b=document.createElement("button");b.textContent=ic;b.dataset.tip=({top:"текст вверху слайда",center:"текст по центру",bottom:"текст внизу слайда"})[p];
+      if((s.pos||"center")===p)b.className="on";
       b.onclick=()=>{s.pos=p;save();render();};pos.appendChild(b);
     });
     bar.appendChild(pos);
     if(s.photo){
       const sw=document.createElement("div");sw.className="poswrap";
-      const bl=document.createElement("button");bl.textContent="◀ фото";bl.title="поменять фото с предыдущим слайдом";
+      const bl=document.createElement("button");bl.textContent="◀ фото";bl.dataset.tip="поменять фото с предыдущим слайдом";
       bl.onclick=()=>swapPhoto(idx,-1);
-      const br=document.createElement("button");br.textContent="фото ▶";br.title="поменять фото со следующим слайдом";
+      const br=document.createElement("button");br.textContent="фото ▶";br.dataset.tip="поменять фото со следующим слайдом";
       br.onclick=()=>swapPhoto(idx,1);
       sw.appendChild(bl);sw.appendChild(br);bar.appendChild(sw);
 
       const lw=document.createElement("div");lw.className="poswrap";
       [["full","на весь"],["half","фото сверху"],["hlow","фото снизу"]].forEach(([k,t])=>{
-        const b=document.createElement("button");b.textContent=t;b.title="раскладка: "+t;
+        const b=document.createElement("button");b.textContent=t;b.dataset.tip=({full:"фото на весь слайд, текст поверх",half:"фото сверху, текст под ним",hlow:"фото снизу, текст сверху"})[k];
         if((s.layout||"full")===k)b.className="on";
         b.onclick=()=>{s.layout=k;state.touched=true;save();render();};
         lw.appendChild(b);
       });
       bar.appendChild(lw);
     }
-    const pl=document.createElement("label");pl.className="photobtn";pl.innerHTML=(s.photo?"🖼 заменить фото":"🖼 фото");
+    const pl=document.createElement("label");pl.className="photobtn";pl.innerHTML=(s.photo?"🖼 заменить фото":"🖼 фото");pl.dataset.tip=s.photo?"выбрать другую картинку":"фото станет фоном слайда – можно ещё перетащить картинку прямо на слайд";
     const pi=document.createElement("input");pi.type="file";pi.accept="image/*";
     pi.onchange=e=>{const f=e.target.files[0];if(f)setPhoto(s,f);};
     pl.appendChild(pi);bar.appendChild(pl);
-    if(s.photo){const rm=document.createElement("button");rm.className="photobtn";rm.textContent="убрать";rm.onclick=()=>{s.photo=null;save();render();};bar.appendChild(rm);}
-    const dl=document.createElement("button");dl.className="btn sm";dl.textContent="Скачать";dl.onclick=()=>download(idx);
+    if(s.photo){const rm=document.createElement("button");rm.className="photobtn";rm.textContent="убрать";rm.dataset.tip="убрать фото, останется фон стиля";rm.onclick=()=>{s.photo=null;save();render();};bar.appendChild(rm);}
+    const dl=document.createElement("button");dl.className="btn sm";dl.textContent="Скачать";dl.dataset.tip="сохранить этот слайд картинкой";dl.onclick=()=>download(idx);
     bar.appendChild(dl); card.appendChild(bar); stage.appendChild(card);
 
     const row=document.createElement("div");row.className="srow";
     row.innerHTML=`<span class="lbl">${idx===0?"Обложка":"Слайд "+idx}</span>`;
-    const flbl=document.createElement("label");flbl.className="mini filelbl";flbl.textContent="🖼";flbl.title=s.photo?"заменить фото":"фото фоном";
+    const flbl=document.createElement("label");flbl.className="mini filelbl";flbl.textContent="🖼";flbl.dataset.tip=s.photo?"заменить фото на этом слайде":"поставить фото фоном слайда";
     const fi=document.createElement("input");fi.type="file";fi.accept="image/*";
     fi.onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{s.photo=ev.target.result;save();render();};r.readAsDataURL(f);};
     flbl.appendChild(fi);row.appendChild(flbl);
@@ -591,7 +605,7 @@ function splitPost(text){
       const m=c.match(/^([^.!?:]{8,55})[.!?:]\s+(.+)$/s);
       if(m && c.length>110){ title=m[1].trim(); body=m[2].trim(); }
     }
-    state.slides.push({type:"content",title:title,body:body,photo:null,pos:"top"});
+    state.slides.push({type:"content",title:title,body:body,photo:null,pos:"center"});
   });
   state.touched=false;
   save();render();
@@ -658,7 +672,7 @@ $("#helpbtn").onclick=()=>{ HELP.classList.add("on"); };
 $("#helpclose").onclick=()=>{ HELP.classList.remove("on"); };
 HELP.addEventListener("click", e=>{ if(e.target===HELP) HELP.classList.remove("on"); });
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") HELP.classList.remove("on"); });
-$("#add").onclick=()=>{state.slides.push({type:"content",title:"",body:"Текст слайда",photo:null,pos:"top"});save();render();};
+$("#add").onclick=()=>{state.slides.push({type:"content",title:"",body:"Текст слайда",photo:null,pos:"center"});save();render();};
 $("#brand").oninput=e=>{state.brand=e.target.value;save();render();};
 $("#kicker").oninput=e=>{state.kicker=e.target.value;save();render();};
 $("#reset").onclick=()=>{
