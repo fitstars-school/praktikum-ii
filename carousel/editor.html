@@ -177,6 +177,20 @@
   .poswrap button{white-space:nowrap;font-size:11.5px;padding:6px 10px}
   .cardbar{gap:8px}
   .filelbl.btn{cursor:pointer}
+
+  /* ---- всплывающая подсказка ---- */
+  .helpbox{position:fixed;inset:0;background:rgba(8,6,12,.72);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:22px;z-index:50}
+  .helpbox.on{display:flex}
+  .helpcard{position:relative;max-width:560px;background:var(--surface);border:1px solid #3E2E48;border-radius:24px;padding:30px 32px;box-shadow:0 40px 90px -40px rgba(0,0,0,.9)}
+  .helpcard .kickpink{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+  .helpcard h3{font-family:'Unbounded',sans-serif;font-size:23px;line-height:1.15;margin-bottom:14px;color:var(--ink)}
+  .helpcard p{font-size:16px;line-height:1.6;color:#E2D9E3;margin-bottom:12px}
+  .helpcard p b{color:#fff}
+  .helpbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .helpbtns .btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+  .helpclose{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--wash);color:var(--ink);cursor:pointer;font-size:14px}
+  .helpclose:hover{border-color:var(--pink);color:var(--pink)}
+  @media (max-width:560px){.helpcard{padding:24px 20px}.helpbtns .btn{width:100%}}
 </style>
 </head>
 <body>
@@ -247,9 +261,25 @@
       <button class="btn ghost sm wide" id="dlall">Скачать по одной картинке</button>
       <button class="btn ghost sm wide" id="reset">Начать заново</button>
       <div class="saved" id="saved"></div>
-      <div class="hint">Фото можно перетащить прямо на слайд или вставить из буфера. Стрелки «↑ ⋯ ↓» двигают текст вверх, по центру или вниз – удобно подгонять под лицо на фото.</div>
+      <button class="btn ghost sm wide" id="helpbtn">Неудобно? Это нормально</button>
+      <div class="hint">Фото можно перетащить прямо на слайд или вставить из буфера. Кнопки «◀ фото ▶» под карточкой меняют фотографии местами между слайдами. Стрелки «↑ ⋯ ↓» двигают текст вверх, по центру или вниз – удобно подгонять под лицо на фото.</div>
     </div>
     <div class="stage" id="stage"></div>
+  </div>
+
+  <div class="helpbox" id="helpbox">
+    <div class="helpcard">
+      <button class="helpclose" id="helpclose" aria-label="Закрыть">✕</button>
+      <div class="kickpink">Если что-то не так</div>
+      <h3>Неудобно – это нормально</h3>
+      <p>Если тебе кажется, что работать здесь неудобно, дело почти наверняка не в тебе. Просто <b>твоя работа устроена немного иначе</b>: другой порядок действий, другие привычки, другое представление о том, как должна выглядеть карусель. Любой готовый инструмент – это чужие решения о том, как тебе удобно.</p>
+      <p>И самое интересное: это можно не терпеть. <b>Задача не в том, чтобы привыкнуть к чужому редактору, а в том, чтобы научиться собирать свои</b> – под то, как видишь работу именно ты.</p>
+      <p>На странице с гайдом есть промпт «Собери свой редактор каруселей»: он расспросит про твой процесс и соберёт инструмент под тебя. А как доводить такие штуки до ума и ставить на поток – разбираем на курсе.</p>
+      <div class="helpbtns">
+        <a class="btn" href="https://fitstars-school.github.io/ii-course/" target="_blank" rel="noopener">Узнать подробнее о курсе</a>
+        <a class="btn ghost" href="./#own" target="_blank" rel="noopener">Открыть промпт</a>
+      </div>
+    </div>
   </div>
   <div id="export"></div>
 <script>
@@ -470,6 +500,13 @@ function render(){
     });
     bar.appendChild(pos);
     if(s.photo){
+      const sw=document.createElement("div");sw.className="poswrap";
+      const bl=document.createElement("button");bl.textContent="◀ фото";bl.title="поменять фото с предыдущим слайдом";
+      bl.onclick=()=>swapPhoto(idx,-1);
+      const br=document.createElement("button");br.textContent="фото ▶";br.title="поменять фото со следующим слайдом";
+      br.onclick=()=>swapPhoto(idx,1);
+      sw.appendChild(bl);sw.appendChild(br);bar.appendChild(sw);
+
       const lw=document.createElement("div");lw.className="poswrap";
       [["full","на весь"],["half","фото сверху"],["hlow","фото снизу"]].forEach(([k,t])=>{
         const b=document.createElement("button");b.textContent=t;b.title="раскладка: "+t;
@@ -516,6 +553,13 @@ function renderChips(){
     b.onclick=()=>{state.format=k;save();render();};
     fc.appendChild(b);
   }
+}
+function swapPhoto(i,d){
+  const j=i+d; if(j<0||j>=state.slides.length) { flash("Дальше слайдов нет", true); return; }
+  const a=state.slides[i], b=state.slides[j];
+  [a.photo,b.photo]=[b.photo,a.photo];
+  [a.layout,b.layout]=[b.layout,a.layout];
+  state.touched=true; save(); render(); flash("Фото поменялись местами");
 }
 function mini(t,fn){const b=document.createElement("button");b.className="mini";b.textContent=t;b.onclick=fn;return b;}
 function move(i,d){const j=i+d;if(j<1||j>=state.slides.length)return;[state.slides[i],state.slides[j]]=[state.slides[j],state.slides[i]];save();render();}
@@ -607,6 +651,11 @@ $("#shuffle").onclick=()=>{
   });
   state.touched=true; save(); render(); flash("Раскладки перетасованы – смотри, что нравится");
 };
+const HELP = document.getElementById("helpbox");
+$("#helpbtn").onclick=()=>{ HELP.classList.add("on"); };
+$("#helpclose").onclick=()=>{ HELP.classList.remove("on"); };
+HELP.addEventListener("click", e=>{ if(e.target===HELP) HELP.classList.remove("on"); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") HELP.classList.remove("on"); });
 $("#add").onclick=()=>{state.slides.push({type:"content",title:"",body:"Текст слайда",photo:null,pos:"top"});save();render();};
 $("#brand").oninput=e=>{state.brand=e.target.value;save();render();};
 $("#kicker").oninput=e=>{state.kicker=e.target.value;save();render();};
