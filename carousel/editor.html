@@ -205,6 +205,12 @@
     content:"";position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);
     border:5px solid transparent;border-top-color:#0F0C14;z-index:41;pointer-events:none}
   @media (hover:none){[data-tip]:hover::after,[data-tip]:hover::before{display:none}}
+
+  /* ---- плашка-выделение внутри текста слайда ---- */
+  .slide .chip{display:inline;font:inherit;letter-spacing:inherit;text-align:inherit;min-width:0;flex:none;border:none;cursor:inherit;background:var(--s-acc);color:#fff;border-radius:.16em;padding:.04em .2em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .slide[data-deco=aest] .chip{background:rgba(255,255,255,.94);color:#231C16}
+  .slide[data-deco=edito] .chip{background:var(--s-acc);color:#fff}
+  .slide[data-deco=nejro] .chip{background:var(--grad);color:#fff}
 </style>
 </head>
 <body>
@@ -352,12 +358,12 @@ const FORMATS = {
 };
 const KEY = "carousel-editor-v2";
 const DEFAULT = {brand:"@fitstars", kicker:"", style:"nejro", format:"45", touched:false, tipSeen:false, slides:[
-  {"type": "cover", "title": "Делаешь карусель полдня и всё равно недовольна?", "body": "Давай разбираться, как собрать её за 20 минут – и чтобы она была твоей, а не как у всех.", "photo": null, "pos": "center"},
-  {"type": "content", "title": "Мне это знакомо", "body": "Я не дизайнер и никогда им не была. Долго думала, что это приговор: значит, красивого визуала у меня не будет – либо плати за каждую картинку. Оказалось, дело вообще не в таланте. Дело в трёх простых правилах, которых мне никто не сказал.", "photo": null, "pos": "center"},
-  {"type": "content", "title": "Правило 1. Одна мысль на слайд", "body": "Самая частая ошибка – затолкать в первый слайд всё сразу. Не надо. Одна мысль – один экран. Не влезает в три строки? Значит, это две мысли, и им нужно два слайда. Проверка простая: прочитай слайд вслух на одном дыхании.", "photo": null, "pos": "center"},
-  {"type": "content", "title": "Правило 2. Первый обещает, последний зовёт", "body": "Обложка – это не название темы, а обещание: что человек унесёт, если долистает. А на последнем слайде скажи, что сделать дальше – написать, сохранить, попробовать. Без этого карусель просто заканчивается, и всё.", "photo": null, "pos": "center"},
-  {"type": "content", "title": "Правило 3. Найди свой стиль", "body": "Не просто один стиль на карусель, а именно свой: твои цвета, твои шрифты, твоя интонация. Кажется, что ИИ делает всем одинаковые картинки? Он делает их ровно до тех пор, пока ему не объяснили, какая ты. Дай ему свои цвета, свои примеры, скажи, что нравится и что бесит – и одинаковое закончится.", "photo": null, "pos": "center"},
-  {"type": "content", "title": "Дальше – интереснее", "body": "Всё это ты сейчас сделала руками. Но карусели можно собирать иначе: чтобы ИИ сам писал текст твоим голосом, сам раскладывал слайды и складывал готовое в папку на компьютере. Этому учимся на курсе «Нейро-архитектор» – и там же собираем под себя любой рабочий инструмент, вместо того чтобы подстраиваться под чужой.", "photo": null, "pos": "center"}
+  {"type": "cover", "title": "Делаешь карусель полдня и всё равно недовольна?", "body": "Давай разбираться, как собрать её <span class=\"chip\">за 20 минут</span> – и чтобы она была твоей, а не как у всех.", "photo": null, "pos": "center"},
+  {"type": "content", "title": "Мне это знакомо", "body": "Я не дизайнер и никогда им не была. Долго думала, что это приговор: значит, красивого визуала у меня не будет – либо плати за каждую картинку. Оказалось, дело вообще <span class=\"chip\">не в таланте</span>. Дело в трёх простых правилах, которых мне никто не сказал.", "photo": null, "pos": "center"},
+  {"type": "content", "title": "Правило 1. Одна мысль на слайд", "body": "Самая частая ошибка – затолкать в первый слайд всё сразу. Не надо. Одна мысль – один экран. Не влезает в три строки? Значит, это две мысли, и им нужно два слайда. Проверка простая: прочитай слайд <span class=\"chip\">вслух на одном дыхании</span>.", "photo": null, "pos": "center"},
+  {"type": "content", "title": "Правило 2. Первый обещает, последний зовёт", "body": "Обложка – это не название темы, а <span class=\"chip\">обещание</span>: что человек унесёт, если долистает. А на последнем слайде скажи, что сделать дальше – написать, сохранить, попробовать. Без этого карусель просто заканчивается, и всё.", "photo": null, "pos": "center"},
+  {"type": "content", "title": "Правило 3. Найди свой стиль", "body": "Не просто один стиль на карусель, а именно свой: твои цвета, твои шрифты, твоя интонация. Кажется, что ИИ делает всем одинаковые картинки? Он делает их ровно до тех пор, пока ему <span class=\"chip\">не объяснили, какая ты</span>. Дай ему свои цвета, свои примеры, скажи, что нравится и что бесит – и одинаковое закончится.", "photo": null, "pos": "center"},
+  {"type": "content", "title": "Дальше – интереснее", "body": "Всё это ты сейчас сделала руками. Но карусели можно собирать иначе: чтобы ИИ сам писал текст твоим голосом, сам раскладывал слайды и складывал готовое в папку на компьютере. Этому учимся на курсе <span class=\"chip\">«Нейро-архитектор»</span> – и там же собираем под себя любой рабочий инструмент, вместо того чтобы подстраиваться под чужой.", "photo": null, "pos": "center"}
 ]};
 let state = load();
 let active = 0;
@@ -413,6 +419,21 @@ function flash(msg, warn){
 
 const $=s=>document.querySelector(s), stage=$("#stage"), exp=$("#export"), slist=$("#slist");
 const esc=t=>(t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+// в тексте слайда разрешаем только плашки: <span class="chip">
+function clean(html){
+  const box=document.createElement("div"); box.innerHTML=html||"";
+  const walk=n=>{
+    [...n.childNodes].forEach(c=>{
+      if(c.nodeType===1){
+        if(c.tagName==="SPAN" && c.classList.contains("chip")){ c.removeAttribute("style"); walk(c); }
+        else if(c.tagName==="BR"){ /* оставляем перенос */ }
+        else { const t=document.createTextNode(c.textContent); n.replaceChild(t,c); }
+      }
+    });
+  };
+  walk(box);
+  return box.innerHTML;
+}
 
 function slideHTML(s,i,total,edit){
   const ce=edit?'contenteditable="true" spellcheck="false"':'';
@@ -427,13 +448,13 @@ function slideHTML(s,i,total,edit){
   let main;
   if(s.type==="cover"){
     main=`${state.kicker?`<div class="kicker">${esc(state.kicker)}</div>`:''}
-      <div class="title" ${ce} data-idx="${i}" data-field="title" data-ph="Заголовок обложки">${esc(s.title)}</div>
+      <div class="title" ${ce} data-idx="${i}" data-field="title" data-ph="Заголовок обложки">${clean(s.title)}</div>
       <div class="bar"></div>
-      <div class="sub" ${ce} data-idx="${i}" data-field="body" data-ph="Подзаголовок">${esc(s.body)}</div>`;
+      <div class="sub" ${ce} data-idx="${i}" data-field="body" data-ph="Подзаголовок">${clean(s.body)}</div>`;
   }else{
     main=`<div class="accentline"></div>
-      ${ (s.title||edit)?`<div class="head" ${ce} data-idx="${i}" data-field="title" data-ph="Заголовок">${esc(s.title)}</div>`:'' }
-      <div class="body" ${ce} data-idx="${i}" data-field="body" data-ph="Текст слайда">${esc(s.body)}</div>`;
+      ${ (s.title||edit)?`<div class="head" ${ce} data-idx="${i}" data-field="title" data-ph="Заголовок">${clean(s.title)}</div>`:'' }
+      <div class="body" ${ce} data-idx="${i}" data-field="body" data-ph="Текст слайда">${clean(s.body)}</div>`;
   }
   const foot=s.type==="cover"
     ?`<div class="foot"><span><span class="dot"></span>листай →</span><span>${esc(state.brand)}</span></div>`
@@ -462,13 +483,14 @@ function makeSlide(s,i,total,edit){
 // текст не помещается? уменьшаем кегль, а если совсем никак – предупреждаем
 function fitText(slideEl){
   const pad = slideEl.querySelector(".pad");
-  const limit = FORMATS[state.format].h - 210;
-  let scale = 1;
+  const limit = pad.clientHeight;          // реальная высота области текста
   const nodes = pad.querySelectorAll(".title,.sub,.head,.body");
   const base = [];
-  nodes.forEach(n=>base.push(parseFloat(getComputedStyle(n).fontSize)));
-  while(pad.scrollHeight > limit && scale > 0.62){
-    scale -= 0.05;
+  nodes.forEach(n=>{ n.style.fontSize=""; base.push(parseFloat(getComputedStyle(n).fontSize)); });
+  if(pad.scrollHeight <= limit) return false;   // всё влезает – ничего не трогаем
+  let scale = 1;
+  while(pad.scrollHeight > limit && scale > 0.74){
+    scale -= 0.03;
     nodes.forEach((n,k)=>{ n.style.fontSize = Math.round(base[k]*scale) + "px"; });
   }
   return pad.scrollHeight > limit;
@@ -537,6 +559,11 @@ function render(){
     pi.onchange=e=>{const f=e.target.files[0];if(f)setPhoto(s,f);};
     pl.appendChild(pi);bar.appendChild(pl);
     if(s.photo){const rm=document.createElement("button");rm.className="photobtn";rm.textContent="убрать";rm.dataset.tip="убрать фото, останется фон стиля";rm.onclick=()=>{s.photo=null;save();render();};bar.appendChild(rm);}
+    const hl=document.createElement("button");hl.className="photobtn";hl.textContent="✦ плашка";
+    hl.dataset.tip="выдели слово на слайде и нажми – оно ляжет на цветную подложку";
+    hl.onmousedown=e=>e.preventDefault();
+    hl.onclick=()=>toggleChip(card,idx);
+    bar.appendChild(hl);
     const dl=document.createElement("button");dl.className="btn sm";dl.textContent="Скачать";dl.dataset.tip="сохранить этот слайд картинкой";dl.onclick=()=>download(idx);
     bar.appendChild(dl); card.appendChild(bar); stage.appendChild(card);
 
@@ -570,6 +597,27 @@ function renderChips(){
     fc.appendChild(b);
   }
 }
+function toggleChip(card, idx){
+  const sel=window.getSelection();
+  if(!sel || sel.isCollapsed){ flash("Сначала выдели слово прямо на слайде", true); return; }
+  const range=sel.getRangeAt(0);
+  const host=range.commonAncestorContainer.parentElement && range.commonAncestorContainer.parentElement.closest("[data-field]");
+  if(!host || !card.contains(host)){ flash("Выдели текст на этом слайде", true); return; }
+  const inChip = range.commonAncestorContainer.parentElement.closest(".chip");
+  if(inChip){                       // снять плашку
+    const parent=inChip.parentNode;
+    while(inChip.firstChild) parent.insertBefore(inChip.firstChild, inChip);
+    parent.removeChild(inChip);
+  } else {                          // поставить плашку
+    const span=document.createElement("span"); span.className="chip";
+    try{ range.surroundContents(span); }
+    catch(e){ span.appendChild(range.extractContents()); range.insertNode(span); }
+  }
+  const s=state.slides[idx];
+  if(s){ s[host.dataset.field]=clean(host.innerHTML); state.touched=true; save(); }
+  sel.removeAllRanges();
+  flash(inChip ? "Плашка снята" : "Плашка поставлена");
+}
 function swapPhoto(i,d){
   const j=i+d; if(j<0||j>=state.slides.length) { flash("Дальше слайдов нет", true); return; }
   const a=state.slides[i], b=state.slides[j];
@@ -583,7 +631,7 @@ function remove(i){state.slides.splice(i,1);save();render();}
 
 stage.addEventListener("input",e=>{
   const el=e.target.closest("[data-field]");if(!el)return;
-  const s=state.slides[+el.dataset.idx];if(s){s[el.dataset.field]=el.innerText;state.touched=true;if(!state.tipSeen){state.tipSeen=true;document.querySelectorAll(".frame .tip").forEach(t=>t.remove());}save();}
+  const s=state.slides[+el.dataset.idx];if(s){s[el.dataset.field]=clean(el.innerHTML);state.touched=true;if(!state.tipSeen){state.tipSeen=true;document.querySelectorAll(".frame .tip").forEach(t=>t.remove());}save();}
   const sl=el.closest(".slide"); const card=sl.closest(".editcard");
   const over=fitText(sl); const w=card.querySelector(".warn"); if(w) w.classList.toggle("on",over);
 });
@@ -687,8 +735,8 @@ async function download(idx){
   const s=state.slides[idx];
   const node=makeSlide(s,idx,state.slides.length,false);
   exp.appendChild(node);
-  fitText(node);
   try{ await document.fonts.ready; }catch(e){}
+  fitText(node);
   const canvas=await html2canvas(node,{width:F.w,height:F.h,scale:1,backgroundColor:null,useCORS:true});
   exp.removeChild(node);
   const a=document.createElement("a");
@@ -732,8 +780,9 @@ function makeZip(files){ // files: [{name, data:Uint8Array}]
 async function slidePng(idx){
   const F=FORMATS[state.format], s=state.slides[idx];
   const node=makeSlide(s,idx,state.slides.length,false);
-  exp.appendChild(node); fitText(node);
+  exp.appendChild(node);
   try{ await document.fonts.ready; }catch(e){}
+  fitText(node);
   const canvas=await html2canvas(node,{width:F.w,height:F.h,scale:1,backgroundColor:null,useCORS:true});
   exp.removeChild(node);
   const blob=await new Promise(r=>canvas.toBlob(r,"image/png"));
