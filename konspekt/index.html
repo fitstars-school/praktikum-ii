@@ -1,0 +1,188 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Конспект практикума «ИИ-помощник в вашем деле»</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#E6198C;--pink2:#C0116E;--ink:#211829;--wash:#FBF4F8;--line:#ECE1EC;--dark:#1B1420;
+--grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%)}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:400 17px/1.6 Manrope,sans-serif}
+.in{max-width:900px;margin:0 auto;padding:0 22px}
+header{background:var(--grad);color:#fff;padding:56px 0 48px}
+h1{font:800 36px/1.14 Unbounded,sans-serif;margin:0 0 16px}
+header p{margin:0 0 8px;font-size:18px;opacity:.96;max-width:640px}
+header .date{display:inline-block;margin-top:10px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:99px;padding:7px 16px;font-size:15px;font-weight:600}
+section{padding:48px 0}
+section.tint{background:var(--wash)}
+section.dark{background:var(--dark);color:#fff}
+.kicker{color:var(--pink);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px}
+.dark .kicker{color:#FF9ED2}
+h2{font:800 27px/1.2 Unbounded,sans-serif;margin:0 0 16px}
+h3{font:800 19px/1.3 Manrope,sans-serif;margin:28px 0 12px}
+p{margin:0 0 14px}
+.q{background:#fff;border-left:3px solid var(--pink);padding:14px 18px;border-radius:0 12px 12px 0;margin:0 0 20px;font-size:16px;box-shadow:0 2px 14px rgba(33,24,41,.06)}
+.dark .q{background:rgba(255,255,255,.07);box-shadow:none;color:#EFE6F2}
+.q b{color:var(--pink2)}.dark .q b{color:#FF9ED2}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:0 0 14px}
+.grid.g2{grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;font-size:16px}
+.dark .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+.card .n{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;border-radius:50%;background:var(--grad);color:#fff;font-weight:800;font-size:14px;margin-bottom:8px}
+.card b.t{display:block;font-size:17px;margin-bottom:5px}
+.say{background:var(--dark);color:#fff;border-radius:12px;padding:13px 16px;font-size:15px;margin:10px 0 0}
+.dark .say{background:rgba(255,255,255,.1)}
+.say b{color:#FF9ED2}
+.plus{background:#EAF7EE;border:1px solid #CDEBD6;border-radius:10px;padding:9px 13px;margin-top:9px;font-size:15px}
+.minus{background:#FDF1EC;border:1px solid #F7D9CC;border-radius:10px;padding:9px 13px;margin-top:9px;font-size:15px}
+.next{background:#fff;border:1px solid var(--line);border-left:4px solid var(--pink);border-radius:0 14px 14px 0;padding:14px 18px;margin-top:18px;font-size:16px}
+.dark .next{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);border-left-color:#FF9ED2}
+.next b{color:var(--pink2)}.dark .next b{color:#FF9ED2}
+.law{background:var(--grad);color:#fff;border-radius:16px;padding:20px 22px;font-size:16px;grid-column:1/-1}
+.law b.t{display:block;font:800 19px/1.3 Unbounded,sans-serif;margin-bottom:7px}
+.law .n{background:rgba(255,255,255,.25)}
+.grad-h{font:800 32px/1.15 Unbounded,sans-serif;margin:0 0 14px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card .lv{display:block;margin-top:7px}
+.card .lv b{color:var(--pink2)}
+.dark .card .lv b{color:#FF9ED2}
+.toc{background:var(--wash);border-radius:20px;padding:26px 24px;margin:-24px 0 0}
+.toc h3{margin:0 0 14px}
+.toc-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.toc a{display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-decoration:none;color:var(--ink);transition:.15s}
+.toc a:hover{border-color:var(--pink);transform:translateY(-2px)}
+.toc a span{display:block;color:var(--pink);font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.toc a b{font-size:16px}
+ul{margin:0 0 14px;padding-left:20px}li{margin-bottom:7px}
+.fin{background:var(--grad);color:#fff;padding:44px 0}
+.fin h2{margin-top:0}
+.btn{display:inline-block;margin-top:18px;background:#fff;color:var(--pink2);text-decoration:none;font-weight:800;font-size:17px;padding:15px 30px;border-radius:99px;box-shadow:0 8px 26px rgba(33,24,41,.18)}
+.btn:hover{transform:translateY(-2px)}
+@media(max-width:700px){
+.grid,.grid.g2,.toc-g{grid-template-columns:1fr}
+h1{font-size:26px}h2,.grad-h{font-size:22px}h3{font-size:17px}
+body{font-size:16px}section{padding:34px 0}
+.in{padding:0 16px}
+header{padding:40px 0 34px}
+.toc{padding:20px 18px}
+.card{padding:16px 17px;font-size:15.5px}
+.say{font-size:14.5px;padding:12px 14px}
+.q{font-size:15px;padding:12px 15px}
+.law{padding:18px}.law b.t{font-size:17px}
+.btn{font-size:16px;padding:14px 22px;width:100%;text-align:center;box-sizing:border-box}
+table,th,td{font-size:15px}
+}
+</style></head><body>
+
+<header><div class="in">
+<h1>Конспект практикума</h1>
+<p>«ИИ-помощник в вашем деле». Всё, что мы разбирали вживую – собрано по шагам, чтобы можно было повторить самостоятельно.</p>
+<div class="date">Практикум 19 августа, 18:00</div>
+</div></header>
+
+<section><div class="in">
+<div class="toc"><h3>Что внутри</h3>
+<div class="toc-g">
+<a href="#main"><span>Главное</span><b>Сквозная мысль практикума</b></a>
+<a href="#p1"><span>Практика 1</span><b>Пост в своём стиле</b></a>
+<a href="#p2"><span>Практика 2</span><b>Карусель без дизайнера</b></a>
+<a href="#p3"><span>Практика 3</span><b>Свой мини-продукт</b></a>
+<a href="#today"><span>Действия</span><b>Что сделать уже сегодня</b></a>
+<a href="#next"><span>Дальше</span><b>Куда это растёт</b></a>
+</div></div>
+</div></section>
+
+<section class="tint" id="main"><div class="in">
+<p class="kicker">Главное</p>
+<h2 class="grad-h">Сквозная мысль практикума</h2>
+<div class="grid">
+<div class="card"><b class="t">Пластик – не свойство нейросети</b>ИИ пишет усреднённо не потому, что он плохой, а потому, что мы не передали ему себя. Он не знает, на основании чего лично вы принимаете решения: почему один текст оставите, а другой снесёте</div>
+<div class="card"><b class="t">Сила не в промпте</b>Сила в том, что вы наговорили до него. Магической формулировки нет – есть ваш контекст, ваши примеры и ваши запреты</div>
+<div class="card"><b class="t">ИИ не меняет профессию</b>Он делает вашу работу быстрее и дороже. Накладывается на то, в чём вы уже разбираетесь, а не заменяет вашу экспертизу</div>
+</div>
+<div class="q">Каждый второй хочет снять с себя рутину – и почти столько же не доверяют результату. Обе эти вещи мы на практикуме и разбирали.</div>
+</div></section>
+
+<section id="p1"><div class="in">
+<p class="kicker">Практика 1</p>
+<h2>Пост, который звучит как вы</h2>
+<p>Сначала мы попросили пост «как обычно» и получили текст, который технически есть, а публиковать не хочется: правильный, логичный, даже симпатичный – и совершенно усреднённый. Типовые клише, конструкции-кальки с английского, ни вашей логики, ни историй, ни примеров.</p>
+<p>Потом сделали по-другому. Не надо становиться копирайтером и знать полтораста маркетинговых формул. Надо наговорить семь вещей.</p>
+<h3>Семь вещей для хорошего поста</h3>
+<div class="grid g2">
+<div class="card"><span class="n">1</span><b class="t">Задача</b>Что хочу получить и что человек должен подумать, дочитав</div>
+<div class="card"><span class="n">2</span><b class="t">Мой материал</b>Что я сама знаю и думаю по теме. Красиво формулировать не надо, рассказываем голосом</div>
+<div class="card"><span class="n">3</span><b class="t">Что мне нравится</b>Как построен текст, который вам нравится. Название приёма знать необязательно</div>
+<div class="card"><span class="n">4</span><b class="t">Структура</b>Что это: рассказ, история, разбор ошибки, инструкция. Не знаете блок – пропускайте, это не анкета</div>
+<div class="card"><span class="n">5</span><b class="t">Как я хочу звучать</b>Партнёрски или экспертно, с юмором или строго, с бытовыми аналогиями или без</div>
+<div class="card"><span class="n">6</span><b class="t">Маркетинговые приёмы</b>Что цепляет внимание: заголовок, крючок, призыв. Тоже своими словами</div>
+<div class="card"><span class="n">7</span><b class="t">Что я точно не хочу</b>Не менее важный источник, чем всё остальное. Рубленые фразы, пафосные метафоры, придуманные истории</div>
+</div>
+<h3>Почему наговариваем голосом</h3>
+<p>В 4–5 раз быстрее, чем печатать. Не редактируем на ходу: когда печатаешь, спотыкаешься и отсекаешь самое живое. И голосом мы отдаём свою настоящую речь – ту самую, которой и учим ИИ. В ChatGPT есть встроенный голосовой ввод, для объёмных расшифровок – Буквица, отдельными приложениями – Whisper, AquaVoice, Handy.</p>
+<h3>А сам промпт получается коротким</h3>
+<div class="say">«На основе всего, что я рассказала, напиши пост для Telegram. Используй мои мысли, примеры и критерии. Сохрани мою манеру речи. Не используй то, что я просила исключить. <b>Если не хватает информации – сначала задай уточняющие вопросы. Покажи пост в трёх разных структурах – я выберу</b>»</div>
+<p style="margin-top:14px">Две последние фразы – те самые фишки. Первая останавливает его и заставляет спросить. Вторая даёт вам выбор вместо одного варианта.</p>
+<div class="next"><b>Главное из практики 1.</b> Сила не в промпте. Сила в том, что вы наговорили до него.</div>
+</div></section>
+
+<section class="tint" id="p2"><div class="in">
+<p class="kicker">Практика 2</p>
+<h2>Карусель без дизайнера</h2>
+<p>Хорошая карусель складывается из трёх вещей: хороший текст в вашем стиле, общий дизайн-стиль, чтобы вас узнавали, и визуал – фоны и картинки, которые можно сгенерировать.</p>
+<h3>Дизайн-стиль берут тремя способами</h3>
+<div class="grid">
+<div class="card"><span class="n">1</span><b class="t">Создать с нуля</b>Собрать свою палитру, шрифты и заставки под себя</div>
+<div class="card"><span class="n">2</span><b class="t">Взять готовое решение</b>Использовать существующий набор и не изобретать</div>
+<div class="card"><span class="n">3</span><b class="t">Наскринить и адаптировать</b>Принести скриншоты того, что нравится, и попросить разобрать по частям</div>
+</div>
+<p>Ради этого момента всё и показывалось: презентацию практикума ИИ собирал, опираясь на файл с моим дизайн-стилем. Мне не надо было каждый раз объяснять, как она должна выглядеть – он просто берёт стиль и работает по нему. Тот же принцип, что с текстом: передали своё один раз – получаете своё, а не типовое.</p>
+<h3>Как делали вживую</h3>
+<p>Дизайн-стиль с нуля мы не разрабатывали, сегодня было проще: описать словами, как нравится. Минималистичный, светлый, тёмный. Назвать любимый цвет. «Хочу светленькое, лаконичное, чтобы читалось в Телеграме». Дальше берём готовый пост и просим сделать карусель – <b>обязательно в формате HTML</b>. Запрос наговариваем голосом, без заученных формулировок.</p>
+<div class="next"><b>Секретный лайфхак.</b> Эту карусель можно доработать до своего вечного редактора – бесплатного и в вашем стиле. Не шаблон, как у всех, а инструмент под себя.</div>
+</div></section>
+
+<section class="dark" id="p3"><div class="in">
+<p class="kicker">Практика 3</p>
+<h2>Свой мини-продукт</h2>
+<p>Мини-продукт – это всё, что можно отделить от себя, упаковать и передать другому с пользой.</p>
+<div class="grid">
+<div class="card"><b class="t">Чем это может быть</b>Руководства и гайды, тетради и конспекты, тесты и квизы, калькуляторы, трекеры, помощники, мини-сайты</div>
+<div class="card"><b class="t">Кому это нужно</b>Экспертам – вместо «запишитесь на консультацию». Фрилансерам – как новая услуга. В найме – инструмент против рутины. Мамам – трекеры и игры детям</div>
+<div class="card"><b class="t">И всем, у кого есть</b>та самая нелюбимая таблица, которую каждый раз заполняешь руками</div>
+</div>
+<h3>Как собирали вживую</h3>
+<div class="say">«Я методолог, помогаю экспертам с программами. <b>Какой мини-продукт я могу собрать в виде HTML-документа, исходя из моей экспертизы? Задай уточняющие вопросы</b> и собери прототип»</div>
+<p style="margin-top:14px">Дальше просто отвечаем на его вопросы: какую проблему решаю, кому помогаю, что человек получит. И смотрим, что собралось – главное тут скорость.</p>
+<div class="next"><b>Что делать с прототипом.</b> Допилить своими примерами и формулировками. Показать двум-трём знакомым из вашей аудитории. И спросить у ИИ: «кому и за сколько это можно продавать».</div>
+</div></section>
+
+<section id="today"><div class="in">
+<p class="kicker">Действия</p>
+<h2 class="grad-h">Что сделать уже сегодня</h2>
+<div class="grid g2">
+<div class="card"><span class="n">1</span><b class="t">Пересоберите один свой пост</b>Возьмите старый текст и наговорите к нему семь вещей. Сравните с тем, что было</div>
+<div class="card"><span class="n">2</span><b class="t">Соберите вторую карусель</b>Из любого старого поста. Сохраните файл и попросите поменять стиль: светлее, темнее, другой шрифт</div>
+<div class="card"><span class="n">3</span><b class="t">Покажите людям</b>Выложите карусель подписчикам и посмотрите на реакцию. Это самый быстрый способ проверить, что получилось</div>
+<div class="card"><span class="n">4</span><b class="t">Соберите свой прототип</b>Один мини-продукт под вашу экспертизу. Не идеальный – рабочий</div>
+</div>
+<div class="next"><b>И заберите секретные бонусы.</b> Там ответы на вопросы, которые вы задавали в чате: как наговаривать, что делать с пятью типовыми поломками, как вытащить из переписки свой паспорт голоса и как делать презентации. <a href="../sekretnye/" style="color:var(--pink2);font-weight:800">Открыть секретные бонусы</a></div>
+</div></section>
+
+<section class="tint" id="next"><div class="in">
+<p class="kicker">Дальше</p>
+<h2>Куда это растёт</h2>
+<p>Всё, что мы делали сегодня, вы повторите сами. Но каждый раз – заново: заново объяснять, заново вставлять файл, заново собирать. Дальше начинается система.</p>
+<div class="grid g2">
+<div class="card"><span class="n">1</span><b class="t">Чат</b>То, что было сегодня. Работает сразу, но всё держится на вас</div>
+<div class="card"><span class="n">2</span><b class="t">Помощник</b>Знает ваш стиль и ваши правила, объяснять заново не надо. Это модуль 2</div>
+<div class="card"><span class="n">3</span><b class="t">Мини-продукт</b>То, что можно отдать людям по ссылке и продавать. Это модуль 3</div>
+<div class="card"><span class="n">4</span><b class="t">Агент</b>Работает с вашими файлами и папками сам. Это модуль 4</div>
+</div>
+</div></section>
+
+<div class="fin"><div class="in">
+<h2>Курс «Нейро-архитектор»</h2>
+<p>4 модуля, 18 уроков. Не «как писать промпты», а как собрать систему, которая помнит вас и работает дальше без вашего участия.</p>
+<a class="btn" href="https://fitstars-school.github.io/ii-course/">Посмотреть курс</a>
+</div></div>
+
+</body></html>
