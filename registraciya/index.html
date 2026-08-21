@@ -435,7 +435,7 @@
     <div class="btns">
       <a class="btn" id="gcal" href="#" target="_blank" rel="noopener">📅 Google</a>
       <a class="btn ghost" id="ical" href="#" role="button">🍎 Apple и другие</a>
-      <a class="btn ghost" id="ycal" href="https://calendar.yandex.ru/event/313432727439706?applyToFuture=0&amp;event_date=2026-08-19T15%3A00%3A00&amp;layerId=7203103&amp;show_date=2026-08-19" target="_blank" rel="noopener">🟡 Яндекс</a>
+      <a class="btn ghost" id="ycal" href="https://calendar.yandex.ru/event/313432727439706?applyToFuture=0&amp;event_date=2026-08-27T15%3A00%3A00&amp;layerId=7203103&amp;show_date=2026-08-27" target="_blank" rel="noopener">🟡 Яндекс</a>
     </div>
     <p class="small" id="calhint">Google и Яндекс открывают событие сразу – останется нажать «Добавить в свой календарь». Для Apple, Outlook и остальных скачивается файл: открой его после загрузки, с телефона это самый быстрый путь.</p>
   </div>
@@ -456,8 +456,8 @@
 const EV = {
   title: "Практикум по ИИ · FitStars",
   desc:  "Практикум «Как делать своё дело легко и в удовольствие». Работаем в ChatGPT – если ещё не зарегистрирован, гайд здесь: https://fitstars-school.github.io/praktikum-ii/registraciya/",
-  startUTC: "20260819T150000Z",
-  endUTC:   "20260819T170000Z"
+  startUTC: "20260827T120000Z",
+  endUTC:   "20260827T140000Z"
 };
 
 /* ============ общие блоки ============
@@ -1007,7 +1007,7 @@ document.getElementById('ical').onclick = (e)=>{
   e.preventDefault();
   const ics = [
     'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FitStars//Praktikum//RU','CALSCALE:GREGORIAN',
-    'BEGIN:VEVENT','UID:fitstars-praktikum-2026-08-19@fitstars',
+    'BEGIN:VEVENT','UID:fitstars-praktikum-2026-08-27@fitstars',
     'DTSTAMP:'+EV.startUTC,'DTSTART:'+EV.startUTC,'DTEND:'+EV.endUTC,
     'SUMMARY:'+EV.title,
     'DESCRIPTION:'+EV.desc.replace(/,/g,'\\,'),
